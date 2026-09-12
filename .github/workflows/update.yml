@@ -3,7 +3,7 @@ name: Update JCNode subscription
 on:
   schedule:
     # 站点一般在北京时间 08:30-10:40 更新，这里 11:30 抓一次，18:00 再补一次
-    # 注意：cron 用 UTC 时间，北京时间 = UTC + 8
+    # 注意：cron 用 UTC，北京时间 = UTC + 8
     - cron: "30 3 * * *"    # 11:30 CST
     - cron: "0 10 * * *"    # 18:00 CST
   workflow_dispatch:
@@ -30,43 +30,109 @@ jobs:
     timeout-minutes: 40
     steps:
       - name: 检出仓库
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: 准备 Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v7
         with:
           python-version: "3.12"
 
-      - name: 抓取订阅（无需第三方依赖，纯标准库）
+      - name: 安装合并依赖
+        run: python -m pip install --disable-pip-version-check --no-input PyYAML
+
+      - name: 定位抓取脚本
+        id: locate-fetch
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [ -f scripts/fetch_jcnode.py ]; then
+            echo "path=scripts/fetch_jcnode.py" >> "$GITHUB_OUTPUT"
+            echo "✅ 找到 scripts/fetch_jcnode.py"
+          elif [ -f fetch_jcnode.py ]; then
+            echo "path=fetch_jcnode.py" >> "$GITHUB_OUTPUT"
+            echo "✅ 找到根目录 fetch_jcnode.py"
+          else
+            echo "❌ 仓库里没有 fetch_jcnode.py"
+            exit 1
+          fi
+
+      - name: 定位合并脚本
+        id: locate-merge
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [ -f scripts/merge_subscriptions.py ]; then
+            echo "path=scripts/merge_subscriptions.py" >> "$GITHUB_OUTPUT"
+            echo "✅ 找到 scripts/merge_subscriptions.py"
+          elif [ -f merge_subscriptions.py ]; then
+            echo "path=merge_subscriptions.py" >> "$GITHUB_OUTPUT"
+            echo "✅ 找到根目录 merge_subscriptions.py"
+          else
+            echo "❌ 仓库里没有 merge_subscriptions.py"
+            exit 1
+          fi
+
+      - name: 抓取到临时目录（不碰旧订阅）
         env:
           INPUT_CODE: ${{ inputs.code }}
           INPUT_FULL: ${{ inputs.full_sweep }}
+        shell: bash
         run: |
           set -euo pipefail
+          rm -rf .incoming-sub
+          mkdir -p .incoming-sub
+          # 让抓取脚本继续优先尝试上次口令；本次 meta 会在抓取后覆盖
+          if [ -f sub/meta.json ]; then cp sub/meta.json .incoming-sub/meta.json; fi
+          SCRIPT="${{ steps.locate-fetch.outputs.path }}"
           ARGS=""
           if [ -n "${INPUT_CODE:-}" ]; then ARGS="$ARGS --code ${INPUT_CODE}"; fi
           if [ "${INPUT_FULL:-false}" = "true" ]; then ARGS="$ARGS --mode full"; fi
-          echo "运行参数: ${ARGS:-（默认 AABB 枚举）}"
-          python fetch_jcnode.py $ARGS
+          echo "运行: python $SCRIPT --out-dir .incoming-sub ${ARGS:-（默认 AABB 枚举）}"
+          python "$SCRIPT" --out-dir .incoming-sub --history .incoming-sub/codes.log $ARGS
+
+      - name: 保存当天订阅（覆盖 daily，保留综合版）
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p sub
+          for file in clash.yaml singbox.json v2ray.txt meta.json; do
+            test -s ".incoming-sub/$file"
+            cp ".incoming-sub/$file" "sub/$file.tmp"
+            mv "sub/$file.tmp" "sub/$file"
+          done
+          echo "✅ 当天订阅已更新到 sub/ 根目录"
+
+      - name: 合并到综合订阅（本次优先，不生成 archive）
+        shell: bash
+        run: |
+          set -euo pipefail
+          MERGER="${{ steps.locate-merge.outputs.path }}"
+          python "$MERGER" \
+            --base sub/merged \
+            --out sub/merged \
+            --incoming .incoming-sub \
+            --history history/codes.log
+          rm -rf .incoming-sub
 
       - name: 提交变更
+        shell: bash
         run: |
           set -euo pipefail
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add sub history
           if git diff --cached --quiet; then
-            echo "本次无变更，跳过提交"
+            echo "本次合并后无变更，跳过提交"
             exit 0
           fi
-          git commit -m "chore(sub): 更新 $(TZ=Asia/Shanghai date +'%Y-%m-%d %H:%M') 订阅"
+          git commit -m "chore(sub): 去重合并 JCNode 订阅 $(TZ=Asia/Shanghai date +'%Y-%m-%d %H:%M')"
           git push || { git pull --rebase --autostash && git push; }
 
       - name: 上传订阅文件（可选，方便从 Actions 页直接下载）
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
-          name: jcnode-sub-${{ github.run_number }}
+          name: jcnode-sub-daily-and-merged-${{ github.run_number }}
           path: sub/
           if-no-files-found: warn
           retention-days: 7
