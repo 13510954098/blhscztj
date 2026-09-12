@@ -1,0 +1,72 @@
+name: Update JCNode subscription
+
+on:
+  schedule:
+    # 站点一般在北京时间 08:30-10:40 更新，这里 11:30 抓一次，18:00 再补一次
+    # 注意：cron 用 UTC 时间，北京时间 = UTC + 8
+    - cron: "30 3 * * *"    # 11:30 CST
+    - cron: "0 10 * * *"    # 18:00 CST
+  workflow_dispatch:
+    inputs:
+      code:
+        description: "已知口令（4 位数字），留空则自动枚举 AABB"
+        required: false
+        default: ""
+      full_sweep:
+        description: "AABB 失效时全量扫描 0000-9999（约 1 小时，慎用）"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: jcnode-update
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - name: 检出仓库
+        uses: actions/checkout@v4
+
+      - name: 准备 Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: 抓取订阅（无需第三方依赖，纯标准库）
+        env:
+          INPUT_CODE: ${{ inputs.code }}
+          INPUT_FULL: ${{ inputs.full_sweep }}
+        run: |
+          set -euo pipefail
+          ARGS=""
+          if [ -n "${INPUT_CODE:-}" ]; then ARGS="$ARGS --code ${INPUT_CODE}"; fi
+          if [ "${INPUT_FULL:-false}" = "true" ]; then ARGS="$ARGS --mode full"; fi
+          echo "运行参数: ${ARGS:-（默认 AABB 枚举）}"
+          python scripts/fetch_jcnode.py $ARGS
+
+      - name: 提交变更
+        run: |
+          set -euo pipefail
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add sub history
+          if git diff --cached --quiet; then
+            echo "本次无变更，跳过提交"
+            exit 0
+          fi
+          git commit -m "chore(sub): 更新 $(TZ=Asia/Shanghai date +'%Y-%m-%d %H:%M') 订阅"
+          git push || { git pull --rebase --autostash && git push; }
+
+      - name: 上传订阅文件（可选，方便从 Actions 页直接下载）
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: jcnode-sub-${{ github.run_number }}
+          path: sub/
+          if-no-files-found: warn
+          retention-days: 7
