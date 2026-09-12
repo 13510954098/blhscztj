@@ -1,0 +1,54 @@
+{
+  "code": "7788",
+  "updated_at": "2026-09-12T13:27:45+08:00",
+  "updated_at_utc": "2026-09-12T05:27:45+00:00",
+  "date": "2026-09-12",
+  "source_page": "https://jcnode.com/posts/free-nodes/",
+  "link_tier": "direct",
+  "links": {
+    "clash": "https://shz.al/cEFj",
+    "singbox": "https://shz.al/KGZ7",
+    "v2ray": "https://shz.al/AyP3"
+  },
+  "nodes": {
+    "clash": 17596,
+    "singbox": 198,
+    "v2ray": 182
+  },
+  "sha256_16": {
+    "clash.yaml": "20462c5b69f27477",
+    "singbox.json": "4cab336f827c18cf",
+    "v2ray.txt": "9d8c061eb25f0a51"
+  },
+  "merge": {
+    "enabled": true,
+    "policy": "incoming-first-deduplicate",
+    "updated_at": "2026-09-12T06:32:41+00:00",
+    "clash": {
+      "incoming": 251,
+      "base": 17596,
+      "final": 17596,
+      "added": 249,
+      "duplicates_removed": 251
+    },
+    "singbox": {
+      "incoming": 251,
+      "base": 251,
+      "final": 198,
+      "added": 198,
+      "duplicates_removed": 304
+    },
+    "v2ray": {
+      "incoming": 251,
+      "base": 251,
+      "final": 182,
+      "added": 182,
+      "duplicates_removed": 320
+    }
+  },
+  "fresh_nodes": {
+    "clash": 251,
+    "singbox": 251,
+    "v2ray": 251
+  }
+}
