@@ -47,7 +47,7 @@ jobs:
           if [ -n "${INPUT_CODE:-}" ]; then ARGS="$ARGS --code ${INPUT_CODE}"; fi
           if [ "${INPUT_FULL:-false}" = "true" ]; then ARGS="$ARGS --mode full"; fi
           echo "运行参数: ${ARGS:-（默认 AABB 枚举）}"
-          python scripts/python fetch_jcnode.py $ARGS
+          python fetch_jcnode.py $ARGS
 
       - name: 提交变更
         run: |
