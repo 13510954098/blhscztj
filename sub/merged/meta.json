@@ -1,54 +1,54 @@
 {
   "code": "7788",
-  "updated_at": "2026-09-15T22:34:14+08:00",
-  "updated_at_utc": "2026-09-15T14:34:14+00:00",
-  "date": "2026-09-15",
+  "updated_at": "2026-09-16T16:45:56+08:00",
+  "updated_at_utc": "2026-09-16T08:45:56+00:00",
+  "date": "2026-09-16",
   "source_page": "https://jcnode.com/posts/free-nodes/",
-  "link_tier": "proxy",
+  "link_tier": "direct",
   "links": {
-    "clash": "https://files.catbox.moe/m6c56p.yaml",
-    "singbox": "https://files.catbox.moe/5gxpb2.json",
-    "v2ray": "https://files.catbox.moe/lft5r8.txt"
+    "clash": "https://shz.al/RsYQ",
+    "singbox": "https://shz.al/zyrf",
+    "v2ray": "https://shz.al/AJy4"
   },
   "nodes": {
-    "clash": 17996,
-    "singbox": 610,
-    "v2ray": 588
+    "clash": 18095,
+    "singbox": 675,
+    "v2ray": 649
   },
   "sha256_16": {
-    "clash.yaml": "150780b9e564a3c4",
-    "singbox.json": "5a6d74d2d83d02eb",
-    "v2ray.txt": "42b8d3bd19c1da43"
+    "clash.yaml": "732b2d725cbc564e",
+    "singbox.json": "68f71ef35ce78b69",
+    "v2ray.txt": "904109f779d3e620"
   },
   "merge": {
     "enabled": true,
     "policy": "incoming-first-deduplicate",
-    "updated_at": "2026-09-15T14:34:53+00:00",
+    "updated_at": "2026-09-16T08:46:34+00:00",
     "clash": {
-      "incoming": 473,
+      "incoming": 507,
       "base": 17996,
-      "final": 17996,
-      "added": 467,
-      "duplicates_removed": 473
+      "final": 18095,
+      "added": 499,
+      "duplicates_removed": 408
     },
     "singbox": {
-      "incoming": 460,
+      "incoming": 498,
       "base": 610,
-      "final": 610,
-      "added": 340,
-      "duplicates_removed": 460
+      "final": 675,
+      "added": 335,
+      "duplicates_removed": 433
     },
     "v2ray": {
-      "incoming": 473,
+      "incoming": 507,
       "base": 588,
-      "final": 588,
-      "added": 319,
-      "duplicates_removed": 473
+      "final": 649,
+      "added": 299,
+      "duplicates_removed": 446
     }
   },
   "fresh_nodes": {
-    "clash": 473,
-    "singbox": 460,
-    "v2ray": 473
+    "clash": 507,
+    "singbox": 498,
+    "v2ray": 507
   }
 }
