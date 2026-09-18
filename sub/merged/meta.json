@@ -1,54 +1,54 @@
 {
   "code": "7788",
-  "updated_at": "2026-09-17T22:33:06+08:00",
-  "updated_at_utc": "2026-09-17T14:33:06+00:00",
-  "date": "2026-09-17",
+  "updated_at": "2026-09-18T16:24:55+08:00",
+  "updated_at_utc": "2026-09-18T08:24:55+00:00",
+  "date": "2026-09-18",
   "source_page": "https://jcnode.com/posts/free-nodes/",
   "link_tier": "direct",
   "links": {
-    "clash": "https://shz.al/RsYQ",
-    "singbox": "https://shz.al/zyrf",
-    "v2ray": "https://shz.al/AJy4"
+    "clash": "https://shz.al/ZPDs",
+    "singbox": "https://shz.al/7rPa",
+    "v2ray": "https://shz.al/KP2j"
   },
   "nodes": {
-    "clash": 18095,
-    "singbox": 675,
-    "v2ray": 649
+    "clash": 18191,
+    "singbox": 751,
+    "v2ray": 719
   },
   "sha256_16": {
-    "clash.yaml": "732b2d725cbc564e",
-    "singbox.json": "68f71ef35ce78b69",
-    "v2ray.txt": "904109f779d3e620"
+    "clash.yaml": "2b917fb939a553f6",
+    "singbox.json": "5304c57628be21c0",
+    "v2ray.txt": "a6631164b885e801"
   },
   "merge": {
     "enabled": true,
     "policy": "incoming-first-deduplicate",
-    "updated_at": "2026-09-17T14:33:31+00:00",
+    "updated_at": "2026-09-18T08:25:22+00:00",
     "clash": {
-      "incoming": 507,
+      "incoming": 525,
       "base": 18095,
-      "final": 18095,
-      "added": 499,
-      "duplicates_removed": 507
+      "final": 18191,
+      "added": 517,
+      "duplicates_removed": 429
     },
     "singbox": {
-      "incoming": 498,
+      "incoming": 516,
       "base": 675,
-      "final": 675,
-      "added": 335,
-      "duplicates_removed": 498
+      "final": 751,
+      "added": 348,
+      "duplicates_removed": 440
     },
     "v2ray": {
-      "incoming": 507,
+      "incoming": 525,
       "base": 649,
-      "final": 649,
-      "added": 299,
-      "duplicates_removed": 507
+      "final": 719,
+      "added": 311,
+      "duplicates_removed": 455
     }
   },
   "fresh_nodes": {
-    "clash": 507,
-    "singbox": 498,
-    "v2ray": 507
+    "clash": 525,
+    "singbox": 516,
+    "v2ray": 525
   }
 }
