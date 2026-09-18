@@ -1,7 +1,7 @@
 {
   "code": "7788",
-  "updated_at": "2026-09-18T16:24:55+08:00",
-  "updated_at_utc": "2026-09-18T08:24:55+00:00",
+  "updated_at": "2026-09-18T21:59:05+08:00",
+  "updated_at_utc": "2026-09-18T13:59:05+00:00",
   "date": "2026-09-18",
   "source_page": "https://jcnode.com/posts/free-nodes/",
   "link_tier": "direct",
@@ -16,34 +16,34 @@
     "v2ray": 719
   },
   "sha256_16": {
-    "clash.yaml": "2b917fb939a553f6",
+    "clash.yaml": "2a401a4a1a3c0da4",
     "singbox.json": "5304c57628be21c0",
     "v2ray.txt": "a6631164b885e801"
   },
   "merge": {
     "enabled": true,
     "policy": "incoming-first-deduplicate",
-    "updated_at": "2026-09-18T08:25:22+00:00",
+    "updated_at": "2026-09-18T13:59:32+00:00",
     "clash": {
       "incoming": 525,
-      "base": 18095,
+      "base": 18191,
       "final": 18191,
       "added": 517,
-      "duplicates_removed": 429
+      "duplicates_removed": 525
     },
     "singbox": {
       "incoming": 516,
-      "base": 675,
+      "base": 751,
       "final": 751,
       "added": 348,
-      "duplicates_removed": 440
+      "duplicates_removed": 516
     },
     "v2ray": {
       "incoming": 525,
-      "base": 649,
+      "base": 719,
       "final": 719,
       "added": 311,
-      "duplicates_removed": 455
+      "duplicates_removed": 525
     }
   },
   "fresh_nodes": {
