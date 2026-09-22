@@ -1,54 +1,54 @@
 {
   "code": "7788",
-  "updated_at": "2026-09-22T00:06:15+08:00",
-  "updated_at_utc": "2026-09-21T16:06:15+00:00",
+  "updated_at": "2026-09-22T16:43:14+08:00",
+  "updated_at_utc": "2026-09-22T08:43:14+00:00",
   "date": "2026-09-22",
   "source_page": "https://jcnode.com/posts/free-nodes/",
   "link_tier": "direct",
   "links": {
-    "clash": "https://shz.al/ZnzS",
-    "singbox": "https://shz.al/bMYM",
-    "v2ray": "https://shz.al/DkQr"
+    "clash": "https://shz.al/py5s",
+    "singbox": "https://shz.al/BJxR",
+    "v2ray": "https://shz.al/a77Z"
   },
   "nodes": {
-    "clash": 18748,
-    "singbox": 1259,
-    "v2ray": 1219
+    "clash": 19222,
+    "singbox": 1710,
+    "v2ray": 1666
   },
   "sha256_16": {
-    "clash.yaml": "2d59e55002fb9c9f",
-    "singbox.json": "a3b9b1bdef4adcbe",
-    "v2ray.txt": "78167ba0f3d9cfdf"
+    "clash.yaml": "7a37ac520e8ce3b5",
+    "singbox.json": "db371de50b89932d",
+    "v2ray.txt": "958dc2d79d80d1bb"
   },
   "merge": {
     "enabled": true,
     "policy": "incoming-first-deduplicate",
-    "updated_at": "2026-09-21T16:06:57+00:00",
+    "updated_at": "2026-09-22T08:43:57+00:00",
     "clash": {
-      "incoming": 638,
+      "incoming": 940,
       "base": 18748,
-      "final": 18748,
-      "added": 629,
-      "duplicates_removed": 638
+      "final": 19222,
+      "added": 927,
+      "duplicates_removed": 466
     },
     "singbox": {
-      "incoming": 631,
+      "incoming": 931,
       "base": 1259,
-      "final": 1259,
-      "added": 447,
-      "duplicates_removed": 631
+      "final": 1710,
+      "added": 753,
+      "duplicates_removed": 480
     },
     "v2ray": {
-      "incoming": 638,
+      "incoming": 940,
       "base": 1219,
-      "final": 1219,
-      "added": 418,
-      "duplicates_removed": 638
+      "final": 1666,
+      "added": 718,
+      "duplicates_removed": 493
     }
   },
   "fresh_nodes": {
-    "clash": 638,
-    "singbox": 631,
-    "v2ray": 638
+    "clash": 940,
+    "singbox": 931,
+    "v2ray": 940
   }
 }
