@@ -1,7 +1,7 @@
 {
   "code": "7788",
-  "updated_at": "2026-09-25T16:59:56+08:00",
-  "updated_at_utc": "2026-09-25T08:59:56+00:00",
+  "updated_at": "2026-09-25T21:58:56+08:00",
+  "updated_at_utc": "2026-09-25T13:58:56+00:00",
   "date": "2026-09-25",
   "source_page": "https://jcnode.com/posts/free-nodes/",
   "link_tier": "direct",
@@ -16,34 +16,41 @@
     "v2ray": 1864
   },
   "sha256_16": {
-    "clash.yaml": "ee36cb2d37ff59a0",
-    "singbox.json": "e1e8adedc7d159b9",
-    "v2ray.txt": "6a19925abb6d7d90"
+    "clash.yaml": "df53d9a776348125",
+    "singbox.json": "3dc644e701cd8bf1",
+    "v2ray.txt": "124ac14ba00577ce"
   },
   "merge": {
     "enabled": true,
-    "policy": "incoming-first-deduplicate",
-    "updated_at": "2026-09-25T09:00:32+00:00",
+    "policy": "current-incoming-template+speed-desc-stable-deduplicate",
+    "ordering": {
+      "field": "node-name MB/s",
+      "direction": "descending",
+      "missing": "stable-last"
+    },
+    "updated_at": "2026-09-25T13:59:27+00:00",
     "clash": {
       "incoming": 548,
-      "base": 19354,
+      "base": 19464,
       "final": 19464,
       "added": 535,
-      "duplicates_removed": 438
+      "duplicates_removed": 548,
+      "sort": "name-mb-s-desc-stable",
+      "template": "incoming-daily"
     },
     "singbox": {
       "incoming": 543,
-      "base": 1831,
+      "base": 1933,
       "final": 1933,
       "added": 383,
-      "duplicates_removed": 441
+      "duplicates_removed": 543
     },
     "v2ray": {
       "incoming": 548,
-      "base": 1784,
+      "base": 1864,
       "final": 1864,
       "added": 356,
-      "duplicates_removed": 468
+      "duplicates_removed": 548
     }
   },
   "fresh_nodes": {

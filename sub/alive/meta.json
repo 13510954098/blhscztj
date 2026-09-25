@@ -1,0 +1,88 @@
+{
+  "generated_at": "2026-09-25T14:02:05+00:00",
+  "source_dir": "sub/merged",
+  "daily_dir": "sub",
+  "probe_scope": "full_history_bootstrap",
+  "bootstrap_full_completed": true,
+  "bootstrap_full_completed_at": "2026-09-25T14:02:05+00:00",
+  "probe_method": "TCP connect / TLS handshake only; no proxy authentication or traffic",
+  "retention_hours": 24.0,
+  "total_node_entries": 23261,
+  "tested_node_entries": 23261,
+  "unique_tcp_tls_endpoints_tested": 9211,
+  "unique_probe_outcomes": {
+    "passed": 5366,
+    "failed": 3845
+  },
+  "node_status_counts": {
+    "clash": {
+      "passed": 8298,
+      "retained": 0,
+      "stale": 0,
+      "failed": 5814,
+      "untested": 0,
+      "unsupported": 5352
+    },
+    "singbox": {
+      "passed": 1395,
+      "retained": 0,
+      "stale": 0,
+      "failed": 150,
+      "untested": 0,
+      "unsupported": 388
+    },
+    "v2ray": {
+      "passed": 1265,
+      "retained": 0,
+      "stale": 0,
+      "failed": 160,
+      "untested": 0,
+      "unsupported": 439
+    }
+  },
+  "node_reason_counts": {
+    "clash": {
+      "untested": {},
+      "unsupported": {
+        "reality_requires_special_client": 4648,
+        "udp_or_quic": 704
+      }
+    },
+    "singbox": {
+      "untested": {},
+      "unsupported": {
+        "reality_requires_special_client": 368,
+        "udp_or_quic": 20
+      }
+    },
+    "v2ray": {
+      "untested": {},
+      "unsupported": {
+        "reality_requires_special_client": 419,
+        "udp_or_quic": 20
+      }
+    }
+  },
+  "node_status_meaning": {
+    "passed": "本次 TCP 连接或 TLS 握手成功",
+    "retained": "本次失败或未复测，但最近一次成功仍在保留期内",
+    "stale": "本次未复测；状态库最近记录为通过，作为上次已知可达节点保留，不代表本次通过",
+    "failed": "最近一次实际探测失败且没有保留期内的成功记录",
+    "untested": "节点信息无法解析，或没有可用的探测结果",
+    "unsupported": "UDP/QUIC、Reality 或未知协议，未执行 TCP/TLS 探测"
+  },
+  "files": {
+    "clash.yaml": {
+      "nodes": 8298,
+      "sha256_16": "57a80797cc350b8d"
+    },
+    "singbox.json": {
+      "nodes": 1395,
+      "sha256_16": "44ee8a7666370ad2"
+    },
+    "v2ray.txt": {
+      "nodes": 1265,
+      "sha256_16": "6c80022524d1181b"
+    }
+  }
+}
