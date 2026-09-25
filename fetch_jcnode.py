@@ -95,17 +95,20 @@ def full_candidates() -> list[str]:
 
 
 def build_candidates(args) -> list[str]:
-    if args.code:
-        return [c.strip() for c in args.code.split(",") if c.strip()]
-
+    """按缓存口令、手动口令、模式候选池的顺序生成去重候选。"""
     pool = aabb_candidates() if args.mode == "aabb" else full_candidates()
-
-    # 先用上次命中的口令试（口令有可能多日不变），能省掉几十次请求
-    cached = read_cached_code(args.out_dir)
     codes: list[str] = []
-    if cached and cached in pool:
-        codes.append(cached)
-    codes += [c for c in pool if c not in codes]
+
+    # 即使手动传入 --code，也先尝试上一次成功的口令；若缓存口令不在
+    # 当前 AABB 池中，仍然保留它。手动口令失败后继续扫描剩余候选。
+    cached = read_cached_code(args.out_dir)
+    manual = [c.strip() for c in args.code.split(",") if c.strip()]
+    ordered = ([cached] if cached else []) + manual + pool
+    seen: set[str] = set()
+    for code in ordered:
+        if code not in seen:
+            codes.append(code)
+            seen.add(code)
     return codes
 
 
@@ -231,7 +234,7 @@ def main() -> int:
     ap.add_argument("--out-dir", default="sub", help="输出目录，默认 sub")
     ap.add_argument("--mode", choices=["aabb", "full"], default="aabb",
                     help="aabb=90 种（默认，温和）；full=0000-9999 全量扫描（慢，仅 AABB 失效时用）")
-    ap.add_argument("--code", default="", help="已知口令，多个用逗号分隔；填了就跳过枚举")
+    ap.add_argument("--code", default="", help="手动优先尝试的口令，多个用逗号分隔；缓存口令仍先试，失败后继续候选扫描")
     ap.add_argument("--min-nodes", type=int, default=50, help="节点数下限，低于此值视为失败")
     ap.add_argument("--sleep", type=float, default=0.4, help="每次尝试之间的间隔秒数")
     ap.add_argument("--timeout", type=int, default=25, help="单次请求超时秒数")
