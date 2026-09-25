@@ -12,11 +12,10 @@
 
 说明：
 - incoming（本次抓取）优先，旧文件只补充本次没有的节点；
-- `--base` 是旧的综合订阅，`--out` 是新的综合订阅目录；
-- Clash 去掉 name、测速 delay、sub_tag 后按完整连接参数去重；
-- Sing-box 去掉 tag 后去重；
-- V2Ray 去掉链接末尾的节点名后去重；
-- 不生成 archive，不删除旧节点；当天订阅和综合订阅分开保存。
+- Clash/Sing-box 的输出结构取自 JC 当日订阅，历史文件只贡献节点数据；
+- Clash 去掉 name、测速 delay、sub_tag 后按连接参数去重，Sing-box 去掉 tag 去重，V2Ray 去掉节点名去重；
+- 所有格式按节点名中的 MB/s 标注全局降序；无速度标记稳定地排在末尾；
+- 不生成 archive，不删除历史节点；当天订阅和综合订阅分开保存。
 """
 
 from __future__ import annotations
@@ -42,6 +41,33 @@ except ImportError as exc:  # pragma: no cover - 给 Actions/用户清晰提示
 
 
 VOLATILE_CLASH_KEYS = {"name", "delay", "sub_tag"}
+SPEED_RE = re.compile(r"(?<![0-9.])([0-9]+(?:\.[0-9]+)?)\s*MB/s(?=$|[^A-Za-z])", re.IGNORECASE)
+SPECIAL_PROXY_REFS = {"DIRECT", "REJECT", "REJECT-DROP", "PASS", "COMPATIBLE", "GLOBAL"}
+
+
+def speed_from_name(name: str) -> float | None:
+    """读取节点名里的 MB/s 标注；没有标注时返回 None。"""
+    match = SPEED_RE.search(str(name))
+    return float(match.group(1)) if match else None
+
+
+def sort_by_speed(items: list, name_getter) -> list:
+    """按节点名标注速度全局降序；同速和无标注项保持原有稳定顺序。"""
+    return sorted(
+        items,
+        key=lambda item: (
+            speed_from_name(name_getter(item)) is None,
+            -(speed_from_name(name_getter(item)) or 0.0),
+        ),
+    )
+
+
+def leading_country_flag(name: str) -> str | None:
+    """返回名称开头的双区域指示符旗帜（如 🇺🇸），否则返回 None。"""
+    value = str(name)
+    if len(value) >= 2 and all(0x1F1E6 <= ord(ch) <= 0x1F1FF for ch in value[:2]):
+        return value[:2]
+    return None
 
 
 class NoAliasDumper(yaml.SafeDumper):
@@ -113,7 +139,7 @@ def clash_key(proxy: dict):
 
 
 def merge_clash(base_path: Path, incoming_path: Path) -> tuple[dict, dict]:
-    """合并 Clash 配置，返回 (配置, 统计)。"""
+    """合并 Clash 节点，但始终以本次 JC 配置作为结构模板。"""
     incoming = yaml.safe_load(incoming_path.read_text(encoding="utf-8"))
     if not isinstance(incoming, dict):
         raise ValueError(f"{incoming_path} 不是 Clash YAML 对象")
@@ -128,7 +154,7 @@ def merge_clash(base_path: Path, incoming_path: Path) -> tuple[dict, dict]:
     if not isinstance(incoming_proxies, list) or not isinstance(base_proxies, list):
         raise ValueError("Clash proxies 必须是列表")
 
-    # 本次数据优先，旧数据补在后面。
+    # 本次节点优先，历史节点补充；按完整连接参数去重。
     selected: list[dict] = []
     seen: dict[object, dict] = {}
     aliases: dict[str, str] = {}
@@ -152,10 +178,6 @@ def merge_clash(base_path: Path, incoming_path: Path) -> tuple[dict, dict]:
         item = copy.deepcopy(proxy)
         original_name = proxy_name(item)
         final_name = unique_name(original_name, used_names)
-        if final_name != original_name:
-            item["name"] = final_name
-            # 同名但连接参数不同的旧节点无法逐一映射，保留第一个名字，
-            # 后面的节点使用 #2/#3，避免 Clash 节点名冲突。
         item["name"] = final_name
         used_names.add(final_name)
         seen[key] = item
@@ -163,54 +185,56 @@ def merge_clash(base_path: Path, incoming_path: Path) -> tuple[dict, dict]:
         if source_index < incoming_count:
             added_from_incoming += 1
 
-    output = copy.deepcopy(base if base is not None else incoming)
+    # 使用名称中标注的 MB/s 全局降序；sort 是稳定排序，同速或无速度项沿用
+    # “本次在前、历史在后”的顺序。
+    selected = sort_by_speed(selected, proxy_name)
+
+    # 配置端口、规则、分组名称和其他选项一律来自 JC 当日文件，避免旧历史
+    # 文件成为过期骨架；只把聚合后的节点列表回填到当日结构。
+    output = copy.deepcopy(incoming)
     output["proxies"] = selected
-
-    groups = copy.deepcopy(
-        (base or {}).get("proxy-groups")
-        if (base or {}).get("proxy-groups") is not None
-        else incoming.get("proxy-groups", [])
-    )
+    groups = copy.deepcopy(incoming.get("proxy-groups") or [])
     if not isinstance(groups, list):
-        groups = []
+        raise ValueError("Clash proxy-groups 必须是列表")
 
-    base_names = {proxy_name(p) for p in base_proxies if isinstance(p, dict)}
-    selected_names = [proxy_name(p) for p in selected]
-    selected_set = set(selected_names)
+    selected_names = [proxy_name(proxy) for proxy in selected]
+    selected_name_set = set(selected_names)
+    group_names = {
+        str(group.get("name"))
+        for group in groups
+        if isinstance(group, dict) and group.get("name") is not None
+    }
     for group in groups:
-        if not isinstance(group, dict):
+        if not isinstance(group, dict) or not isinstance(group.get("proxies"), list):
             continue
-        refs = group.get("proxies")
-        if not isinstance(refs, list):
+        group_name = str(group.get("name", ""))
+        refs = group["proxies"]
+
+        # 当日模板中的全局手动/自动组承载全部历史节点，并与 proxies 保持同序。
+        if "手动选择" in group_name or "自动选择" in group_name:
+            group["proxies"] = list(selected_names)
             continue
+
+        # 当日已有的国家组按旗帜从全量节点中重建，因此组内也全局按速度有序。
+        flag = leading_country_flag(group_name)
+        if flag:
+            regional = [name for name in selected_names if leading_country_flag(name) == flag]
+            if regional:
+                group["proxies"] = regional
+            else:
+                group["proxies"] = [
+                    str(ref) for ref in refs if str(ref) in SPECIAL_PROXY_REFS
+                ]
+            continue
+
+        # 服务分组和顶层入口等非节点组沿用当日规则，只修正重复节点别名并
+        # 丢弃不再存在的节点引用；分组引用与 DIRECT/REJECT 等内置项保留。
         replaced: list[str] = []
         for ref in refs:
-            ref_s = str(ref)
-            new_ref = aliases.get(ref_s, ref_s)
-            if new_ref not in replaced:
-                replaced.append(new_ref)
-
-        group_name = str(group.get("name", ""))
-        base_ref_count = sum(1 for ref in refs if str(ref) in base_names)
-        # 合并文件通常有“手动选择/自动选择”两个全量组；
-        # 即使用户自定义了组名，只要它原来覆盖了大多数节点，也视为全量组。
-        is_full_group = bool(base_names) and base_ref_count >= max(
-            50, int(len(base_names) * 0.8)
-        )
-        is_named_global = any(
-            token in group_name for token in ("手动选择", "♻️ 自动选择", "♻️自动选择")
-        )
-        if is_full_group or is_named_global:
-            for name in selected_names:
-                if name not in replaced:
-                    replaced.append(name)
-        else:
-            # 识别形如“🇸🇬 新加坡自动”的国家组，把新节点补进相应组。
-            flag = group_name[:2]
-            if len(flag) == 2 and all(0x1F1E6 <= ord(ch) <= 0x1F1FF for ch in flag):
-                for name in selected_names:
-                    if name.startswith(flag) and name not in replaced:
-                        replaced.append(name)
+            ref_s = aliases.get(str(ref), str(ref))
+            if ref_s in selected_name_set or ref_s in group_names or ref_s in SPECIAL_PROXY_REFS:
+                if ref_s not in replaced:
+                    replaced.append(ref_s)
         group["proxies"] = replaced
 
     output["proxy-groups"] = groups
@@ -220,6 +244,8 @@ def merge_clash(base_path: Path, incoming_path: Path) -> tuple[dict, dict]:
         "final": len(selected),
         "added": added_from_incoming,
         "duplicates_removed": duplicate_count,
+        "sort": "name-mb-s-desc-stable",
+        "template": "incoming-daily",
     }
     return output, stats
 
@@ -256,7 +282,9 @@ def merge_singbox(base_path: Path, incoming_path: Path) -> tuple[dict, dict]:
         if source_index < len(incoming_items):
             added += 1
 
-    output = copy.deepcopy(base if base is not None else incoming)
+    selected = sort_by_speed(selected, lambda outbound: str(outbound.get("tag", "")))
+    # Sing-box 的顶层选项也采用当日文件作为模板，历史合并只扩展 outbounds。
+    output = copy.deepcopy(incoming)
     output["outbounds"] = selected
     return output, {
         "incoming": len(incoming_items),
@@ -300,6 +328,13 @@ def v2ray_key(line: str):
         return ("raw", line)
 
 
+def v2ray_name(line: str) -> str:
+    try:
+        return unquote(urlsplit(line).fragment)
+    except Exception:
+        return ""
+
+
 def merge_v2ray(base_path: Path, incoming_path: Path) -> tuple[str, dict]:
     incoming_lines = [line.strip() for line in read_text(incoming_path).splitlines() if line.strip()]
     base_lines = [line.strip() for line in read_text(base_path).splitlines() if line.strip()] if base_path.exists() else []
@@ -316,6 +351,7 @@ def merge_v2ray(base_path: Path, incoming_path: Path) -> tuple[str, dict]:
         selected.append(line)
         if source_index < len(incoming_lines):
             added += 1
+    selected = sort_by_speed(selected, v2ray_name)
     return "\n".join(selected) + ("\n" if selected else ""), {
         "incoming": len(incoming_lines),
         "base": len(base_lines),
@@ -385,7 +421,8 @@ def main() -> int:
         meta = load_json(incoming / "meta.json")
     meta["merge"] = {
         "enabled": True,
-        "policy": "incoming-first-deduplicate",
+        "policy": "current-incoming-template+speed-desc-stable-deduplicate",
+        "ordering": {"field": "node-name MB/s", "direction": "descending", "missing": "stable-last"},
         "updated_at": datetime.now(timezone.utc).astimezone().isoformat(timespec="seconds"),
         "clash": clash_stats,
         "singbox": singbox_stats,
