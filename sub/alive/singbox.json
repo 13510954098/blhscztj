@@ -494,6 +494,16 @@
       }
     },
     {
+      "server": "183.179.162.50",
+      "server_port": 443,
+      "tag": "🇭🇰香港HK002 2.35MB/s TG@jcnode",
+      "type": "http",
+      "tls": {
+        "enabled": true,
+        "server_name": "183.179.162.50"
+      }
+    },
+    {
       "server": "193.181.216.117",
       "server_port": 2053,
       "tag": "🇩🇪德国DE003 2.32MB/s TG@jcnode",
@@ -963,6 +973,14 @@
           ]
         }
       }
+    },
+    {
+      "server": "92.5.200.64",
+      "server_port": 45819,
+      "tag": "🇳🇱荷兰NL001 2.04MB/s TG@jcnode",
+      "type": "shadowsocks",
+      "method": "2022-blake3-chacha20-poly1305",
+      "password": "KdOEa+dVRB5OxZvDlur6Cj0tndokRlxu/lDzjX3lZ7E="
     },
     {
       "server": "unamecf3.xn--ghqu5fm27b67w.com",
@@ -3309,6 +3327,14 @@
         "server_name": "138.199.35.198",
         "insecure": true
       }
+    },
+    {
+      "server": "130.61.181.215",
+      "server_port": 59924,
+      "tag": "🇩🇪德国DE005 1.7MB/s TG@jcnode",
+      "type": "shadowsocks",
+      "method": "2022-blake3-chacha20-poly1305",
+      "password": "zdg10Oi20ZiVsS+PETsko/9UMy7SzqRngQX8tX/mInE="
     },
     {
       "server": "193.176.84.23",
@@ -10237,6 +10263,34 @@
       }
     },
     {
+      "server": "176.97.66.175",
+      "server_port": 443,
+      "tag": "🇫🇷法国FR066 1.17MB/s TG@jcnode",
+      "type": "trojan",
+      "password": "humanity",
+      "tls": {
+        "enabled": true,
+        "server_name": "www.ignitelimit.com",
+        "insecure": false,
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/assignment",
+        "headers": {
+          "User-Agent": [
+            "Mozilla/5.0 (Linux; Android 6.0.1; Redmi 4A Build/MMB29M; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/60.0.3112.116 Mobile Safari/537.36"
+          ],
+          "Host": [
+            "www.ignitelimit.com"
+          ]
+        }
+      }
+    },
+    {
       "server": "172.67.221.242",
       "server_port": 443,
       "tag": "🇫🇷法国FR067 1.17MB/s TG@jcnode",
@@ -14002,6 +14056,34 @@
         "headers": {
           "User-Agent": [
             "Mozilla/5.0 (Windows NT 6.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36"
+          ],
+          "Host": [
+            "www.ignitelimit.com"
+          ]
+        }
+      }
+    },
+    {
+      "server": "176.97.66.175",
+      "server_port": 443,
+      "tag": "🇫🇷法国FR074 0.84MB/s TG@jcnode",
+      "type": "trojan",
+      "password": "humanity",
+      "tls": {
+        "enabled": true,
+        "server_name": "www.ignitelimit.com",
+        "insecure": false,
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/assignment",
+        "headers": {
+          "User-Agent": [
+            "Mozilla/5.0 (Windows NT 6.2; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36"
           ],
           "Host": [
             "www.ignitelimit.com"

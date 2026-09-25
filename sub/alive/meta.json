@@ -1,41 +1,41 @@
 {
-  "generated_at": "2026-09-25T14:02:05+00:00",
+  "generated_at": "2026-09-25T14:53:38+00:00",
   "source_dir": "sub/merged",
   "daily_dir": "sub",
-  "probe_scope": "full_history_bootstrap",
+  "probe_scope": "daily_only",
   "bootstrap_full_completed": true,
   "bootstrap_full_completed_at": "2026-09-25T14:02:05+00:00",
   "probe_method": "TCP connect / TLS handshake only; no proxy authentication or traffic",
   "retention_hours": 24.0,
   "total_node_entries": 23261,
-  "tested_node_entries": 23261,
-  "unique_tcp_tls_endpoints_tested": 9211,
+  "tested_node_entries": 1639,
+  "unique_tcp_tls_endpoints_tested": 308,
   "unique_probe_outcomes": {
-    "passed": 5366,
-    "failed": 3845
+    "passed": 298,
+    "failed": 10
   },
   "node_status_counts": {
     "clash": {
-      "passed": 8298,
-      "retained": 0,
-      "stale": 0,
-      "failed": 5814,
+      "passed": 1007,
+      "retained": 7,
+      "stale": 7294,
+      "failed": 5804,
       "untested": 0,
       "unsupported": 5352
     },
     "singbox": {
-      "passed": 1395,
-      "retained": 0,
-      "stale": 0,
-      "failed": 150,
+      "passed": 467,
+      "retained": 4,
+      "stale": 929,
+      "failed": 145,
       "untested": 0,
       "unsupported": 388
     },
     "v2ray": {
-      "passed": 1265,
-      "retained": 0,
-      "stale": 0,
-      "failed": 160,
+      "passed": 359,
+      "retained": 4,
+      "stale": 908,
+      "failed": 154,
       "untested": 0,
       "unsupported": 439
     }
@@ -73,16 +73,16 @@
   },
   "files": {
     "clash.yaml": {
-      "nodes": 8298,
-      "sha256_16": "57a80797cc350b8d"
+      "nodes": 8308,
+      "sha256_16": "5a2b591735bd6a19"
     },
     "singbox.json": {
-      "nodes": 1395,
-      "sha256_16": "44ee8a7666370ad2"
+      "nodes": 1400,
+      "sha256_16": "11f7eda15346afd4"
     },
     "v2ray.txt": {
-      "nodes": 1265,
-      "sha256_16": "6c80022524d1181b"
+      "nodes": 1271,
+      "sha256_16": "6d55fdda6fb70212"
     }
   }
 }
