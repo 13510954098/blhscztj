@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-26T08:46:26+00:00",
+  "generated_at": "2026-09-26T13:59:03+00:00",
   "source_dir": "sub/merged",
   "daily_dir": "sub",
   "probe_scope": "daily_only",
@@ -11,31 +11,31 @@
   "tested_node_entries": 1878,
   "unique_tcp_tls_endpoints_tested": 380,
   "unique_probe_outcomes": {
-    "passed": 373,
-    "failed": 7
+    "passed": 370,
+    "failed": 10
   },
   "node_status_counts": {
     "clash": {
-      "passed": 1121,
-      "retained": 8,
+      "passed": 1110,
+      "retained": 20,
       "stale": 7341,
-      "failed": 5809,
+      "failed": 5808,
       "untested": 0,
       "unsupported": 5373
     },
     "singbox": {
-      "passed": 559,
-      "retained": 5,
+      "passed": 556,
+      "retained": 9,
       "stale": 979,
-      "failed": 149,
+      "failed": 148,
       "untested": 0,
       "unsupported": 406
     },
     "v2ray": {
-      "passed": 461,
-      "retained": 5,
+      "passed": 456,
+      "retained": 11,
       "stale": 947,
-      "failed": 159,
+      "failed": 158,
       "untested": 0,
       "unsupported": 460
     }
@@ -73,16 +73,16 @@
   },
   "files": {
     "clash.yaml": {
-      "nodes": 8470,
-      "sha256_16": "ab2838edd34bceaf"
+      "nodes": 8471,
+      "sha256_16": "cafcb765320bedc4"
     },
     "singbox.json": {
-      "nodes": 1543,
-      "sha256_16": "e7965a2696cd39df"
+      "nodes": 1544,
+      "sha256_16": "f4ac334dacc8a462"
     },
     "v2ray.txt": {
-      "nodes": 1413,
-      "sha256_16": "1a92d3edc4ae19b6"
+      "nodes": 1414,
+      "sha256_16": "0ce42cb525e57090"
     }
   }
 }

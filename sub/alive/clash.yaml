@@ -56029,6 +56029,24 @@ proxies:
   type: http
   udp: true
   username: 'null'
+- alterId: 0
+  cipher: auto
+  http-opts:
+    headers:
+      Host: bpi
+    path:
+    - /
+  name: 🇫🇮芬兰FI001 1.49MB/s中性 TG@jcnode
+  network: http
+  packet-encoding: xudp
+  port: 14991
+  server: me4.movieseryalirani.ir
+  skip-cert-verify: false
+  sub_tag: V002-260618
+  tls: false
+  type: vmess
+  udp: true
+  uuid: fb821d4c-0241-4fcf-b183-9d9663bf0afe
 - client-fingerprint: chrome
   name: 🇫🇷法国FR038 1.49MB/s TG@jcnode
   network: ws
@@ -113979,6 +113997,7 @@ proxy-groups:
   - 🇺🇸美国US151 1.49MB/s危险 TG@jcnode
   - 🇳🇱荷兰NL050 1.49MB/s中性 TG@jcnode
   - 🇷🇴罗马尼亚RO052 1.49MB/s危险 TG@jcnode
+  - 🇫🇮芬兰FI001 1.49MB/s中性 TG@jcnode
   - 🇫🇷法国FR038 1.49MB/s TG@jcnode
   - 🇳🇱荷兰NL040 1.49MB/s危险 TG@jcnode
   - 🇫🇮芬兰FI041 1.49MB/s中性 TG@jcnode
@@ -122455,6 +122474,7 @@ proxy-groups:
   - 🇺🇸美国US151 1.49MB/s危险 TG@jcnode
   - 🇳🇱荷兰NL050 1.49MB/s中性 TG@jcnode
   - 🇷🇴罗马尼亚RO052 1.49MB/s危险 TG@jcnode
+  - 🇫🇮芬兰FI001 1.49MB/s中性 TG@jcnode
   - 🇫🇷法国FR038 1.49MB/s TG@jcnode
   - 🇳🇱荷兰NL040 1.49MB/s危险 TG@jcnode
   - 🇫🇮芬兰FI041 1.49MB/s中性 TG@jcnode
