@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-25T14:53:38+00:00",
+  "generated_at": "2026-09-26T08:46:26+00:00",
   "source_dir": "sub/merged",
   "daily_dir": "sub",
   "probe_scope": "daily_only",
@@ -7,59 +7,59 @@
   "bootstrap_full_completed_at": "2026-09-25T14:02:05+00:00",
   "probe_method": "TCP connect / TLS handshake only; no proxy authentication or traffic",
   "retention_hours": 24.0,
-  "total_node_entries": 23261,
-  "tested_node_entries": 1639,
-  "unique_tcp_tls_endpoints_tested": 308,
+  "total_node_entries": 23782,
+  "tested_node_entries": 1878,
+  "unique_tcp_tls_endpoints_tested": 380,
   "unique_probe_outcomes": {
-    "passed": 298,
-    "failed": 10
+    "passed": 373,
+    "failed": 7
   },
   "node_status_counts": {
     "clash": {
-      "passed": 1007,
-      "retained": 7,
-      "stale": 7294,
-      "failed": 5804,
+      "passed": 1121,
+      "retained": 8,
+      "stale": 7341,
+      "failed": 5809,
       "untested": 0,
-      "unsupported": 5352
+      "unsupported": 5373
     },
     "singbox": {
-      "passed": 467,
-      "retained": 4,
-      "stale": 929,
-      "failed": 145,
+      "passed": 559,
+      "retained": 5,
+      "stale": 979,
+      "failed": 149,
       "untested": 0,
-      "unsupported": 388
+      "unsupported": 406
     },
     "v2ray": {
-      "passed": 359,
-      "retained": 4,
-      "stale": 908,
-      "failed": 154,
+      "passed": 461,
+      "retained": 5,
+      "stale": 947,
+      "failed": 159,
       "untested": 0,
-      "unsupported": 439
+      "unsupported": 460
     }
   },
   "node_reason_counts": {
     "clash": {
       "untested": {},
       "unsupported": {
-        "reality_requires_special_client": 4648,
-        "udp_or_quic": 704
+        "reality_requires_special_client": 4667,
+        "udp_or_quic": 706
       }
     },
     "singbox": {
       "untested": {},
       "unsupported": {
-        "reality_requires_special_client": 368,
-        "udp_or_quic": 20
+        "reality_requires_special_client": 384,
+        "udp_or_quic": 22
       }
     },
     "v2ray": {
       "untested": {},
       "unsupported": {
-        "reality_requires_special_client": 419,
-        "udp_or_quic": 20
+        "reality_requires_special_client": 438,
+        "udp_or_quic": 22
       }
     }
   },
@@ -73,16 +73,16 @@
   },
   "files": {
     "clash.yaml": {
-      "nodes": 8308,
-      "sha256_16": "5a2b591735bd6a19"
+      "nodes": 8470,
+      "sha256_16": "ab2838edd34bceaf"
     },
     "singbox.json": {
-      "nodes": 1400,
-      "sha256_16": "11f7eda15346afd4"
+      "nodes": 1543,
+      "sha256_16": "e7965a2696cd39df"
     },
     "v2ray.txt": {
-      "nodes": 1271,
-      "sha256_16": "6d55fdda6fb70212"
+      "nodes": 1413,
+      "sha256_16": "1a92d3edc4ae19b6"
     }
   }
 }
