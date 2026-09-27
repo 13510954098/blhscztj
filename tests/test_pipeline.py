@@ -753,5 +753,138 @@ class MihomoPipelineTests(unittest.TestCase):
             self.assertIn("- **v2ray**：保留 `2` / 剔除 `1`", text)
 
 
+class YamlAmbiguityQuotingTests(unittest.TestCase):
+    """go-yaml（mihomo 的解析器）会把未加引号的数字样式字符串解析成数字，
+    一个 `short-id: 71150e37` 就能让整个配置被拒载。防御：写出时强制加引号。"""
+
+    def test_needs_go_quote_detection(self):
+        poison = [
+            "71150e37", "681e6419", "7294", "76394756",  # 真实数据样本
+            "1e5", ".5", "+123", "-42", "0x1F", "0o17", "1_000",
+            "true", "on", "yes", "null", "~", "2026-09-27",
+        ]
+        for value in poison:
+            self.assertTrue(mihomo_check._needs_go_quote(value), value)
+        safe = [
+            "aOfVRBN3tfHAXKY4-8SdNb0hsxY2LhaiIyTfkPXLiks",  # reality public-key
+            "chrome", "0c", "0c30407d", "71150e3z", "ws", "aes-256-gcm", "h2", "US001 节点",
+            "202d6dd6-77af-45ee-99db-82ea75758340", "k0g3h.biliimg.com",
+        ]
+        for value in safe:
+            self.assertFalse(mihomo_check._needs_go_quote(value), value)
+
+    def test_mihomo_config_quotes_ambiguous_scalars(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            proc = mihomo_check.MihomoProcess("/nonexistent", Path(tmp), api_port=19099, secret="s")
+            proc.write_config([{
+                "name": "n", "type": "vless", "server": "a.example", "port": 443,
+                "reality-opts": {"public-key": "pubKEY123", "short-id": "71150e37"},
+                "password": "666",
+            }])
+            text = proc.config_path.read_text(encoding="utf-8")
+            self.assertIn("short-id: '71150e37'", text)
+            self.assertIn("password: '666'", text)
+            self.assertIn("server: a.example", text)  # 普通字符串保持不加引号
+
+    def test_alive_and_merge_outputs_quote_ambiguous_scalars(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            input_dir = root / "merged"
+            input_dir.mkdir(parents=True)
+            clash_doc = {"proxies": [{
+                "name": "🇭🇰 HK 毒short-id", "type": "vless", "server": "hk.example", "port": 443,
+                "uuid": "u", "tls": True,
+                "reality-opts": {"public-key": "p", "short-id": "71150e37"},
+            }]}
+            (input_dir / "clash.yaml").write_text(
+                json.dumps(clash_doc, ensure_ascii=False), encoding="utf-8")
+            meta = mihomo_check.run_alive_check(
+                input_dir, root / "alive", root / "alive" / "state.json", "/nonexistent-mihomo",
+                prefilter_timeout=0,
+                proc_factory=lambda: _FakeMihomoProcess(delay_of={"🇭🇰 HK 毒short-id": 88}),
+            )
+            self.assertEqual(meta["node_status_counts"]["clash"]["kept"], 1)
+            alive_text = (root / "alive" / "clash.yaml").read_text(encoding="utf-8")
+            self.assertIn("short-id: '71150e37'", alive_text)
+
+        # merge 输出同样必须可被 go-yaml 加载
+        out = health.yaml.dump(
+            clash_doc, Dumper=merge.ClashSafeDumper, allow_unicode=True,
+            sort_keys=False, default_flow_style=False, width=4096,
+        )
+        self.assertIn("short-id: '71150e37'", out)
+
+    def test_merge_normalizes_http_opts_headers(self):
+        doc = {"proxies": [
+            {"name": "a", "type": "vmess", "server": "s", "port": 1, "network": "http",
+             "http-opts": {"path": ["/"], "headers": {"Host": "https://x.com"}}},
+            {"name": "b", "type": "vmess", "server": "s2", "port": 2, "network": "http",
+             "http-opts": {"headers": {"Host": ["ok.com"], "X-Null": None}}},
+        ]}
+        merge.normalize_clash_http_opts(doc)
+        self.assertEqual(doc["proxies"][0]["http-opts"]["headers"],
+                         {"Host": ["https://x.com"]})
+        self.assertEqual(doc["proxies"][1]["http-opts"]["headers"],
+                         {"Host": ["ok.com"]})
+
+
+class CircuitBreakerTests(unittest.TestCase):
+    @staticmethod
+    def _make(name, host):
+        endpoint = health.make_endpoint(host, 443, False)
+        return mihomo_check.Candidate(
+            name=name, protocol="http", host=endpoint.host, port=endpoint.port,
+            endpoint_id=endpoint.endpoint_id,
+            proxy={"name": name, "type": "http", "server": host, "port": 443},
+            udp=False,
+        )
+
+    def test_dead_kernel_aborts_with_runtime_error(self):
+        class DeadKernel:
+            def __init__(self):
+                self.stopped = False
+
+            def start(self, proxies):
+                return False
+
+            def stop(self):
+                self.stopped = True
+
+            def log_tail(self, lines=15):
+                return ""
+
+        candidates = [self._make(f"n{i}", f"h{i}.example") for i in range(8)]
+        with self.assertRaises(RuntimeError):
+            mihomo_check.run_real_test(
+                lambda: DeadKernel(), candidates, "http://x/generate_204", 3000, 4, 0,
+            )
+
+    def test_many_bad_nodes_are_isolated_without_tripping_breaker(self):
+        # 10 个坏节点散布在 90 个好节点中：全部定位剔除，不触发熔断（旧版累计计数会误杀）
+        bad_positions = {3, 13, 23, 33, 43, 53, 63, 73, 83, 93}
+        candidates, bad_names, good_names = [], set(), set()
+        b = 0
+        for i in range(100):
+            if i in bad_positions:
+                name = f"bad{b}"
+                b += 1
+                bad_names.add(name)
+            else:
+                name = f"good{i}"
+                good_names.add(name)
+            candidates.append(self._make(name, f"h{i}.example"))
+        results, bad = mihomo_check.run_real_test(
+            lambda: _FakeMihomoProcess(
+                fail_start_names=bad_names,
+                delay_of={n: 50 for n in good_names},
+            ),
+            candidates, "http://x/generate_204", 3000, 4, 0,
+        )
+        self.assertEqual(len(bad), 10)
+        self.assertEqual({c.name for c in bad}, bad_names)
+        self.assertEqual(len(results), 90)
+        self.assertTrue(all(r["ok"] for r in results.values()))
+
+
 if __name__ == "__main__":
     unittest.main()
