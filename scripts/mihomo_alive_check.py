@@ -306,6 +306,7 @@ class MihomoProcess:
         self.secret = str(secret or secrets.token_hex(16))
         self.ready_timeout = float(ready_timeout)
         self.process: subprocess.Popen | None = None
+        self.last_failure = ""
         self.log_path = self.workdir / "mihomo.log"
         self.config_path = self.workdir / "config.yaml"
 
@@ -340,8 +341,13 @@ class MihomoProcess:
         )
 
     def start(self, proxies: list[dict]) -> bool:
-        """写入配置并启动内核；API 就绪返回 True，启动失败/超时返回 False。"""
+        """写入配置并启动内核；API 就绪返回 True，启动失败/超时返回 False。
+
+        失败原因记入 self.last_failure（区分进程即退 / API 超时 / 无法拉起），
+        配合 log_tail() 可在熔断时给出可定位的诊断信息。
+        """
         self.write_config(proxies)
+        self.last_failure = ""
         with self.log_path.open("ab") as log_fh:
             try:
                 self.process = subprocess.Popen(
@@ -350,11 +356,16 @@ class MihomoProcess:
                     stderr=subprocess.STDOUT,
                     cwd=str(self.workdir),
                 )
-            except OSError:
+            except OSError as exc:
+                self.last_failure = f"无法拉起进程：{exc}"
                 return False
         deadline = time.monotonic() + self.ready_timeout
         while time.monotonic() < deadline:
             if self.process.poll() is not None:
+                self.last_failure = (
+                    f"进程启动后即退出（退出码 {self.process.returncode}，"
+                    "详见下方内核日志）"
+                )
                 return False
             try:
                 status, _ = self.get("/version", timeout=2.0)
@@ -363,6 +374,7 @@ class MihomoProcess:
             except Exception:
                 pass
             time.sleep(0.25)
+        self.last_failure = f"API 在 {self.ready_timeout:g}s 内未就绪（进程未退出）"
         return False
 
     def is_running(self) -> bool:
@@ -512,10 +524,12 @@ def run_real_test(
             consecutive_failures = 0  # 成功启动 = 有进展
             return
         if len(chunk) == 1:
-            if not _kernel_still_alive(proc_factory):
+            alive, probe_detail = _kernel_still_alive(proc_factory)
+            if not alive:
                 raise RuntimeError(
                     "mihomo 连最小探针配置都无法加载，内核本身不可用"
-                    "（下载损坏或运行环境异常），已中止"
+                    "（下载损坏或运行环境异常），已中止。"
+                    f"诊断：{probe_detail}"
                 )
             bad.append(chunk[0])
             print(f"  ⚠️ 剔除导致 mihomo 无法加载的节点：{chunk[0].name}")
@@ -543,11 +557,25 @@ _HEALTH_PROBE_PROXY = {
 }
 
 
-def _kernel_still_alive(proc_factory) -> bool:
-    """用最小配置探针验证内核能否启动（区分"坏节点"与"坏内核"）。"""
+def _kernel_still_alive(proc_factory) -> tuple[bool, str]:
+    """用最小配置探针验证内核能否启动（区分"坏节点"与"坏内核"）。
+
+    返回 (是否存活, 诊断信息)；诊断信息仅在失败时有内容，
+    包含内核版本、失败模式与内核日志尾部，便于在 CI 日志中直接定位。
+    对测试注入的假内核（无 binary/last_failure 属性）做 getattr 防御。
+    """
     proc = proc_factory()
     try:
-        return proc.start([copy.deepcopy(_HEALTH_PROBE_PROXY)])
+        ok = proc.start([copy.deepcopy(_HEALTH_PROBE_PROXY)])
+        detail = ""
+        if not ok:
+            version = detect_mihomo_version(getattr(proc, "binary", "")) or "未知"
+            reason = getattr(proc, "last_failure", "") or "未提供失败详情"
+            tail = getattr(proc, "log_tail", lambda lines=15: "")(20).strip()
+            detail = f"内核版本 {version}；失败模式：{reason}"
+            if tail:
+                detail += f"；内核日志尾部：\n{tail}"
+        return ok, detail
     finally:
         proc.stop()
 
@@ -1032,4 +1060,10 @@ def main() -> int:
 
 
 if __name__ == "__main__":
+    # CI 管道下 stdout 是块缓冲，会导致日志乱序（错误先于进度出现）；改行缓冲
+    for _stream in (sys.stdout, sys.stderr):
+        try:
+            _stream.reconfigure(line_buffering=True)
+        except (AttributeError, ValueError):
+            pass
     raise SystemExit(main())
