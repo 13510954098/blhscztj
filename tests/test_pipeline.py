@@ -9,6 +9,7 @@ import unittest
 from pathlib import Path
 from types import SimpleNamespace
 from unittest.mock import patch
+from urllib.parse import unquote
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
@@ -17,6 +18,7 @@ sys.path.insert(0, str(ROOT / "scripts"))
 import fetch_jcnode  # noqa: E402
 import healthcheck_subscriptions as health  # noqa: E402
 import merge_subscriptions as merge  # noqa: E402
+import mihomo_alive_check as mihomo_check  # noqa: E402
 
 
 class CandidateOrderTests(unittest.TestCase):
@@ -341,6 +343,389 @@ class ProbeParsingTests(unittest.TestCase):
             self.assertEqual(later["node_status_counts"]["clash"]["stale"], 1)
             live = health.yaml.safe_load((output_dir / "clash.yaml").read_text(encoding="utf-8"))
             self.assertEqual(len(live["proxies"]), 2)
+
+
+class _FakeMihomoProcess:
+    """离线单测用的假 mihomo 内核：可注入启动失败名单、延迟结果与瞬时抖动。"""
+
+    def __init__(self, fail_start_names=(), delay_of=None, flaky_once=(), default_status=408):
+        self.fail_start_names = set(fail_start_names)
+        self.delay_of = dict(delay_of or {})
+        self.flaky_once = set(flaky_once)
+        self.default_status = int(default_status)
+        self.started = False
+        self.stopped = False
+        self.loaded_names = []
+        self.calls = {}
+
+    def start(self, proxies):
+        names = [str(p.get("name")) for p in proxies]
+        if self.fail_start_names & set(names):
+            return False
+        self.started = True
+        self.loaded_names = list(names)
+        return True
+
+    def is_running(self):
+        return self.started and not self.stopped
+
+    def get(self, path, timeout=10.0):
+        assert "/proxies/" in path and "/delay" in path, path
+        name = unquote(path.split("/proxies/", 1)[1].split("/delay", 1)[0])
+        count = self.calls.get(name, 0) + 1
+        self.calls[name] = count
+        if name in self.flaky_once and count == 1:
+            raise OSError("connection refused (fake transient failure)")
+        if name in self.delay_of:
+            return 200, json.dumps({"delay": self.delay_of[name]}).encode("utf-8")
+        return self.default_status, json.dumps({"message": "delay test failed"}).encode("utf-8")
+
+    def stop(self):
+        self.stopped = True
+
+    def log_tail(self, lines=15):
+        return ""
+
+
+class MihomoKeyNormalizationTests(unittest.TestCase):
+    def test_cross_format_key_normalization(self):
+        # clash ss ↔ singbox shadowsocks ↔ v2ray ss://
+        candidates, stats = mihomo_check.extract_clash_candidates(
+            {"proxies": [{"name": "n", "type": "ss", "server": "Example.COM.", "port": "8388"}]}
+        )
+        self.assertEqual(stats["invalid"], 0)
+        self.assertEqual((candidates[0].host, candidates[0].port, candidates[0].protocol),
+                         ("example.com", 8388, "shadowsocks"))
+        self.assertEqual(
+            mihomo_check.singbox_node_key(
+                {"type": "shadowsocks", "server": "example.com", "server_port": 8388}
+            ),
+            ("example.com", 8388, "shadowsocks"),
+        )
+        self.assertEqual(
+            mihomo_check.v2ray_line_key("ss://YWVzLTI1Ni1nY206cGFzcw@example.com:8388#x"),
+            ("example.com", 8388, "shadowsocks"),
+        )
+        # hy2 / hysteria2 / tuic 等协议名归一
+        self.assertEqual(mihomo_check.canon_protocol("hy2"), "hysteria2")
+        self.assertEqual(mihomo_check.canon_protocol("socks5"), "socks")
+        self.assertEqual(
+            mihomo_check.v2ray_line_key("hy2://pw@h.example:443#x"),
+            ("h.example", 443, "hysteria2"),
+        )
+        # v2ray https:// 与 clash http 类型同源
+        self.assertEqual(mihomo_check.v2ray_line_key("https://h.example:443#x"),
+                         ("h.example", 443, "http"))
+        # vmess base64 载荷
+        blob = base64.urlsafe_b64encode(
+            json.dumps({"add": "vm.example", "port": 443, "ps": "n"}).encode()
+        ).decode()
+        self.assertEqual(mihomo_check.v2ray_line_key(f"vmess://{blob}"),
+                         ("vm.example", 443, "vmess"))
+        # 旧式 ss://base64(method:pass@host:port)
+        legacy = base64.urlsafe_b64encode(b"aes-256-gcm:pass@old.example:8388").decode()
+        self.assertEqual(mihomo_check.v2ray_line_key(f"ss://{legacy}#x"),
+                         ("old.example", 8388, "shadowsocks"))
+        # 非法输入
+        self.assertIsNone(mihomo_check.v2ray_line_key("not-a-uri"))
+        self.assertIsNone(mihomo_check.v2ray_line_key("socks5://@:0#x"))
+
+    def test_singbox_aux_types_are_not_nodes(self):
+        self.assertTrue(mihomo_check.is_singbox_aux({"type": "direct"}))
+        self.assertTrue(mihomo_check.is_singbox_aux({"type": "selector", "tag": "sel"}))
+        self.assertIsNone(mihomo_check.singbox_node_key({"type": "urltest", "tag": "auto"}))
+
+    def test_candidate_extraction_marks_udp_and_dedups(self):
+        doc = {
+            "proxies": [
+                {"name": "A", "type": "vmess", "server": "a.example", "port": 1},
+                {"name": "A", "type": "vmess", "server": "dup.example", "port": 2},
+                {"name": "U", "type": "hysteria2", "server": "u.example", "port": 3},
+                {"name": "Q", "type": "vless", "server": "q.example", "port": 4, "network": "quic"},
+                {"name": "bad", "type": "http", "server": "", "port": "x"},
+                "not-a-dict",
+            ]
+        }
+        candidates, stats = mihomo_check.extract_clash_candidates(doc)
+        self.assertEqual([c.name for c in candidates], ["A", "U", "Q"])
+        self.assertFalse(candidates[0].udp)
+        self.assertTrue(candidates[1].udp)
+        self.assertTrue(candidates[2].udp)
+        self.assertEqual(stats["invalid"], 2)
+        self.assertEqual(stats["duplicate_name"], 1)
+
+
+class MihomoConfigAndQueryTests(unittest.TestCase):
+    def test_mihomo_test_config_contains_only_proxies_and_controller(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            proc = mihomo_check.MihomoProcess(
+                "/nonexistent", Path(tmp), api_port=19099, secret="s3cret"
+            )
+            proc.write_config([{"name": "n1", "type": "http", "server": "a", "port": 80}])
+            doc = health.yaml.safe_load(proc.config_path.read_text(encoding="utf-8"))
+            self.assertEqual(doc["external-controller"], "127.0.0.1:19099")
+            self.assertEqual(doc["secret"], "s3cret")
+            self.assertEqual(doc["mode"], "direct")
+            self.assertEqual(len(doc["proxies"]), 1)
+            self.assertNotIn("rules", doc)
+            self.assertNotIn("proxy-groups", doc)
+
+    def test_query_delay_success_and_error_paths(self):
+        fake = _FakeMihomoProcess(delay_of={"ok": 123})
+        good = mihomo_check.query_delay(fake, "ok", "http://x/generate_204", 3000)
+        self.assertTrue(good["ok"])
+        self.assertEqual(good["delay_ms"], 123)
+        dead = mihomo_check.query_delay(fake, "dead", "http://x/generate_204", 3000)
+        self.assertFalse(dead["ok"])
+        self.assertEqual(dead["error"], "HTTP 408")
+
+    def test_delay_tests_retry_transient_failures(self):
+        def make(name, host):
+            endpoint = health.make_endpoint(host, 443, False)
+            return mihomo_check.Candidate(
+                name=name, protocol="http", host=endpoint.host, port=endpoint.port,
+                endpoint_id=endpoint.endpoint_id,
+                proxy={"name": name, "type": "http", "server": host, "port": 443},
+                udp=False,
+            )
+
+        candidates = [make("flaky", "flaky.example"), make("solid", "solid.example")]
+        retry_fake = _FakeMihomoProcess(delay_of={"flaky": 90, "solid": 80}, flaky_once={"flaky"})
+        retry_fake.started = True
+        with_retry = mihomo_check.run_delay_tests(
+            retry_fake, candidates, "http://x/generate_204", 3000, concurrency=2, retries=1,
+        )
+        self.assertTrue(with_retry["flaky"]["ok"])
+        self.assertEqual(with_retry["flaky"]["attempts"], 2)
+        self.assertEqual(with_retry["solid"]["attempts"], 1)
+
+        no_retry_fake = _FakeMihomoProcess(delay_of={"flaky": 90, "solid": 80}, flaky_once={"flaky"})
+        no_retry_fake.started = True
+        no_retry = mihomo_check.run_delay_tests(
+            no_retry_fake, candidates, "http://x/generate_204", 3000, concurrency=2, retries=0,
+        )
+        self.assertFalse(no_retry["flaky"]["ok"])
+        self.assertTrue(no_retry["solid"]["ok"])
+
+    def test_bisect_isolates_proxies_that_break_mihomo_startup(self):
+        def make(name, host):
+            endpoint = health.make_endpoint(host, 443, False)
+            return mihomo_check.Candidate(
+                name=name, protocol="http", host=endpoint.host, port=endpoint.port,
+                endpoint_id=endpoint.endpoint_id,
+                proxy={"name": name, "type": "http", "server": host, "port": 443},
+                udp=False,
+            )
+
+        bad_name = "🇺🇸 坏节点"
+        candidates = [make(f"n{i}", f"h{i}.example") for i in range(8)]
+        candidates.insert(4, make(bad_name, "bad.example"))
+        good_delays = {c.name: 100 for c in candidates if c.name != bad_name}
+        created = []
+
+        def factory():
+            fake = _FakeMihomoProcess(fail_start_names={bad_name}, delay_of=good_delays)
+            created.append(fake)
+            return fake
+
+        results, bad_list = mihomo_check.run_real_test(
+            factory, candidates, "http://x/generate_204", 3000, concurrency=4, retries=0
+        )
+        self.assertEqual([c.name for c in bad_list], [bad_name])
+        self.assertEqual(len(results), 8)
+        self.assertTrue(all(r["ok"] for r in results.values()))
+        self.assertTrue(all(fake.stopped for fake in created))
+
+
+class MihomoPipelineTests(unittest.TestCase):
+    @staticmethod
+    def _write_input(root: Path):
+        input_dir = root / "merged"
+        input_dir.mkdir(parents=True, exist_ok=True)
+        clash_doc = {
+            "mode": "rule",
+            "proxies": [
+                {"name": "🇺🇸 存活HTTP 2MB/s", "type": "http", "server": "alive.example",
+                 "port": 8080, "tls": True},
+                {"name": "🇸🇬 存活UDP", "type": "hysteria2", "server": "alive-udp.example", "port": 443},
+                {"name": "🇯🇵 死节点", "type": "trojan", "server": "dead.example",
+                 "port": 443, "password": "x"},
+            ],
+            "proxy-groups": [
+                {"name": "🔰 手动选择", "type": "select",
+                 "proxies": ["🇺🇸 存活HTTP 2MB/s", "🇸🇬 存活UDP", "🇯🇵 死节点"]},
+                {"name": "🇺🇸 美国自动", "type": "url-test", "proxies": ["🇺🇸 存活HTTP 2MB/s"]},
+            ],
+        }
+        singbox_doc = {
+            "outbounds": [
+                {"type": "http", "tag": "sb-alive", "server": "alive.example", "server_port": 8080},
+                {"type": "hysteria2", "tag": "sb-alive-udp", "server": "alive-udp.example",
+                 "server_port": 443},
+                {"type": "trojan", "tag": "sb-dead", "server": "dead.example", "server_port": 443},
+                {"type": "direct", "tag": "direct"},
+            ]
+        }
+        v2ray_text = (
+            "https://alive.example:8080#alive-http\n"
+            "hy2://pw@alive-udp.example:443?sni=x#alive-udp\n"
+            "trojan://pw@dead.example:443?sni=y#dead\n"
+        )
+        (input_dir / "clash.yaml").write_text(json.dumps(clash_doc, ensure_ascii=False), encoding="utf-8")
+        (input_dir / "singbox.json").write_text(json.dumps(singbox_doc, ensure_ascii=False), encoding="utf-8")
+        (input_dir / "v2ray.txt").write_text(v2ray_text, encoding="utf-8")
+        return input_dir
+
+    def test_full_pipeline_aggregates_alive_across_formats(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            input_dir = self._write_input(root)
+            output_dir = root / "alive"
+            state_path = output_dir / "state.json"
+
+            meta = mihomo_check.run_alive_check(
+                input_dir, output_dir, state_path, "/nonexistent-mihomo",
+                prefilter_timeout=0, proc_factory=lambda: _FakeMihomoProcess(
+                    delay_of={"🇺🇸 存活HTTP 2MB/s": 120, "🇸🇬 存活UDP": 250},
+                ),
+            )
+            self.assertEqual(meta["node_status_counts"]["clash"]["kept"], 2)
+            self.assertEqual(meta["node_status_counts"]["clash"]["failed"], 1)
+            self.assertEqual(meta["alive_unique_keys"], 2)
+            self.assertEqual(meta["alive_delay_ms"]["min"], 120)
+
+            live_clash = health.yaml.safe_load((output_dir / "clash.yaml").read_text(encoding="utf-8"))
+            self.assertEqual(
+                sorted(p["name"] for p in live_clash["proxies"]),
+                sorted(["🇺🇸 存活HTTP 2MB/s", "🇸🇬 存活UDP"]),
+            )
+            self.assertEqual(live_clash["proxy-groups"][0]["proxies"],
+                             ["🇺🇸 存活HTTP 2MB/s", "🇸🇬 存活UDP"])
+            self.assertEqual(live_clash["proxy-groups"][1]["proxies"], ["🇺🇸 存活HTTP 2MB/s"])
+
+            live_singbox = json.loads((output_dir / "singbox.json").read_text(encoding="utf-8"))
+            self.assertEqual([o["tag"] for o in live_singbox["outbounds"]],
+                             ["sb-alive", "sb-alive-udp", "direct"])
+
+            live_v2ray = (output_dir / "v2ray.txt").read_text(encoding="utf-8").splitlines()
+            self.assertEqual(len(live_v2ray), 2)
+            self.assertTrue(all("dead.example" not in line for line in live_v2ray))
+
+            state = json.loads(state_path.read_text(encoding="utf-8"))
+            self.assertEqual(state["version"], 2)
+            self.assertEqual(len(state["nodes"]), 3)
+            dead_record = state["nodes"]["dead.example|443|trojan"]
+            self.assertEqual(dead_record["last_status"], "failed")
+            self.assertEqual(dead_record["failure_count"], 1)
+            alive_record = state["nodes"]["alive.example|8080|http"]
+            self.assertEqual(alive_record["last_status"], "passed")
+            self.assertEqual(alive_record["last_delay_ms"], 120)
+
+            # 第二轮：原本存活的 HTTP 节点失联 → 严格判活，立即从聚合中移除
+            meta2 = mihomo_check.run_alive_check(
+                input_dir, output_dir, state_path, "/nonexistent-mihomo",
+                prefilter_timeout=0, proc_factory=lambda: _FakeMihomoProcess(
+                    delay_of={"🇸🇬 存活UDP": 260},
+                ),
+            )
+            self.assertEqual(meta2["node_status_counts"]["clash"]["kept"], 1)
+            live_clash2 = health.yaml.safe_load((output_dir / "clash.yaml").read_text(encoding="utf-8"))
+            self.assertEqual([p["name"] for p in live_clash2["proxies"]], ["🇸🇬 存活UDP"])
+            state2 = json.loads(state_path.read_text(encoding="utf-8"))
+            self.assertEqual(state2["nodes"]["alive.example|8080|http"]["failure_count"], 1)
+            self.assertEqual(state2["nodes"]["alive.example|8080|http"]["success_count"], 1)
+            self.assertEqual(state2["nodes"]["alive.example|8080|http"]["best_delay_ms"], 120)
+
+    def test_state_v1_is_reset_to_v2(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            input_dir = self._write_input(root)
+            output_dir = root / "alive"
+            state_path = output_dir / "state.json"
+            output_dir.mkdir(parents=True, exist_ok=True)
+            state_path.write_text(json.dumps({
+                "version": 1,
+                "endpoints": {"abc": {"host": "old.example", "last_status": "passed"}},
+            }), encoding="utf-8")
+
+            meta = mihomo_check.run_alive_check(
+                input_dir, output_dir, state_path, "/nonexistent-mihomo",
+                prefilter_timeout=0, proc_factory=lambda: _FakeMihomoProcess(
+                    delay_of={"🇺🇸 存活HTTP 2MB/s": 120, "🇸🇬 存活UDP": 250},
+                ),
+            )
+            self.assertEqual(meta["node_status_counts"]["clash"]["kept"], 2)
+            state = json.loads(state_path.read_text(encoding="utf-8"))
+            self.assertEqual(state["version"], 2)
+            self.assertIn("nodes", state)
+            self.assertNotIn("endpoints", state)
+
+    def test_tcp_prefilter_gates_candidates_before_mihomo(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            input_dir = root / "merged"
+            input_dir.mkdir(parents=True)
+            clash_doc = {
+                "proxies": [
+                    {"name": "A", "type": "http", "server": "alive.example", "port": 80},
+                    {"name": "B", "type": "http", "server": "alive.example", "port": 80},
+                    {"name": "C", "type": "http", "server": "dead.example", "port": 81},
+                    {"name": "U", "type": "hysteria2", "server": "udp.example", "port": 443},
+                ]
+            }
+            (input_dir / "clash.yaml").write_text(json.dumps(clash_doc, ensure_ascii=False), encoding="utf-8")
+
+            async def pass_alive_only(endpoints, timeout, concurrency):
+                return {
+                    ep.endpoint_id: {
+                        "status": "passed" if ep.host == "alive.example" else "failed",
+                        "latency_ms": 1.0, "error": "",
+                    }
+                    for ep in endpoints
+                }
+
+            fake = _FakeMihomoProcess(delay_of={"A": 50, "B": 60, "U": 70})
+            with patch.object(mihomo_check, "probe_all", new=pass_alive_only):
+                meta = mihomo_check.run_alive_check(
+                    input_dir, root / "alive", root / "alive" / "state.json",
+                    "/nonexistent-mihomo",
+                    prefilter_timeout=1, proc_factory=lambda: fake,
+                )
+            # UDP 节点与 TCP 可达候选进入实测；C 被预筛剔除
+            self.assertEqual(sorted(fake.loaded_names), ["A", "B", "U"])
+            self.assertEqual(meta["node_status_counts"]["clash"]["kept"], 3)
+            self.assertEqual(meta["node_status_counts"]["clash"]["prefilter_dropped"], 1)
+            self.assertEqual(meta["prefilter"]["endpoints_passed"], 1)
+            self.assertEqual(meta["prefilter"]["endpoints_failed"], 1)
+
+    def test_scope_daily_limits_candidates_to_daily_keys(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            input_dir = root / "merged"
+            daily_dir = root / "daily"
+            input_dir.mkdir(parents=True)
+            daily_dir.mkdir(parents=True)
+            merged_doc = {
+                "proxies": [
+                    {"name": "🇺🇸 今日", "type": "http", "server": "today.example", "port": 80},
+                    {"name": "🇯🇵 历史", "type": "http", "server": "old.example", "port": 81},
+                ]
+            }
+            daily_doc = {"proxies": [{"name": "🇺🇸 今日", "type": "http",
+                                      "server": "today.example", "port": 80}]}
+            (input_dir / "clash.yaml").write_text(json.dumps(merged_doc, ensure_ascii=False), encoding="utf-8")
+            (daily_dir / "clash.yaml").write_text(json.dumps(daily_doc, ensure_ascii=False), encoding="utf-8")
+
+            fake = _FakeMihomoProcess(delay_of={"🇺🇸 今日": 40, "🇯🇵 历史": 41})
+            meta = mihomo_check.run_alive_check(
+                input_dir, root / "alive", root / "alive" / "state.json",
+                "/nonexistent-mihomo", daily_dir=daily_dir, scope="daily",
+                prefilter_timeout=0, proc_factory=lambda: fake,
+            )
+            self.assertEqual(fake.loaded_names, ["🇺🇸 今日"])
+            self.assertEqual(meta["clash_candidates"]["scope_filtered_out"], 1)
+            live = health.yaml.safe_load((root / "alive" / "clash.yaml").read_text(encoding="utf-8"))
+            self.assertEqual([p["name"] for p in live["proxies"]], ["🇺🇸 今日"])
 
 
 if __name__ == "__main__":
