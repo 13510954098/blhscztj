@@ -859,6 +859,48 @@ class CircuitBreakerTests(unittest.TestCase):
                 lambda: DeadKernel(), candidates, "http://x/generate_204", 3000, 4, 0,
             )
 
+    def test_probe_failure_diagnostics_in_error(self):
+        # 探针失败时，报错必须带上失败模式与内核日志尾部（CI 日志可直接定位）
+        class DiagnosticDeadKernel:
+            def __init__(self):
+                self.stopped = False
+                self.binary = "/nonexistent/mihomo"
+                self.last_failure = "进程启动后即退出（退出码 2，详见下方内核日志）"
+
+            def start(self, proxies):
+                return False
+
+            def stop(self):
+                self.stopped = True
+
+            def log_tail(self, lines=15):
+                return 'level=fatal msg="probe boom: bad binary"'
+
+        candidates = [self._make("n0", "h0.example")]
+        with self.assertRaises(RuntimeError) as ctx:
+            mihomo_check.run_real_test(
+                lambda: DiagnosticDeadKernel(), candidates, "http://x/generate_204", 3000, 4, 0,
+            )
+        message = str(ctx.exception)
+        self.assertIn("最小探针", message)
+        self.assertIn("失败模式：进程启动后即退出", message)
+        self.assertIn("probe boom: bad binary", message)
+
+    def test_kernel_still_alive_returns_diagnostics_tuple(self):
+        class FakeAliveKernel:
+            def __init__(self):
+                self.stopped = False
+
+            def start(self, proxies):
+                return True
+
+            def stop(self):
+                self.stopped = True
+
+        ok, detail = mihomo_check._kernel_still_alive(lambda: FakeAliveKernel())
+        self.assertTrue(ok)
+        self.assertEqual(detail, "")
+
     def test_many_bad_nodes_are_isolated_without_tripping_breaker(self):
         # 10 个坏节点散布在 90 个好节点中：全部定位剔除，不触发熔断（旧版累计计数会误杀）
         bad_positions = {3, 13, 23, 33, 43, 53, 63, 73, 83, 93}
