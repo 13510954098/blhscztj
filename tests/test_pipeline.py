@@ -727,6 +727,31 @@ class MihomoPipelineTests(unittest.TestCase):
             live = health.yaml.safe_load((root / "alive" / "clash.yaml").read_text(encoding="utf-8"))
             self.assertEqual([p["name"] for p in live["proxies"]], ["🇺🇸 今日"])
 
+    def test_step_summary_written_when_github_env_set(self):
+        """回归测试：GITHUB_STEP_SUMMARY 只在 Actions 上存在，本地没有——
+        曾经导致 summary 分支从未被单测覆盖，clash 格式 KeyError 'dropped' 只在 runner 上爆。"""
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            input_dir = self._write_input(root)
+            output_dir = root / "alive"
+            summary_path = root / "step_summary.md"
+
+            with patch.dict(mihomo_check.os.environ, {"GITHUB_STEP_SUMMARY": str(summary_path)}):
+                mihomo_check.run_alive_check(
+                    input_dir, output_dir, output_dir / "state.json", "/nonexistent-mihomo",
+                    prefilter_timeout=0, proc_factory=lambda: _FakeMihomoProcess(
+                        delay_of={"🇺🇸 存活HTTP 2MB/s": 120, "🇸🇬 存活UDP": 250},
+                    ),
+                )
+
+            text = summary_path.read_text(encoding="utf-8")
+            for fmt in ("clash", "singbox", "v2ray"):
+                self.assertIn(f"**{fmt}**", text, f"summary 缺少 {fmt} 行：\n{text}")
+            # clash：3 候选 - 2 存活 = 剔除 1（预筛 0 + 实测失败 1 + 加载失败 0）
+            self.assertIn("- **clash**：保留 `2` / 剔除 `1`", text)
+            self.assertIn("- **singbox**：保留 `2` / 配置骨架 `1` / 剔除 `1`", text)
+            self.assertIn("- **v2ray**：保留 `2` / 剔除 `1`", text)
+
 
 if __name__ == "__main__":
     unittest.main()
