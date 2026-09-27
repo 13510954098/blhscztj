@@ -122,32 +122,96 @@ jobs:
             --history history/codes.log
           rm -rf .incoming-sub
 
-      - name: 下载 mihomo 内核（临时机每次全新下载，不用缓存）
+      - name: 下载 mihomo 内核（多版本回退 + 下载即体检，临时机每次全新下载）
         shell: bash
         run: |
           set -euo pipefail
           mkdir -p .tools
+
           # 通过 releases/latest 的 302 重定向解析最新版本号（不消耗 API 配额）
-          ver="$(curl -fsSL -o /dev/null -w '%{url_effective}' \
+          latest="$(curl -fsSL -o /dev/null -w '%{url_effective}' \
             https://github.com/MetaCubeX/mihomo/releases/latest \
             | sed -n 's#.*/tag/##p' | tr -d '[:space:]')"
-          if [ -z "${ver}" ] || [ "${ver}" = "latest" ]; then
+          if [ -z "${latest}" ] || [ "${latest}" = "latest" ]; then
             echo "⚠️ 未能解析最新版本号，回退固定版本 v1.19.31"
-            ver="v1.19.31"
+            latest="v1.19.31"
           fi
-          echo "mihomo 内核版本：${ver}"
-          base="https://github.com/MetaCubeX/mihomo/releases/download/${ver}"
-          if ! curl -fsSL --retry 3 --connect-timeout 20 -o .tools/mihomo.gz \
-              "${base}/mihomo-linux-amd64-${ver}.gz"; then
-            echo "⚠️ 标准版下载失败，尝试 compatible 版本（兼容老 CPU 指令集）"
-            curl -fsSL --retry 3 --connect-timeout 20 -o .tools/mihomo.gz \
-              "${base}/mihomo-linux-amd64-compatible-${ver}.gz"
+          echo "mihomo 最新版本：${latest}（本地全库验证过的基准版：v1.19.31）"
+
+          # 下载一个候选内核并做三级体检：1) -v 可执行 2) -t 最小配置可加载
+          # 3) 真实启动后 API 能就绪。任一不过即返回失败，由外层尝试下一组合。
+          fetch_kernel() {
+            local ver="$1" flavor="$2"
+            local base="https://github.com/MetaCubeX/mihomo/releases/download/${ver}"
+            rm -rf .tools/smoke
+            mkdir -p .tools/smoke
+            if ! curl -fsSL --retry 3 --connect-timeout 20 -o .tools/mihomo.gz \
+                "${base}/mihomo-linux-amd64${flavor}-${ver}.gz"; then
+              echo "  ⚠️ ${ver}${flavor} 下载失败"
+              return 1
+            fi
+            gunzip -f .tools/mihomo.gz || { echo "  ⚠️ ${ver}${flavor} gzip 解压失败（文件损坏）"; return 1; }
+            chmod +x .tools/mihomo
+            if ! .tools/mihomo -v; then
+              echo "  ⚠️ ${ver}${flavor} 无法执行（-v 失败）"
+              return 1
+            fi
+            local port=$((RANDOM + 21000))
+            printf 'mode: direct\nlog-level: warning\nexternal-controller: "127.0.0.1:%s"\nproxies:\n  - {name: probe, type: http, server: 127.0.0.1, port: 9}\n' "$port" \
+              > .tools/smoke/config.yaml
+            if ! .tools/mihomo -t -d .tools/smoke -f .tools/smoke/config.yaml; then
+              echo "  ⚠️ ${ver}${flavor} 连最小配置都无法加载（-t 失败）"
+              return 1
+            fi
+            .tools/mihomo -d .tools/smoke -f .tools/smoke/config.yaml \
+              > .tools/smoke/mihomo.log 2>&1 &
+            local pid=$! ok=0 i
+            for i in $(seq 1 40); do
+              if curl -fsS -o /dev/null "http://127.0.0.1:${port}/version" 2>/dev/null; then
+                ok=1; break
+              fi
+              sleep 0.5
+            done
+            kill "${pid}" 2>/dev/null || true
+            wait "${pid}" 2>/dev/null || true
+            if [ "${ok}" != 1 ]; then
+              echo "  ⚠️ ${ver}${flavor} 启动后 API 在 20s 内未就绪，内核日志尾部："
+              tail -20 .tools/smoke/mihomo.log || true
+              return 1
+            fi
+            echo "  ✅ ${ver}${flavor} 三级体检通过（可执行 / 配置可加载 / API 可就绪）"
+          }
+
+          # 回退链：latest 标准版 → latest compatible（老 CPU 指令集）→
+          # 基准版 v1.19.31 标准 → v1.19.31 compatible（本地全库 e2e 验证过）
+          versions=("${latest}")
+          if [ "${latest}" != "v1.19.31" ]; then
+            versions+=("v1.19.31")
           fi
-          gunzip -f .tools/mihomo.gz
-          chmod +x .tools/mihomo
-          .tools/mihomo -v
+          combos=()
+          for v in "${versions[@]}"; do
+            combos+=("${v}:" "${v}:-compatible")
+          done
+
+          ok=0
+          for combo in "${combos[@]}"; do
+            ver="${combo%%:*}"; flavor="${combo#*:}"
+            echo "尝试 mihomo ${ver}${flavor} …"
+            if fetch_kernel "${ver}" "${flavor}"; then
+              ok=1
+              echo "✅ 选定 mihomo 内核：${ver}${flavor}"
+              break
+            fi
+            echo "  ⚠️ ${ver}${flavor} 不可用，回退下一组合"
+          done
+          if [ "${ok}" != 1 ]; then
+            echo "❌ 所有内核组合（${combos[*]}）均不可用，放弃"
+            exit 1
+          fi
 
       - name: mihomo 内核实测活（TCP 预筛 + 真实代理延迟测试，聚合能连上的）
+        id: alive
+        continue-on-error: true
         shell: bash
         run: |
           set -euo pipefail
@@ -163,10 +227,17 @@ jobs:
             --concurrency 128 \
             --retries 1
 
-      - name: 提交变更
+      - name: 提交变更（测活失败时也保住当天订阅更新，保留上一次 alive）
+        if: always() && (steps.alive.outcome == 'success' || steps.alive.outcome == 'failure')
         shell: bash
         run: |
           set -euo pipefail
+          if [ "${{ steps.alive.outcome }}" = "failure" ]; then
+            echo "⚠️ mihomo 实测活步骤失败：本次仅提交当天订阅与合并结果，sub/alive 保留上一次的版本"
+            EXTRA=" [alive-check failed, kept previous alive]"
+          else
+            EXTRA=""
+          fi
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add sub history
@@ -174,7 +245,7 @@ jobs:
             echo "本次合并后无变更，跳过提交"
             exit 0
           fi
-          git commit -m "chore(sub): 去重合并 JCNode 订阅 $(TZ=Asia/Shanghai date +'%Y-%m-%d %H:%M')"
+          git commit -m "chore(sub): 去重合并 JCNode 订阅 $(TZ=Asia/Shanghai date +'%Y-%m-%d %H:%M')${EXTRA}"
           git push || { git pull --rebase --autostash && git push; }
 
       - name: 上传订阅文件（可选，方便从 Actions 页直接下载）
