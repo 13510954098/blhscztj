@@ -16,6 +16,11 @@ on:
         description: "AABB 失效时全量扫描 0000-9999（约 1 小时，慎用）"
         type: boolean
         default: false
+      alive_scope:
+        description: "mihomo 实测范围：full=全库（默认，约 10-30 分钟），daily=仅当日节点（快速）"
+        type: choice
+        options: [full, daily]
+        default: full
 
 permissions:
   contents: write
@@ -117,18 +122,46 @@ jobs:
             --history history/codes.log
           rm -rf .incoming-sub
 
-      - name: 首次全历史、以后仅测当日 TCP/TLS 并生成存活订阅
+      - name: 下载 mihomo 内核（临时机每次全新下载，不用缓存）
         shell: bash
         run: |
           set -euo pipefail
-          python scripts/healthcheck_subscriptions.py \
+          mkdir -p .tools
+          # 通过 releases/latest 的 302 重定向解析最新版本号（不消耗 API 配额）
+          ver="$(curl -fsSL -o /dev/null -w '%{url_effective}' \
+            https://github.com/MetaCubeX/mihomo/releases/latest \
+            | sed -n 's#.*/tag/##p' | tr -d '[:space:]')"
+          if [ -z "${ver}" ] || [ "${ver}" = "latest" ]; then
+            echo "⚠️ 未能解析最新版本号，回退固定版本 v1.19.31"
+            ver="v1.19.31"
+          fi
+          echo "mihomo 内核版本：${ver}"
+          base="https://github.com/MetaCubeX/mihomo/releases/download/${ver}"
+          if ! curl -fsSL --retry 3 --connect-timeout 20 -o .tools/mihomo.gz \
+              "${base}/mihomo-linux-amd64-${ver}.gz"; then
+            echo "⚠️ 标准版下载失败，尝试 compatible 版本（兼容老 CPU 指令集）"
+            curl -fsSL --retry 3 --connect-timeout 20 -o .tools/mihomo.gz \
+              "${base}/mihomo-linux-amd64-compatible-${ver}.gz"
+          fi
+          gunzip -f .tools/mihomo.gz
+          chmod +x .tools/mihomo
+          .tools/mihomo -v
+
+      - name: mihomo 内核实测活（TCP 预筛 + 真实代理延迟测试，聚合能连上的）
+        shell: bash
+        run: |
+          set -euo pipefail
+          python scripts/mihomo_alive_check.py \
             --input sub/merged \
             --daily sub \
             --out sub/alive \
             --state sub/alive/state.json \
-            --timeout 3 \
-            --concurrency 64 \
-            --retention-hours 24
+            --mihomo .tools/mihomo \
+            --scope "${{ inputs.alive_scope || 'full' }}" \
+            --test-url "http://www.gstatic.com/generate_204" \
+            --timeout 5 \
+            --concurrency 128 \
+            --retries 1
 
       - name: 提交变更
         shell: bash
