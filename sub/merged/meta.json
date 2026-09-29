@@ -1,8 +1,8 @@
 {
   "code": "7788",
-  "updated_at": "2026-09-29T18:02:03+08:00",
-  "updated_at_utc": "2026-09-29T10:02:03+00:00",
-  "date": "2026-09-29",
+  "updated_at": "2026-09-30T00:16:04+08:00",
+  "updated_at_utc": "2026-09-29T16:16:04+00:00",
+  "date": "2026-09-30",
   "source_page": "https://jcnode.com/posts/free-nodes/",
   "link_tier": "direct",
   "links": {
@@ -11,12 +11,12 @@
     "v2ray": "https://shz.al/N2c2"
   },
   "nodes": {
-    "clash": 20229,
+    "clash": 20230,
     "singbox": 2642,
     "v2ray": 2551
   },
   "sha256_16": {
-    "clash.yaml": "fe04f179011967bc",
+    "clash.yaml": "b8f557c424647a70",
     "singbox.json": "9af5735e65b42764",
     "v2ray.txt": "c7b764040fda5645"
   },
@@ -28,29 +28,29 @@
       "direction": "descending",
       "missing": "stable-last"
     },
-    "updated_at": "2026-09-29T10:02:23+00:00",
+    "updated_at": "2026-09-29T16:16:32+00:00",
     "clash": {
       "incoming": 763,
-      "base": 19763,
-      "final": 20229,
+      "base": 20229,
+      "final": 20230,
       "added": 762,
-      "duplicates_removed": 297,
+      "duplicates_removed": 762,
       "sort": "name-mb-s-desc-stable",
       "template": "incoming-daily"
     },
     "singbox": {
       "incoming": 749,
-      "base": 2195,
+      "base": 2642,
       "final": 2642,
       "added": 700,
-      "duplicates_removed": 302
+      "duplicates_removed": 749
     },
     "v2ray": {
       "incoming": 763,
-      "base": 2122,
+      "base": 2551,
       "final": 2551,
       "added": 689,
-      "duplicates_removed": 334
+      "duplicates_removed": 763
     }
   },
   "fresh_nodes": {

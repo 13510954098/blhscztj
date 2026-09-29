@@ -205015,6 +205015,24 @@ proxies:
       Host: vp58.cc.cd
   udp: true
   name: 🇷🇺俄罗斯RU037 测速未知中性 TG@jcnode
+- alterId: 0
+  cipher: auto
+  http-opts:
+    headers:
+      Host:
+      - ughrn.dingtalk.com
+    path:
+    - /QQqun-737805443
+  name: '🇭🇰香港HK023 测速未知中性 TG@jcnode #2'
+  network: http
+  port: 52080
+  server: 47.242.81.94
+  skip-cert-verify: false
+  tls: false
+  type: vmess
+  udp: true
+  uuid: e47b9f77-60e4-4738-8d53-772b6002e146
+  packet-encoding: xudp
 - name: '🇭🇰香港HK010 测速未知 TG@jcnode #2'
   password: '111'
   port: 11310
@@ -231734,7 +231752,7 @@ proxies:
     path: /?ed=2048
   servername: yks-dd9.pages.dev
 - client-fingerprint: chrome
-  name: '🇭🇰香港HK023 测速未知中性 TG@jcnode #2'
+  name: '🇭🇰香港HK023 测速未知中性 TG@jcnode #2 #2'
   network: ws
   password: 87961f9d-bee1-4377-826b-e169e7891c4f
   port: 443
@@ -237277,7 +237295,7 @@ proxies:
     headers:
       Host: 871bl.pm3j.mhn.hh.vavava.kdns.fr
   name: '🇸🇬新加坡SG017 测速未知中性 TG@jcnode #3'
-- name: '🇭🇰香港HK023 测速未知中性 TG@jcnode #2 #2'
+- name: '🇭🇰香港HK023 测速未知中性 TG@jcnode #2 #2 #2'
   obfs: salamander
   obfs-password: 7M4RXPFcQyQEGbkxBPfXo4bilMhCW2U9
   password: eBTe6Ax2pUts8oMEWoYVDfnSlHfkLffQ
@@ -277553,6 +277571,7 @@ proxy-groups:
   - 🇸🇬新加坡SG058 测速未知中性 TG@jcnode
   - 🇺🇸美国US631 测速未知纯净 TG@jcnode
   - 🇷🇺俄罗斯RU037 测速未知中性 TG@jcnode
+  - '🇭🇰香港HK023 测速未知中性 TG@jcnode #2'
   - '🇭🇰香港HK010 测速未知 TG@jcnode #2'
   - 🇹🇼台湾TW003 测速未知纯净 TG@jcnode
   - 🇹🇼台湾TW004 测速未知纯净 TG@jcnode
@@ -279684,7 +279703,7 @@ proxy-groups:
   - 🇹🇷土耳其TR008 测速未知中性 TG@jcnode
   - 🇮🇪爱尔兰IE003 测速未知中性 TG@jcnode
   - '🇭🇰香港HK022 测速未知中性 TG@jcnode #2'
-  - '🇭🇰香港HK023 测速未知中性 TG@jcnode #2'
+  - '🇭🇰香港HK023 测速未知中性 TG@jcnode #2 #2'
   - 🇧🇷巴西BR003 测速未知纯净 TG@jcnode
   - '🇭🇰香港HK024 测速未知中性 TG@jcnode #2 #2'
   - '🇭🇰香港HK025 测速未知纯净 TG@jcnode #2'
@@ -280117,7 +280136,7 @@ proxy-groups:
   - 🇹🇷土耳其TR022 测速未知中性 TG@jcnode
   - '🇹🇭泰国TH005 测速未知中性 TG@jcnode #2'
   - '🇸🇬新加坡SG017 测速未知中性 TG@jcnode #3'
-  - '🇭🇰香港HK023 测速未知中性 TG@jcnode #2 #2'
+  - '🇭🇰香港HK023 测速未知中性 TG@jcnode #2 #2 #2'
   - '🇹🇼台湾TW003 测速未知纯净 TG@jcnode #2 #2 #2'
   - 🇨🇳中国CN006 测速未知 TG@jcnode
   - '🇸🇬新加坡SG021 测速未知中性 TG@jcnode #2'
@@ -297788,6 +297807,7 @@ proxy-groups:
   - 🇸🇬新加坡SG058 测速未知中性 TG@jcnode
   - 🇺🇸美国US631 测速未知纯净 TG@jcnode
   - 🇷🇺俄罗斯RU037 测速未知中性 TG@jcnode
+  - '🇭🇰香港HK023 测速未知中性 TG@jcnode #2'
   - '🇭🇰香港HK010 测速未知 TG@jcnode #2'
   - 🇹🇼台湾TW003 测速未知纯净 TG@jcnode
   - 🇹🇼台湾TW004 测速未知纯净 TG@jcnode
@@ -299919,7 +299939,7 @@ proxy-groups:
   - 🇹🇷土耳其TR008 测速未知中性 TG@jcnode
   - 🇮🇪爱尔兰IE003 测速未知中性 TG@jcnode
   - '🇭🇰香港HK022 测速未知中性 TG@jcnode #2'
-  - '🇭🇰香港HK023 测速未知中性 TG@jcnode #2'
+  - '🇭🇰香港HK023 测速未知中性 TG@jcnode #2 #2'
   - 🇧🇷巴西BR003 测速未知纯净 TG@jcnode
   - '🇭🇰香港HK024 测速未知中性 TG@jcnode #2 #2'
   - '🇭🇰香港HK025 测速未知纯净 TG@jcnode #2'
@@ -300352,7 +300372,7 @@ proxy-groups:
   - 🇹🇷土耳其TR022 测速未知中性 TG@jcnode
   - '🇹🇭泰国TH005 测速未知中性 TG@jcnode #2'
   - '🇸🇬新加坡SG017 测速未知中性 TG@jcnode #3'
-  - '🇭🇰香港HK023 测速未知中性 TG@jcnode #2 #2'
+  - '🇭🇰香港HK023 测速未知中性 TG@jcnode #2 #2 #2'
   - '🇹🇼台湾TW003 测速未知纯净 TG@jcnode #2 #2 #2'
   - 🇨🇳中国CN006 测速未知 TG@jcnode
   - '🇸🇬新加坡SG021 测速未知中性 TG@jcnode #2'
@@ -302640,6 +302660,7 @@ proxy-groups:
   - 🇭🇰香港HK025 测速未知中性 TG@jcnode
   - 🇭🇰香港HK032 测速未知中性 TG@jcnode
   - 🇭🇰香港HK042 测速未知中性 TG@jcnode
+  - '🇭🇰香港HK023 测速未知中性 TG@jcnode #2'
   - '🇭🇰香港HK010 测速未知 TG@jcnode #2'
   - 🇭🇰香港HK013 测速未知纯净 TG@jcnode
   - 🇭🇰香港HK016 测速未知 TG@jcnode
@@ -302773,7 +302794,7 @@ proxy-groups:
   - '🇭🇰香港HK026 测速未知中性 TG@jcnode #2'
   - '🇭🇰香港HK030 测速未知中性 TG@jcnode #2'
   - '🇭🇰香港HK022 测速未知中性 TG@jcnode #2'
-  - '🇭🇰香港HK023 测速未知中性 TG@jcnode #2'
+  - '🇭🇰香港HK023 测速未知中性 TG@jcnode #2 #2'
   - '🇭🇰香港HK024 测速未知中性 TG@jcnode #2 #2'
   - '🇭🇰香港HK025 测速未知纯净 TG@jcnode #2'
   - 🇭🇰香港HK026 测速未知纯净 TG@jcnode
@@ -302803,7 +302824,7 @@ proxy-groups:
   - '🇭🇰香港HK026 测速未知中性 TG@jcnode #2 #2'
   - '🇭🇰香港HK027 测速未知中性 TG@jcnode #4'
   - '🇭🇰香港HK028 测速未知纯净 TG@jcnode #2 #2'
-  - '🇭🇰香港HK023 测速未知中性 TG@jcnode #2 #2'
+  - '🇭🇰香港HK023 测速未知中性 TG@jcnode #2 #2 #2'
   - '🇭🇰香港HK035 测速未知 TG@jcnode #2'
   - '🇭🇰香港HK016 测速未知中性 TG@jcnode #3'
   - '🇭🇰香港HK018 测速未知中性 TG@jcnode #4'
