@@ -54,7 +54,7 @@ except ImportError as exc:  # pragma: no cover - Actions 会安装 PyYAML
     raise SystemExit("缺少 PyYAML，请先运行：python -m pip install PyYAML") from exc
 
 try:
-    from merge_subscriptions import NoAliasDumper, atomic_write, proxy_name
+    from merge_subscriptions import SPECIAL_PROXY_REFS, NoAliasDumper, atomic_write, proxy_name
     from healthcheck_subscriptions import (
         Endpoint,
         _decode_base64_text,
@@ -298,7 +298,7 @@ class MihomoProcess:
         workdir: Path,
         api_port: int | None = None,
         secret: str | None = None,
-        ready_timeout: float = 30.0,
+        ready_timeout: float = 60.0,
     ):
         self.binary = str(binary)
         self.workdir = Path(workdir)
@@ -585,6 +585,95 @@ def _kernel_still_alive(proc_factory) -> tuple[bool, str]:
 # ---------------------------------------------------------------------------
 
 
+def run_config_test(binary, config_path, workdir) -> tuple[bool, str]:
+    """运行 mihomo -t 校验配置能否被内核加载；返回 (是否通过, 输出尾部)。"""
+    try:
+        proc = subprocess.run(
+            [str(binary), "-t", "-d", str(workdir), "-f", str(config_path)],
+            capture_output=True,
+            text=True,
+            timeout=180,
+            check=False,
+        )
+    except subprocess.TimeoutExpired:
+        return False, "mihomo -t 超时（180s）"
+    output = (proc.stdout or "") + (proc.stderr or "")
+    return proc.returncode == 0, output.strip()
+
+
+def _clash_probe_doc(doc: dict) -> dict:
+    """存活 clash 配置的深拷贝探针：剥离 rules/rule-providers。
+
+    mihomo -t 遇到 rules 会触发 geodata 下载（CI 环境不确定可用）；
+    剥离后仍能完整校验 proxies 解析与 proxy-groups 引用关系——
+    客户端加载失败几乎都发生在这两层。
+    """
+    probe = copy.deepcopy(doc)
+    probe.pop("rules", None)
+    probe.pop("rule-providers", None)
+    return probe
+
+
+def _ensure_groups_nonempty(doc: dict) -> list[str]:
+    """给过滤后 proxies 为空的分组填入 DIRECT，避免空分组让客户端拒载。
+
+    分组过滤剔除死节点后，某地区分组可能被清空（如本轮没有该国存活节点）；
+    mihomo/clash 要求每个分组必须有非空 proxies 或 use，空列表会拒载整个配置
+    （"'use' or 'proxies' missing"）。填内置 DIRECT 可保持 rules 引用有效。
+    返回被填充的分组名列表。
+    """
+    filled: list[str] = []
+    groups = doc.get("proxy-groups")
+    if not isinstance(groups, list):
+        return filled
+    for group in groups:
+        if not isinstance(group, dict):
+            continue
+        proxies = group.get("proxies")
+        if isinstance(proxies, list) and not proxies and not group.get("use"):
+            group["proxies"] = ["DIRECT"]
+            name = str(group.get("name") or "")
+            if name:
+                filled.append(name)
+    return filled
+
+
+def ensure_clash_output_loadable(mihomo_binary, doc: dict, runner=None) -> None:
+    """写出前用 mihomo -t 预校验存活 clash 配置，保证客户端一定能加载。
+
+    内核拒绝配置（如字段类型不规范）时抛 RuntimeError，
+    不合格的存活文件不会写盘替换上一版；
+    -t 无法执行（二进制消失等 OSError）则告警跳过，不阻断。
+    """
+    if runner is None:
+        runner = run_config_test
+    probe = _clash_probe_doc(doc)
+    with tempfile.TemporaryDirectory(prefix="mihomo-validate-") as tmp:
+        probe_path = Path(tmp) / "probe.yaml"
+        atomic_write(
+            probe_path,
+            yaml.dump(
+                probe,
+                Dumper=ClashSafeDumper,
+                allow_unicode=True,
+                sort_keys=False,
+                default_flow_style=False,
+                width=4096,
+            ).encode("utf-8"),
+        )
+        try:
+            ok, output = runner(mihomo_binary, probe_path, Path(tmp))
+        except OSError as exc:
+            print(f"⚠️ 无法运行 mihomo -t 做输出自检，跳过：{exc}")
+            return
+        if not ok:
+            tail = "\n".join(output.splitlines()[-8:])
+            raise RuntimeError(
+                "存活 clash.yaml 未能通过 mihomo -t 预校验，"
+                "已阻止写出（上一版存活文件保留），内核报错：\n" + tail
+            )
+
+
 def prefilter_tcp(candidates: list[Candidate], timeout: float, concurrency: int) -> tuple[set[str], dict]:
     """对 TCP 类候选的唯一端点做握手预筛，返回通过的 endpoint_id 集合。"""
     tcp_candidates = [c for c in candidates if not c.udp]
@@ -822,17 +911,32 @@ def run_alive_check(
         workdir.mkdir(parents=True, exist_ok=True)
 
     if proc_factory is None:
+        real_kernel = True
+
         def proc_factory():
             return MihomoProcess(mihomo_binary, workdir)
+    else:
+        real_kernel = False  # 离线单测注入假内核，不做真实 -t 自检
 
     try:
         print(
             f"mihomo 实测：{len(real_set)} 个候选，test_url={test_url}，"
             f"timeout={timeout:g}s，concurrency={concurrency}，retries={retries}"
         )
-        results, bad_proxies = run_real_test(
-            proc_factory, real_set, test_url, timeout_ms, concurrency, retries
-        )
+        attempts = 0
+        while True:
+            attempts += 1
+            try:
+                results, bad_proxies = run_real_test(
+                    proc_factory, real_set, test_url, timeout_ms, concurrency, retries
+                )
+                break
+            except RuntimeError as exc:
+                # 偶发异常（runner 上内核崩溃/进程被杀）重试一次；
+                # 重试仍失败则正常抛出，交由 workflow 门禁暴露
+                if attempts >= 2:
+                    raise
+                print(f"⚠️ 实测阶段异常（{exc}），重置内核重试（第 2 次尝试）")
     finally:
         if own_workdir:
             shutil.rmtree(workdir, ignore_errors=True)
@@ -859,6 +963,7 @@ def run_alive_check(
     # ---- 聚合输出三格式 ----
     output_dir.mkdir(parents=True, exist_ok=True)
     output_files: dict[str, Path] = {}
+    output_validated = False
     counts = {
         "clash": {"kept": 0, "failed": 0, "prefilter_dropped": 0, "load_error": 0, "invalid": 0, "duplicate_name": 0},
         "singbox": {"kept": 0, "aux_kept": 0, "dropped": 0},
@@ -877,6 +982,14 @@ def run_alive_check(
         alive_proxies = [node for node in original if proxy_name(node) in alive_names]
         doc["proxies"] = alive_proxies
         _filter_clash_groups(doc, alive_proxies)
+        filled = _ensure_groups_nonempty(doc)
+        if filled:
+            print(f"  ⚠️ 本轮无存活节点，地区分组已填 DIRECT 防空分组拒载：{'、'.join(filled)}")
+        if real_kernel:
+            # 写盘前用真实内核预校验：客户端加载不了的存活文件一律阻止写出
+            ensure_clash_output_loadable(mihomo_binary, doc)
+            output_validated = True
+            print("  ✅ 存活 clash.yaml 已通过 mihomo -t 预校验")
         output_path = output_dir / "clash.yaml"
         atomic_write(
             output_path,
@@ -946,6 +1059,7 @@ def run_alive_check(
         "concurrency": concurrency,
         "retries": retries,
         "mihomo_version": detect_mihomo_version(mihomo_binary),
+        "output_validated": output_validated,
         "prefilter": prefilter_stats,
         "clash_candidates": clash_stats,
         "alive_unique_keys": len(alive_keys),
