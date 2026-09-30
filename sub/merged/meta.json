@@ -1,24 +1,24 @@
 {
   "code": "7788",
-  "updated_at": "2026-09-30T00:16:04+08:00",
-  "updated_at_utc": "2026-09-29T16:16:04+00:00",
+  "updated_at": "2026-09-30T17:54:59+08:00",
+  "updated_at_utc": "2026-09-30T09:54:59+00:00",
   "date": "2026-09-30",
   "source_page": "https://jcnode.com/posts/free-nodes/",
   "link_tier": "direct",
   "links": {
-    "clash": "https://shz.al/yR5d",
-    "singbox": "https://shz.al/B3rA",
-    "v2ray": "https://shz.al/N2c2"
+    "clash": "https://shz.al/c5sd",
+    "singbox": "https://shz.al/eFpe",
+    "v2ray": "https://shz.al/djEM"
   },
   "nodes": {
-    "clash": 20230,
-    "singbox": 2642,
-    "v2ray": 2551
+    "clash": 20615,
+    "singbox": 3011,
+    "v2ray": 2879
   },
   "sha256_16": {
-    "clash.yaml": "b8f557c424647a70",
-    "singbox.json": "9af5735e65b42764",
-    "v2ray.txt": "c7b764040fda5645"
+    "clash.yaml": "b94f39e74b435adf",
+    "singbox.json": "e3ad6ad446289636",
+    "v2ray.txt": "bffe5137c5457d2a"
   },
   "merge": {
     "enabled": true,
@@ -28,34 +28,34 @@
       "direction": "descending",
       "missing": "stable-last"
     },
-    "updated_at": "2026-09-29T16:16:32+00:00",
+    "updated_at": "2026-09-30T09:55:21+00:00",
     "clash": {
-      "incoming": 763,
-      "base": 20229,
-      "final": 20230,
-      "added": 762,
-      "duplicates_removed": 762,
+      "incoming": 820,
+      "base": 20230,
+      "final": 20615,
+      "added": 817,
+      "duplicates_removed": 435,
       "sort": "name-mb-s-desc-stable",
       "template": "incoming-daily"
     },
     "singbox": {
-      "incoming": 749,
+      "incoming": 806,
       "base": 2642,
-      "final": 2642,
-      "added": 700,
-      "duplicates_removed": 749
+      "final": 3011,
+      "added": 744,
+      "duplicates_removed": 437
     },
     "v2ray": {
-      "incoming": 763,
+      "incoming": 820,
       "base": 2551,
-      "final": 2551,
-      "added": 689,
-      "duplicates_removed": 763
+      "final": 2879,
+      "added": 714,
+      "duplicates_removed": 492
     }
   },
   "fresh_nodes": {
-    "clash": 763,
-    "singbox": 749,
-    "v2ray": 763
+    "clash": 820,
+    "singbox": 806,
+    "v2ray": 820
   }
 }
