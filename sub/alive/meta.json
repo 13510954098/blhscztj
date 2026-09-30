@@ -1,0 +1,67 @@
+{
+  "generated_at": "2026-09-27T08:50:49+00:00",
+  "source_dir": "sub/merged",
+  "daily_dir": "sub",
+  "scope": "full",
+  "probe_method": "mihomo real proxy delay test",
+  "test_url": "http://www.gstatic.com/generate_204",
+  "timeout_s": 5.0,
+  "concurrency": 128,
+  "retries": 1,
+  "mihomo_version": "v1.19.31",
+  "output_validated": true,
+  "prefilter": {
+    "method": "TCP/TLS handshake",
+    "timeout_s": 3.0,
+    "tcp_candidates": 19019,
+    "udp_direct_candidates": 708,
+    "unique_endpoints": 10270,
+    "endpoints_passed": 6367,
+    "endpoints_failed": 3903,
+    "candidates_dropped": 6865
+  },
+  "clash_candidates": {
+    "total": 19727,
+    "invalid": 0,
+    "duplicate_name": 0
+  },
+  "alive_unique_keys": 1039,
+  "alive_delay_ms": {
+    "min": 4.0,
+    "median": 170.0,
+    "max": 2991.0
+  },
+  "node_status_counts": {
+    "clash": {
+      "kept": 2411,
+      "failed": 10451,
+      "prefilter_dropped": 6865,
+      "load_error": 0,
+      "invalid": 0,
+      "duplicate_name": 0
+    },
+    "singbox": {
+      "kept": 751,
+      "aux_kept": 0,
+      "dropped": 1415
+    },
+    "v2ray": {
+      "kept": 608,
+      "dropped": 1483
+    }
+  },
+  "files": {
+    "clash.yaml": {
+      "nodes": 2411,
+      "sha256_16": "5f543925f21d83c7"
+    },
+    "singbox.json": {
+      "nodes": 751,
+      "sha256_16": "d4b71446abefb60c"
+    },
+    "v2ray.txt": {
+      "nodes": 608,
+      "sha256_16": "074b11fc24ccc0a6"
+    }
+  }
+}
