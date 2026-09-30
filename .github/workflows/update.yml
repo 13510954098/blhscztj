@@ -256,3 +256,12 @@ jobs:
           path: sub/
           if-no-files-found: warn
           retention-days: 7
+
+      - name: 测活门禁（测活未成功必须让 Action 变红，绝不静默保留旧存活文件）
+        if: always() && steps.alive.outcome != 'success'
+        shell: bash
+        run: |
+          echo "❌ mihomo 实测活步骤未成功（outcome=${{ steps.alive.outcome }}）"
+          echo "本次已提交当天订阅与合并结果，但 sub/alive 仍是上一轮的旧文件（订阅用户拿到的不是最新测活结果）。"
+          echo "请展开上方『mihomo 内核实测活』步骤日志，把 ❌ / ⚠️ 开头的行和内核诊断信息复制反馈，以便定位。"
+          exit 1
