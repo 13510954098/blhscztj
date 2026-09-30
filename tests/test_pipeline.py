@@ -8,6 +8,7 @@ import tempfile
 import unittest
 from pathlib import Path
 from types import SimpleNamespace
+from unittest import mock
 from unittest.mock import patch
 from urllib.parse import unquote
 
@@ -926,6 +927,176 @@ class CircuitBreakerTests(unittest.TestCase):
         self.assertEqual({c.name for c in bad}, bad_names)
         self.assertEqual(len(results), 90)
         self.assertTrue(all(r["ok"] for r in results.values()))
+
+
+class OutputSelfValidationTests(unittest.TestCase):
+    @staticmethod
+    def _doc():
+        return {
+            "proxies": [{"name": "n", "type": "http", "server": "h", "port": 80}],
+            "proxy-groups": [{"name": "g", "type": "select", "proxies": ["n"]}],
+            "rules": ["MATCH,g"],
+            "rule-providers": {"rp": {"type": "http", "url": "http://x", "path": "./rp.yaml"}},
+            "dns": {"enable": True},
+        }
+
+    def test_probe_doc_strips_rules_only(self):
+        doc = self._doc()
+        probe = mihomo_check._clash_probe_doc(doc)
+        self.assertNotIn("rules", probe)
+        self.assertNotIn("rule-providers", probe)
+        self.assertEqual(len(probe["proxies"]), 1)
+        self.assertEqual(probe["proxy-groups"][0]["proxies"], ["n"])
+        self.assertTrue(probe["dns"]["enable"])
+        # 原文档不被修改
+        self.assertEqual(len(doc["rules"]), 1)
+        self.assertIn("rule-providers", doc)
+
+    def test_validation_raises_when_kernel_rejects(self):
+        def rejecting_runner(binary, path, workdir):
+            return False, "time=\"…\" level=error msg=\"proxy 0: 'http-opts.headers[Host]' is not a slice\""
+
+        with self.assertRaises(RuntimeError) as ctx:
+            mihomo_check.ensure_clash_output_loadable(
+                "/nonexistent-mihomo", self._doc(), runner=rejecting_runner
+            )
+        message = str(ctx.exception)
+        self.assertIn("预校验", message)
+        self.assertIn("is not a slice", message)
+
+    def test_validation_passes_when_kernel_accepts(self):
+        def accepting_runner(binary, path, workdir):
+            return True, "configuration file test is successful"
+
+        # 不应抛异常
+        mihomo_check.ensure_clash_output_loadable(
+            "/nonexistent-mihomo", self._doc(), runner=accepting_runner
+        )
+
+    def test_validation_skips_when_binary_unrunnable(self):
+        def broken_runner(binary, path, workdir):
+            raise OSError("[Errno 8] Exec format error")
+
+        # OSError 只告警跳过，不阻断
+        mihomo_check.ensure_clash_output_loadable(
+            "/nonexistent-mihomo", self._doc(), runner=broken_runner
+        )
+
+    def test_pipeline_skips_self_validation_with_injected_kernel(self):
+        # 离线单测（注入假内核）不做真实 -t，meta 里 output_validated=False
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            input_dir = MihomoPipelineTests._write_input(root)
+            meta = mihomo_check.run_alive_check(
+                input_dir, root / "alive", root / "alive/state.json", "/nonexistent-mihomo",
+                prefilter_timeout=0, proc_factory=lambda: _FakeMihomoProcess(
+                    delay_of={"🇺🇸 存活HTTP 2MB/s": 120},
+                ),
+            )
+            self.assertFalse(meta["output_validated"])
+
+    def test_empty_regional_group_filled_with_direct(self):
+        # 本轮没有某国存活节点时，地区分组被过滤成空列表 → 必须填 DIRECT 防拒载
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            input_dir = root / "merged"
+            input_dir.mkdir(parents=True)
+            clash_doc = {
+                "proxies": [
+                    {"name": "🇺🇸 好节点", "type": "http", "server": "a.example", "port": 80},
+                    {"name": "🇰🇷 韩国节点", "type": "http", "server": "kr.example", "port": 80},
+                ],
+                "proxy-groups": [
+                    {"name": "🔰 手动选择", "type": "select",
+                     "proxies": ["🇺🇸 好节点", "🇰🇷 韩国节点"]},
+                    {"name": "🇰🇷 韩国自动", "type": "url-test", "proxies": ["🇰🇷 韩国节点"]},
+                    {"name": "🇺🇸 美国自动", "type": "url-test", "proxies": ["🇺🇸 好节点"]},
+                ],
+                "rules": ["MATCH,🔰 手动选择"],
+            }
+            (input_dir / "clash.yaml").write_text(
+                json.dumps(clash_doc, ensure_ascii=False), encoding="utf-8")
+            output_dir = root / "alive"
+
+            # 只有美国节点存活：韩国分组应被填成 ["DIRECT"] 而不是空列表
+            mihomo_check.run_alive_check(
+                input_dir, output_dir, output_dir / "state.json", "/nonexistent-mihomo",
+                prefilter_timeout=0, proc_factory=lambda: _FakeMihomoProcess(
+                    delay_of={"🇺🇸 好节点": 80},
+                ),
+            )
+            live = health.yaml.safe_load((output_dir / "clash.yaml").read_text(encoding="utf-8"))
+            groups = {g["name"]: g["proxies"] for g in live["proxy-groups"]}
+            self.assertEqual(groups["🇰🇷 韩国自动"], ["DIRECT"])
+            self.assertEqual(groups["🇺🇸 美国自动"], ["🇺🇸 好节点"])
+            self.assertEqual(groups["🔰 手动选择"], ["🇺🇸 好节点"])
+
+    def test_ensure_groups_nonempty_unit(self):
+        doc = {
+            "proxy-groups": [
+                {"name": "空组", "type": "select", "proxies": []},
+                {"name": "有 use 的空组", "type": "select", "proxies": [], "use": ["rp"]},
+                {"name": "正常组", "type": "select", "proxies": ["n"]},
+                {"name": "无 proxies 键", "type": "select"},
+            ]
+        }
+        filled = mihomo_check._ensure_groups_nonempty(doc)
+        self.assertEqual(filled, ["空组"])
+        self.assertEqual(doc["proxy-groups"][0]["proxies"], ["DIRECT"])
+        # 有 use 的空组不填（use 本身就是合法成员来源）
+        self.assertEqual(doc["proxy-groups"][1]["proxies"], [])
+        self.assertEqual(doc["proxy-groups"][2]["proxies"], ["n"])
+        # 无 proxies 键的组不动（不添乱，交给 -t 自检兜底）
+        self.assertNotIn("proxies", doc["proxy-groups"][3])
+
+
+class RealTestRetryTests(unittest.TestCase):
+    """实测阶段偶发异常的重试语义（run_alive_check 内部重试一次）。"""
+
+    def test_retries_once_on_transient_error(self):
+        # 第一次抛 RuntimeError（模拟 runner 上内核偶发崩溃），重试一次后成功
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            input_dir = MihomoPipelineTests._write_input(root)
+            output_dir = root / "alive"
+            good = {
+                "🇺🇸 存活HTTP 2MB/s": {"ok": True, "delay_ms": 120.0, "error": ""},
+                "🇸🇬 存活UDP": {"ok": True, "delay_ms": 250.0, "error": ""},
+                "🇯🇵 死节点": {"ok": False, "delay_ms": None, "error": "HTTP 408"},
+            }
+            calls = []
+
+            def fake_run_real_test(proc_factory, candidates, *args, **kwargs):
+                calls.append(1)
+                if len(calls) == 1:
+                    raise RuntimeError("mihomo 进程意外退出，中止本轮测试")
+                return good, []
+
+            with mock.patch.object(mihomo_check, "run_real_test", side_effect=fake_run_real_test):
+                meta = mihomo_check.run_alive_check(
+                    input_dir, output_dir, output_dir / "state.json", "/nonexistent-mihomo",
+                    prefilter_timeout=0, proc_factory=lambda: _FakeMihomoProcess(),
+                )
+            self.assertEqual(len(calls), 2)
+            self.assertEqual(meta["node_status_counts"]["clash"]["kept"], 2)
+
+    def test_raises_after_retry_exhausted(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            input_dir = MihomoPipelineTests._write_input(root)
+            calls = []
+
+            def fake_run_real_test(proc_factory, candidates, *args, **kwargs):
+                calls.append(1)
+                raise RuntimeError("mihomo 进程意外退出，中止本轮测试")
+
+            with mock.patch.object(mihomo_check, "run_real_test", side_effect=fake_run_real_test):
+                with self.assertRaises(RuntimeError):
+                    mihomo_check.run_alive_check(
+                        input_dir, root / "alive", root / "alive/state.json", "/nonexistent-mihomo",
+                        prefilter_timeout=0, proc_factory=lambda: _FakeMihomoProcess(),
+                    )
+            self.assertEqual(len(calls), 2)
 
 
 if __name__ == "__main__":
