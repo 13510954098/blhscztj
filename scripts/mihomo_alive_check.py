@@ -300,7 +300,7 @@ class MihomoProcess:
         secret: str | None = None,
         ready_timeout: float = 60.0,
     ):
-        self.binary = str(binary)
+        self.binary = str(Path(binary).resolve())
         self.workdir = Path(workdir)
         self.api_port = int(api_port or random.randint(21000, 59999))
         self.secret = str(secret or secrets.token_hex(16))
