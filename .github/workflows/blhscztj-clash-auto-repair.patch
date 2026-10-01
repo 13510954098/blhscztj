@@ -1,0 +1,354 @@
+diff --git a/.github/workflows/update.yml b/.github/workflows/update.yml
+index 491928a..9ea62f4 100644
+--- a/.github/workflows/update.yml
++++ b/.github/workflows/update.yml
+@@ -98,6 +98,23 @@ jobs:
+           echo "运行: python $SCRIPT --out-dir .incoming-sub ${ARGS:-（默认 AABB 枚举）}"
+           python "$SCRIPT" --out-dir .incoming-sub --history .incoming-sub/codes.log $ARGS
+ 
++      - name: 规范化每日 Clash 节点并校正元数据
++        shell: bash
++        run: |
++          set -euo pipefail
++          python - <<'PY'
++          from pathlib import Path
++          from scripts.merge_subscriptions import normalize_clash_file
++
++          clash = Path(".incoming-sub/clash.yaml")
++          meta = Path(".incoming-sub/meta.json")
++          repairs = []
++          doc = normalize_clash_file(clash, meta, repairs)
++          print(f"✅ Clash 节点已规范化：{len(doc.get('proxies') or [])} 个；SHA-256 与元数据已同步")
++          for message in repairs:
++              print(f"⚠️ 自动修复：{message}")
++          PY
++
+       - name: 保存当天订阅（覆盖 daily，保留综合版）
+         shell: bash
+         run: |
+@@ -209,6 +226,17 @@ jobs:
+             exit 1
+           fi
+ 
++      - name: mihomo 预校验订阅配置（daily / merged / alive）
++        id: clash-validation
++        shell: bash
++        run: |
++          set -euo pipefail
++          for file in sub/clash.yaml sub/merged/clash.yaml sub/alive/clash.yaml; do
++            test -s "$file"
++            echo "校验 $file"
++            .tools/mihomo -t -d "$(dirname "$file")" -f "$file"
++          done
++
+       - name: mihomo 内核实测活（TCP 预筛 + 真实代理延迟测试，聚合能连上的）
+         id: alive
+         continue-on-error: true
+@@ -249,7 +277,7 @@ jobs:
+           git push || { git pull --rebase --autostash && git push; }
+ 
+       - name: 上传订阅文件（可选，方便从 Actions 页直接下载）
+-        if: always()
++        if: always() && steps.clash-validation.outcome == 'success'
+         uses: actions/upload-artifact@v7
+         with:
+           name: jcnode-sub-daily-and-merged-${{ github.run_number }}
+@@ -258,7 +286,7 @@ jobs:
+           retention-days: 7
+ 
+       - name: 测活门禁（测活未成功必须让 Action 变红，绝不静默保留旧存活文件）
+-        if: always() && steps.alive.outcome != 'success'
++        if: always() && steps.clash-validation.outcome == 'success' && steps.alive.outcome != 'success'
+         shell: bash
+         run: |
+           echo "❌ mihomo 实测活步骤未成功（outcome=${{ steps.alive.outcome }}）"
+diff --git a/fetch_jcnode.py b/fetch_jcnode.py
+index 0319bb7..cd56490 100644
+--- a/fetch_jcnode.py
++++ b/fetch_jcnode.py
+@@ -14,7 +14,7 @@
+   python scripts/fetch_jcnode.py --mode full         # 兜底：0000-9999 全量扫描（慢，慎用）
+   python scripts/fetch_jcnode.py --out-dir sub       # 输出目录（默认 sub）
+ 
+-只依赖 Python 标准库。
++依赖：PyYAML（与仓库的订阅合并脚本共用）。
+ """
+ 
+ from __future__ import annotations
+@@ -34,6 +34,8 @@ import urllib.error
+ import urllib.request
+ from datetime import datetime, timedelta, timezone
+ 
++import yaml
++
+ VERIFY_URL = "https://jcnode.com/api/verify"
+ PAGE_URL = "https://jcnode.com/posts/free-nodes/"
+ UA = (
+@@ -188,10 +190,23 @@ def pick_links(data: dict) -> tuple[dict[str, str], str]:
+ # ---------------------------------------------------------------- 校验
+ 
+ def count_clash(text: str) -> int:
+-    """只统计 proxies: 段里的节点，避免把 proxy-groups 的策略组也算进去。"""
+-    m = re.search(r"^proxies:\s*$(.*?)(?=^[A-Za-z_]|\Z)", text, re.M | re.S)
+-    block = m.group(1) if m else text
+-    return len(re.findall(r"^\s*-\s+name:", block, re.M))
++    """解析 YAML 后统计 proxies 顶层列表项，避免注释、字段顺序影响计数。"""
++    try:
++        doc = yaml.safe_load(text)
++    except yaml.YAMLError as exc:
++        raise ValueError(f"Clash 订阅不是合法 YAML：{exc}") from exc
++    if doc is None:
++        return 0
++    if not isinstance(doc, dict):
++        return 0
++    proxies = doc.get("proxies")
++    if proxies is None:
++        return 0
++    if isinstance(proxies, dict):
++        return 1
++    if isinstance(proxies, list):
++        return len(proxies)
++    return 0
+ 
+ 
+ def count_singbox(text: str) -> int:
+diff --git a/scripts/merge_subscriptions.py b/scripts/merge_subscriptions.py
+index eba9237..2134773 100644
+--- a/scripts/merge_subscriptions.py
++++ b/scripts/merge_subscriptions.py
+@@ -124,31 +124,124 @@ class ClashSafeDumper(NoAliasDumper):
+ ClashSafeDumper.add_representer(str, ClashSafeDumper.represent_str)
+ 
+ 
+-def normalize_clash_http_opts(doc: dict) -> None:
+-    """把 http-opts.headers 的标量值规范成数组形式（mihomo 要求 map[string][]string）。
+-
+-    站点偶尔会写出 `Host: https://example.com`（字符串）而不是 `Host: [https://...]`，
+-    这种节点会让 mihomo 拒载整个配置文件。null 值的头部直接丢弃。
+-    """
++def normalize_clash_http_opts(doc: dict, warnings: list[str] | None = None) -> None:
++    """尽量自动修复常见 http-opts.headers 类型问题；无法安全解释的内容会被丢弃并记录。"""
++    warnings = warnings if warnings is not None else []
+     proxies = doc.get("proxies")
+-    if not isinstance(proxies, list):
++    if proxies is None:
++        return
++    if isinstance(proxies, dict):
++        proxies = [proxies]
++        doc["proxies"] = proxies
++        warnings.append("proxies 是单个映射，已自动包装为列表")
++    elif not isinstance(proxies, list):
++        doc["proxies"] = []
++        warnings.append("proxies 不是列表，已替换为空列表")
+         return
+-    for proxy in proxies:
++
++    repaired = []
++    for index, proxy in enumerate(proxies):
++        where = f"proxies[{index}]"
+         if not isinstance(proxy, dict):
++            warnings.append(f"{where} 不是映射，已丢弃该节点")
+             continue
++        if "http-opts" in proxy and not isinstance(proxy["http-opts"], dict):
++            del proxy["http-opts"]
++            warnings.append(f"{where}.http-opts 结构无效，已移除该字段")
+         opts = proxy.get("http-opts")
+-        if not isinstance(opts, dict):
+-            continue
+-        headers = opts.get("headers")
+-        if not isinstance(headers, dict):
+-            continue
+-        for key, value in list(headers.items()):
+-            if isinstance(value, list):
+-                continue
+-            if value is None:
+-                del headers[key]
++        if isinstance(opts, dict) and "headers" in opts:
++            headers = opts["headers"]
++            if headers is None:
++                opts["headers"] = {}
++                warnings.append(f"{where}.http-opts.headers 为 null，已替换为空映射")
++            elif not isinstance(headers, dict):
++                opts["headers"] = {}
++                warnings.append(f"{where}.http-opts.headers 不是映射，已清空")
+             else:
+-                headers[key] = [str(value)]
++                normalized = {}
++                for key, value in headers.items():
++                    if isinstance(key, (str, int, float, bool)):
++                        header_name = str(key)
++                    else:
++                        warnings.append(f"{where}.http-opts.headers 含无法修复的键，已丢弃")
++                        continue
++                    if value is None:
++                        warnings.append(f"{where} 的请求头 {header_name!r} 值为空，已移除")
++                        continue
++                    if isinstance(value, str):
++                        normalized[header_name] = [value]
++                    elif isinstance(value, list):
++                        values = []
++                        invalid = False
++                        for item in value:
++                            if item is None:
++                                continue
++                            if isinstance(item, (str, int, float, bool)):
++                                values.append(str(item))
++                            else:
++                                invalid = True
++                                break
++                        if invalid:
++                            warnings.append(f"{where} 的请求头 {header_name!r} 含嵌套值，已移除该请求头")
++                        elif values or not value:
++                            normalized[header_name] = values
++                        else:
++                            warnings.append(f"{where} 的请求头 {header_name!r} 没有有效值，已移除")
++                    elif isinstance(value, (int, float, bool)):
++                        normalized[header_name] = [str(value)]
++                    else:
++                        warnings.append(f"{where} 的请求头 {header_name!r} 不是标量或标量列表，已移除")
++                opts["headers"] = normalized
++        repaired.append(proxy)
++    doc["proxies"] = repaired
++
++
++def normalize_clash_file(path: Path, meta_path: Path | None = None,
++                          warnings: list[str] | None = None) -> dict:
++    """规范化每日 Clash 文件，并同步修正其节点数和文件哈希元数据。"""
++    path = Path(path)
++    raw = path.read_bytes()
++    doc = yaml.safe_load(raw.decode("utf-8"))
++    if not isinstance(doc, dict):
++        raise ValueError(f"{path} 不是 Clash YAML 对象")
++    before = copy.deepcopy(doc)
++    normalize_clash_http_opts(doc, warnings)
++    changed = doc != before
++    output = raw
++    if changed:
++        output = yaml.dump(
++            doc, Dumper=ClashSafeDumper, allow_unicode=True, sort_keys=False,
++            default_flow_style=False, width=4096,
++        ).encode("utf-8")
++        atomic_write(path, output)
++    if meta_path is not None and Path(meta_path).exists():
++        meta_path = Path(meta_path)
++        try:
++            meta = json.loads(meta_path.read_text(encoding="utf-8"))
++        except (json.JSONDecodeError, UnicodeDecodeError):
++            meta = {}
++            if warnings is not None:
++                warnings.append("meta.json 无法解析，已重建校验字段")
++        if not isinstance(meta, dict):
++            meta = {}
++            if warnings is not None:
++                warnings.append("meta.json 根结构无效，已重建")
++        for name in ("nodes", "sha256_16", "source_sha256_16"):
++            if not isinstance(meta.get(name), dict):
++                meta[name] = {}
++                if warnings is not None:
++                    warnings.append(f"meta.json 的 {name} 结构无效，已重建")
++        nodes = meta["nodes"]
++        hashes = meta["sha256_16"]
++        source_hashes = meta["source_sha256_16"]
++        source_hashes["clash"] = hashlib.sha256(raw).hexdigest()[:16]
++        hashes["clash"] = hashlib.sha256(output).hexdigest()[:16]
++        nodes["clash"] = len(doc.get("proxies") or [])
++        meta["clash_normalization"] = {
++            "http_opts_headers": "scalar_values_to_lists", "changed": changed,
++        }
++        atomic_write(meta_path, json.dumps(meta, ensure_ascii=False, indent=2).encode("utf-8"))
++    return doc
+ 
+ 
+ def freeze(value, ignored: set[str] | None = None):
+diff --git a/tests/test_pipeline.py b/tests/test_pipeline.py
+index afa01c7..979be4f 100644
+--- a/tests/test_pipeline.py
++++ b/tests/test_pipeline.py
+@@ -22,6 +22,87 @@ import merge_subscriptions as merge  # noqa: E402
+ import mihomo_alive_check as mihomo_check  # noqa: E402
+ 
+ 
++class DailyClashPreparationTests(unittest.TestCase):
++    def test_clash_count_uses_top_level_sequence_items(self):
++        text = """port: 7890
++proxies:
++- type: vmess
++  server: a.example
++  name: first
++  http-opts:
++    path:
++    - /
++- name: second
++  type: trojan
++  server: b.example
++proxy-groups:
++- name: group-not-a-proxy
++  type: select
++  proxies:
++  - first
++"""
++        self.assertEqual(fetch_jcnode.count_clash(text), 2)
++
++    def test_clash_count_ignores_comments_and_reports_invalid_schema(self):
++        self.assertEqual(fetch_jcnode.count_clash("proxies: []\n"), 0)
++        self.assertEqual(fetch_jcnode.count_clash("proxies: 7\n"), 0)
++        self.assertEqual(fetch_jcnode.count_clash("proxies:\n  type: vmess\n  server: x\n"), 1)
++        with self.assertRaisesRegex(ValueError, "合法 YAML"):
++            fetch_jcnode.count_clash("proxies: [\n")
++
++    def test_daily_clash_normalizer_repairs_headers_and_metadata(self):
++        with tempfile.TemporaryDirectory() as tmp:
++            root = Path(tmp)
++            clash_path = root / "clash.yaml"
++            meta_path = root / "meta.json"
++            clash_path.write_text(
++                "proxies:\n- type: vmess\n  server: edge.example\n  port: 443\n"
++                "  name: edge\n  network: http\n  http-opts:\n    headers:\n"
++                "      Host: edge.example\n",
++                encoding="utf-8",
++            )
++            meta_path.write_text(json.dumps({
++                "nodes": {"clash": 0}, "sha256_16": {"clash": "old"},
++            }), encoding="utf-8")
++            doc = merge.normalize_clash_file(clash_path, meta_path)
++            meta = json.loads(meta_path.read_text(encoding="utf-8"))
++            self.assertEqual(doc["proxies"][0]["http-opts"]["headers"]["Host"], ["edge.example"])
++            self.assertEqual(meta["nodes"]["clash"], 1)
++            self.assertTrue(meta["clash_normalization"]["changed"])
++            self.assertIn("clash", meta["source_sha256_16"])
++            self.assertNotEqual(meta["sha256_16"]["clash"], "old")
++
++    def test_daily_clash_normalizer_repairs_malformed_headers_and_drops_unsafe_values(self):
++        doc = {"proxies": [None, {"http-opts": {"headers": {
++            "Host": {"bad": "shape"}, "X-Test": ["ok", {"nested": True}],
++            "X-Keep": ["first", None, 443],
++        }}}]}
++        warnings = []
++        merge.normalize_clash_http_opts(doc, warnings)
++        self.assertEqual(len(doc["proxies"]), 1)
++        self.assertEqual(doc["proxies"][0]["http-opts"]["headers"], {"X-Keep": ["first", "443"]})
++        self.assertGreaterEqual(len(warnings), 3)
++
++    def test_daily_clash_normalizer_repairs_metadata_maps(self):
++        with tempfile.TemporaryDirectory() as tmp:
++            root = Path(tmp)
++            clash_path = root / "clash.yaml"
++            meta_path = root / "meta.json"
++            clash_path.write_text("proxies: []\n", encoding="utf-8")
++            meta_path.write_text(json.dumps({"nodes": [], "sha256_16": "bad"}), encoding="utf-8")
++            warnings = []
++            merge.normalize_clash_file(clash_path, meta_path, warnings)
++            meta = json.loads(meta_path.read_text(encoding="utf-8"))
++            self.assertEqual(meta["nodes"]["clash"], 0)
++            self.assertIn("clash", meta["sha256_16"])
++            self.assertTrue(warnings)
++
++    def test_daily_clash_normalizer_cleans_null_list_members(self):
++        doc = {"proxies": [{"http-opts": {"headers": {"Host": ["edge.example", None, 443]}}}]}
++        merge.normalize_clash_http_opts(doc)
++        self.assertEqual(doc["proxies"][0]["http-opts"]["headers"]["Host"], ["edge.example", "443"])
++
++
+ class CandidateOrderTests(unittest.TestCase):
+     def test_cached_then_manual_then_remaining_pool_without_duplicates(self):
+         with tempfile.TemporaryDirectory() as tmp:
