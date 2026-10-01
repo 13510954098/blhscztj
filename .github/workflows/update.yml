@@ -107,13 +107,44 @@ jobs:
           import hashlib
           import json
           from pathlib import Path
+          import re
           import unicodedata
           import yaml
+
+          class QuotedShortId(str):
+              pass
+
+          class ClashDumper(yaml.SafeDumper):
+              pass
+
+          def represent_short_id(dumper, value):
+              return dumper.represent_scalar("tag:yaml.org,2002:str", str(value), style='"')
+
+          ClashDumper.add_representer(QuotedShortId, represent_short_id)
+          short_ids_quoted = [0]
+
+          def quote_short_ids(value):
+              if isinstance(value, dict):
+                  for key, item in list(value.items()):
+                      if key in ("short-id", "short_id") and isinstance(item, str):
+                          value[key] = QuotedShortId(item)
+                          short_ids_quoted[0] += 1
+                      else:
+                          quote_short_ids(item)
+              elif isinstance(value, list):
+                  for item in value:
+                      quote_short_ids(item)
 
           clash = Path(".incoming-sub/clash.yaml")
           meta_path = Path(".incoming-sub/meta.json")
           raw = clash.read_bytes()
-          doc = yaml.safe_load(raw.decode("utf-8"))
+          source_text = raw.decode("utf-8")
+          source_text = re.sub(
+              r"(?m)^([ \t]*short-id[ \t]*:[ \t]*)(?![\"'])([0-9A-Fa-f]+)([ \t]*(?:#.*)?)$",
+              lambda match: match.group(1) + '\"' + match.group(2) + '\"' + match.group(3),
+              source_text,
+          )
+          doc = yaml.safe_load(source_text)
           if not isinstance(doc, dict):
               raise ValueError("Clash YAML 根节点不是映射，无法安全自动修复")
 
@@ -190,6 +221,7 @@ jobs:
                       opts["headers"] = fixed
               valid_proxies.append(proxy)
           doc["proxies"] = valid_proxies
+          quote_short_ids(doc)
 
           def find_control(value, location="root"):
               if isinstance(value, str):
@@ -213,11 +245,11 @@ jobs:
           location = find_control(doc)
           if location:
               raise ValueError(f"每日 Clash 仍含非路径控制字符（{location}），停止发布以避免 FlClash 无法加载")
-          changed = original != doc
+          changed = original != doc or short_ids_quoted[0] > 0
           output = raw
           if changed:
-              output = yaml.safe_dump(doc, allow_unicode=True, sort_keys=False,
-                                      default_flow_style=False, width=4096).encode("utf-8")
+              output = yaml.dump(doc, Dumper=ClashDumper, allow_unicode=True, sort_keys=False,
+                                 default_flow_style=False, width=4096).encode("utf-8")
               clash.write_bytes(output)
 
           try:
@@ -238,6 +270,7 @@ jobs:
           meta["clash_normalization"] = {
               "http_opts_headers": "scalar_values_to_lists",
               "flclash_path_controls_percent_encoded": path_controls_encoded[0],
+              "reality_short_ids_quoted": short_ids_quoted[0],
               "changed": changed,
           }
           meta_path.write_text(json.dumps(meta, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
@@ -278,12 +311,43 @@ jobs:
           import hashlib
           import json
           from pathlib import Path
+          import re
           import unicodedata
           import yaml
 
+          class QuotedShortId(str):
+              pass
+
+          class ClashDumper(yaml.SafeDumper):
+              pass
+
+          def represent_short_id(dumper, value):
+              return dumper.represent_scalar("tag:yaml.org,2002:str", str(value), style='"')
+
+          ClashDumper.add_representer(QuotedShortId, represent_short_id)
+          short_ids_quoted = [0]
+
+          def quote_short_ids(value):
+              if isinstance(value, dict):
+                  for key, item in list(value.items()):
+                      if key in ("short-id", "short_id") and isinstance(item, str):
+                          value[key] = QuotedShortId(item)
+                          short_ids_quoted[0] += 1
+                      else:
+                          quote_short_ids(item)
+              elif isinstance(value, list):
+                  for item in value:
+                      quote_short_ids(item)
+
           path = Path("sub/merged/clash.yaml")
           raw = path.read_bytes()
-          doc = yaml.safe_load(raw.decode("utf-8"))
+          source_text = raw.decode("utf-8")
+          source_text = re.sub(
+              r"(?m)^([ \t]*short-id[ \t]*:[ \t]*)(?![\"'])([0-9A-Fa-f]+)([ \t]*(?:#.*)?)$",
+              lambda match: match.group(1) + '\"' + match.group(2) + '\"' + match.group(3),
+              source_text,
+          )
+          doc = yaml.safe_load(source_text)
           if not isinstance(doc, dict) or not isinstance(doc.get("proxies"), list):
               raise ValueError("合并 Clash 的 YAML/proxies 结构无效")
           encoded = [0]
@@ -329,13 +393,14 @@ jobs:
                           return found
               return None
 
+          quote_short_ids(doc)
           location = find_control(doc)
           if location:
               raise ValueError(f"Clash 仍含非路径控制字符（{location}），为避免生成 FlClash 无法加载的配置，停止发布")
           output = raw
-          if encoded[0]:
-              output = yaml.safe_dump(doc, allow_unicode=True, sort_keys=False,
-                                      default_flow_style=False, width=4096).encode("utf-8")
+          if encoded[0] or short_ids_quoted[0]:
+              output = yaml.dump(doc, Dumper=ClashDumper, allow_unicode=True, sort_keys=False,
+                                 default_flow_style=False, width=4096).encode("utf-8")
               path.write_bytes(output)
 
           meta_path = Path("sub/merged/meta.json")
@@ -354,8 +419,9 @@ jobs:
           if not isinstance(previous, dict):
               previous = {}
           previous["flclash_path_controls_percent_encoded"] = encoded[0]
+          previous["reality_short_ids_quoted"] = short_ids_quoted[0]
           meta["clash_normalization"] = previous
-          meta_path.write_text(json.dumps(meta, ensure_ascii=False, indent=2) + "\\n", encoding="utf-8")
+          meta_path.write_text(json.dumps(meta, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
           print(f"✅ merged Clash FlClash 路径字符检查通过；本次编码修复 {encoded[0]} 个控制字符")
           PY
 
