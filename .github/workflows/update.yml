@@ -43,7 +43,7 @@ jobs:
           python-version: "3.12"
 
       - name: 安装合并依赖
-        run: python -m pip install --disable-pip-version-check --no-input PyYAML
+        run: python -m pip install --disable-pip-version-check --no-input PyYAML maxminddb
 
       - name: 离线测试（不探测外部节点）
         run: python -m unittest discover -s tests -v
@@ -539,23 +539,25 @@ jobs:
             echo "ℹ️ 尚无上一轮存活结果"
           fi
 
-      - name: mihomo 内核实测活（TCP 预筛 + 真实代理延迟测试，聚合能连上的）
+      - name: mihomo 实测活（TCP 预筛 + 精确 HTTPS 响应 + 出口 GeoIP）
         id: alive
         continue-on-error: true
         shell: bash
         run: |
           set -euo pipefail
+          test -s sub/geoip.metadb
           python scripts/mihomo_alive_check.py \
             --input sub/merged \
             --daily sub \
             --out sub/alive \
             --state sub/alive/state.json \
             --mihomo .tools/mihomo \
+            --geoip-db sub/geoip.metadb \
             --scope "${{ inputs.alive_scope || 'full' }}" \
-            --test-url "http://www.gstatic.com/generate_204" \
-            --timeout 5 \
+            --test-url "https://www.gstatic.com/generate_204" \
+            --timeout 8 \
             --concurrency 128 \
-            --retries 1
+            --retries 2
 
       - name: 校验新生成的存活订阅
         id: alive-validation
@@ -581,7 +583,7 @@ jobs:
             echo "⚠️ 新存活结果失败，且没有旧版本可恢复"
           fi
 
-      - name: 统一 daily / merged / alive 策略组并按节点国家自动生成国家组
+      - name: 统一策略组并按实际出口 GeoIP 国家生成国家组
         id: policy-normalization
         if: always() && steps.clash-validation.outcome == 'success'
         shell: bash
@@ -606,19 +608,13 @@ jobs:
           FLAG_RE = re.compile(r'([\U0001F1E6-\U0001F1FF]{2})')
           SHORT_ID_RE = re.compile(r'(?m)^([ \t]*short-id[ \t]*:[ \t]*)(?![\"\'])([0-9A-Fa-f]+)([ \t]*(?:#.*)?)$')
           COUNTRY_ZH = {
-           'AE':'阿联酋','AL':'阿尔巴尼亚','AM':'亚美尼亚','AR':'阿根廷','AT':'奥地利','AU':'澳大利亚','BA':'波黑','BD':'孟加拉国','BE':'比利时','BG':'保加利亚','BR':'巴西','BY':'白俄罗斯','CA':'加拿大','CH':'瑞士','CL':'智利','CN':'中国','CO':'哥伦比亚','CY':'塞浦路斯','CZ':'捷克','DE':'德国','DK':'丹麦','EE':'爱沙尼亚','ES':'西班牙','FI':'芬兰','FR':'法国','GB':'英国','GE':'格鲁吉亚','GR':'希腊','HK':'香港','HR':'克罗地亚','HU':'匈牙利','ID':'印度尼西亚','IE':'爱尔兰','IL':'以色列','IN':'印度','IQ':'伊拉克','IR':'伊朗','IS':'冰岛','IT':'意大利','JP':'日本','KZ':'哈萨克斯坦','KR':'韩国','LK':'斯里兰卡','LT':'立陶宛','LU':'卢森堡','LV':'拉脱维亚','MD':'摩尔多瓦','MK':'北马其顿','MM':'缅甸','MN':'蒙古','MO':'澳门','MX':'墨西哥','MY':'马来西亚','NL':'荷兰','NO':'挪威','OM':'阿曼','PH':'菲律宾','PL':'波兰','PT':'葡萄牙','RO':'罗马尼亚','RS':'塞尔维亚','RU':'俄罗斯','SC':'塞舌尔','SE':'瑞典','SG':'新加坡','SI':'斯洛文尼亚','SK':'斯洛伐克','TH':'泰国','TR':'土耳其','TW':'台湾','UA':'乌克兰','US':'美国','VG':'英属维尔京群岛','VN':'越南','YE':'也门','ZA':'南非'
+           'AE':'阿联酋','AL':'阿尔巴尼亚','AM':'亚美尼亚','AR':'阿根廷','AT':'奥地利','AU':'澳大利亚','BA':'波黑','BD':'孟加拉国','BE':'比利时','BG':'保加利亚','BR':'巴西','BY':'白俄罗斯','CA':'加拿大','CH':'瑞士','CL':'智利','CN':'中国','CO':'哥伦比亚','CY':'塞浦路斯','QA':'卡塔尔','XK':'科索沃','CZ':'捷克','DE':'德国','DK':'丹麦','EE':'爱沙尼亚','ES':'西班牙','FI':'芬兰','FR':'法国','GB':'英国','GE':'格鲁吉亚','GR':'希腊','HK':'香港','HR':'克罗地亚','HU':'匈牙利','ID':'印度尼西亚','IE':'爱尔兰','IL':'以色列','IN':'印度','IQ':'伊拉克','IR':'伊朗','IS':'冰岛','IT':'意大利','JP':'日本','KZ':'哈萨克斯坦','KR':'韩国','LK':'斯里兰卡','LT':'立陶宛','LU':'卢森堡','LV':'拉脱维亚','MD':'摩尔多瓦','MK':'北马其顿','MM':'缅甸','MN':'蒙古','MO':'澳门','MX':'墨西哥','MY':'马来西亚','NL':'荷兰','NO':'挪威','OM':'阿曼','PH':'菲律宾','PL':'波兰','PT':'葡萄牙','RO':'罗马尼亚','RS':'塞尔维亚','RU':'俄罗斯','SC':'塞舌尔','SE':'瑞典','SG':'新加坡','SI':'斯洛文尼亚','SK':'斯洛伐克','TH':'泰国','TR':'土耳其','TW':'台湾','UA':'乌克兰','US':'美国','VG':'英属维尔京群岛','VN':'越南','YE':'也门','ZA':'南非'
           }
           
-          def country_from_name(name):
-              match = FLAG_RE.search(name)
-              if not match:
-                  return None
-              flag = match.group(1)
-              code = ''.join(chr(ord(c) - 0x1F1E6 + ord('A')) for c in flag)
-              rest = name[match.end():]
-              token = re.search(r'([A-Z]{2})(?=\s*\d{2,})', rest)
-              label = rest[:token.start()].strip(' _-.') if token else ''
-              return flag, code, (COUNTRY_ZH.get(code) or label or code)
+          def flag_for_country(code):
+              if not re.fullmatch(r'[A-Z]{2}', str(code or '')):
+                  return ''
+              return ''.join(chr(0x1F1E6 + ord(char) - ord('A')) for char in code)
           
           def quote_short_ids(value):
               if isinstance(value, dict):
@@ -657,6 +653,22 @@ jobs:
           all_template_groups=template.get('proxy-groups') or []
           base_names={'☁️ 代理选择','🔰 手动选择','♻️ 自动选择'}
           service_templates=[copy.deepcopy(g) for g in all_template_groups if isinstance(g,dict) and g.get('name') not in base_names and not flag_group(str(g.get('name','')))]
+          geo_by_identity={}
+          geo_meta_path=Path('sub/alive/meta.json')
+          if geo_meta_path.exists():
+              try:
+                  geo_meta=json.loads(geo_meta_path.read_text(encoding='utf-8'))
+                  candidate_map=geo_meta.get('actual_exit_country_by_identity',{}) if isinstance(geo_meta,dict) else {}
+                  if isinstance(candidate_map,dict): geo_by_identity=candidate_map
+              except (OSError,json.JSONDecodeError,UnicodeDecodeError):
+                  print('⚠️ alive GeoIP 元数据不可读：本轮不生成未验证地区组')
+          if not geo_by_identity:
+              print('⚠️ 没有实际出口 GeoIP 结果；国家组将为空，不再按节点名称猜测地区')
+
+          def proxy_identity_hash(proxy):
+              payload={key:value for key,value in proxy.items() if key!='name'}
+              serialized=json.dumps(payload,sort_keys=True,separators=(',',':'),ensure_ascii=False,default=str)
+              return hashlib.sha256(serialized.encode('utf-8')).hexdigest()
           
           def normalize(path):
               if not path.exists():
@@ -667,21 +679,22 @@ jobs:
                   raise ValueError(f'{path}: invalid Clash proxies')
               proxies=doc['proxies']
               names=[]
-              by_flag=defaultdict(list)
-              code_by_flag={}
-              label_counts=defaultdict(Counter)
+              by_country=defaultdict(list)
               for proxy in proxies:
                   if not isinstance(proxy,dict) or not isinstance(proxy.get('name'),str):
                       continue
                   name=proxy['name']; names.append(name)
-                  c=country_from_name(name)
-                  if c:
-                      flag,code,label=c
-                      by_flag[flag].append(name); code_by_flag[flag]=code; label_counts[flag][label]+=1
+                  detected=geo_by_identity.get(proxy_identity_hash(proxy))
+                  code=(detected.get('country_code') if isinstance(detected,dict) else detected)
+                  code=str(code or '').strip().upper()
+                  if re.fullmatch(r'[A-Z]{2}',code) and code not in {'EU','AP','A1','A2'}:
+                      by_country[code].append(name)
               country_entries=[]
-              for flag, members in by_flag.items():
-                  code=code_by_flag[flag]
-                  label=COUNTRY_ZH.get(code) or label_counts[flag].most_common(1)[0][0]
+              for code,members in by_country.items():
+                  flag=flag_for_country(code)
+                  if not flag:
+                      continue
+                  label=COUNTRY_ZH.get(code,code)
                   group_name=f'{flag} {label}自动'
                   country_entries.append((code,group_name,members))
               country_entries.sort(key=lambda x:x[0])
