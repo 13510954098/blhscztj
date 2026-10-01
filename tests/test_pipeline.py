@@ -389,45 +389,80 @@ class _FakeMihomoProcess:
 
 
 class MihomoKeyNormalizationTests(unittest.TestCase):
-    def test_cross_format_key_normalization(self):
-        # clash ss ↔ singbox shadowsocks ↔ v2ray ss://
-        candidates, stats = mihomo_check.extract_clash_candidates(
-            {"proxies": [{"name": "n", "type": "ss", "server": "Example.COM.", "port": "8388"}]}
+    def test_full_cross_format_connection_fingerprints(self):
+        # One equivalent VLESS WS+TLS connection must match in all three formats.
+        clash = {
+            "name": "display name is intentionally ignored", "type": "vless",
+            "server": "Example.COM.", "port": "443",
+            "uuid": "11111111-2222-4333-8444-555555555555", "encryption": "none",
+            "tls": True, "servername": "cdn.example", "skip-cert-verify": False,
+            "client-fingerprint": "chrome", "network": "ws",
+            "ws-opts": {"path": "/ws?ed=2560", "headers": {"Host": "ws.example"}},
+        }
+        singbox = {
+            "type": "vless", "tag": "different display name", "server": "example.com",
+            "server_port": 443, "uuid": clash["uuid"],
+            "tls": {"enabled": True, "server_name": "cdn.example", "insecure": False,
+                    "utls": {"enabled": True, "fingerprint": "chrome"}},
+            "transport": {"type": "ws", "path": "/ws", "max_early_data": 2560,
+                          "headers": {"Host": ["ws.example"]}},
+        }
+        v2ray = (
+            "vless://11111111-2222-4333-8444-555555555555@EXAMPLE.com:443"
+            "?encryption=none&security=tls&sni=cdn.example&type=ws&fp=chrome"
+            "&path=%2Fws%3Fed%3D2560&host=ws.example&allowInsecure=0#third-name"
         )
-        self.assertEqual(stats["invalid"], 0)
-        self.assertEqual((candidates[0].host, candidates[0].port, candidates[0].protocol),
-                         ("example.com", 8388, "shadowsocks"))
-        self.assertEqual(
-            mihomo_check.singbox_node_key(
-                {"type": "shadowsocks", "server": "example.com", "server_port": 8388}
-            ),
-            ("example.com", 8388, "shadowsocks"),
-        )
-        self.assertEqual(
-            mihomo_check.v2ray_line_key("ss://YWVzLTI1Ni1nY206cGFzcw@example.com:8388#x"),
-            ("example.com", 8388, "shadowsocks"),
-        )
-        # hy2 / hysteria2 / tuic 等协议名归一
+        key = mihomo_check.clash_connection_key(clash)
+        self.assertEqual(key[:3], ("example.com", 443, "vless"))
+        self.assertEqual(key, mihomo_check.singbox_node_key(singbox))
+        self.assertEqual(key, mihomo_check.v2ray_line_key(v2ray))
+
+        # Same endpoint/protocol is insufficient: auth, SNI, TLS and transport all bind identity.
+        import copy
+        mutations = []
+        changed = copy.deepcopy(clash); changed["uuid"] = "aaaaaaaa-bbbb-4ccc-8ddd-eeeeeeeeeeee"; mutations.append(changed)
+        changed = copy.deepcopy(clash); changed["servername"] = "other.example"; mutations.append(changed)
+        changed = copy.deepcopy(clash); changed["ws-opts"]["path"] = "/other"; mutations.append(changed)
+        changed = copy.deepcopy(clash); changed["ws-opts"]["headers"]["Host"] = "other.example"; mutations.append(changed)
+        changed = copy.deepcopy(clash); changed["tls"] = False; mutations.append(changed)
+        for changed in mutations:
+            with self.subTest(changed=changed):
+                self.assertNotEqual(key, mihomo_check.clash_connection_key(changed))
+
+    def test_credentials_are_required_for_cross_format_matches(self):
+        # Shadowsocks identities include both cipher and password in every format.
+        clash = {"name":"ss","type":"ss","server":"Example.COM.","port":8388,
+                 "cipher":"chacha20-ietf-poly1305","password":"secret"}
+        singbox = {"type":"shadowsocks","server":"example.com","server_port":8388,
+                   "method":"chacha20-ietf-poly1305","password":"secret"}
+        blob = base64.urlsafe_b64encode(b"chacha20-ietf-poly1305:secret").decode().rstrip("=")
+        v2ray = f"ss://{blob}@example.com:8388#ss"
+        key = mihomo_check.clash_connection_key(clash)
+        self.assertEqual(key, mihomo_check.singbox_node_key(singbox))
+        self.assertEqual(key, mihomo_check.v2ray_line_key(v2ray))
+        self.assertIsNone(mihomo_check.singbox_node_key(
+            {"type":"shadowsocks","server":"example.com","server_port":8388}
+        ))
+        self.assertIsNone(mihomo_check.clash_connection_key(
+            {"name":"incomplete","type":"vless","server":"example.com","port":443}
+        ))
+
+    def test_protocol_aliases_and_unsupported_inputs(self):
         self.assertEqual(mihomo_check.canon_protocol("hy2"), "hysteria2")
         self.assertEqual(mihomo_check.canon_protocol("socks5"), "socks")
-        self.assertEqual(
-            mihomo_check.v2ray_line_key("hy2://pw@h.example:443#x"),
-            ("h.example", 443, "hysteria2"),
-        )
-        # v2ray https:// 与 clash http 类型同源
-        self.assertEqual(mihomo_check.v2ray_line_key("https://h.example:443#x"),
-                         ("h.example", 443, "http"))
-        # vmess base64 载荷
+        clash = {"name":"hy2","type":"hysteria2","server":"h.example","port":443,"password":"pw"}
+        self.assertEqual(mihomo_check.clash_connection_key(clash),
+                         mihomo_check.v2ray_line_key("hy2://pw@h.example:443#x"))
+        self.assertIsNotNone(mihomo_check.v2ray_line_key("https://h.example:443#x"))
         blob = base64.urlsafe_b64encode(
-            json.dumps({"add": "vm.example", "port": 443, "ps": "n"}).encode()
+            json.dumps({"add":"vm.example","port":443,"id":"11111111-2222-4333-8444-555555555555",
+                        "aid":0,"scy":"auto","net":"tcp"}).encode()
         ).decode()
-        self.assertEqual(mihomo_check.v2ray_line_key(f"vmess://{blob}"),
-                         ("vm.example", 443, "vmess"))
-        # 旧式 ss://base64(method:pass@host:port)
+        self.assertEqual(mihomo_check.v2ray_line_key(f"vmess://{blob}")[:3],
+                         ("vm.example",443,"vmess"))
         legacy = base64.urlsafe_b64encode(b"aes-256-gcm:pass@old.example:8388").decode()
-        self.assertEqual(mihomo_check.v2ray_line_key(f"ss://{legacy}#x"),
-                         ("old.example", 8388, "shadowsocks"))
-        # 非法输入
+        self.assertEqual(mihomo_check.v2ray_line_key(f"ss://{legacy}#x")[:3],
+                         ("old.example",8388,"shadowsocks"))
         self.assertIsNone(mihomo_check.v2ray_line_key("not-a-uri"))
         self.assertIsNone(mihomo_check.v2ray_line_key("socks5://@:0#x"))
 
@@ -470,6 +505,48 @@ class MihomoConfigAndQueryTests(unittest.TestCase):
             self.assertEqual(len(doc["proxies"]), 1)
             self.assertNotIn("rules", doc)
             self.assertNotIn("proxy-groups", doc)
+
+    def test_custom_listener_config_pins_an_outbound_proxy(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            proc = mihomo_check.MihomoProcess("/nonexistent", Path(tmp), api_port=19099)
+            listeners = [{"name":"test-node","type":"http","listen":"127.0.0.1",
+                          "port":19080,"proxy":"node-a"}]
+            proc.write_config([{"name":"node-a","type":"http","server":"x.example","port":443}],
+                              listeners=listeners)
+            doc = health.yaml.safe_load(proc.config_path.read_text(encoding="utf-8"))
+            self.assertEqual(doc["listeners"], listeners)
+            self.assertEqual(doc["listeners"][0]["proxy"], "node-a")
+
+    def test_https_strict_check_requires_exact_status_and_retries(self):
+        with mock.patch.object(mihomo_check, "_request_through_listener",
+                               side_effect=[(200,b"redirect",1.0),(204,b"",2.0)]) as request:
+            result = mihomo_check._request_with_retries("https://test/204",1234,204,1.0,1)
+        self.assertTrue(result["ok"])
+        self.assertEqual(result["status"],204)
+        self.assertEqual(result["attempts"],2)
+        self.assertEqual(request.call_count,2)
+
+        with mock.patch.object(mihomo_check, "_request_through_listener",
+                               return_value=(200,b"wrong status",1.0)):
+            result = mihomo_check._request_with_retries("https://test/204",1234,204,1.0,1)
+        self.assertFalse(result["ok"])
+        self.assertEqual(result["error"],"unexpected_http_200")
+        self.assertEqual(result["attempts"],2)
+
+    def test_actual_egress_trace_and_geoip_fallback(self):
+        trace = mihomo_check._parse_cloudflare_trace(b"ip=203.0.113.7\nloc=JP\n")
+        self.assertEqual(trace,{"ip":"203.0.113.7","loc":"JP"})
+        self.assertIsNone(mihomo_check._parse_cloudflare_trace(b"not-a-trace"))
+        class Reader:
+            def get(self, ip): return ["jp","test-network"]
+        self.assertEqual(mihomo_check._country_for_ip(Reader(),"203.0.113.7","US"),
+                         ("JP","geoip.metadb"))
+        self.assertEqual(mihomo_check._country_for_ip(None,"203.0.113.7","US"),
+                         ("US","cloudflare-trace-loc"))
+        class MissingReader:
+            def get(self, ip): return None
+        self.assertEqual(mihomo_check._country_for_ip(MissingReader(),"203.0.113.7","US"),
+                         ("", ""))
 
     def test_query_delay_success_and_error_paths(self):
         fake = _FakeMihomoProcess(delay_of={"ok": 123})
@@ -548,7 +625,8 @@ class MihomoPipelineTests(unittest.TestCase):
             "proxies": [
                 {"name": "🇺🇸 存活HTTP 2MB/s", "type": "http", "server": "alive.example",
                  "port": 8080, "tls": True},
-                {"name": "🇸🇬 存活UDP", "type": "hysteria2", "server": "alive-udp.example", "port": 443},
+                {"name": "🇸🇬 存活UDP", "type": "hysteria2", "server": "alive-udp.example", "port": 443,
+                 "password": "pw"},
                 {"name": "🇯🇵 死节点", "type": "trojan", "server": "dead.example",
                  "port": 443, "password": "x"},
             ],
@@ -560,16 +638,17 @@ class MihomoPipelineTests(unittest.TestCase):
         }
         singbox_doc = {
             "outbounds": [
-                {"type": "http", "tag": "sb-alive", "server": "alive.example", "server_port": 8080},
+                {"type": "http", "tag": "sb-alive", "server": "alive.example", "server_port": 8080,
+                 "tls": {"enabled": True}},
                 {"type": "hysteria2", "tag": "sb-alive-udp", "server": "alive-udp.example",
-                 "server_port": 443},
+                 "server_port": 443, "password": "pw"},
                 {"type": "trojan", "tag": "sb-dead", "server": "dead.example", "server_port": 443},
                 {"type": "direct", "tag": "direct"},
             ]
         }
         v2ray_text = (
             "https://alive.example:8080#alive-http\n"
-            "hy2://pw@alive-udp.example:443?sni=x#alive-udp\n"
+            "hy2://pw@alive-udp.example:443#alive-udp\n"
             "trojan://pw@dead.example:443?sni=y#dead\n"
         )
         (input_dir / "clash.yaml").write_text(json.dumps(clash_doc, ensure_ascii=False), encoding="utf-8")
@@ -613,12 +692,12 @@ class MihomoPipelineTests(unittest.TestCase):
             self.assertTrue(all("dead.example" not in line for line in live_v2ray))
 
             state = json.loads(state_path.read_text(encoding="utf-8"))
-            self.assertEqual(state["version"], 2)
+            self.assertEqual(state["version"], 3)
             self.assertEqual(len(state["nodes"]), 3)
-            dead_record = state["nodes"]["dead.example|443|trojan"]
+            dead_record = next(row for row in state["nodes"].values() if row["host"] == "dead.example")
             self.assertEqual(dead_record["last_status"], "failed")
             self.assertEqual(dead_record["failure_count"], 1)
-            alive_record = state["nodes"]["alive.example|8080|http"]
+            alive_record = next(row for row in state["nodes"].values() if row["host"] == "alive.example")
             self.assertEqual(alive_record["last_status"], "passed")
             self.assertEqual(alive_record["last_delay_ms"], 120)
 
@@ -633,11 +712,12 @@ class MihomoPipelineTests(unittest.TestCase):
             live_clash2 = health.yaml.safe_load((output_dir / "clash.yaml").read_text(encoding="utf-8"))
             self.assertEqual([p["name"] for p in live_clash2["proxies"]], ["🇸🇬 存活UDP"])
             state2 = json.loads(state_path.read_text(encoding="utf-8"))
-            self.assertEqual(state2["nodes"]["alive.example|8080|http"]["failure_count"], 1)
-            self.assertEqual(state2["nodes"]["alive.example|8080|http"]["success_count"], 1)
-            self.assertEqual(state2["nodes"]["alive.example|8080|http"]["best_delay_ms"], 120)
+            http_record = next(row for row in state2["nodes"].values() if row["host"] == "alive.example")
+            self.assertEqual(http_record["failure_count"], 1)
+            self.assertEqual(http_record["success_count"], 1)
+            self.assertEqual(http_record["best_delay_ms"], 120)
 
-    def test_state_v1_is_reset_to_v2(self):
+    def test_state_v1_is_reset_to_v3(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
             input_dir = self._write_input(root)
@@ -657,7 +737,7 @@ class MihomoPipelineTests(unittest.TestCase):
             )
             self.assertEqual(meta["node_status_counts"]["clash"]["kept"], 2)
             state = json.loads(state_path.read_text(encoding="utf-8"))
-            self.assertEqual(state["version"], 2)
+            self.assertEqual(state["version"], 3)
             self.assertIn("nodes", state)
             self.assertNotIn("endpoints", state)
 
