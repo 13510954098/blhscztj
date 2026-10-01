@@ -1,13 +1,193 @@
 {
-  "generated_at": "2026-10-01T07:13:55+00:00",
+  "generated_at": "2026-10-01T08:20:31+00:00",
   "source_dir": "sub/merged",
   "daily_dir": "sub",
   "scope": "full",
-  "probe_method": "mihomo real proxy delay test",
-  "test_url": "http://www.gstatic.com/generate_204",
-  "timeout_s": 5.0,
+  "probe_method": "mihomo delay precheck + exact-status HTTPS 204 checks + actual egress GeoIP",
+  "test_url": "https://www.gstatic.com/generate_204",
+  "strict_https_targets": [
+    "https://www.gstatic.com/generate_204",
+    "https://cp.cloudflare.com/generate_204",
+    "https://www.cloudflare.com/cdn-cgi/trace"
+  ],
+  "strict_https_retries": 2,
+  "strict_https_passed": 1906,
+  "actual_exit_country_by_name": {
+    "🇺🇸美国US 265 5.5MB/s TG@jcnode": {
+      "country_code": "ES",
+      "source": "geoip.metadb"
+    },
+    "🇺🇸美国US030 2.09MB/s TG@jcnode": {
+      "country_code": "US",
+      "source": "geoip.metadb"
+    },
+    "🇮🇹意大利IT001 1.97MB/s中性 TG@jcnode": {
+      "country_code": "IT",
+      "source": "geoip.metadb"
+    },
+    "🇸🇪瑞典SE007 1.77MB/s中性 TG@jcnode": {
+      "country_code": "SE",
+      "source": "geoip.metadb"
+    },
+    "🇸🇪瑞典SE009 1.48MB/s中性 TG@jcnode": {
+      "country_code": "SE",
+      "source": "geoip.metadb"
+    },
+    "🇪🇸西班牙ES003 1.39MB/s中性 TG@jcnode": {
+      "country_code": "ES",
+      "source": "geoip.metadb"
+    },
+    "🇶🇦QA001 1.28MB/s中性 TG@jcnode": {
+      "country_code": "QA",
+      "source": "geoip.metadb"
+    },
+    "🇲🇽墨西哥MX001 1.27MB/s中性 TG@jcnode": {
+      "country_code": "MX",
+      "source": "geoip.metadb"
+    },
+    "🇫🇷法国FR023 1.12MB/s中性 TG@jcnode": {
+      "country_code": "FR",
+      "source": "geoip.metadb"
+    },
+    "🇺🇸美国US0196 0.8MB/s中性 TG@jcnode": {
+      "country_code": "US",
+      "source": "geoip.metadb"
+    },
+    "🇺🇸美国US0205 0.66MB/s TG@jcnode": {
+      "country_code": "US",
+      "source": "geoip.metadb"
+    },
+    "🇨🇿CZ004 0.63MB/s TG@jcnode": {
+      "country_code": "CZ",
+      "source": "geoip.metadb"
+    },
+    "🇶🇦QA002 0.48MB/s中性 TG@jcnode": {
+      "country_code": "QA",
+      "source": "geoip.metadb"
+    },
+    "🇸🇪瑞典SE028 测速未知中性 TG@jcnode": {
+      "country_code": "SE",
+      "source": "geoip.metadb"
+    },
+    "🇪🇸西班牙ES005 测速未知中性 TG@jcnode": {
+      "country_code": "ES",
+      "source": "geoip.metadb"
+    },
+    "🇺🇸美国US192 测速未知中性 TG@jcnode": {
+      "country_code": "US",
+      "source": "geoip.metadb"
+    },
+    "🇺🇸美国US320 测速未知 TG@jcnode": {
+      "country_code": "US",
+      "source": "geoip.metadb"
+    },
+    "🇺🇸美国US418 测速未知 TG@jcnode": {
+      "country_code": "US",
+      "source": "geoip.metadb"
+    },
+    "🇸🇬新加坡SG027 测速未知中性 TG@jcnode": {
+      "country_code": "SG",
+      "source": "geoip.metadb"
+    },
+    "🇯🇵日本JP029 测速未知中性 TG@jcnode #2": {
+      "country_code": "JP",
+      "source": "geoip.metadb"
+    },
+    "🇯🇵日本JP021 测速未知 TG@jcnode": {
+      "country_code": "JP",
+      "source": "geoip.metadb"
+    }
+  },
+  "actual_exit_country_by_identity": {
+    "a9f8cec2e5d24f8b5b930970a1a1b8544127fced255b7ad97a7d8b464a376203": {
+      "country_code": "ES",
+      "source": "geoip.metadb"
+    },
+    "2f5d313d6d0665dc022f4e7d07efcd47b9340502263b3b39ae886d747e804fd5": {
+      "country_code": "US",
+      "source": "geoip.metadb"
+    },
+    "1c0360625b3676ca2e89759473011696562b24fed6206aee484973bf7416461d": {
+      "country_code": "IT",
+      "source": "geoip.metadb"
+    },
+    "0b3f948c51084bc5b742c9e7948a664e380bf36e8834c1dc25574e82bf41680f": {
+      "country_code": "SE",
+      "source": "geoip.metadb"
+    },
+    "639a6cf3bd8f2f043b298e1ad89a2d5550e7991296c648e7993f5a9664562ac3": {
+      "country_code": "SE",
+      "source": "geoip.metadb"
+    },
+    "2d6d700bcb76223c3212a315cd13507399102e17fa69ae73713d7bb06fde2f43": {
+      "country_code": "ES",
+      "source": "geoip.metadb"
+    },
+    "82fed0b574d0620b879450343dc46a3c393feee5751a90e45d02e235c5e2e3db": {
+      "country_code": "QA",
+      "source": "geoip.metadb"
+    },
+    "8bc19e378395e8815f2539963721597dc774fbfce0b9e4781a966c69c39734ef": {
+      "country_code": "MX",
+      "source": "geoip.metadb"
+    },
+    "ac3da8643c9840439be45e3426b04138f49143f433b2465ccaa828de9045f425": {
+      "country_code": "FR",
+      "source": "geoip.metadb"
+    },
+    "73204b0c3fdc9d5aff479e469545920715582478dcde700a9d87b4d6e4055937": {
+      "country_code": "US",
+      "source": "geoip.metadb"
+    },
+    "7e7582615ce59062a5b9e6a6a488d946472cfada70c6ac0f3df1860c123ee639": {
+      "country_code": "US",
+      "source": "geoip.metadb"
+    },
+    "d799c799d3edadaa21d70c00c68ac2172ba988b8f6f25dc565f182d21d694538": {
+      "country_code": "CZ",
+      "source": "geoip.metadb"
+    },
+    "54b8042c877d293f79f2a0c7485b55bde7022a5a32165655bb34d52e424c15a5": {
+      "country_code": "QA",
+      "source": "geoip.metadb"
+    },
+    "d15963fc0d234f3982a2812e8964e9d47e7a3cfcfc46143fb0332b1d76d0a4af": {
+      "country_code": "SE",
+      "source": "geoip.metadb"
+    },
+    "788cf66efd7b0b050babeef07759a5daf448c993137b1a03fd96071d3f738f80": {
+      "country_code": "ES",
+      "source": "geoip.metadb"
+    },
+    "6c9a2cd2614c986bb19d86d0f5c6c83b8922755fd3d3ec211f24018b4d8e39b0": {
+      "country_code": "US",
+      "source": "geoip.metadb"
+    },
+    "f3f57ef766f4737671ec602bdd1f5619255e7ce36b0b9f64e7b0bf6a17763d2b": {
+      "country_code": "US",
+      "source": "geoip.metadb"
+    },
+    "561cb40b638f0cf7640ec605e4f9882de6f4e7ac7e55d0c08690c549ffdb39bb": {
+      "country_code": "US",
+      "source": "geoip.metadb"
+    },
+    "8cd0b5a39636d17457e1981a42861b664045dcffdd5c604307c3a01b5334a2c9": {
+      "country_code": "SG",
+      "source": "geoip.metadb"
+    },
+    "072cbd3e3f71b132f8c0912fcd64873550cf87409c2d2a3c98a8519fc48384f8": {
+      "country_code": "JP",
+      "source": "geoip.metadb"
+    },
+    "2f0c59e52252ecb7b1e795fa5b806be9f874f47c59ea81ee3b712663c6f6749b": {
+      "country_code": "JP",
+      "source": "geoip.metadb"
+    }
+  },
+  "geoip_database": "sub/geoip.metadb",
+  "timeout_s": 8.0,
   "concurrency": 128,
-  "retries": 1,
+  "retries": 2,
   "mihomo_version": "v1.19.32",
   "output_validated": true,
   "prefilter": {
@@ -16,113 +196,74 @@
     "tcp_candidates": 20124,
     "udp_direct_candidates": 722,
     "unique_endpoints": 10949,
-    "endpoints_passed": 6860,
-    "endpoints_failed": 4089,
-    "candidates_dropped": 7071
+    "endpoints_passed": 6852,
+    "endpoints_failed": 4097,
+    "candidates_dropped": 7080
   },
   "clash_candidates": {
     "total": 20846,
     "invalid": 0,
     "duplicate_name": 0
   },
-  "alive_unique_keys": 1347,
+  "alive_unique_keys": 1393,
   "alive_delay_ms": {
-    "min": 1.0,
-    "median": 161.0,
-    "max": 2641.0
+    "min": 3.0,
+    "median": 88.0,
+    "max": 2425.0
   },
   "node_status_counts": {
     "clash": {
-      "kept": 2644,
-      "failed": 11131,
-      "prefilter_dropped": 7071,
+      "kept": 1906,
+      "failed": 11860,
+      "prefilter_dropped": 7080,
       "load_error": 0,
       "invalid": 0,
       "duplicate_name": 0
     },
     "singbox": {
-      "kept": 764,
+      "kept": 387,
       "aux_kept": 0,
-      "dropped": 2466
+      "dropped": 2843
     },
     "v2ray": {
-      "kept": 724,
-      "dropped": 2375
+      "kept": 209,
+      "dropped": 2890
     }
   },
   "files": {
     "clash.yaml": {
-      "nodes": 2644,
-      "sha256_16": "3edc5200407c458b"
+      "nodes": 1906,
+      "sha256_16": "0e9314732c804a84"
     },
     "singbox.json": {
-      "nodes": 764,
-      "sha256_16": "59681e52fb0a9287"
+      "nodes": 387,
+      "sha256_16": "114098d12a75fcc3"
     },
     "v2ray.txt": {
-      "nodes": 724,
-      "sha256_16": "e2d3e5daa481a06c"
+      "nodes": 209,
+      "sha256_16": "4d6f0b9c03b0d56e"
     }
   },
   "nodes": {
-    "clash": 2644
+    "clash": 1906
   },
   "sha256_16": {
-    "clash": "d98041afd5ef46f6"
+    "clash": "831cff7475cb1ef8"
   },
   "policy_normalization": {
     "shared_template": true,
-    "country_groups": 49,
+    "country_groups": 10,
     "country_codes": [
-      "AE",
-      "AT",
-      "AU",
-      "BD",
-      "BE",
-      "BG",
-      "BR",
-      "CA",
-      "CH",
-      "CL",
-      "CY",
       "CZ",
-      "DE",
-      "EE",
       "ES",
-      "FI",
       "FR",
-      "GB",
-      "HK",
-      "ID",
-      "IE",
-      "IL",
-      "IN",
       "IT",
       "JP",
-      "KR",
-      "LK",
-      "LT",
-      "LU",
-      "LV",
-      "MO",
       "MX",
-      "MY",
-      "NL",
-      "NO",
-      "PH",
-      "PL",
-      "PT",
       "QA",
-      "RO",
-      "RS",
-      "RU",
-      "SC",
       "SE",
       "SG",
-      "TR",
-      "TW",
-      "US",
-      "ZA"
+      "US"
     ]
   }
 }
