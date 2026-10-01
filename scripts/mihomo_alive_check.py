@@ -1,24 +1,13 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""mihomo 内核实测活：在临时机上运行 mihomo 内核，对每个候选节点发起真实代理
-请求（generate_204 延迟测试），把真正能建立代理连接的节点聚合为存活订阅。
+"""Mihomo 存活检查：代理延迟预筛后，逐节点用固定出站 HTTP listeners 做严格 HTTPS 检查。
 
-流程：
-1. 读取 sub/merged 全库（Clash / Sing-box / V2Ray 三格式），以 Clash 节点作为
-   实测载体（mihomo 原生格式；经数据验证 Sing-box/V2Ray 节点的 host:port+协议
-   与 Clash 完全对齐，不存在没有载体的情况）；
-2. TCP 预筛：TCP 类协议先做端口握手探测，快速剔除死端点；UDP/QUIC 类协议
-   （hysteria/hysteria2/tuic/wireguard 等）跳过预筛，直接交给 mihomo 实测；
-3. 生成临时 mihomo 配置（仅 proxies + external-controller，不带规则和分组），
-   启动内核并等待 RESTful API 就绪；若个别节点导致内核无法启动，自动二分
-   定位并剔除坏节点后继续，保证整轮测活可以跑完；
-4. 通过 API 并发对每个节点做真实代理延迟测试（默认重试 1 次）；
-5. 聚合本轮真实通过的节点：Clash 按节点名过滤，Sing-box/V2Ray 按
-   (host, port, 归一化协议) 键对齐过滤，输出 sub/alive 三格式 + state + meta。
+流程：TCP 可用性预筛（UDP/QUIC 跳过）→ Mihomo delay 粗筛 → 两个独立 HTTPS
+目标必须精确返回 204 → Cloudflare HTTPS trace 返回有效出口 IP → 仓库 geoip.metadb
+解析真实出口国家。只有严格检查通过的 Clash 节点进入 alive；Sing-box/V2Ray 只按
+完整的 endpoint + 认证/TLS/传输参数指纹匹配，无法完整辨认的协议/条目 fail closed。
 
-严格判活：只有本轮实测通过的节点才会进入存活订阅，没有保留宽限；
-state.json 升级为 v2（按 host|port|协议 记录历史），检测方法与旧的
-TCP/TLS 握手版完全不同，首次运行会自动重置旧状态库。
+state.json v3 使用完整连接参数身份，避免相同 endpoint/protocol 的不同凭据共享历史。
 """
 
 from __future__ import annotations
@@ -27,6 +16,7 @@ import argparse
 import asyncio
 import copy
 import hashlib
+import ipaddress
 import json
 import os
 import random
@@ -34,6 +24,7 @@ import re
 import secrets
 import shutil
 import signal
+import socket
 import subprocess
 import sys
 import tempfile
@@ -43,7 +34,7 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 from dataclasses import dataclass
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
-from urllib.parse import quote, unquote, urlsplit
+from urllib.parse import parse_qs, quote, unquote, urlsplit
 
 import urllib.error
 import urllib.request
@@ -52,6 +43,11 @@ try:
     import yaml
 except ImportError as exc:  # pragma: no cover - Actions 会安装 PyYAML
     raise SystemExit("缺少 PyYAML，请先运行：python -m pip install PyYAML") from exc
+
+try:
+    import maxminddb
+except ImportError:  # 测试/本地运行可使用 Cloudflare trace 的 loc 作为回退
+    maxminddb = None
 
 try:
     from merge_subscriptions import SPECIAL_PROXY_REFS, NoAliasDumper, atomic_write, proxy_name
@@ -115,7 +111,13 @@ class ClashSafeDumper(NoAliasDumper):
 
 ClashSafeDumper.add_representer(str, ClashSafeDumper.represent_str)
 
-DEFAULT_TEST_URL = "http://www.gstatic.com/generate_204"
+DEFAULT_TEST_URL = "https://www.gstatic.com/generate_204"
+STRICT_204_TARGETS = (
+    "https://www.gstatic.com/generate_204",
+    "https://cp.cloudflare.com/generate_204",
+)
+GEO_TRACE_URL = "https://www.cloudflare.com/cdn-cgi/trace"
+STRICT_BATCH_SIZE = 64
 DEFAULT_MIHOMO_FALLBACK_VERSION = "v1.19.31"
 
 # 不能用 TCP 握手预筛的协议（纯 UDP/QUIC），必须交给 mihomo 真实探测。
@@ -154,7 +156,7 @@ PROTO_CANON = {
     "wireguard-go": "wireguard",
 }
 
-STATE_VERSION = 2
+STATE_VERSION = 3  # 节点历史键改为完整认证/TLS/传输指纹
 STATE_PRUNE_DAYS = 30  # state 中超过该天数未出现的节点记录会被清理
 
 
@@ -174,6 +176,8 @@ class Candidate:
     endpoint_id: str  # 与 healthcheck.Endpoint 一致算法的端点 ID（预筛用）
     proxy: dict  # 原始 clash 节点配置
     udp: bool  # True = UDP/QUIC 类，跳过 TCP 预筛
+    connection_key: tuple[str, int, str, str] | None = None  # 完整协议参数指纹，用于跨格式匹配
+    state_key: tuple[str, int, str, str] | None = None  # Clash 内完整配置身份，含非跨格式协议
 
 
 def _clash_is_udp(proxy: dict) -> bool:
@@ -219,6 +223,8 @@ def extract_clash_candidates(doc: dict) -> tuple[list[Candidate], dict]:
                 endpoint_id=endpoint.endpoint_id,
                 proxy=item,
                 udp=_clash_is_udp(item),
+                connection_key=clash_connection_key(item),
+                state_key=clash_state_key(item),
             )
         )
     return candidates, stats
@@ -230,57 +236,448 @@ def is_singbox_aux(node) -> bool:
     return str(node.get("type", "")).strip().lower() in SINGBOX_AUX_TYPES
 
 
-def singbox_node_key(node) -> tuple[str, int, str] | None:
-    """Sing-box 出站 → (host, port, 归一化协议) 匹配键；非代理/非法返回 None。"""
-    if not isinstance(node, dict) or is_singbox_aux(node):
+def _bool_value(value, default=False) -> bool:
+    if value is None:
+        return bool(default)
+    if isinstance(value, bool):
+        return value
+    if isinstance(value, (int, float)):
+        return bool(value)
+    text = str(value).strip().lower()
+    if text in {"1", "true", "yes", "on"}:
+        return True
+    if text in {"0", "false", "no", "off", ""}:
+        return False
+    return bool(default)
+
+
+def _first_value(mapping: dict, *keys, default=""):
+    for key in keys:
+        value = mapping.get(key)
+        if value is not None and value != "":
+            return value
+    return default
+
+
+def _string(value) -> str:
+    if value is None:
+        return ""
+    return str(value).strip()
+
+
+def _normalize_alpn(value) -> list[str]:
+    if value is None:
+        return []
+    values = value if isinstance(value, list) else re.split(r"[,\s]+", str(value))
+    return [str(item).strip() for item in values if str(item).strip()]
+
+
+def _normalize_headers(value) -> dict[str, list[str]]:
+    if not isinstance(value, dict):
+        return {}
+    normalized = {}
+    for key, item in value.items():
+        name = str(key).strip().lower()
+        vals = item if isinstance(item, list) else [item]
+        normalized[name] = [str(v).strip() for v in vals if v is not None]
+    return {key: normalized[key] for key in sorted(normalized)}
+
+
+def _normalize_ws_path(value: str, early_data=None, early_header="") -> tuple[str, int, str]:
+    raw = unquote(str(value or ""))
+    try:
+        parsed = urlsplit(raw)
+        path = parsed.path or "/"
+        params = dict(parse_qs(parsed.query, keep_blank_values=True))
+    except ValueError:
+        path, params = raw or "/", {}
+    ed = early_data
+    if ed in (None, ""):
+        ed = (params.get("ed") or [None])[0]
+    eh = early_header or (params.get("eh") or [""])[0]
+    try:
+        ed_value = int(ed or 0)
+    except (TypeError, ValueError):
+        ed_value = 0
+    return path, ed_value, str(eh or "").strip().lower()
+
+
+def _canonical_connection_fields(
+    proto: str,
+    *,
+    uuid="", password="", username="", method="", cipher="", alter_id=0,
+    flow="", encryption="", tls_enabled=False, sni="", insecure=False,
+    fingerprint="", alpn=None, reality_public_key="", reality_short_id="",
+    reality_spider_x="", network="tcp", path="", headers=None,
+    grpc_service_name="", authority="", early_data=None, early_header="",
+    plugin="", plugin_opts="", auth="", obfs="", obfs_password="",
+    protocol="", up_mbps="", down_mbps="", ports="", pin_sha256="",
+) -> dict | None:
+    """Return the full normalized connection identity, or None if it is unsafe to equate.
+
+    Display names and speed labels are deliberately excluded. Every credential and
+    supported TLS/transport discriminator is included; protocols/fields we cannot
+    represent across formats fail closed rather than falling back to host:port.
+    """
+    supported = {
+        "vless", "vmess", "trojan", "shadowsocks", "shadowsocksr",
+        "socks", "socks4", "http", "anytls", "hysteria", "hysteria2",
+    }
+    if proto not in supported:
         return None
-    endpoint = make_endpoint(
-        node.get("server"), node.get("server_port", node.get("port")), False
-    )
+    tls_required = proto in {"trojan", "anytls", "hysteria", "hysteria2"}
+    if proto == "vless" and not _string(encryption):
+        encryption = "none"
+    if proto == "vmess" and not _string(method or cipher):
+        method = cipher = "auto"
+    normalized = {
+        "v": 1,
+        "type": proto,
+        "uuid": _string(uuid).lower(),
+        "password": _string(password),
+        "username": _string(username),
+        "method": _string(method or cipher).lower(),
+        "alter_id": int(alter_id or 0) if str(alter_id or "0").isdigit() else 0,
+        "flow": _string(flow).lower(),
+        "encryption": _string(encryption).lower(),
+        "tls": _bool_value(tls_enabled, tls_required),
+        "sni": _string(sni).lower(),
+        "insecure": _bool_value(insecure, False),
+        "fingerprint": _string(fingerprint).lower(),
+        "alpn": _normalize_alpn(alpn),
+        "reality_public_key": _string(reality_public_key),
+        "reality_short_id": _string(reality_short_id).lower(),
+        "reality_spider_x": unquote(_string(reality_spider_x)),
+        "network": _string(network or "tcp").lower(),
+        "plugin": _string(plugin).lower(),
+        "plugin_opts": _string(plugin_opts),
+        "auth": _string(auth),
+        "obfs": _string(obfs).lower(),
+        "obfs_password": _string(obfs_password),
+        "protocol": _string(protocol).lower(),
+        "up_mbps": _string(up_mbps),
+        "down_mbps": _string(down_mbps),
+        "ports": _string(ports),
+        "pin_sha256": _string(pin_sha256).lower(),
+    }
+    if proto not in {"shadowsocks", "shadowsocksr", "vmess"}:
+        normalized["method"] = ""
+    if proto not in {"vmess"}:
+        normalized["alter_id"] = 0
+    if proto not in {"shadowsocks", "shadowsocksr"}:
+        normalized["plugin"] = ""
+        normalized["plugin_opts"] = ""
+    elif normalized["plugin_opts"] in {"{}", "null", "None"}:
+        normalized["plugin_opts"] = ""
+    if proto not in {"hysteria", "hysteria2"}:
+        normalized["up_mbps"] = normalized["down_mbps"] = normalized["ports"] = ""
+        normalized["pin_sha256"] = ""
+    if proto not in {"hysteria", "hysteria2", "shadowsocksr"}:
+        normalized["auth"] = normalized["obfs"] = normalized["obfs_password"] = normalized["protocol"] = ""
+    if not normalized["tls"]:
+        normalized["sni"] = normalized["fingerprint"] = ""
+        normalized["insecure"] = False
+        normalized["alpn"] = []
+        normalized["reality_public_key"] = normalized["reality_short_id"] = normalized["reality_spider_x"] = ""
+    if _string(network or "tcp").lower() == "tcp":
+        headers = {}
+        path = ""
+        grpc_service_name = authority = ""
+        early_data = early_header = None
+    ws_path, ed, eh = _normalize_ws_path(path, early_data, early_header)
+    normalized["transport"] = {
+        "path": ws_path,
+        "headers": _normalize_headers(headers),
+        "grpc_service_name": _string(grpc_service_name),
+        "authority": _string(authority).lower(),
+        "early_data": ed,
+        "early_data_header": eh,
+    }
+    # Share-link userinfo represents the primary credential for these protocols,
+    # not a separate username (notably VLESS UUID and AnyTLS password).
+    if proto in {"vless", "vmess", "trojan", "anytls", "hysteria", "hysteria2"}:
+        normalized["username"] = ""
+    # A protocol's essential identity cannot be inferred from an absent auth field.
+    required = {
+        "vless": ("uuid",),
+        "vmess": ("uuid",),
+        "trojan": ("password",),
+        "shadowsocks": ("method", "password"),
+        "shadowsocksr": ("method", "password", "protocol", "obfs"),
+        "anytls": ("password",),
+        "hysteria": ("auth",),
+        "hysteria2": ("password",),
+    }.get(proto, ())
+    if any(not normalized.get(field) for field in required):
+        return None
+    return normalized
+
+
+def _tls_and_transport_from_clash(proxy: dict, proto: str) -> dict:
+    tls = proxy.get("tls")
+    reality = proxy.get("reality-opts") or proxy.get("reality_opts") or {}
+    tls_on = _bool_value(tls, proto in {"trojan", "anytls", "hysteria", "hysteria2"})
+    if isinstance(tls, dict):
+        tls_on = _bool_value(tls.get("enabled"), True)
+    network = _string(proxy.get("network") or "tcp").lower()
+    ws = proxy.get("ws-opts") or proxy.get("ws_opts") or {}
+    grpc = proxy.get("grpc-opts") or proxy.get("grpc_opts") or {}
+    http = proxy.get("http-opts") or proxy.get("http_opts") or {}
+    h2 = proxy.get("h2-opts") or proxy.get("h2_opts") or {}
+    headers = {}
+    if isinstance(ws, dict): headers.update(ws.get("headers") or {})
+    if isinstance(http, dict): headers.update(http.get("headers") or {})
+    if isinstance(h2, dict):
+        hosts = h2.get("host") or []
+        if hosts: headers["Host"] = hosts if isinstance(hosts,list) else [hosts]
+    path = ""
+    for opts in (ws, grpc, http, h2):
+        if isinstance(opts, dict) and opts.get("path"):
+            path = opts.get("path")
+            break
+    return {
+        "tls_enabled": tls_on,
+        "sni": _first_value(proxy, "servername", "sni", default=(tls.get("server-name","") if isinstance(tls,dict) else "")),
+        "insecure": _first_value(proxy, "skip-cert-verify", "insecure", default=(tls.get("skip-cert-verify",False) if isinstance(tls,dict) else False)),
+        "fingerprint": _first_value(proxy, "client-fingerprint", "fingerprint"),
+        "alpn": proxy.get("alpn") or (tls.get("alpn") if isinstance(tls,dict) else None),
+        "reality_public_key": _first_value(reality, "public-key", "public_key"),
+        "reality_short_id": _first_value(reality, "short-id", "short_id"),
+        "reality_spider_x": _first_value(reality, "spider-x", "spider_x"),
+        "network": network,
+        "path": path,
+        "headers": headers,
+        "grpc_service_name": _first_value(grpc, "grpc-service-name", "service-name", "serviceName"),
+        "authority": _first_value(grpc, "authority"),
+        "early_data": _first_value(ws, "max-early-data", "max_early_data"),
+        "early_header": _first_value(ws, "early-data-header-name", "early_data_header_name"),
+    }
+
+
+def clash_connection_key(proxy: dict) -> tuple[str, int, str, str] | None:
+    if not isinstance(proxy, dict):
+        return None
+    endpoint = make_endpoint(proxy.get("server"), proxy.get("port"), False)
     if endpoint is None:
         return None
-    return (endpoint.host, endpoint.port, canon_protocol(node.get("type")))
+    proto = canon_protocol(proxy.get("type"))
+    transport = _tls_and_transport_from_clash(proxy, proto)
+    reality = proxy.get("reality-opts") or proxy.get("reality_opts") or {}
+    fields = _canonical_connection_fields(
+        proto,
+        uuid=_first_value(proxy,"uuid","id"),
+        password=_first_value(proxy,"password"),
+        username=_first_value(proxy,"username"),
+        method=_first_value(proxy,"cipher","method"),
+        cipher=_first_value(proxy,"cipher","method"),
+        alter_id=_first_value(proxy,"alterId","alter-id","alter_id",default=0),
+        flow=_first_value(proxy,"flow"),
+        encryption=_first_value(proxy,"encryption"),
+        tls_enabled=transport["tls_enabled"], sni=transport["sni"],
+        insecure=transport["insecure"], fingerprint=transport["fingerprint"],
+        alpn=transport["alpn"], reality_public_key=transport["reality_public_key"],
+        reality_short_id=transport["reality_short_id"], reality_spider_x=transport["reality_spider_x"],
+        network=transport["network"], path=transport["path"], headers=transport["headers"],
+        grpc_service_name=transport["grpc_service_name"], authority=transport["authority"],
+        early_data=transport["early_data"], early_header=transport["early_header"],
+        plugin=_first_value(proxy,"plugin"), plugin_opts=json.dumps(proxy.get("plugin-opts") or {},sort_keys=True,ensure_ascii=False),
+        auth=_first_value(proxy,"auth","auth-str","auth_str"),
+        obfs=_first_value(proxy,"obfs","obfs-param","obfs_param"),
+        obfs_password=_first_value(proxy,"obfs-password","obfs_password"),
+        protocol=_first_value(proxy,"protocol","protocol-param"),
+        up_mbps=_first_value(proxy,"up","up-speed","up_mbps"),
+        down_mbps=_first_value(proxy,"down","down-speed","down_mbps"),
+        ports=_first_value(proxy,"ports"), pin_sha256=_first_value(proxy,"pin-sha256","pin_sha256"),
+    )
+    if fields is None:
+        return None
+    payload=json.dumps(fields,sort_keys=True,separators=(",",":"),ensure_ascii=False)
+    return (endpoint.host,endpoint.port,proto,hashlib.sha256(payload.encode()).hexdigest())
 
 
-def v2ray_line_key(line: str) -> tuple[str, int, str] | None:
-    """V2Ray 分享链接 → (host, port, 归一化协议) 匹配键；无法解析返回 None。"""
-    value = str(line).strip()
+def clash_state_key(proxy: dict) -> tuple[str, int, str, str] | None:
+    """Clash 的稳定状态身份；保留所有连接字段，排除易变显示名。"""
+    if not isinstance(proxy, dict):
+        return None
+    endpoint = make_endpoint(proxy.get("server"), proxy.get("port"), False)
+    if endpoint is None:
+        return None
+    proto = canon_protocol(proxy.get("type"))
+    payload = {key: value for key, value in proxy.items() if key not in {"name"}}
+    serialized = json.dumps(payload, sort_keys=True, separators=(",", ":"), ensure_ascii=False, default=str)
+    return endpoint.host, endpoint.port, proto, hashlib.sha256(serialized.encode()).hexdigest()
+
+
+def singbox_node_key(node) -> tuple[str, int, str, str] | None:
+    """Sing-box 出站 → 完整连接身份；协议认证/TLS/传输不完整时不做跨格式匹配。"""
+    if not isinstance(node, dict) or is_singbox_aux(node):
+        return None
+    endpoint = make_endpoint(node.get("server"), node.get("server_port", node.get("port")), False)
+    if endpoint is None:
+        return None
+    proto = canon_protocol(node.get("type"))
+    tls = node.get("tls") if isinstance(node.get("tls"),dict) else {}
+    utls = tls.get("utls") if isinstance(tls.get("utls"),dict) else {}
+    reality = tls.get("reality") if isinstance(tls.get("reality"),dict) else {}
+    transport = node.get("transport") if isinstance(node.get("transport"),dict) else {}
+    headers = transport.get("headers") if isinstance(transport.get("headers"),dict) else {}
+    obfs = node.get("obfs") if isinstance(node.get("obfs"),dict) else {}
+    fields = _canonical_connection_fields(
+        proto, uuid=_first_value(node,"uuid","id"), password=_first_value(node,"password"),
+        username=_first_value(node,"username"), method=_first_value(node,"method","cipher"),
+        alter_id=_first_value(node,"alter_id","alterId",default=0), flow=_first_value(node,"flow"),
+        encryption=_first_value(node,"encryption"), tls_enabled=_first_value(tls,"enabled",default=proto in {"trojan","anytls","hysteria","hysteria2"}),
+        sni=_first_value(tls,"server_name","server-name","sni"), insecure=_first_value(tls,"insecure","skip_cert_verify",default=False),
+        fingerprint=_first_value(utls,"fingerprint"), alpn=tls.get("alpn"),
+        reality_public_key=_first_value(reality,"public_key","public-key"), reality_short_id=_first_value(reality,"short_id","short-id"),
+        reality_spider_x=_first_value(reality,"spider_x","spider-x"), network=_first_value(transport,"type",default="tcp"),
+        path=_first_value(transport,"path"), headers=headers, grpc_service_name=_first_value(transport,"service_name","serviceName"),
+        authority=_first_value(transport,"authority"), early_data=_first_value(transport,"max_early_data","max-early-data"),
+        early_header=_first_value(transport,"early_data_header_name","early-data-header-name"),
+        plugin=_first_value(node,"plugin"), plugin_opts=json.dumps(node.get("plugin_opts") or {},sort_keys=True,ensure_ascii=False),
+        auth=_first_value(node,"auth","auth_str"), obfs=_first_value(obfs,"type",default=_first_value(node,"obfs")),
+        obfs_password=_first_value(obfs,"password","obfs_password"), protocol=_first_value(node,"protocol"),
+        up_mbps=_first_value(node,"up_mbps","up"), down_mbps=_first_value(node,"down_mbps","down"),
+        ports=_first_value(node,"ports"), pin_sha256=_first_value(tls,"certificate_public_key_sha256","pin_sha256"),
+    )
+    if fields is None:
+        return None
+    payload=json.dumps(fields,sort_keys=True,separators=(",",":"),ensure_ascii=False)
+    return (endpoint.host,endpoint.port,proto,hashlib.sha256(payload.encode()).hexdigest())
+
+
+def _v2ray_params(value: str) -> tuple[str | None, int | None, str, dict] | None:
+    value=str(value).strip()
     if "://" not in value:
         return None
     try:
-        parsed = urlsplit(value)
-        scheme = parsed.scheme.lower()
+        parsed=urlsplit(value); scheme=parsed.scheme.lower()
     except ValueError:
         return None
-    host, port, protocol = None, None, canon_protocol(scheme)
-
-    if scheme in {"vmess", "vmess1"}:
-        payload = _decode_base64_text(parsed.netloc or parsed.path)
-        if payload:
-            try:
-                obj = json.loads(payload)
-            except json.JSONDecodeError:
-                obj = None
-            if isinstance(obj, dict):
-                host = obj.get("add") or obj.get("addr")
-                port = obj.get("port")
-                protocol = "vmess"
+    query={k: v[-1] for k,v in parse_qs(parsed.query,keep_blank_values=True).items()}
+    proto=canon_protocol(scheme)
+    host=port=None; obj={}
+    if scheme in {"vmess","vmess1"}:
+        payload=_decode_base64_text(parsed.netloc or parsed.path)
+        try: obj=json.loads(payload or "")
+        except (json.JSONDecodeError,TypeError): return None
+        if not isinstance(obj,dict): return None
+        host=obj.get("add") or obj.get("addr");port=obj.get("port")
+    elif scheme in {"ss","shadowsocks"}:
+        # SIP002 userinfo: base64(method:password)@host:port; legacy base64(method:password@host:port).
+        netloc=(parsed.netloc or parsed.path).split("@",1)
+        if len(netloc)==2:
+            user_blob=unquote(netloc[0]); address=netloc[1]
+            try: hostport=urlsplit("ss://"+address);host,port=hostport.hostname,hostport.port
+            except ValueError: host,port=None,None
+            decoded=_decode_base64_text(user_blob) or user_blob
+            if ":" in decoded:
+                method,password=decoded.split(":",1);obj.update(method=unquote(method),password=unquote(password))
+        else:
+            decoded=_decode_base64_text(netloc[0])
+            if decoded and "@" in decoded:
+                creds,address=decoded.rsplit("@",1)
+                try: hostport=urlsplit("ss://"+address);host,port=hostport.hostname,hostport.port
+                except ValueError: host,port=None,None
+                if ":" in creds:
+                    method,password=creds.split(":",1);obj.update(method=method,password=password)
+        obj["plugin"]=query.get("plugin","")
     else:
-        try:
-            host, port = parsed.hostname, parsed.port
-        except ValueError:
-            host, port = None, None
-        if scheme in {"ss", "shadowsocks"} and (not host or port is None):
-            host, port = _parse_ss_base64(parsed)
-
+        try: host,port=parsed.hostname,parsed.port
+        except ValueError: host,port=None,None
+        user=unquote(parsed.username or "")
+        password=unquote(parsed.password or "")
+        obj.update(username=user,password=password)
     if host is None or port is None:
         return None
-    endpoint = make_endpoint(host, port, False)
-    if endpoint is None:
+    # V2Ray share-link fields are translated to the same canonical shape as Clash/Sing-box.
+    security=_string(query.get("security",query.get("tls",""))).lower()
+    network=_string(query.get("type",query.get("network",query.get("net","tcp")))).lower()
+    if scheme in {"vmess","vmess1"}:
+        uuid=_first_value(obj,"id","uuid"); password=""; username=""
+        method=_first_value(obj,"scy","security","cipher",default="auto")
+        alter_id=_first_value(obj,"aid","alterId",default=0)
+        flow=_first_value(obj,"flow")
+        encryption=_first_value(obj,"encryption",default="none")
+        security=_string(obj.get("tls",security)).lower()
+        sni=_first_value(obj,"sni","serverName",default=query.get("sni",""))
+        fp=_first_value(obj,"fp","fingerprint",default=query.get("fp",""))
+        alpn=_first_value(obj,"alpn",default=query.get("alpn"))
+        network=_string(obj.get("net",network)).lower()
+        path=_first_value(obj,"path",default=query.get("path",""));host_header=_first_value(obj,"host",default=query.get("host",""))
+        allow_insecure=_first_value(obj,"allowInsecure",default=query.get("allowInsecure",False))
+        pbk=_first_value(obj,"pbk",default=query.get("pbk",""));sid=_first_value(obj,"sid",default=query.get("sid",""));spx=_first_value(obj,"spx",default=query.get("spx",""))
+        service=_first_value(obj,"serviceName",default=query.get("serviceName",""))
+        grpc_authority=_first_value(obj,"authority",default=query.get("authority",""))
+        headers={"Host":[host_header]} if host_header else {}
+        early_data=None; early_header=""
+    else:
+        uuid=unquote(parsed.username or "") if proto in {"vless","vmess"} else ""
+        password=obj.get("password","")
+        username=obj.get("username","")
+        method=obj.get("method",query.get("method","")); alter_id=query.get("aid",0); flow=query.get("flow","")
+        encryption=query.get("encryption","")
+        sni=query.get("sni",query.get("peer",query.get("servername",query.get("serverName",""))))
+        fp=query.get("fp",query.get("fingerprint","")); alpn=query.get("alpn")
+        allow_insecure=query.get("allowInsecure",query.get("insecure",False))
+        pbk=query.get("pbk","");sid=query.get("sid","");spx=query.get("spx","")
+        path=query.get("path","");host_header=query.get("host","")
+        service=query.get("serviceName",query.get("service_name",""));grpc_authority=query.get("authority","")
+        headers={"Host":[host_header]} if host_header else {}
+        early_data=None; early_header=""
+        if proto=="trojan" and not password: password=unquote(parsed.username or "")
+        if proto in {"vless","vmess"}: uuid=unquote(parsed.username or "")
+        if proto in {"hysteria","hysteria2"} and not password: password=unquote(parsed.username or "")
+        if proto=="anytls" and not password: password=unquote(parsed.username or "")
+    tls_enabled=(scheme in {"https","trojan","anytls","hysteria","hysteria2","hy2"} or security in {"tls","reality","true","1"})
+    reality_type=security=="reality"
+    if proto=="http" and scheme=="https": tls_enabled=True
+    obfs=query.get("obfs",query.get("obfsType",""));obfs_password=query.get("obfs-password",query.get("obfsPassword",""))
+    auth=query.get("auth",query.get("auth_str",query.get("authStr","")))
+    if proto=="hysteria" and not auth: auth=password or username
+    if proto=="hysteria2" and not password: password=auth
+    if proto=="shadowsocksr":
+        obj["method"]=obj.get("method",query.get("encryption",""));obj["protocol"]=query.get("protocol","");obj["obfs"]=obfs
+    fields=_canonical_connection_fields(
+        proto,uuid=uuid,password=password,username=username,method=method,cipher=method,alter_id=alter_id,
+        flow=flow,encryption=encryption,tls_enabled=tls_enabled,sni=sni,insecure=allow_insecure,
+        fingerprint=fp,alpn=alpn,reality_public_key=pbk if reality_type else "",
+        reality_short_id=sid if reality_type else "",reality_spider_x=spx if reality_type else "",
+        network=network,path=path,headers=headers,grpc_service_name=service,authority=grpc_authority,
+        early_data=early_data,early_header=early_header,plugin=obj.get("plugin",query.get("plugin","")),
+        plugin_opts=query.get("plugin-opts",query.get("plugin_opts","")),auth=auth,obfs=obfs,
+        obfs_password=obfs_password,protocol=query.get("protocol",obj.get("protocol","")),
+        up_mbps=query.get("upmbps",query.get("up", "")),down_mbps=query.get("downmbps",query.get("down","")),
+        ports=query.get("ports",""),pin_sha256=query.get("pinSHA256",query.get("pin_sha256","")),
+    )
+    endpoint=make_endpoint(host,port,False)
+    if endpoint is None or fields is None:
         return None
-    return (endpoint.host, endpoint.port, protocol)
+    return endpoint.host,endpoint.port,proto,fields
 
 
+def v2ray_line_key(line: str) -> tuple[str, int, str, str] | None:
+    """V2Ray share URI → full normalized connection identity (not host:port only)."""
+    parsed=_v2ray_params(line)
+    if parsed is None: return None
+    host,port,proto,fields=parsed
+    payload=json.dumps(fields,sort_keys=True,separators=(",",":"),ensure_ascii=False)
+    return host,port,proto,hashlib.sha256(payload.encode()).hexdigest()
+
+
+def _fingerprint_key(key) -> str | None:
+    if not key:
+        return None
+    return f"{key[0]}|{key[1]}|{key[2]}|{key[3]}"
+
+
+def _cross_format_signature(key) -> tuple[str, int, str, str] | None:
+    return key if isinstance(key, tuple) and len(key) == 4 else None
+
+
+# ---------------------------------------------------------------------------
+# mihomo 进程管理
+# ---------------------------------------------------------------------------
 # ---------------------------------------------------------------------------
 # mihomo 进程管理
 # ---------------------------------------------------------------------------
@@ -314,8 +711,8 @@ class MihomoProcess:
     def api_base(self) -> str:
         return f"http://127.0.0.1:{self.api_port}"
 
-    def write_config(self, proxies: list[dict]) -> None:
-        """生成测活专用配置：只有 proxies 与 API，不带规则和分组。"""
+    def write_config(self, proxies: list[dict], listeners: list[dict] | None = None) -> None:
+        """生成测活配置；严格校验阶段可为每个候选开一个固定出站的本地监听器。"""
         doc = {
             "mode": "direct",
             "log-level": "warning",
@@ -327,6 +724,8 @@ class MihomoProcess:
             "profile": {"store-selected": False, "store-fake-ip": False},
             "proxies": copy.deepcopy(proxies),
         }
+        if listeners:
+            doc["listeners"] = copy.deepcopy(listeners)
         self.workdir.mkdir(parents=True, exist_ok=True)
         atomic_write(
             self.config_path,
@@ -340,13 +739,13 @@ class MihomoProcess:
             ).encode("utf-8"),
         )
 
-    def start(self, proxies: list[dict]) -> bool:
-        """写入配置并启动内核；API 就绪返回 True，启动失败/超时返回 False。
+    def start(self, proxies: list[dict], listeners: list[dict] | None = None) -> bool:
+        """写入配置并启动内核；API 就绪返回 True，启动失败/超时返回 False.
 
         失败原因记入 self.last_failure（区分进程即退 / API 超时 / 无法拉起），
         配合 log_tail() 可在熔断时给出可定位的诊断信息。
         """
-        self.write_config(proxies)
+        self.write_config(proxies, listeners=listeners)
         self.last_failure = ""
         with self.log_path.open("ab") as log_fh:
             try:
@@ -436,6 +835,221 @@ def query_delay(proc: MihomoProcess, name: str, test_url: str, timeout_ms: int) 
             pass
         return {"ok": False, "delay_ms": None, "error": "bad_response"}
     return {"ok": False, "delay_ms": None, "error": f"HTTP {status}"}
+
+
+def _reserve_local_ports(count: int, excluded=()) -> list[int]:
+    sockets = []
+    ports = []
+    blocked = {int(port) for port in excluded if port}
+    try:
+        while len(ports) < count:
+            sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+            sock.bind(("127.0.0.1", 0))
+            port = sock.getsockname()[1]
+            if port in blocked or port in ports:
+                sock.close()
+                continue
+            sockets.append(sock)
+            ports.append(port)
+        return ports
+    finally:
+        for sock in sockets:
+            sock.close()
+
+
+def _request_through_listener(url: str, port: int, timeout_s: float) -> tuple[int, bytes, float]:
+    """Issue a real HTTP(S) request through one candidate's fixed Mihomo listener."""
+    proxy = f"http://127.0.0.1:{int(port)}"
+    opener = urllib.request.build_opener(
+        urllib.request.ProxyHandler({"http": proxy, "https": proxy})
+    )
+    request = urllib.request.Request(
+        url,
+        headers={"User-Agent": "blhscztj-alive-check/1.0", "Accept": "*/*"},
+        method="GET",
+    )
+    started = time.monotonic()
+    try:
+        try:
+            response = opener.open(request, timeout=timeout_s)
+        except urllib.error.HTTPError as exc:
+            body = exc.read(65536)
+            return int(exc.code), body, (time.monotonic() - started) * 1000
+        with response:
+            body = response.read(65536)
+            return int(response.status), body, (time.monotonic() - started) * 1000
+    except Exception:
+        raise
+
+
+def _request_with_retries(url: str, port: int, expected_status: int, timeout_s: float, retries: int) -> dict:
+    last_error = "request_failed"
+    for attempt in range(1, retries + 2):
+        try:
+            status, body, elapsed = _request_through_listener(url, port, timeout_s)
+            if status == expected_status:
+                return {
+                    "ok": True,
+                    "status": status,
+                    "attempts": attempt,
+                    "elapsed_ms": round(elapsed, 1),
+                    "error": "",
+                    "body": body,
+                }
+            last_error = f"unexpected_http_{status}"
+        except Exception as exc:
+            last_error = type(exc).__name__
+        if attempt <= retries:
+            time.sleep(min(0.25 * attempt, 1.0))
+    return {
+        "ok": False,
+        "status": None,
+        "attempts": retries + 1,
+        "elapsed_ms": None,
+        "error": last_error,
+        "body": b"",
+    }
+
+
+def _parse_cloudflare_trace(body: bytes) -> dict | None:
+    try:
+        text = body.decode("utf-8", errors="strict")
+        fields = dict(line.split("=", 1) for line in text.splitlines() if "=" in line)
+        ip = str(ipaddress.ip_address(fields.get("ip", "")))
+        loc = str(fields.get("loc", "")).strip().upper()
+        if not re.fullmatch(r"[A-Z]{2}", loc):
+            return None
+        return {"ip": ip, "loc": loc}
+    except (UnicodeDecodeError, ValueError):
+        return None
+
+
+def _country_for_ip(reader, ip: str, trace_country: str) -> tuple[str, str]:
+    """Resolve the tested egress IP via repository GeoIP DB; trace loc is a fallback."""
+    if reader is not None:
+        try:
+            record = reader.get(ip)
+        except Exception:
+            record = None
+        candidates = []
+        if isinstance(record, dict):
+            for path in (
+                ("country", "iso_code"),
+                ("registered_country", "iso_code"),
+                ("represented_country", "iso_code"),
+            ):
+                value = record
+                for part in path:
+                    value = value.get(part) if isinstance(value, dict) else None
+                if value:
+                    candidates.append(str(value).upper())
+        elif isinstance(record, list):
+            candidates.extend(str(value).upper() for value in record if isinstance(value, str))
+        for value in candidates:
+            if re.fullmatch(r"[A-Z]{2}", value) and value not in {"EU", "AP", "A1", "A2"}:
+                return value, "geoip.metadb"
+        # When a GeoIP reader is available, an unknown IP stays unclassified;
+        # never silently replace database-based grouping with a different source.
+        return "", ""
+    if re.fullmatch(r"[A-Z]{2}", str(trace_country or "")):
+        return str(trace_country).upper(), "cloudflare-trace-loc"
+    return "", ""
+
+
+def _verify_one_candidate(candidate: Candidate, port: int, timeout_s: float, retries: int, geo_reader=None) -> dict:
+    """Require two separate HTTPS endpoints to return their exact expected 204,
+    then obtain the proxy's actual public exit IP from a third HTTPS endpoint.
+    """
+    target_results = {}
+    for url in STRICT_204_TARGETS:
+        result = _request_with_retries(url, port, 204, timeout_s, retries)
+        result.pop("body", None)
+        target_results[url] = result
+        if not result["ok"]:
+            return {"ok": False, "error": result["error"], "targets": target_results}
+    trace = _request_with_retries(GEO_TRACE_URL, port, 200, timeout_s, retries)
+    trace_info = _parse_cloudflare_trace(trace.pop("body", b"")) if trace.get("ok") else None
+    if not trace.get("ok") or trace_info is None:
+        return {
+            "ok": False,
+            "error": trace.get("error") or "invalid_cloudflare_trace",
+            "targets": target_results,
+            "geo_target": {k: v for k, v in trace.items() if k != "body"},
+        }
+    country, country_source = _country_for_ip(geo_reader, trace_info["ip"], trace_info["loc"])
+    return {
+        "ok": True,
+        "error": "",
+        "targets": target_results,
+        "geo_target": {k: v for k, v in trace.items() if k != "body"},
+        "exit_ip": trace_info["ip"],
+        "trace_country": trace_info["loc"],
+        "country_code": country,
+        "country_source": country_source,
+    }
+
+
+def run_strict_https_verification(
+    proc_factory,
+    candidates: list[Candidate],
+    timeout_s: float,
+    retries: int,
+    concurrency: int,
+    geoip_db: Path | None = None,
+) -> dict[str, dict]:
+    """Per-node fixed Mihomo HTTP listeners prevent cross-node routing in checks."""
+    outcomes: dict[str, dict] = {}
+    if not candidates:
+        return outcomes
+    geo_reader = None
+    if geoip_db and geoip_db.is_file():
+        if maxminddb is None:
+            raise RuntimeError("GeoIP 数据库存在，但未安装 maxminddb")
+        try:
+            geo_reader = maxminddb.open_database(str(geoip_db))
+        except Exception as exc:
+            raise RuntimeError(f"GeoIP 数据库无法打开，拒绝降级为非 GeoIP 国家定位：{exc}") from exc
+    total = len(candidates)
+    try:
+        for offset in range(0, total, STRICT_BATCH_SIZE):
+            batch = candidates[offset:offset + STRICT_BATCH_SIZE]
+            proc = proc_factory()
+            ports = _reserve_local_ports(len(batch), excluded=(getattr(proc, "api_port", 0),))
+            listeners = [
+                {
+                    "name": f"alive-check-{offset + i:05d}",
+                    "type": "http",
+                    "listen": "127.0.0.1",
+                    "port": ports[i],
+                    "proxy": candidate.name,
+                }
+                for i, candidate in enumerate(batch)
+            ]
+            try:
+                if not proc.start([candidate.proxy for candidate in batch], listeners=listeners):
+                    detail = getattr(proc, "last_failure", "listener startup failed")
+                    print(f"⚠️ HTTPS 严格复核批次启动失败 {offset}/{total}：{detail}")
+                    for candidate in batch:
+                        outcomes[candidate.name] = {"ok": False, "error": "listener_start_failed"}
+                    continue
+
+                def check(index_candidate):
+                    index, candidate = index_candidate
+                    return candidate.name, _verify_one_candidate(
+                        candidate, ports[index], timeout_s, retries, geo_reader
+                    )
+
+                with ThreadPoolExecutor(max_workers=max(1, min(concurrency, len(batch)))) as pool:
+                    for name, result in pool.map(check, enumerate(batch)):
+                        outcomes[name] = result
+                passed = sum(1 for candidate in batch if outcomes.get(candidate.name, {}).get("ok"))
+                print(f"  HTTPS/出口验证：{offset + len(batch)}/{total}，本批通过 {passed}/{len(batch)}")
+            finally:
+                proc.stop()
+    finally:
+        if geo_reader is not None:
+            geo_reader.close()
+    return outcomes
 
 
 def run_delay_tests(
@@ -720,7 +1334,7 @@ def _load_state(path: Path) -> dict:
     value = json.loads(path.read_text(encoding="utf-8"))
     if not isinstance(value, dict) or not isinstance(value.get("nodes"), dict):
         # 旧版（TCP 时代）或损坏的状态库：语义完全不同，直接重置。
-        print("  ℹ️ 旧状态库与 mihomo 实测语义不同，已重置为全新 v2 状态库")
+        print("  ℹ️ 旧状态库与完整连接指纹语义不同，已重置为全新 v3 状态库")
         return {"version": STATE_VERSION, "nodes": {}}
     return value
 
@@ -731,12 +1345,13 @@ def _update_state(
     results: dict[str, dict],
     now: datetime,
 ) -> None:
-    """按 host|port|协议 合并本轮实测结果进状态库，并清理长期未出现的节点。"""
+    """按 endpoint + 完整 Clash 参数指纹记账，避免认证不同的节点共用历史状态。"""
     records = state.setdefault("nodes", {})
     stamp = now.isoformat(timespec="seconds")
     seen_keys: set[str] = set()
     for candidate in candidates:
-        key = f"{candidate.host}|{candidate.port}|{candidate.protocol}"
+        fingerprint = candidate.state_key[3] if candidate.state_key else hashlib.sha256(candidate.name.encode()).hexdigest()
+        key = f"{candidate.host}|{candidate.port}|{candidate.protocol}|{fingerprint}"
         seen_keys.add(key)
         outcome = results.get(candidate.name, {})
         record = records.get(key)
@@ -745,6 +1360,7 @@ def _update_state(
                 "host": candidate.host,
                 "port": candidate.port,
                 "protocol": candidate.protocol,
+                "connection_fingerprint": fingerprint,
                 "first_seen_at": stamp,
                 "success_count": 0,
                 "failure_count": 0,
@@ -783,7 +1399,7 @@ def _update_state(
 
     state["version"] = STATE_VERSION
     state["updated_at"] = stamp
-    state["probe_method"] = "mihomo real proxy delay test"
+    state["probe_method"] = "mihomo delay + 2 HTTPS exact-204 checks + Cloudflare egress trace"
 
 
 def _load_input_docs(input_dir: Path) -> dict:
@@ -812,22 +1428,19 @@ def _load_input_docs(input_dir: Path) -> dict:
     return docs
 
 
-def _daily_allowed_keys(daily_dir: Path) -> set[tuple[str, int, str]] | None:
-    """scope=daily 时：只测当日订阅里出现过的 (host, port, 协议) 键。"""
+def _daily_allowed_keys(daily_dir: Path) -> set[tuple[str, int, str, str]] | None:
+    """scope=daily 时只包含当日出现的完整 Clash 配置身份。"""
     clash_path = daily_dir / "clash.yaml"
     if not clash_path.exists():
         return None
     doc = yaml.safe_load(clash_path.read_text(encoding="utf-8"))
     if not isinstance(doc, dict):
         return None
-    keys: set[tuple[str, int, str]] = set()
+    keys: set[tuple[str, int, str, str]] = set()
     for item in doc.get("proxies") or []:
-        if not isinstance(item, dict):
-            continue
-        endpoint = make_endpoint(item.get("server"), item.get("port"), False)
-        if endpoint is None:
-            continue
-        keys.add((endpoint.host, endpoint.port, canon_protocol(item.get("type"))))
+        key = clash_state_key(item)
+        if key is not None:
+            keys.add(key)
     return keys or None
 
 
@@ -846,6 +1459,7 @@ def run_alive_check(
     limit: int = 0,
     workdir: Path | None = None,
     proc_factory=None,
+    geoip_db: Path | None = None,
 ) -> dict:
     """完整测活流程；返回写出的 meta（也便于单测断言）。"""
     if scope not in {"full", "daily"}:
@@ -856,6 +1470,11 @@ def run_alive_check(
         raise ValueError("--concurrency 必须在 1 到 512 之间")
     if retries < 0:
         raise ValueError("--retries 不能小于 0")
+    geoip_path = Path(geoip_db) if geoip_db is not None else input_dir / "geoip.metadb"
+    if geoip_db is not None and not geoip_path.is_file():
+        raise ValueError(f"指定的 GeoIP 数据库不存在：{geoip_path}")
+    if geoip_db is not None and maxminddb is None:
+        raise RuntimeError("指定了 GeoIP 数据库，但未安装 maxminddb")
 
     docs = _load_input_docs(input_dir)
     if "clash" not in docs:
@@ -869,7 +1488,7 @@ def run_alive_check(
             print("  ⚠️ 未找到当日 Clash 订阅，scope=daily 无法圈定范围，退回全库实测")
         else:
             before = len(candidates)
-            candidates = [c for c in candidates if (c.host, c.port, c.protocol) in allowed]
+            candidates = [c for c in candidates if c.state_key is not None and c.state_key in allowed]
             clash_stats["scope_filtered_out"] = before - len(candidates)
     if limit and limit > 0:
         candidates = candidates[:limit]
@@ -941,16 +1560,59 @@ def run_alive_check(
         if own_workdir:
             shutil.rmtree(workdir, ignore_errors=True)
 
+    # The delay endpoint is only a coarse first pass. For real runs, every candidate
+    # must also pass exact-status HTTPS checks through its own fixed Mihomo listener.
+    delay_passed = [c for c in real_set if results.get(c.name, {}).get("ok")]
+    strict_results: dict[str, dict] = {}
+    if real_kernel and delay_passed:
+        strict_results = run_strict_https_verification(
+            proc_factory,
+            delay_passed,
+            timeout_s=timeout,
+            retries=2,
+            concurrency=concurrency,
+            geoip_db=geoip_path,
+        )
+        for candidate in delay_passed:
+            outcome = results.setdefault(candidate.name, {})
+            outcome["delay_test_ok"] = bool(outcome.get("ok"))
+            verification = strict_results.get(candidate.name, {"ok": False, "error": "strict_verification_missing"})
+            outcome["https_verification"] = {
+                key: value for key, value in verification.items() if key != "exit_ip"
+            }
+            outcome["ok"] = bool(verification.get("ok"))
+            if not outcome["ok"]:
+                outcome["error"] = verification.get("error") or "https_verification_failed"
+    else:
+        # Unit tests use a fake kernel; keep them offline and exercise the strict
+        # verification helper separately with a fake HTTP listener.
+        for candidate in delay_passed:
+            results.setdefault(candidate.name, {})["delay_test_ok"] = True
+            results[candidate.name]["https_verification"] = {"ok": True, "skipped": "fake_kernel"}
+
     alive_candidates = [c for c in real_set if results.get(c.name, {}).get("ok")]
     alive_names = {c.name for c in alive_candidates}
-    alive_keys: set[tuple[str, int, str]] = set()
-    delay_by_key: dict[tuple[str, int, str], float] = {}
+    alive_keys: set[tuple[str, int, str, str]] = set()
+    delay_by_key: dict[tuple[str, int, str, str], float] = {}
+    actual_exit_country_by_name: dict[str, dict] = {}
+    actual_exit_country_by_identity: dict[str, dict] = {}
     for candidate in alive_candidates:
-        key = (candidate.host, candidate.port, candidate.protocol)
-        alive_keys.add(key)
-        delay = results[candidate.name].get("delay_ms")
-        if delay is not None:
-            delay_by_key[key] = min(delay, delay_by_key.get(key, delay))
+        key = candidate.connection_key
+        if key is not None:
+            alive_keys.add(key)
+            delay = results[candidate.name].get("delay_ms")
+            if delay is not None:
+                delay_by_key[key] = min(delay, delay_by_key.get(key, delay))
+        verification = strict_results.get(candidate.name, {})
+        country_code = str(verification.get("country_code") or "").upper()
+        if country_code:
+            geo_record = {
+                "country_code": country_code,
+                "source": verification.get("country_source") or "",
+            }
+            actual_exit_country_by_name[candidate.name] = geo_record
+            if candidate.state_key is not None:
+                actual_exit_country_by_identity[candidate.state_key[3]] = geo_record
 
     bad_names = {c.name for c in bad_proxies}
     print(
@@ -1053,8 +1715,14 @@ def run_alive_check(
         "source_dir": str(input_dir),
         "daily_dir": str(daily_dir) if daily_dir else "",
         "scope": scope,
-        "probe_method": "mihomo real proxy delay test",
+        "probe_method": "mihomo delay precheck + exact-status HTTPS 204 checks + actual egress GeoIP",
         "test_url": test_url,
+        "strict_https_targets": [*STRICT_204_TARGETS, GEO_TRACE_URL],
+        "strict_https_retries": 2,
+        "strict_https_passed": sum(1 for c in alive_candidates if c.name in strict_results),
+        "actual_exit_country_by_name": actual_exit_country_by_name,
+        "actual_exit_country_by_identity": actual_exit_country_by_identity,
+        "geoip_database": str(geoip_path) if geoip_path.is_file() else "cloudflare trace fallback",
         "timeout_s": timeout,
         "concurrency": concurrency,
         "retries": retries,
@@ -1093,13 +1761,13 @@ def run_alive_check(
         with open(summary_path, "a", encoding="utf-8") as fh:
             fh.write("## mihomo 内核实测活\n\n")
             fh.write(
-                "每次运行在临时机上全新下载 mihomo 内核，对节点发起真实代理请求"
-                f"（`{test_url}`），只聚合本轮真实连通的节点；无保留宽限。\n\n"
+                "每次运行使用 mihomo 真实代理；通过本地固定出站监听器逐节点复核两个 HTTPS 目标的精确 204 响应，"
+                "并请求 Cloudflare trace 获取实际出口 IP/国家；只聚合通过所有严格复核的节点，无保留宽限。\n\n"
                 f"- 内核版本：`{meta['mihomo_version'] or '未知'}`；scope：`{scope}`\n"
                 f"- Clash 候选：`{clash_stats['total']}` → 实测 `{len(real_set)}` → 真实可用 "
                 f"`{len(alive_candidates)}`（预筛剔除 `{counts['clash']['prefilter_dropped']}`，"
                 f"加载失败 `{len(bad_proxies)}`，实测失败 `{counts['clash']['failed']}`）\n"
-                f"- 唯一可用键（host|port|协议）：`{len(alive_keys)}`\n"
+                f"- 唯一可用完整配置键（endpoint+认证/TLS/传输指纹）：`{len(alive_keys)}`；实际出口地区已写入 meta\n"
             )
             delays = meta["alive_delay_ms"]
             if delays["min"] is not None:
@@ -1143,6 +1811,7 @@ def main() -> int:
     parser.add_argument("--timeout", type=float, default=5.0, help="单节点延迟测试超时秒数")
     parser.add_argument("--concurrency", type=int, default=128, help="并发数，范围 1-512")
     parser.add_argument("--retries", type=int, default=1, help="失败重试次数，默认 1")
+    parser.add_argument("--geoip-db", default="", help="可选：出口 IP GeoIP MMDB 数据库路径")
     parser.add_argument("--prefilter-timeout", type=float, default=3.0,
                         help="TCP 预筛超时秒数，0 = 关闭预筛（全部直接实测）")
     parser.add_argument("--limit", type=int, default=0, help="调试用：最多实测 N 个候选，0 = 不限")
@@ -1166,6 +1835,7 @@ def main() -> int:
             retries=args.retries,
             prefilter_timeout=args.prefilter_timeout,
             limit=args.limit,
+            geoip_db=Path(args.geoip_db) if args.geoip_db else None,
         )
     except (OSError, ValueError, json.JSONDecodeError, yaml.YAMLError, RuntimeError) as exc:
         print(f"❌ mihomo 实测活失败：{exc}", file=sys.stderr)
