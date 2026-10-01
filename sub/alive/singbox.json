@@ -410,31 +410,6 @@
       }
     },
     {
-      "server": "103.76.85.210",
-      "server_port": 443,
-      "tag": "🇺🇸美国US002 2.34MB/s纯净 TG@jcnode",
-      "type": "vless",
-      "uuid": "a545e637-ca12-477f-9f91-f80e15cb51b0",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "usa1s.xn--ghqu5fm27b67w.com",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/pq/us1",
-        "headers": {
-          "Host": [
-            "usa1s.xn--ghqu5fm27b67w.com"
-          ]
-        }
-      }
-    },
-    {
       "server": "72.4.65.116",
       "server_port": 443,
       "tag": "🇩🇪德国DE003 2.3MB/s纯净 TG@jcnode",
@@ -508,54 +483,6 @@
       }
     },
     {
-      "server": "104.17.115.212",
-      "server_port": 443,
-      "tag": "🇺🇸美国US008 2.21MB/s TG@jcnode",
-      "type": "vless",
-      "uuid": "47fcef29-ab4e-4aa6-932b-d95a18f28a4e",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "7qvtl.b2eg.jho.hh.vavava.kdns.fr"
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/",
-        "headers": {
-          "Host": [
-            "7qvtl.b2eg.jho.hh.vavava.kdns.fr"
-          ]
-        },
-        "max_early_data": 2560,
-        "early_data_header_name": "Sec-WebSocket-Protocol"
-      }
-    },
-    {
-      "server": "195.85.23.236",
-      "server_port": 443,
-      "tag": "🇺🇸美国US007 2.21MB/s中性 TG@jcnode",
-      "type": "vless",
-      "uuid": "a545e637-ca12-477f-9f91-f80e15cb51b0",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "usa1s.xn--ghqu5fm27b67w.com",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/pq/us1",
-        "headers": {
-          "Host": [
-            "usa1s.xn--ghqu5fm27b67w.com"
-          ]
-        }
-      }
-    },
-    {
       "server": "162.55.242.208",
       "server_port": 2053,
       "tag": "🇩🇪德国DE007 2.18MB/s TG@jcnode",
@@ -608,29 +535,6 @@
           "public_key": "9XSdNkmBhBszLYoODqMrm7r_JRur2PRbzF9T1Uf2AV0",
           "short_id": "f1004027e382c2fa"
         }
-      }
-    },
-    {
-      "server": "172.64.229.201",
-      "server_port": 443,
-      "tag": "🇺🇸美国US018 2.11MB/s纯净 TG@jcnode",
-      "type": "vless",
-      "uuid": "47fcef29-ab4e-4aa6-932b-d95a18f28a4e",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "lunj8.erzb.w55.hh.vavava.kdns.fr"
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/",
-        "headers": {
-          "Host": [
-            "lunj8.erzb.w55.hh.vavava.kdns.fr"
-          ]
-        },
-        "max_early_data": 2560,
-        "early_data_header_name": "Sec-WebSocket-Protocol"
       }
     },
     {
@@ -733,29 +637,6 @@
       "server": "172.64.229.169",
       "server_port": 443,
       "tag": "🇺🇸美国US045 1.99MB/s TG@jcnode",
-      "type": "vless",
-      "uuid": "47fcef29-ab4e-4aa6-932b-d95a18f28a4e",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "7qvtl.b2eg.jho.hh.vavava.kdns.fr"
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/",
-        "headers": {
-          "Host": [
-            "7qvtl.b2eg.jho.hh.vavava.kdns.fr"
-          ]
-        },
-        "max_early_data": 2560,
-        "early_data_header_name": "Sec-WebSocket-Protocol"
-      }
-    },
-    {
-      "server": "172.64.144.116",
-      "server_port": 443,
-      "tag": "🇺🇸美国US048 1.98MB/s TG@jcnode",
       "type": "vless",
       "uuid": "47fcef29-ab4e-4aa6-932b-d95a18f28a4e",
       "packet_encoding": "xudp",
@@ -999,29 +880,6 @@
             "adheres-scruple.quick-cdn.net"
           ]
         }
-      }
-    },
-    {
-      "server": "104.17.149.140",
-      "server_port": 443,
-      "tag": "🇺🇸美国US064 1.86MB/s TG@jcnode",
-      "type": "vless",
-      "uuid": "47fcef29-ab4e-4aa6-932b-d95a18f28a4e",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "7qvtl.b2eg.jho.hh.vavava.kdns.fr"
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/",
-        "headers": {
-          "Host": [
-            "7qvtl.b2eg.jho.hh.vavava.kdns.fr"
-          ]
-        },
-        "max_early_data": 2560,
-        "early_data_header_name": "Sec-WebSocket-Protocol"
       }
     },
     {
@@ -1513,31 +1371,6 @@
       }
     },
     {
-      "server": "103.53.80.239",
-      "server_port": 443,
-      "tag": "🇺🇸美国US046 1.78MB/s中性 TG@jcnode",
-      "type": "vless",
-      "uuid": "a545e637-ca12-477f-9f91-f80e15cb51b0",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "usa1s.xn--ghqu5fm27b67w.com",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/pq/us1",
-        "headers": {
-          "Host": [
-            "usa1s.xn--ghqu5fm27b67w.com"
-          ]
-        }
-      }
-    },
-    {
       "server": "138.199.35.204",
       "server_port": 9002,
       "tag": "🇺🇸美国US074 1.77MB/s危险 TG@jcnode",
@@ -1716,6 +1549,17 @@
         "enabled": true,
         "server_name": "jgwynphotoarts.pro",
         "insecure": false
+      }
+    },
+    {
+      "server": "79.76.126.155",
+      "server_port": 443,
+      "tag": "🇩🇪德国DE009 1.73MB/s TG@jcnode",
+      "type": "http",
+      "tls": {
+        "enabled": true,
+        "server_name": "79.76.126.155",
+        "insecure": true
       }
     },
     {
@@ -2034,18 +1878,6 @@
         "enabled": true,
         "server_name": "138.199.35.216",
         "insecure": true
-      }
-    },
-    {
-      "server": "tw04.cybergalaxy.me",
-      "server_port": 443,
-      "tag": "🇹🇼台湾TW003 1.68MB/s TG@jcnode",
-      "type": "anytls",
-      "password": "3fc0f254-54c3-4cf3-896b-5999a2b4c757",
-      "tls": {
-        "enabled": true,
-        "server_name": "tw04.cybergalaxy.me",
-        "insecure": false
       }
     },
     {
@@ -2717,31 +2549,6 @@
       }
     },
     {
-      "server": "62.60.217.174",
-      "server_port": 443,
-      "tag": "🇺🇸美国US095 1.61MB/s中性 TG@jcnode",
-      "type": "vless",
-      "uuid": "a545e637-ca12-477f-9f91-f80e15cb51b0",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "usa1s.xn--ghqu5fm27b67w.com",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/pq/us1",
-        "headers": {
-          "Host": [
-            "usa1s.xn--ghqu5fm27b67w.com"
-          ]
-        }
-      }
-    },
-    {
       "server": "84.17.47.148",
       "server_port": 9002,
       "tag": "🇳🇱荷兰NL019 1.6MB/s TG@jcnode",
@@ -3232,31 +3039,6 @@
       }
     },
     {
-      "server": "57.128.178.63",
-      "server_port": 443,
-      "tag": "🇺🇸美国US137 1.52MB/s中性 TG@jcnode",
-      "type": "vless",
-      "uuid": "e6c5f137-641a-4d01-b296-3a61953d4b3f",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "usa1s.xn--ghqu5fm27b67w.com",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/pq/us1",
-        "headers": {
-          "Host": [
-            "usa1s.xn--ghqu5fm27b67w.com"
-          ]
-        }
-      }
-    },
-    {
       "server": "103.133.1.160",
       "server_port": 80,
       "tag": "🇳🇱荷兰NL027 1.51MB/s中性 TG@jcnode",
@@ -3378,56 +3160,6 @@
         "enabled": true,
         "server_name": "51.158.243.91",
         "insecure": true
-      }
-    },
-    {
-      "server": "80.211.205.61",
-      "server_port": 443,
-      "tag": "🇺🇸美国US127 1.49MB/s纯净 TG@jcnode",
-      "type": "vless",
-      "uuid": "a545e637-ca12-477f-9f91-f80e15cb51b0",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "usa1s.xn--ghqu5fm27b67w.com",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/pq/us1",
-        "headers": {
-          "Host": [
-            "usa1s.xn--ghqu5fm27b67w.com"
-          ]
-        }
-      }
-    },
-    {
-      "server": "132.243.24.196",
-      "server_port": 443,
-      "tag": "🇺🇸美国US129 1.49MB/s纯净 TG@jcnode",
-      "type": "vless",
-      "uuid": "a545e637-ca12-477f-9f91-f80e15cb51b0",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "usa1s.xn--ghqu5fm27b67w.com",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/pq/us1",
-        "headers": {
-          "Host": [
-            "usa1s.xn--ghqu5fm27b67w.com"
-          ]
-        }
       }
     },
     {
@@ -3609,31 +3341,6 @@
       "server": "204.12.225.226",
       "server_port": 443,
       "tag": "🇺🇸美国US138 1.44MB/s中性 TG@jcnode",
-      "type": "vless",
-      "uuid": "a545e637-ca12-477f-9f91-f80e15cb51b0",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "usa1s.xn--ghqu5fm27b67w.com",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/pq/us1",
-        "headers": {
-          "Host": [
-            "usa1s.xn--ghqu5fm27b67w.com"
-          ]
-        }
-      }
-    },
-    {
-      "server": "141.147.152.9",
-      "server_port": 443,
-      "tag": "🇺🇸美国US139 1.44MB/s中性 TG@jcnode",
       "type": "vless",
       "uuid": "a545e637-ca12-477f-9f91-f80e15cb51b0",
       "packet_encoding": "xudp",
@@ -3931,31 +3638,6 @@
       }
     },
     {
-      "server": "64.176.53.200",
-      "server_port": 443,
-      "tag": "🇺🇸美国US146 1.38MB/s纯净 TG@jcnode",
-      "type": "vless",
-      "uuid": "a545e637-ca12-477f-9f91-f80e15cb51b0",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "usa1s.xn--ghqu5fm27b67w.com",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/pq/us1",
-        "headers": {
-          "Host": [
-            "usa1s.xn--ghqu5fm27b67w.com"
-          ]
-        }
-      }
-    },
-    {
       "server": "free.sahanwickramasinghe.me",
       "server_port": 8443,
       "tag": "🇱🇰LK001 1.38MB/s TG@jcnode",
@@ -4032,31 +3714,6 @@
       }
     },
     {
-      "server": "152.67.64.55",
-      "server_port": 443,
-      "tag": "🇺🇸美国US147 1.37MB/s中性 TG@jcnode",
-      "type": "vless",
-      "uuid": "a545e637-ca12-477f-9f91-f80e15cb51b0",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "usa1s.xn--ghqu5fm27b67w.com",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/pq/us1",
-        "headers": {
-          "Host": [
-            "usa1s.xn--ghqu5fm27b67w.com"
-          ]
-        }
-      }
-    },
-    {
       "server": "179.254.109.54",
       "server_port": 443,
       "tag": "🇺🇸美国US155 1.37MB/s TG@jcnode",
@@ -4098,56 +3755,6 @@
         "enabled": true,
         "server_name": "130.180.211.56",
         "insecure": true
-      }
-    },
-    {
-      "server": "62.182.198.178",
-      "server_port": 443,
-      "tag": "🇺🇸美国US149 1.36MB/s中性 TG@jcnode",
-      "type": "vless",
-      "uuid": "a545e637-ca12-477f-9f91-f80e15cb51b0",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "usa1s.xn--ghqu5fm27b67w.com",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/pq/us1",
-        "headers": {
-          "Host": [
-            "usa1s.xn--ghqu5fm27b67w.com"
-          ]
-        }
-      }
-    },
-    {
-      "server": "2.56.172.107",
-      "server_port": 443,
-      "tag": "🇺🇸美国US150 1.36MB/s中性 TG@jcnode",
-      "type": "vless",
-      "uuid": "a545e637-ca12-477f-9f91-f80e15cb51b0",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "usa1s.xn--ghqu5fm27b67w.com",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/pq/us1",
-        "headers": {
-          "Host": [
-            "usa1s.xn--ghqu5fm27b67w.com"
-          ]
-        }
       }
     },
     {
@@ -4228,56 +3835,6 @@
         "enabled": true,
         "server_name": "www.bing.com",
         "insecure": true
-      }
-    },
-    {
-      "server": "104.129.183.226",
-      "server_port": 443,
-      "tag": "🇺🇸美国US155 1.33MB/s纯净 TG@jcnode",
-      "type": "vless",
-      "uuid": "a545e637-ca12-477f-9f91-f80e15cb51b0",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "usa1s.xn--ghqu5fm27b67w.com",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/pq/us1",
-        "headers": {
-          "Host": [
-            "usa1s.xn--ghqu5fm27b67w.com"
-          ]
-        }
-      }
-    },
-    {
-      "server": "95.111.226.161",
-      "server_port": 443,
-      "tag": "🇺🇸美国US156 1.33MB/s中性 TG@jcnode",
-      "type": "vless",
-      "uuid": "a545e637-ca12-477f-9f91-f80e15cb51b0",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "usa1s.xn--ghqu5fm27b67w.com",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/pq/us1",
-        "headers": {
-          "Host": [
-            "usa1s.xn--ghqu5fm27b67w.com"
-          ]
-        }
       }
     },
     {
@@ -4453,56 +4010,6 @@
         "enabled": true,
         "server_name": "193.176.84.32",
         "insecure": true
-      }
-    },
-    {
-      "server": "185.253.118.139",
-      "server_port": 443,
-      "tag": "🇺🇸美国US158 1.3MB/s纯净 TG@jcnode",
-      "type": "vless",
-      "uuid": "a545e637-ca12-477f-9f91-f80e15cb51b0",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "usa1s.xn--ghqu5fm27b67w.com",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/pq/us1",
-        "headers": {
-          "Host": [
-            "usa1s.xn--ghqu5fm27b67w.com"
-          ]
-        }
-      }
-    },
-    {
-      "server": "144.24.207.108",
-      "server_port": 443,
-      "tag": "🇺🇸美国US159 1.3MB/s中性 TG@jcnode",
-      "type": "vless",
-      "uuid": "a545e637-ca12-477f-9f91-f80e15cb51b0",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "usa1s.xn--ghqu5fm27b67w.com",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/pq/us1",
-        "headers": {
-          "Host": [
-            "usa1s.xn--ghqu5fm27b67w.com"
-          ]
-        }
       }
     },
     {
@@ -4750,31 +4257,6 @@
       }
     },
     {
-      "server": "40.233.87.120",
-      "server_port": 443,
-      "tag": "🇺🇸美国US163 1.26MB/s中性 TG@jcnode",
-      "type": "vless",
-      "uuid": "a545e637-ca12-477f-9f91-f80e15cb51b0",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "usa1s.xn--ghqu5fm27b67w.com",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/pq/us1",
-        "headers": {
-          "Host": [
-            "usa1s.xn--ghqu5fm27b67w.com"
-          ]
-        }
-      }
-    },
-    {
       "server": "193.176.84.19",
       "server_port": 9002,
       "tag": "🇷🇴罗马尼亚RO079 1.25MB/s危险 TG@jcnode",
@@ -4843,31 +4325,6 @@
       }
     },
     {
-      "server": "108.165.173.197",
-      "server_port": 443,
-      "tag": "🇺🇸美国US165 1.23MB/s中性 TG@jcnode",
-      "type": "vless",
-      "uuid": "a545e637-ca12-477f-9f91-f80e15cb51b0",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "usa1s.xn--ghqu5fm27b67w.com",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/pq/us1",
-        "headers": {
-          "Host": [
-            "usa1s.xn--ghqu5fm27b67w.com"
-          ]
-        }
-      }
-    },
-    {
       "server": "nimm.mpd.cc.cd",
       "server_port": 2053,
       "tag": "🇹🇷土耳其TR001 1.23MB/s纯净 TG@jcnode",
@@ -4932,31 +4389,6 @@
         "enabled": true,
         "server_name": "193.176.84.30",
         "insecure": true
-      }
-    },
-    {
-      "server": "173.212.215.195",
-      "server_port": 443,
-      "tag": "🇺🇸美国US167 1.21MB/s中性 TG@jcnode",
-      "type": "vless",
-      "uuid": "a545e637-ca12-477f-9f91-f80e15cb51b0",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "usa1s.xn--ghqu5fm27b67w.com",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/pq/us1",
-        "headers": {
-          "Host": [
-            "usa1s.xn--ghqu5fm27b67w.com"
-          ]
-        }
       }
     },
     {
@@ -5142,31 +4574,6 @@
       }
     },
     {
-      "server": "109.69.61.17",
-      "server_port": 443,
-      "tag": "🇺🇸美国US173 1.13MB/s纯净 TG@jcnode",
-      "type": "vless",
-      "uuid": "a545e637-ca12-477f-9f91-f80e15cb51b0",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "usa1s.xn--ghqu5fm27b67w.com",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/pq/us1",
-        "headers": {
-          "Host": [
-            "usa1s.xn--ghqu5fm27b67w.com"
-          ]
-        }
-      }
-    },
-    {
       "server": "93.42.177.250",
       "server_port": 443,
       "tag": "🇮🇹意大利IT002 1.11MB/s TG@jcnode",
@@ -5297,31 +4704,6 @@
       }
     },
     {
-      "server": "57.128.178.63",
-      "server_port": 443,
-      "tag": "🇯🇵日本JP067 1.05MB/s中性 TG@jcnode",
-      "type": "vless",
-      "uuid": "e6c5f137-641a-4d01-b296-3a61953d4b3f",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "ujp1.xn--ghqu5fm27b67w.com",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "ios"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/pq/jp1",
-        "headers": {
-          "Host": [
-            "ujp1.xn--ghqu5fm27b67w.com"
-          ]
-        }
-      }
-    },
-    {
       "server": "193.176.84.35",
       "server_port": 9002,
       "tag": "🇷🇴罗马尼亚RO094 1.04MB/s危险 TG@jcnode",
@@ -5333,12 +4715,6 @@
         "server_name": "193.176.84.35",
         "insecure": true
       }
-    },
-    {
-      "server": "144.91.121.61",
-      "server_port": 1088,
-      "tag": "🇫🇷法国FR018 1.03MB/s TG@jcnode",
-      "type": "socks"
     },
     {
       "server": "platform117.golnamakcert.top",
@@ -5381,31 +4757,6 @@
       }
     },
     {
-      "server": "217.19.4.61",
-      "server_port": 443,
-      "tag": "🇺🇸美国US178 1.02MB/s中性 TG@jcnode",
-      "type": "vless",
-      "uuid": "a545e637-ca12-477f-9f91-f80e15cb51b0",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "usa1s.xn--ghqu5fm27b67w.com",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/pq/us1",
-        "headers": {
-          "Host": [
-            "usa1s.xn--ghqu5fm27b67w.com"
-          ]
-        }
-      }
-    },
-    {
       "server": "platform109.golnamakcert.top",
       "server_port": 80,
       "tag": "🇨🇱智利CL001 1.02MB/s TG@jcnode",
@@ -5432,31 +4783,6 @@
         "enabled": true,
         "server_name": "193.176.84.38",
         "insecure": true
-      }
-    },
-    {
-      "server": "92.118.148.225",
-      "server_port": 443,
-      "tag": "🇺🇸美国US179 1.01MB/s纯净 TG@jcnode",
-      "type": "vless",
-      "uuid": "a545e637-ca12-477f-9f91-f80e15cb51b0",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "usa1s.xn--ghqu5fm27b67w.com",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/pq/us1",
-        "headers": {
-          "Host": [
-            "usa1s.xn--ghqu5fm27b67w.com"
-          ]
-        }
       }
     },
     {
@@ -5540,34 +4866,6 @@
       }
     },
     {
-      "server": "130.61.187.66",
-      "server_port": 443,
-      "tag": "🇮🇱以色列IL004 0.98MB/s中性 TG@jcnode",
-      "type": "vless",
-      "uuid": "83b4af70-376e-427c-8c11-a025bec6b085",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "fserver-worker-001.mapleridgeway.top",
-        "alpn": [
-          "http/1.1"
-        ],
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/cdn/99294c014f2c7791",
-        "headers": {
-          "Host": [
-            "fserver-worker-001.mapleridgeway.top"
-          ]
-        }
-      }
-    },
-    {
       "server": "platform108.golnamakcert.top",
       "server_port": 80,
       "tag": "🇨🇱智利CL001 0.98MB/s中性 TG@jcnode",
@@ -5624,31 +4922,6 @@
         "enabled": true,
         "server_name": "35.247.136.78",
         "insecure": true
-      }
-    },
-    {
-      "server": "103.71.23.244",
-      "server_port": 443,
-      "tag": "🇺🇸美国US181 0.97MB/s中性 TG@jcnode",
-      "type": "vless",
-      "uuid": "a545e637-ca12-477f-9f91-f80e15cb51b0",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "usa1s.xn--ghqu5fm27b67w.com",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/pq/us1",
-        "headers": {
-          "Host": [
-            "usa1s.xn--ghqu5fm27b67w.com"
-          ]
-        }
       }
     },
     {
@@ -5770,31 +5043,6 @@
       }
     },
     {
-      "server": "80.78.19.185",
-      "server_port": 443,
-      "tag": "🇺🇸美国US184 0.92MB/s中性 TG@jcnode",
-      "type": "vless",
-      "uuid": "a545e637-ca12-477f-9f91-f80e15cb51b0",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "usa1s.xn--ghqu5fm27b67w.com",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/pq/us1",
-        "headers": {
-          "Host": [
-            "usa1s.xn--ghqu5fm27b67w.com"
-          ]
-        }
-      }
-    },
-    {
       "server": "34.124.244.22",
       "server_port": 443,
       "tag": "🇧🇩BD001 0.92MB/s TG@jcnode",
@@ -5873,56 +5121,6 @@
       }
     },
     {
-      "server": "45.12.28.170",
-      "server_port": 443,
-      "tag": "🇺🇸美国US187 0.9MB/s中性 TG@jcnode",
-      "type": "vless",
-      "uuid": "a545e637-ca12-477f-9f91-f80e15cb51b0",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "usa1s.xn--ghqu5fm27b67w.com",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/pq/us1",
-        "headers": {
-          "Host": [
-            "usa1s.xn--ghqu5fm27b67w.com"
-          ]
-        }
-      }
-    },
-    {
-      "server": "5.253.30.228",
-      "server_port": 443,
-      "tag": "🇺🇸美国US188 0.9MB/s中性 TG@jcnode",
-      "type": "vless",
-      "uuid": "a545e637-ca12-477f-9f91-f80e15cb51b0",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "usa1s.xn--ghqu5fm27b67w.com",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/pq/us1",
-        "headers": {
-          "Host": [
-            "usa1s.xn--ghqu5fm27b67w.com"
-          ]
-        }
-      }
-    },
-    {
       "server": "51.158.243.91",
       "server_port": 443,
       "tag": "🇳🇱荷兰NL074 0.9MB/s中性 TG@jcnode",
@@ -5946,31 +5144,6 @@
         "enabled": true,
         "server_name": "193.176.84.33",
         "insecure": true
-      }
-    },
-    {
-      "server": "104.143.206.87",
-      "server_port": 443,
-      "tag": "🇺🇸美国US189 0.88MB/s纯净 TG@jcnode",
-      "type": "vless",
-      "uuid": "a545e637-ca12-477f-9f91-f80e15cb51b0",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "usa1s.xn--ghqu5fm27b67w.com",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/pq/us1",
-        "headers": {
-          "Host": [
-            "usa1s.xn--ghqu5fm27b67w.com"
-          ]
-        }
       }
     },
     {
@@ -6162,56 +5335,6 @@
       }
     },
     {
-      "server": "104.143.206.87",
-      "server_port": 443,
-      "tag": "🇺🇸美国US236 0.81MB/s纯净 TG@jcnode",
-      "type": "vless",
-      "uuid": "e6c5f137-641a-4d01-b296-3a61953d4b3f",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "usa1s.xn--ghqu5fm27b67w.com",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/pq/us1",
-        "headers": {
-          "Host": [
-            "usa1s.xn--ghqu5fm27b67w.com"
-          ]
-        }
-      }
-    },
-    {
-      "server": "104.168.145.98",
-      "server_port": 443,
-      "tag": "🇺🇸美国US192 0.8MB/s中性 TG@jcnode",
-      "type": "vless",
-      "uuid": "a545e637-ca12-477f-9f91-f80e15cb51b0",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "usa1s.xn--ghqu5fm27b67w.com",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/pq/us1",
-        "headers": {
-          "Host": [
-            "usa1s.xn--ghqu5fm27b67w.com"
-          ]
-        }
-      }
-    },
-    {
       "server": "165.215.250.14",
       "server_port": 443,
       "tag": "🇫🇷法国FR027 0.8MB/s中性 TG@jcnode",
@@ -6309,30 +5432,6 @@
       }
     },
     {
-      "server": "104.252.19.114",
-      "server_port": 2053,
-      "tag": "🇱🇻LV003 0.74MB/s纯净 TG@jcnode",
-      "type": "vless",
-      "uuid": "40cba749-bca9-4089-9c02-84a357244ce0",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "omvpn.info",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        },
-        "reality": {
-          "enabled": true,
-          "public_key": "cD8mVX41lqyVGCuPz0-tQWcNqkMxiPZxU7JJsyyNAEI"
-        }
-      },
-      "transport": {
-        "type": "grpc",
-        "service_name": "grpctest"
-      }
-    },
-    {
       "server": "109.116.41.154",
       "server_port": 443,
       "tag": "🇮🇹意大利IT003 0.74MB/s危险 TG@jcnode",
@@ -6355,31 +5454,6 @@
       }
     },
     {
-      "server": "104.168.155.113",
-      "server_port": 443,
-      "tag": "🇺🇸美国US195 0.73MB/s中性 TG@jcnode",
-      "type": "vless",
-      "uuid": "a545e637-ca12-477f-9f91-f80e15cb51b0",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "usa1s.xn--ghqu5fm27b67w.com",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/pq/us1",
-        "headers": {
-          "Host": [
-            "usa1s.xn--ghqu5fm27b67w.com"
-          ]
-        }
-      }
-    },
-    {
       "server": "193.176.84.30",
       "server_port": 9002,
       "tag": "🇷🇴罗马尼亚RO088 0.73MB/s危险 TG@jcnode",
@@ -6396,18 +5470,6 @@
       "server": "tyo-a-02.auuas.com",
       "server_port": 1892,
       "tag": "🇯🇵日本JP006 0.72MB/s TG@jcnode",
-      "type": "anytls",
-      "password": "81c4547b-e5d8-4af8-baf0-91c5c0c05a9b",
-      "tls": {
-        "enabled": true,
-        "server_name": "images.apple.com",
-        "insecure": true
-      }
-    },
-    {
-      "server": "icn-a-02.auuas.com",
-      "server_port": 1892,
-      "tag": "🇰🇷韩国KR001 0.72MB/s TG@jcnode",
       "type": "anytls",
       "password": "81c4547b-e5d8-4af8-baf0-91c5c0c05a9b",
       "tls": {
@@ -6462,60 +5524,6 @@
           "Host": [
             "www.ignitelimit.com"
           ]
-        }
-      }
-    },
-    {
-      "server": "89.110.66.154",
-      "server_port": 443,
-      "tag": "🇩🇪德国DE017 0.72MB/s中性 TG@jcnode",
-      "type": "vless",
-      "uuid": "d342d11e-d424-4583-b36e-524ab1f0afa4",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "cdn8848.776676.xyz",
-        "insecure": true,
-        "ech": {
-          "enabled": true,
-          "query_server_name": "cloudflare-ech.com"
-        },
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/streams/home",
-        "headers": {
-          "Host": [
-            "cdn8848.776676.xyz"
-          ]
-        },
-        "max_early_data": 2560,
-        "early_data_header_name": "Sec-WebSocket-Protocol"
-      }
-    },
-    {
-      "server": "sin-a-02.auuas.com",
-      "server_port": 1891,
-      "tag": "🇸🇬新加坡SG003 0.71MB/s TG@jcnode",
-      "type": "vless",
-      "uuid": "81c4547b-e5d8-4af8-baf0-91c5c0c05a9b",
-      "flow": "xtls-rprx-vision",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "www.npmjs.com",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "qq"
-        },
-        "reality": {
-          "enabled": true,
-          "public_key": "YJLHQBNzHQ7sOeKbj-EkHo1Ym0asUyZKxj4l_thzyGA",
-          "short_id": "8378f267"
         }
       }
     },
@@ -6581,56 +5589,6 @@
         "headers": {
           "Host": [
             "kqjifhg9rw.tradsc8p9xp7wxyqmc1wy0ah.workers.dev"
-          ]
-        }
-      }
-    },
-    {
-      "server": "160.16.120.16",
-      "server_port": 443,
-      "tag": "🇺🇸美国US196 0.7MB/s纯净 TG@jcnode",
-      "type": "vless",
-      "uuid": "a545e637-ca12-477f-9f91-f80e15cb51b0",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "usa1s.xn--ghqu5fm27b67w.com",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/pq/us1",
-        "headers": {
-          "Host": [
-            "usa1s.xn--ghqu5fm27b67w.com"
-          ]
-        }
-      }
-    },
-    {
-      "server": "137.220.225.111",
-      "server_port": 443,
-      "tag": "🇺🇸美国US197 0.7MB/s中性 TG@jcnode",
-      "type": "vless",
-      "uuid": "a545e637-ca12-477f-9f91-f80e15cb51b0",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "usa1s.xn--ghqu5fm27b67w.com",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/pq/us1",
-        "headers": {
-          "Host": [
-            "usa1s.xn--ghqu5fm27b67w.com"
           ]
         }
       }
@@ -6883,6 +5841,31 @@
       }
     },
     {
+      "server": "212.135.215.72",
+      "server_port": 443,
+      "tag": "🇫🇷法国FR065 0.65MB/s中性 TG@jcnode",
+      "type": "vless",
+      "uuid": "b585dc5e-55bf-4a8b-913a-27c9ccac05c3",
+      "packet_encoding": "xudp",
+      "tls": {
+        "enabled": true,
+        "server_name": "bab-6.site",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/vws/",
+        "headers": {
+          "Host": [
+            "bab-6.site"
+          ]
+        }
+      }
+    },
+    {
       "server": "zebpay.site",
       "server_port": 443,
       "tag": "🇺🇸美国US180 0.64MB/s中性 TG@jcnode",
@@ -6914,31 +5897,6 @@
         "enabled": true,
         "server_name": "www.bing.com",
         "insecure": true
-      }
-    },
-    {
-      "server": "37.187.98.185",
-      "server_port": 443,
-      "tag": "🇺🇸美国US201 0.63MB/s中性 TG@jcnode",
-      "type": "vless",
-      "uuid": "a545e637-ca12-477f-9f91-f80e15cb51b0",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "usa1s.xn--ghqu5fm27b67w.com",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/pq/us1",
-        "headers": {
-          "Host": [
-            "usa1s.xn--ghqu5fm27b67w.com"
-          ]
-        }
       }
     },
     {
@@ -7051,34 +6009,6 @@
       }
     },
     {
-      "server": "45.144.154.149",
-      "server_port": 443,
-      "tag": "🇮🇱以色列IL022 0.59MB/s中性 TG@jcnode",
-      "type": "vless",
-      "uuid": "83b4af70-376e-427c-8c11-a025bec6b085",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "fserver-worker-001.mapleridgeway.top",
-        "alpn": [
-          "http/1.1"
-        ],
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/cdn/99294c014f2c7791",
-        "headers": {
-          "Host": [
-            "fserver-worker-001.mapleridgeway.top"
-          ]
-        }
-      }
-    },
-    {
       "server": "57.129.130.57",
       "server_port": 52014,
       "tag": "🇬🇧英国GB006 0.58MB/s TG@jcnode",
@@ -7129,34 +6059,6 @@
         "headers": {
           "Host": [
             "bab-6.site"
-          ]
-        }
-      }
-    },
-    {
-      "server": "5.253.189.238",
-      "server_port": 443,
-      "tag": "🇮🇱以色列IL030 0.57MB/s中性 TG@jcnode",
-      "type": "vless",
-      "uuid": "83b4af70-376e-427c-8c11-a025bec6b085",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "fserver-worker-001.mapleridgeway.top",
-        "alpn": [
-          "http/1.1"
-        ],
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/cdn/99294c014f2c7791",
-        "headers": {
-          "Host": [
-            "fserver-worker-001.mapleridgeway.top"
           ]
         }
       }
@@ -7515,106 +6417,6 @@
       }
     },
     {
-      "server": "109.107.140.90",
-      "server_port": 443,
-      "tag": "🇯🇵日本JP012 测速未知中性 TG@jcnode",
-      "type": "vless",
-      "uuid": "7b102311-43fd-4e8f-877e-8090623c101d",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "vp58.cc.cd",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/Telegram/flag-cn/ @VPNine1",
-        "headers": {
-          "Host": [
-            "vp58.cc.cd"
-          ]
-        }
-      }
-    },
-    {
-      "server": "160.16.120.16",
-      "server_port": 443,
-      "tag": "🇯🇵日本JP013 测速未知 TG@jcnode",
-      "type": "vless",
-      "uuid": "7b102311-43fd-4e8f-877e-8090623c101d",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "vp58.cc.cd",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/TelegramU0001F1E8U0001F1F3 @VPNine1fp=chrome",
-        "headers": {
-          "Host": [
-            "vp58.cc.cd"
-          ]
-        }
-      }
-    },
-    {
-      "server": "103.76.85.210",
-      "server_port": 443,
-      "tag": "🇯🇵日本JP021 测速未知中性 TG@jcnode",
-      "type": "vless",
-      "uuid": "7b102311-43fd-4e8f-877e-8090623c101d",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "vp58.cc.cd",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/TelegramU0001F1E8U0001F1F3 @VPNine1fp=chrome",
-        "headers": {
-          "Host": [
-            "vp58.cc.cd"
-          ]
-        }
-      }
-    },
-    {
-      "server": "155.117.155.115",
-      "server_port": 443,
-      "tag": "🇯🇵日本JP033 测速未知 TG@jcnode",
-      "type": "vless",
-      "uuid": "7b102311-43fd-4e8f-877e-8090623c101d",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "vp58.cc.cd",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/TelegramU0001F1E8U0001F1F3 @VPNine1fp=chrome",
-        "headers": {
-          "Host": [
-            "vp58.cc.cd"
-          ]
-        }
-      }
-    },
-    {
       "server": "134.195.101.119",
       "server_port": 2377,
       "tag": "🇺🇸美国US179 测速未知 TG@jcnode",
@@ -7739,31 +6541,6 @@
       }
     },
     {
-      "server": "161.97.183.222",
-      "server_port": 443,
-      "tag": "🇩🇪德国DE024 测速未知 TG@jcnode",
-      "type": "vless",
-      "uuid": "7b102311-43fd-4e8f-877e-8090623c101d",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "vp58.cc.cd",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/Telegram/flag-cn/ @VPNine1",
-        "headers": {
-          "Host": [
-            "vp58.cc.cd"
-          ]
-        }
-      }
-    },
-    {
       "server": "193.233.75.115",
       "server_port": 443,
       "tag": "🇩🇪德国DE025 测速未知 TG@jcnode",
@@ -7789,31 +6566,6 @@
           ],
           "User-Agent": [
             "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36"
-          ]
-        }
-      }
-    },
-    {
-      "server": "104.17.172.123",
-      "server_port": 443,
-      "tag": "🇺🇸美国US193 测速未知中性 TG@jcnode",
-      "type": "vless",
-      "uuid": "7b102311-43fd-4e8f-877e-8090623c101d",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "vp58.cc.cd",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/TelegramU0001F1E8U0001F1F3 @VPNine1fp=chrome",
-        "headers": {
-          "Host": [
-            "vp58.cc.cd"
           ]
         }
       }
@@ -7924,56 +6676,6 @@
         "headers": {
           "Host": [
             "vp10.pages.dev"
-          ]
-        }
-      }
-    },
-    {
-      "server": "103.53.80.239",
-      "server_port": 443,
-      "tag": "🇯🇵日本JP041 测速未知 TG@jcnode",
-      "type": "vless",
-      "uuid": "7b102311-43fd-4e8f-877e-8090623c101d",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "vp58.cc.cd",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/TelegramU0001F1E8U0001F1F3 @VPNine1fp=chrome",
-        "headers": {
-          "Host": [
-            "vp58.cc.cd"
-          ]
-        }
-      }
-    },
-    {
-      "server": "104.17.224.29",
-      "server_port": 443,
-      "tag": "🇺🇸美国US237 测速未知 TG@jcnode",
-      "type": "vless",
-      "uuid": "7b102311-43fd-4e8f-877e-8090623c101d",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "vp58.cc.cd",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/TelegramU0001F1E8U0001F1F3 @VPNine1fp=chrome",
-        "headers": {
-          "Host": [
-            "vp58.cc.cd"
           ]
         }
       }
@@ -8187,31 +6889,6 @@
       }
     },
     {
-      "server": "104.17.172.123",
-      "server_port": 443,
-      "tag": "🇺🇸美国US285 测速未知中性 TG@jcnode",
-      "type": "vless",
-      "uuid": "7b102311-43fd-4e8f-877e-8090623c101d",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "vp58.cc.cd",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/Telegram/flag-cn/ @VPNine1",
-        "headers": {
-          "Host": [
-            "vp58.cc.cd"
-          ]
-        }
-      }
-    },
-    {
       "server": "themeforest.net",
       "server_port": 8880,
       "tag": "🇸🇬新加坡SG023 测速未知 TG@jcnode",
@@ -8357,31 +7034,6 @@
       }
     },
     {
-      "server": "104.17.115.212",
-      "server_port": 443,
-      "tag": "🇺🇸美国US306 测速未知中性 TG@jcnode",
-      "type": "vless",
-      "uuid": "7b102311-43fd-4e8f-877e-8090623c101d",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "vp58.cc.cd",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/TelegramU0001F1E8U0001F1F3 @VPNine1fp=chrome",
-        "headers": {
-          "Host": [
-            "vp58.cc.cd"
-          ]
-        }
-      }
-    },
-    {
       "server": "172.64.146.116",
       "server_port": 443,
       "tag": "🇺🇸美国US307 测速未知 TG@jcnode",
@@ -8418,31 +7070,6 @@
         "enabled": true,
         "server_name": "51.158.202.56",
         "insecure": true
-      }
-    },
-    {
-      "server": "18.184.55.249",
-      "server_port": 443,
-      "tag": "🇩🇪德国DE031 测速未知中性 TG@jcnode",
-      "type": "vless",
-      "uuid": "7b102311-43fd-4e8f-877e-8090623c101d",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "vp58.cc.cd",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/Telegram/flag-cn/ @VPNine1",
-        "headers": {
-          "Host": [
-            "vp58.cc.cd"
-          ]
-        }
       }
     },
     {
@@ -8908,31 +7535,6 @@
       }
     },
     {
-      "server": "141.227.149.145",
-      "server_port": 443,
-      "tag": "🇨🇭瑞士CH004 测速未知中性 TG@jcnode",
-      "type": "vless",
-      "uuid": "7b102311-43fd-4e8f-877e-8090623c101d",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "vp58.cc.cd",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/Telegram/flag-cn/ @VPNine1",
-        "headers": {
-          "Host": [
-            "vp58.cc.cd"
-          ]
-        }
-      }
-    },
-    {
       "server": "104.16.98.215",
       "server_port": 8880,
       "tag": "🇺🇸美国US418 测速未知 TG@jcnode",
@@ -9137,31 +7739,6 @@
       }
     },
     {
-      "server": "172.64.144.116",
-      "server_port": 443,
-      "tag": "🇺🇸美国US450 测速未知中性 TG@jcnode",
-      "type": "vless",
-      "uuid": "7b102311-43fd-4e8f-877e-8090623c101d",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "vp58.cc.cd",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/TelegramU0001F1E8U0001F1F3 @VPNine1fp=chrome",
-        "headers": {
-          "Host": [
-            "vp58.cc.cd"
-          ]
-        }
-      }
-    },
-    {
       "server": "104.17.191.23",
       "server_port": 443,
       "tag": "🇺🇸美国US452 测速未知 TG@jcnode",
@@ -9202,31 +7779,6 @@
           ],
           "User-Agent": [
             "Mozilla/5.0 (Linux; Android 6.0; MYA-L22 Build/HUAWEIMYA-L22) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.84 Mobile Safari/537.36"
-          ]
-        }
-      }
-    },
-    {
-      "server": "104.18.33.91",
-      "server_port": 443,
-      "tag": "🇺🇸美国US453 测速未知中性 TG@jcnode",
-      "type": "vless",
-      "uuid": "7b102311-43fd-4e8f-877e-8090623c101d",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "vp58.cc.cd",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/TelegramU0001F1E8U0001F1F3 @VPNine1fp=chrome",
-        "headers": {
-          "Host": [
-            "vp58.cc.cd"
           ]
         }
       }
@@ -9302,75 +7854,6 @@
         "headers": {
           "Host": [
             "edge.yzkvm.top"
-          ]
-        }
-      }
-    },
-    {
-      "server": "80.211.205.61",
-      "server_port": 443,
-      "tag": "🇨🇿CZ004 测速未知中性 TG@jcnode",
-      "type": "vless",
-      "uuid": "7b102311-43fd-4e8f-877e-8090623c101d",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "vp58.cc.cd",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/TelegramU0001F1E8U0001F1F3 @VPNine1fp=chrome",
-        "headers": {
-          "Host": [
-            "vp58.cc.cd"
-          ]
-        }
-      }
-    },
-    {
-      "server": "104.19.145.46",
-      "server_port": 443,
-      "tag": "🇺🇸美国US472 测速未知 TG@jcnode",
-      "type": "vless",
-      "uuid": "7b102311-43fd-4e8f-877e-8090623c101d",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "vp58.cc.cd",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/TelegramU0001F1E8U0001F1F3 @VPNine1fp=chrome",
-        "headers": {
-          "Host": [
-            "vp58.cc.cd"
-          ]
-        }
-      }
-    },
-    {
-      "server": "172.67.184.37",
-      "server_port": 8880,
-      "tag": "🇺🇸美国US474 测速未知 TG@jcnode",
-      "type": "vless",
-      "uuid": "4f54572a-b852-4da3-8823-0ddccc60b5d8",
-      "packet_encoding": "xudp",
-      "transport": {
-        "type": "ws",
-        "headers": {
-          "Host": [
-            "icy-snowflake-1f56.147-1ea.workers.dev"
-          ],
-          "User-Agent": [
-            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36"
           ]
         }
       }
@@ -9523,31 +8006,6 @@
       }
     },
     {
-      "server": "103.195.191.118",
-      "server_port": 443,
-      "tag": "🇸🇬新加坡SG025 测速未知 TG@jcnode",
-      "type": "vless",
-      "uuid": "7b102311-43fd-4e8f-877e-8090623c101d",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "vp58.cc.cd",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/Telegram/flag-cn/ @VPNine1",
-        "headers": {
-          "Host": [
-            "vp58.cc.cd"
-          ]
-        }
-      }
-    },
-    {
       "server": "172.67.174.37",
       "server_port": 8880,
       "tag": "🇯🇵日本JP052 测速未知 TG@jcnode",
@@ -9562,31 +8020,6 @@
           ],
           "User-Agent": [
             "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.111 Safari/537.36"
-          ]
-        }
-      }
-    },
-    {
-      "server": "195.85.23.236",
-      "server_port": 443,
-      "tag": "🇺🇸美国US505 测速未知中性 TG@jcnode",
-      "type": "vless",
-      "uuid": "7b102311-43fd-4e8f-877e-8090623c101d",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "vp58.cc.cd",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/TelegramU0001F1E8U0001F1F3 @VPNine1fp=chrome",
-        "headers": {
-          "Host": [
-            "vp58.cc.cd"
           ]
         }
       }
@@ -9618,31 +8051,6 @@
           ],
           "User-Agent": [
             "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.116 Safari/537.36"
-          ]
-        }
-      }
-    },
-    {
-      "server": "62.182.195.6",
-      "server_port": 443,
-      "tag": "🇸🇪瑞典SE009 测速未知中性 TG@jcnode",
-      "type": "vless",
-      "uuid": "7b102311-43fd-4e8f-877e-8090623c101d",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "vp58.cc.cd",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/Telegram/flag-cn/ @VPNine1",
-        "headers": {
-          "Host": [
-            "vp58.cc.cd"
           ]
         }
       }
@@ -9891,31 +8299,6 @@
       }
     },
     {
-      "server": "104.17.172.162",
-      "server_port": 443,
-      "tag": "🇺🇸美国US542 测速未知中性 TG@jcnode",
-      "type": "vless",
-      "uuid": "7b102311-43fd-4e8f-877e-8090623c101d",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "vp58.cc.cd",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/TelegramU0001F1E8U0001F1F3 @VPNine1fp=chrome",
-        "headers": {
-          "Host": [
-            "vp58.cc.cd"
-          ]
-        }
-      }
-    },
-    {
       "server": "104.19.145.253",
       "server_port": 443,
       "tag": "🇺🇸美国US543 测速未知中性 TG@jcnode",
@@ -10021,56 +8404,6 @@
       }
     },
     {
-      "server": "195.123.244.83",
-      "server_port": 443,
-      "tag": "🇨🇿CZ005 测速未知中性 TG@jcnode",
-      "type": "vless",
-      "uuid": "7b102311-43fd-4e8f-877e-8090623c101d",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "vp58.cc.cd",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/Telegram/flag-cn/ @VPNine1",
-        "headers": {
-          "Host": [
-            "vp58.cc.cd"
-          ]
-        }
-      }
-    },
-    {
-      "server": "45.142.120.54",
-      "server_port": 443,
-      "tag": "🇺🇸美国US556 测速未知 TG@jcnode",
-      "type": "vless",
-      "uuid": "7b102311-43fd-4e8f-877e-8090623c101d",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "vp58.cc.cd",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/Telegram/flag-cn/ @VPNine1",
-        "headers": {
-          "Host": [
-            "vp58.cc.cd"
-          ]
-        }
-      }
-    },
-    {
       "server": "104.17.220.154",
       "server_port": 443,
       "tag": "🇺🇸美国US557 测速未知 TG@jcnode",
@@ -10111,31 +8444,6 @@
           ],
           "User-Agent": [
             "Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.80 Safari/537.36"
-          ]
-        }
-      }
-    },
-    {
-      "server": "104.17.184.232",
-      "server_port": 443,
-      "tag": "🇺🇸美国US563 测速未知 TG@jcnode",
-      "type": "vless",
-      "uuid": "7b102311-43fd-4e8f-877e-8090623c101d",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "vp58.cc.cd",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/TelegramU0001F1E8U0001F1F3 @VPNine1fp=chrome",
-        "headers": {
-          "Host": [
-            "vp58.cc.cd"
           ]
         }
       }
@@ -10252,31 +8560,6 @@
       }
     },
     {
-      "server": "51.75.32.106",
-      "server_port": 443,
-      "tag": "🇵🇱波兰PL007 测速未知中性 TG@jcnode",
-      "type": "vless",
-      "uuid": "7b102311-43fd-4e8f-877e-8090623c101d",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "vp58.cc.cd",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/Telegram/flag-cn/ @VPNine1",
-        "headers": {
-          "Host": [
-            "vp58.cc.cd"
-          ]
-        }
-      }
-    },
-    {
       "server": "158.173.154.1",
       "server_port": 9002,
       "tag": "🇩🇪德国DE035 测速未知 TG@jcnode",
@@ -10338,31 +8621,6 @@
       }
     },
     {
-      "server": "185.126.64.240",
-      "server_port": 443,
-      "tag": "🇵🇱波兰PL008 测速未知 TG@jcnode",
-      "type": "vless",
-      "uuid": "7b102311-43fd-4e8f-877e-8090623c101d",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "vp58.cc.cd",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/Telegram/flag-cn/ @VPNine1",
-        "headers": {
-          "Host": [
-            "vp58.cc.cd"
-          ]
-        }
-      }
-    },
-    {
       "server": "172.67.174.37",
       "server_port": 8880,
       "tag": "🇯🇵日本JP053 测速未知 TG@jcnode",
@@ -10386,56 +8644,6 @@
       "server": "104.19.145.253",
       "server_port": 443,
       "tag": "🇺🇸美国US596 测速未知 TG@jcnode",
-      "type": "vless",
-      "uuid": "7b102311-43fd-4e8f-877e-8090623c101d",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "vp58.cc.cd",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/Telegram/flag-cn/ @VPNine1",
-        "headers": {
-          "Host": [
-            "vp58.cc.cd"
-          ]
-        }
-      }
-    },
-    {
-      "server": "179.237.105.131",
-      "server_port": 443,
-      "tag": "🇨🇭瑞士CH006 测速未知 TG@jcnode",
-      "type": "vless",
-      "uuid": "7b102311-43fd-4e8f-877e-8090623c101d",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "vp58.cc.cd",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/Telegram/flag-cn/ @VPNine1",
-        "headers": {
-          "Host": [
-            "vp58.cc.cd"
-          ]
-        }
-      }
-    },
-    {
-      "server": "104.19.148.219",
-      "server_port": 443,
-      "tag": "🇺🇸美国US597 测速未知中性 TG@jcnode",
       "type": "vless",
       "uuid": "7b102311-43fd-4e8f-877e-8090623c101d",
       "packet_encoding": "xudp",
@@ -10526,81 +8734,6 @@
       }
     },
     {
-      "server": "104.17.149.140",
-      "server_port": 443,
-      "tag": "🇺🇸美国US602 测速未知中性 TG@jcnode",
-      "type": "vless",
-      "uuid": "7b102311-43fd-4e8f-877e-8090623c101d",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "vp58.cc.cd",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/TelegramU0001F1E8U0001F1F3 @VPNine1fp=chrome",
-        "headers": {
-          "Host": [
-            "vp58.cc.cd"
-          ]
-        }
-      }
-    },
-    {
-      "server": "137.220.225.111",
-      "server_port": 443,
-      "tag": "🇯🇵日本JP055 测速未知 TG@jcnode",
-      "type": "vless",
-      "uuid": "7b102311-43fd-4e8f-877e-8090623c101d",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "vp58.cc.cd",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/TelegramU0001F1E8U0001F1F3 @VPNine1fp=chrome",
-        "headers": {
-          "Host": [
-            "vp58.cc.cd"
-          ]
-        }
-      }
-    },
-    {
-      "server": "80.211.205.61",
-      "server_port": 443,
-      "tag": "🇨🇿CZ006 测速未知中性 TG@jcnode",
-      "type": "vless",
-      "uuid": "7b102311-43fd-4e8f-877e-8090623c101d",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "vp58.cc.cd",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/Telegram/flag-cn/ @VPNine1",
-        "headers": {
-          "Host": [
-            "vp58.cc.cd"
-          ]
-        }
-      }
-    },
-    {
       "server": "193.176.84.31",
       "server_port": 9002,
       "tag": "🇷🇴罗马尼亚RO111 测速未知危险 TG@jcnode",
@@ -10609,81 +8742,6 @@
         "enabled": true,
         "server_name": "193.176.84.31",
         "insecure": true
-      }
-    },
-    {
-      "server": "46.30.47.125",
-      "server_port": 443,
-      "tag": "🇳🇱荷兰NL068 测速未知 TG@jcnode",
-      "type": "vless",
-      "uuid": "7b102311-43fd-4e8f-877e-8090623c101d",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "vp58.cc.cd",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/Telegram/flag-cn/ @VPNine1",
-        "headers": {
-          "Host": [
-            "vp58.cc.cd"
-          ]
-        }
-      }
-    },
-    {
-      "server": "188.253.26.128",
-      "server_port": 443,
-      "tag": "🇳🇱荷兰NL069 测速未知中性 TG@jcnode",
-      "type": "vless",
-      "uuid": "7b102311-43fd-4e8f-877e-8090623c101d",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "vp58.cc.cd",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/Telegram/flag-cn/ @VPNine1",
-        "headers": {
-          "Host": [
-            "vp58.cc.cd"
-          ]
-        }
-      }
-    },
-    {
-      "server": "103.71.23.244",
-      "server_port": 443,
-      "tag": "🇫🇮芬兰FI002 测速未知 TG@jcnode",
-      "type": "vless",
-      "uuid": "7b102311-43fd-4e8f-877e-8090623c101d",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "vp58.cc.cd",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/TelegramU0001F1E8U0001F1F3 @VPNine1fp=chrome",
-        "headers": {
-          "Host": [
-            "vp58.cc.cd"
-          ]
-        }
       }
     },
     {
@@ -10731,31 +8789,6 @@
         "enabled": true,
         "server_name": "51.158.194.16",
         "insecure": true
-      }
-    },
-    {
-      "server": "37.187.98.185",
-      "server_port": 443,
-      "tag": "🇫🇷法国FR095 测速未知 TG@jcnode",
-      "type": "vless",
-      "uuid": "7b102311-43fd-4e8f-877e-8090623c101d",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "vp58.cc.cd",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/TelegramU0001F1E8U0001F1F3 @VPNine1fp=chrome",
-        "headers": {
-          "Host": [
-            "vp58.cc.cd"
-          ]
-        }
       }
     },
     {
@@ -10820,109 +8853,6 @@
       }
     },
     {
-      "server": "104.17.172.162",
-      "server_port": 443,
-      "tag": "🇺🇸美国US621 测速未知 TG@jcnode",
-      "type": "vless",
-      "uuid": "7b102311-43fd-4e8f-877e-8090623c101d",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "vp58.cc.cd",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/Telegram/flag-cn/ @VPNine1",
-        "headers": {
-          "Host": [
-            "vp58.cc.cd"
-          ]
-        }
-      }
-    },
-    {
-      "server": "104.17.58.90",
-      "server_port": 443,
-      "tag": "🇺🇸美国US622 测速未知 TG@jcnode",
-      "type": "vless",
-      "uuid": "7b102311-43fd-4e8f-877e-8090623c101d",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "vp58.cc.cd",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/TelegramU0001F1E8U0001F1F3 @VPNine1fp=chrome",
-        "headers": {
-          "Host": [
-            "vp58.cc.cd"
-          ]
-        }
-      }
-    },
-    {
-      "server": "57.128.177.198",
-      "server_port": 443,
-      "tag": "🇬🇧英国GB015 测速未知 TG@jcnode",
-      "type": "vless",
-      "uuid": "7b102311-43fd-4e8f-877e-8090623c101d",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "vp58.cc.cd",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/Telegram/flag-cn/ @VPNine1fp=chrome",
-        "headers": {
-          "Host": [
-            "vp58.cc.cd"
-          ],
-          "User-Agent": [
-            "Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.106 Safari/537.36"
-          ]
-        }
-      }
-    },
-    {
-      "server": "152.67.64.55",
-      "server_port": 443,
-      "tag": "🇨🇭瑞士CH008 测速未知 TG@jcnode",
-      "type": "vless",
-      "uuid": "7b102311-43fd-4e8f-877e-8090623c101d",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "vp58.cc.cd",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/TelegramU0001F1E8U0001F1F3 @VPNine1fp=chrome",
-        "headers": {
-          "Host": [
-            "vp58.cc.cd"
-          ]
-        }
-      }
-    },
-    {
       "server": "104.16.158.54",
       "server_port": 443,
       "tag": "🇺🇸美国US630 测速未知 TG@jcnode",
@@ -10960,131 +8890,6 @@
       }
     },
     {
-      "server": "104.17.144.33",
-      "server_port": 443,
-      "tag": "🇺🇸美国US638 测速未知中性 TG@jcnode",
-      "type": "vless",
-      "uuid": "7b102311-43fd-4e8f-877e-8090623c101d",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "vp58.cc.cd",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/TelegramU0001F1E8U0001F1F3 @VPNine1fp=chrome",
-        "headers": {
-          "Host": [
-            "vp58.cc.cd"
-          ]
-        }
-      }
-    },
-    {
-      "server": "185.250.37.47",
-      "server_port": 443,
-      "tag": "🇩🇪德国DE037 测速未知 TG@jcnode",
-      "type": "vless",
-      "uuid": "7b102311-43fd-4e8f-877e-8090623c101d",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "vp58.cc.cd",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/Telegram/flag-cn/ @VPNine1",
-        "headers": {
-          "Host": [
-            "vp58.cc.cd"
-          ]
-        }
-      }
-    },
-    {
-      "server": "84.19.3.83",
-      "server_port": 443,
-      "tag": "🇫🇮芬兰FI004 测速未知 TG@jcnode",
-      "type": "vless",
-      "uuid": "7b102311-43fd-4e8f-877e-8090623c101d",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "vp58.cc.cd",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/Telegram/flag-cn/ @VPNine1",
-        "headers": {
-          "Host": [
-            "vp58.cc.cd"
-          ]
-        }
-      }
-    },
-    {
-      "server": "185.253.118.139",
-      "server_port": 443,
-      "tag": "🇫🇷法国FR097 测速未知中性 TG@jcnode",
-      "type": "vless",
-      "uuid": "7b102311-43fd-4e8f-877e-8090623c101d",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "vp58.cc.cd",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/TelegramU0001F1E8U0001F1F3 @VPNine1fp=chrome",
-        "headers": {
-          "Host": [
-            "vp58.cc.cd"
-          ]
-        }
-      }
-    },
-    {
-      "server": "144.24.207.108",
-      "server_port": 443,
-      "tag": "🇫🇷法国FR098 测速未知 TG@jcnode",
-      "type": "vless",
-      "uuid": "7b102311-43fd-4e8f-877e-8090623c101d",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "vp58.cc.cd",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/TelegramU0001F1E8U0001F1F3 @VPNine1fp=chrome",
-        "headers": {
-          "Host": [
-            "vp58.cc.cd"
-          ]
-        }
-      }
-    },
-    {
       "server": "51.158.243.91",
       "server_port": 443,
       "tag": "🇳🇱荷兰NL077 测速未知 TG@jcnode",
@@ -11107,181 +8912,6 @@
       }
     },
     {
-      "server": "109.107.155.76",
-      "server_port": 443,
-      "tag": "🇸🇪瑞典SE010 测速未知中性 TG@jcnode",
-      "type": "vless",
-      "uuid": "7b102311-43fd-4e8f-877e-8090623c101d",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "vp58.cc.cd",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/Telegram/flag-cn/ @VPNine1",
-        "headers": {
-          "Host": [
-            "vp58.cc.cd"
-          ]
-        }
-      }
-    },
-    {
-      "server": "108.165.173.197",
-      "server_port": 443,
-      "tag": "🇩🇪德国DE039 测速未知中性 TG@jcnode",
-      "type": "vless",
-      "uuid": "7b102311-43fd-4e8f-877e-8090623c101d",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "vp58.cc.cd",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/TelegramU0001F1E8U0001F1F3 @VPNine1fp=chrome",
-        "headers": {
-          "Host": [
-            "vp58.cc.cd"
-          ]
-        }
-      }
-    },
-    {
-      "server": "13.37.29.92",
-      "server_port": 443,
-      "tag": "🇫🇷法国FR099 测速未知中性 TG@jcnode",
-      "type": "vless",
-      "uuid": "7b102311-43fd-4e8f-877e-8090623c101d",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "vp58.cc.cd",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/Telegram/flag-cn/ @VPNine1",
-        "headers": {
-          "Host": [
-            "vp58.cc.cd"
-          ]
-        }
-      }
-    },
-    {
-      "server": "141.147.152.9",
-      "server_port": 443,
-      "tag": "🇯🇵日本JP056 测速未知 TG@jcnode",
-      "type": "vless",
-      "uuid": "7b102311-43fd-4e8f-877e-8090623c101d",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "vp58.cc.cd",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/TelegramU0001F1E8U0001F1F3 @VPNine1fp=chrome",
-        "headers": {
-          "Host": [
-            "vp58.cc.cd"
-          ]
-        }
-      }
-    },
-    {
-      "server": "104.18.82.240",
-      "server_port": 443,
-      "tag": "🇺🇸美国US644 测速未知 TG@jcnode",
-      "type": "vless",
-      "uuid": "7b102311-43fd-4e8f-877e-8090623c101d",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "vp58.cc.cd",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/TelegramU0001F1E8U0001F1F3 @VPNine1fp=chrome",
-        "headers": {
-          "Host": [
-            "vp58.cc.cd"
-          ]
-        }
-      }
-    },
-    {
-      "server": "64.176.53.200",
-      "server_port": 443,
-      "tag": "🇯🇵日本JP057 测速未知中性 TG@jcnode",
-      "type": "vless",
-      "uuid": "7b102311-43fd-4e8f-877e-8090623c101d",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "vp58.cc.cd",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/TelegramU0001F1E8U0001F1F3 @VPNine1fp=chrome",
-        "headers": {
-          "Host": [
-            "vp58.cc.cd"
-          ]
-        }
-      }
-    },
-    {
-      "server": "46.8.69.10",
-      "server_port": 443,
-      "tag": "🇳🇱荷兰NL078 测速未知中性 TG@jcnode",
-      "type": "vless",
-      "uuid": "7b102311-43fd-4e8f-877e-8090623c101d",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "vp58.cc.cd",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/Telegram/flag-cn/ @VPNine1",
-        "headers": {
-          "Host": [
-            "vp58.cc.cd"
-          ]
-        }
-      }
-    },
-    {
       "server": "141.94.16.4",
       "server_port": 443,
       "tag": "🇫🇷法国FR100 测速未知中性 TG@jcnode",
@@ -11290,56 +8920,6 @@
         "enabled": true,
         "server_name": "141.94.16.4",
         "insecure": true
-      }
-    },
-    {
-      "server": "172.64.229.201",
-      "server_port": 443,
-      "tag": "🇺🇸美国US648 测速未知 TG@jcnode",
-      "type": "vless",
-      "uuid": "7b102311-43fd-4e8f-877e-8090623c101d",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "vp58.cc.cd",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/TelegramU0001F1E8U0001F1F3 @VPNine1fp=chrome",
-        "headers": {
-          "Host": [
-            "vp58.cc.cd"
-          ]
-        }
-      }
-    },
-    {
-      "server": "153.56.171.216",
-      "server_port": 443,
-      "tag": "🇧🇪比利时BE002 测速未知 TG@jcnode",
-      "type": "vless",
-      "uuid": "7b102311-43fd-4e8f-877e-8090623c101d",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "vp58.cc.cd",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/TelegramU0001F1E8U0001F1F3 @VPNine1fp=chrome",
-        "headers": {
-          "Host": [
-            "vp58.cc.cd"
-          ]
-        }
       }
     },
     {
@@ -11404,31 +8984,6 @@
       }
     },
     {
-      "server": "77.37.96.186",
-      "server_port": 443,
-      "tag": "🇩🇰DK002 测速未知 TG@jcnode",
-      "type": "vless",
-      "uuid": "7b102311-43fd-4e8f-877e-8090623c101d",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "vp58.cc.cd",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/Telegram/flag-cn/ @VPNine1",
-        "headers": {
-          "Host": [
-            "vp58.cc.cd"
-          ]
-        }
-      }
-    },
-    {
       "server": "berniesbodybla.fun",
       "server_port": 443,
       "tag": "🇺🇸美国US656 测速未知 TG@jcnode",
@@ -11436,56 +8991,6 @@
       "tls": {
         "enabled": true,
         "server_name": "berniesbodybla.fun"
-      }
-    },
-    {
-      "server": "62.182.198.178",
-      "server_port": 443,
-      "tag": "🇸🇪瑞典SE011 测速未知中性 TG@jcnode",
-      "type": "vless",
-      "uuid": "7b102311-43fd-4e8f-877e-8090623c101d",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "vp58.cc.cd",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/TelegramU0001F1E8U0001F1F3 @VPNine1fp=chrome",
-        "headers": {
-          "Host": [
-            "vp58.cc.cd"
-          ]
-        }
-      }
-    },
-    {
-      "server": "149.50.105.60",
-      "server_port": 443,
-      "tag": "🇵🇱波兰PL012 测速未知 TG@jcnode",
-      "type": "vless",
-      "uuid": "7b102311-43fd-4e8f-877e-8090623c101d",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "vp58.cc.cd",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/Telegram/flag-cn/ @VPNine1",
-        "headers": {
-          "Host": [
-            "vp58.cc.cd"
-          ]
-        }
       }
     },
     {
@@ -11497,81 +9002,6 @@
         "enabled": true,
         "server_name": "151.115.54.133",
         "insecure": true
-      }
-    },
-    {
-      "server": "104.17.157.135",
-      "server_port": 443,
-      "tag": "🇺🇸美国US660 测速未知中性 TG@jcnode",
-      "type": "vless",
-      "uuid": "7b102311-43fd-4e8f-877e-8090623c101d",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "vp58.cc.cd",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/TelegramU0001F1E8U0001F1F3 @VPNine1fp=chrome",
-        "headers": {
-          "Host": [
-            "vp58.cc.cd"
-          ]
-        }
-      }
-    },
-    {
-      "server": "132.243.24.196",
-      "server_port": 443,
-      "tag": "🇸🇪瑞典SE012 测速未知中性 TG@jcnode",
-      "type": "vless",
-      "uuid": "7b102311-43fd-4e8f-877e-8090623c101d",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "vp58.cc.cd",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/TelegramU0001F1E8U0001F1F3 @VPNine1fp=chrome",
-        "headers": {
-          "Host": [
-            "vp58.cc.cd"
-          ]
-        }
-      }
-    },
-    {
-      "server": "139.84.174.65",
-      "server_port": 443,
-      "tag": "🇮🇳印度IN003 测速未知 TG@jcnode",
-      "type": "vless",
-      "uuid": "7b102311-43fd-4e8f-877e-8090623c101d",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "vp58.cc.cd",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/Telegram/flag-cn/ @VPNine1",
-        "headers": {
-          "Host": [
-            "vp58.cc.cd"
-          ]
-        }
       }
     },
     {
@@ -11597,59 +9027,6 @@
       }
     },
     {
-      "server": "94.159.97.247",
-      "server_port": 443,
-      "tag": "🇬🇧英国GB018 测速未知 TG@jcnode",
-      "type": "vless",
-      "uuid": "7b102311-43fd-4e8f-877e-8090623c101d",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "vp58.cc.cd",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/Telegram/flag-cn/ @VPNine1",
-        "headers": {
-          "Host": [
-            "vp58.cc.cd"
-          ],
-          "User-Agent": [
-            "Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.90 Safari/537.36"
-          ]
-        }
-      }
-    },
-    {
-      "server": "45.8.132.247",
-      "server_port": 443,
-      "tag": "🇩🇪德国DE041 测速未知中性 TG@jcnode",
-      "type": "vless",
-      "uuid": "7b102311-43fd-4e8f-877e-8090623c101d",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "vp58.cc.cd",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/TelegramU0001F1E8U0001F1F3 @VPNine1fp=chrome",
-        "headers": {
-          "Host": [
-            "vp58.cc.cd"
-          ]
-        }
-      }
-    },
-    {
       "server": "192.236.151.43",
       "server_port": 443,
       "tag": "🇺🇸美国US666 测速未知中性 TG@jcnode",
@@ -11662,81 +9039,6 @@
         "utls": {
           "enabled": true,
           "fingerprint": "chrome"
-        }
-      }
-    },
-    {
-      "server": "148.253.212.218",
-      "server_port": 443,
-      "tag": "🇵🇱波兰PL016 测速未知 TG@jcnode",
-      "type": "vless",
-      "uuid": "7b102311-43fd-4e8f-877e-8090623c101d",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "vp58.cc.cd",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/Telegram/flag-cn/ @VPNine1",
-        "headers": {
-          "Host": [
-            "vp58.cc.cd"
-          ]
-        }
-      }
-    },
-    {
-      "server": "45.198.0.236",
-      "server_port": 443,
-      "tag": "🇵🇱波兰PL017 测速未知中性 TG@jcnode",
-      "type": "vless",
-      "uuid": "7b102311-43fd-4e8f-877e-8090623c101d",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "vp58.cc.cd",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/Telegram/flag-cn/ @VPNine1",
-        "headers": {
-          "Host": [
-            "vp58.cc.cd"
-          ]
-        }
-      }
-    },
-    {
-      "server": "217.19.4.61",
-      "server_port": 443,
-      "tag": "🇱🇻LV005 测速未知中性 TG@jcnode",
-      "type": "vless",
-      "uuid": "7b102311-43fd-4e8f-877e-8090623c101d",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "vp58.cc.cd",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/TelegramU0001F1E8U0001F1F3 @VPNine1fp=chrome",
-        "headers": {
-          "Host": [
-            "vp58.cc.cd"
-          ]
         }
       }
     },
@@ -11777,112 +9079,12 @@
       }
     },
     {
-      "server": "95.111.226.161",
-      "server_port": 443,
-      "tag": "🇩🇪德国DE043 测速未知 TG@jcnode",
-      "type": "vless",
-      "uuid": "7b102311-43fd-4e8f-877e-8090623c101d",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "vp58.cc.cd",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/TelegramU0001F1E8U0001F1F3 @VPNine1fp=chrome",
-        "headers": {
-          "Host": [
-            "vp58.cc.cd"
-          ]
-        }
-      }
-    },
-    {
-      "server": "109.69.61.17",
-      "server_port": 443,
-      "tag": "🇸🇪瑞典SE015 测速未知中性 TG@jcnode",
-      "type": "vless",
-      "uuid": "7b102311-43fd-4e8f-877e-8090623c101d",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "vp58.cc.cd",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/TelegramU0001F1E8U0001F1F3 @VPNine1fp=chrome",
-        "headers": {
-          "Host": [
-            "vp58.cc.cd"
-          ]
-        }
-      }
-    },
-    {
-      "server": "104.168.145.98",
-      "server_port": 443,
-      "tag": "🇺🇸美国US678 测速未知 TG@jcnode",
-      "type": "vless",
-      "uuid": "7b102311-43fd-4e8f-877e-8090623c101d",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "vp58.cc.cd",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/TelegramU0001F1E8U0001F1F3 @VPNine1fp=chrome",
-        "headers": {
-          "Host": [
-            "vp58.cc.cd"
-          ]
-        }
-      }
-    },
-    {
       "server": "13.60.213.145",
       "server_port": 443,
       "tag": "🇸🇪瑞典SE017 测速未知 TG@jcnode",
       "type": "shadowsocks",
       "method": "aes-256-cfb",
       "password": "amazonskr05"
-    },
-    {
-      "server": "151.245.112.24",
-      "server_port": 443,
-      "tag": "🇵🇱波兰PL019 测速未知 TG@jcnode",
-      "type": "vless",
-      "uuid": "7b102311-43fd-4e8f-877e-8090623c101d",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "vp58.cc.cd",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/TelegramU0001F1E8U0001F1F3 @VPNine1fp=chrome",
-        "headers": {
-          "Host": [
-            "vp58.cc.cd"
-          ]
-        }
-      }
     },
     {
       "server": "vl.cocopon.top",
@@ -11908,81 +9110,6 @@
       }
     },
     {
-      "server": "31.56.113.223",
-      "server_port": 443,
-      "tag": "🇱🇻LV006 测速未知中性 TG@jcnode",
-      "type": "vless",
-      "uuid": "7b102311-43fd-4e8f-877e-8090623c101d",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "vp58.cc.cd",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/Telegram/flag-cn/ @VPNine1",
-        "headers": {
-          "Host": [
-            "vp58.cc.cd"
-          ]
-        }
-      }
-    },
-    {
-      "server": "185.195.69.72",
-      "server_port": 443,
-      "tag": "🇨🇭瑞士CH009 测速未知中性 TG@jcnode",
-      "type": "vless",
-      "uuid": "7b102311-43fd-4e8f-877e-8090623c101d",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "vp58.cc.cd",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/Telegram/flag-cn/ @VPNine1",
-        "headers": {
-          "Host": [
-            "vp58.cc.cd"
-          ]
-        }
-      }
-    },
-    {
-      "server": "176.97.77.91",
-      "server_port": 443,
-      "tag": "🇸🇪瑞典SE018 测速未知中性 TG@jcnode",
-      "type": "vless",
-      "uuid": "7b102311-43fd-4e8f-877e-8090623c101d",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "vp58.cc.cd",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/Telegram/flag-cn/ @VPNine1",
-        "headers": {
-          "Host": [
-            "vp58.cc.cd"
-          ]
-        }
-      }
-    },
-    {
       "server": "104.24.152.211",
       "server_port": 8880,
       "tag": "🇯🇵日本JP058 测速未知 TG@jcnode",
@@ -11998,81 +9125,6 @@
           ],
           "User-Agent": [
             "Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36"
-          ]
-        }
-      }
-    },
-    {
-      "server": "57.128.183.82",
-      "server_port": 443,
-      "tag": "🇬🇧英国GB020 测速未知 TG@jcnode",
-      "type": "vless",
-      "uuid": "7b102311-43fd-4e8f-877e-8090623c101d",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "vp58.cc.cd",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/Telegram/flag-cn/ @VPNine1",
-        "headers": {
-          "Host": [
-            "vp58.cc.cd"
-          ]
-        }
-      }
-    },
-    {
-      "server": "86.107.197.239",
-      "server_port": 443,
-      "tag": "🇳🇱荷兰NL088 测速未知 TG@jcnode",
-      "type": "vless",
-      "uuid": "7b102311-43fd-4e8f-877e-8090623c101d",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "vp58.cc.cd",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/Telegram/flag-cn/ @VPNine1",
-        "headers": {
-          "Host": [
-            "vp58.cc.cd"
-          ]
-        }
-      }
-    },
-    {
-      "server": "31.57.106.46",
-      "server_port": 443,
-      "tag": "🇫🇮芬兰FI007 测速未知 TG@jcnode",
-      "type": "vless",
-      "uuid": "7b102311-43fd-4e8f-877e-8090623c101d",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "vp58.cc.cd",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/Telegram/flag-cn/ @VPNine1",
-        "headers": {
-          "Host": [
-            "vp58.cc.cd"
           ]
         }
       }
@@ -12100,56 +9152,6 @@
       }
     },
     {
-      "server": "93.152.207.163",
-      "server_port": 443,
-      "tag": "🇸🇪瑞典SE023 测速未知 TG@jcnode",
-      "type": "vless",
-      "uuid": "7b102311-43fd-4e8f-877e-8090623c101d",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "vp58.cc.cd",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/Telegram/flag-cn/ @VPNine1",
-        "headers": {
-          "Host": [
-            "vp58.cc.cd"
-          ]
-        }
-      }
-    },
-    {
-      "server": "217.60.6.103",
-      "server_port": 443,
-      "tag": "🇱🇻LV008 测速未知中性 TG@jcnode",
-      "type": "vless",
-      "uuid": "7b102311-43fd-4e8f-877e-8090623c101d",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "vp58.cc.cd",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/Telegram/flag-cn/ @VPNine1",
-        "headers": {
-          "Host": [
-            "vp58.cc.cd"
-          ]
-        }
-      }
-    },
-    {
       "server": "jpglobal-identity-federation-auth.younai-ytl.shop",
       "server_port": 27011,
       "tag": "🇵🇭菲律宾PH001 测速未知 TG@jcnode",
@@ -12159,81 +9161,6 @@
         "enabled": true,
         "server_name": "flb01.pulsarcore.site",
         "insecure": true
-      }
-    },
-    {
-      "server": "95.85.227.129",
-      "server_port": 443,
-      "tag": "🇵🇱波兰PL022 测速未知中性 TG@jcnode",
-      "type": "vless",
-      "uuid": "7b102311-43fd-4e8f-877e-8090623c101d",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "vp58.cc.cd",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/Telegram/flag-cn/ @VPNine1",
-        "headers": {
-          "Host": [
-            "vp58.cc.cd"
-          ]
-        }
-      }
-    },
-    {
-      "server": "185.48.251.115",
-      "server_port": 443,
-      "tag": "🇷🇸RS003 测速未知 TG@jcnode",
-      "type": "vless",
-      "uuid": "7b102311-43fd-4e8f-877e-8090623c101d",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "vp58.cc.cd",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/Telegram/flag-cn/ @VPNine1",
-        "headers": {
-          "Host": [
-            "vp58.cc.cd"
-          ]
-        }
-      }
-    },
-    {
-      "server": "54.37.227.89",
-      "server_port": 443,
-      "tag": "🇫🇷法国FR107 测速未知中性 TG@jcnode",
-      "type": "vless",
-      "uuid": "7b102311-43fd-4e8f-877e-8090623c101d",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "vp58.cc.cd",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/Telegram/flag-cn/ @VPNine1",
-        "headers": {
-          "Host": [
-            "vp58.cc.cd"
-          ]
-        }
       }
     },
     {
@@ -12265,135 +9192,10 @@
       }
     },
     {
-      "server": "2.7.113.69",
-      "server_port": 443,
-      "tag": "🇫🇷法国FR109 测速未知 TG@jcnode",
-      "type": "vless",
-      "uuid": "7b102311-43fd-4e8f-877e-8090623c101d",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "vp58.cc.cd",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/Telegram/flag-cn/ @VPNine1",
-        "headers": {
-          "Host": [
-            "vp58.cc.cd"
-          ]
-        }
-      }
-    },
-    {
-      "server": "57.128.178.63",
-      "server_port": 443,
-      "tag": "🇬🇧英国GB022 测速未知 TG@jcnode",
-      "type": "vless",
-      "uuid": "7b102311-43fd-4e8f-877e-8090623c101d",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "vp58.cc.cd",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/Telegram/flag-cn/ @VPNine1",
-        "headers": {
-          "Host": [
-            "vp58.cc.cd"
-          ]
-        }
-      }
-    },
-    {
       "server": "212.77.75.25",
       "server_port": 1088,
       "tag": "🇮🇹意大利IT003 测速未知 TG@jcnode",
       "type": "socks"
-    },
-    {
-      "server": "116.202.132.205",
-      "server_port": 443,
-      "tag": "🇨🇿CZ010 测速未知中性 TG@jcnode",
-      "type": "vless",
-      "uuid": "7b102311-43fd-4e8f-877e-8090623c101d",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "vp58.cc.cd",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/TelegramU0001F1E8U0001F1F3 @VPNine1fp=chrome",
-        "headers": {
-          "Host": [
-            "vp58.cc.cd"
-          ]
-        }
-      }
-    },
-    {
-      "server": "198.251.81.70",
-      "server_port": 443,
-      "tag": "🇺🇸美国US690 测速未知 TG@jcnode",
-      "type": "vless",
-      "uuid": "7b102311-43fd-4e8f-877e-8090623c101d",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "vp58.cc.cd",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/Telegram/flag-cn/ @VPNine1",
-        "headers": {
-          "Host": [
-            "vp58.cc.cd"
-          ]
-        }
-      }
-    },
-    {
-      "server": "104.168.155.113",
-      "server_port": 443,
-      "tag": "🇺🇸美国US692 测速未知 TG@jcnode",
-      "type": "vless",
-      "uuid": "7b102311-43fd-4e8f-877e-8090623c101d",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "vp58.cc.cd",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/TelegramU0001F1E8U0001F1F3 @VPNine1fp=chrome",
-        "headers": {
-          "Host": [
-            "vp58.cc.cd"
-          ]
-        }
-      }
     },
     {
       "server": "83.147.217.103",
@@ -12410,56 +9212,6 @@
         "enabled": true,
         "server_name": "38.28.193.1",
         "insecure": true
-      }
-    },
-    {
-      "server": "45.137.150.223",
-      "server_port": 443,
-      "tag": "🇫🇷法国FR111 测速未知中性 TG@jcnode",
-      "type": "vless",
-      "uuid": "7b102311-43fd-4e8f-877e-8090623c101d",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "vp58.cc.cd",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/Telegram/flag-cn/ @VPNine1",
-        "headers": {
-          "Host": [
-            "vp58.cc.cd"
-          ]
-        }
-      }
-    },
-    {
-      "server": "5.45.112.211",
-      "server_port": 443,
-      "tag": "🇪🇪EE005 测速未知中性 TG@jcnode",
-      "type": "vless",
-      "uuid": "7b102311-43fd-4e8f-877e-8090623c101d",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "vp58.cc.cd",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/TelegramU0001F1E8U0001F1F3 @VPNine1fp=chrome",
-        "headers": {
-          "Host": [
-            "vp58.cc.cd"
-          ]
-        }
       }
     },
     {
@@ -12521,31 +9273,6 @@
       }
     },
     {
-      "server": "31.59.105.30",
-      "server_port": 443,
-      "tag": "🇫🇷法国FR113 测速未知中性 TG@jcnode",
-      "type": "vless",
-      "uuid": "7b102311-43fd-4e8f-877e-8090623c101d",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "vp58.cc.cd",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/Telegram/flag-cn/ @VPNine1",
-        "headers": {
-          "Host": [
-            "vp58.cc.cd"
-          ]
-        }
-      }
-    },
-    {
       "server": "91.243.118.217",
       "server_port": 443,
       "tag": "🇮🇹意大利IT004 测速未知 TG@jcnode",
@@ -12570,31 +9297,6 @@
       }
     },
     {
-      "server": "58.247.200.18",
-      "server_port": 443,
-      "tag": "🇬🇧英国GB024 测速未知 TG@jcnode",
-      "type": "vless",
-      "uuid": "7b102311-43fd-4e8f-877e-8090623c101d",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "vp58.cc.cd",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/Telegram/flag-cn/ @VPNine1",
-        "headers": {
-          "Host": [
-            "vp58.cc.cd"
-          ]
-        }
-      }
-    },
-    {
       "server": "159.13.44.228",
       "server_port": 443,
       "tag": "🇦🇺澳大利亚AU001 测速未知危险 TG@jcnode",
@@ -12603,156 +9305,6 @@
         "enabled": true,
         "server_name": "159.13.44.228",
         "insecure": true
-      }
-    },
-    {
-      "server": "95.182.82.191",
-      "server_port": 443,
-      "tag": "🇫🇷法国FR115 测速未知中性 TG@jcnode",
-      "type": "vless",
-      "uuid": "7b102311-43fd-4e8f-877e-8090623c101d",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "vp58.cc.cd",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/Telegram/flag-cn/ @VPNine1",
-        "headers": {
-          "Host": [
-            "vp58.cc.cd"
-          ]
-        }
-      }
-    },
-    {
-      "server": "5.253.189.238",
-      "server_port": 443,
-      "tag": "🇳🇱荷兰NL095 测速未知 TG@jcnode",
-      "type": "vless",
-      "uuid": "7b102311-43fd-4e8f-877e-8090623c101d",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "vp58.cc.cd",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/TelegramU0001F1E8U0001F1F3 @VPNine1fp=chrome",
-        "headers": {
-          "Host": [
-            "vp58.cc.cd"
-          ]
-        }
-      }
-    },
-    {
-      "server": "217.60.252.106",
-      "server_port": 443,
-      "tag": "🇫🇷法国FR118 测速未知 TG@jcnode",
-      "type": "vless",
-      "uuid": "7b102311-43fd-4e8f-877e-8090623c101d",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "vp58.cc.cd",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/Telegram/flag-cn/ @VPNine1",
-        "headers": {
-          "Host": [
-            "vp58.cc.cd"
-          ]
-        }
-      }
-    },
-    {
-      "server": "194.68.32.99",
-      "server_port": 443,
-      "tag": "🇸🇪瑞典SE026 测速未知中性 TG@jcnode",
-      "type": "vless",
-      "uuid": "7b102311-43fd-4e8f-877e-8090623c101d",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "vp58.cc.cd",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/Telegram/flag-cn/ @VPNine1",
-        "headers": {
-          "Host": [
-            "vp58.cc.cd"
-          ]
-        }
-      }
-    },
-    {
-      "server": "91.245.225.69",
-      "server_port": 443,
-      "tag": "🇨🇭瑞士CH012 测速未知中性 TG@jcnode",
-      "type": "vless",
-      "uuid": "7b102311-43fd-4e8f-877e-8090623c101d",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "vp58.cc.cd",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/TelegramU0001F1E8U0001F1F3 @VPNine1fp=chrome",
-        "headers": {
-          "Host": [
-            "vp58.cc.cd"
-          ]
-        }
-      }
-    },
-    {
-      "server": "31.56.176.194",
-      "server_port": 443,
-      "tag": "🇫🇷法国FR119 测速未知 TG@jcnode",
-      "type": "vless",
-      "uuid": "7b102311-43fd-4e8f-877e-8090623c101d",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "vp58.cc.cd",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/Telegram/flag-cn/ @VPNine1",
-        "headers": {
-          "Host": [
-            "vp58.cc.cd"
-          ]
-        }
       }
     },
     {
@@ -12767,159 +9319,6 @@
       }
     },
     {
-      "server": "92.118.148.225",
-      "server_port": 443,
-      "tag": "🇸🇪瑞典SE027 测速未知中性 TG@jcnode",
-      "type": "vless",
-      "uuid": "7b102311-43fd-4e8f-877e-8090623c101d",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "vp58.cc.cd",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/TelegramU0001F1E8U0001F1F3 @VPNine1fp=chrome",
-        "headers": {
-          "Host": [
-            "vp58.cc.cd"
-          ]
-        }
-      }
-    },
-    {
-      "server": "94.159.97.247",
-      "server_port": 443,
-      "tag": "🇬🇧英国GB026 测速未知 TG@jcnode",
-      "type": "vless",
-      "uuid": "7b102311-43fd-4e8f-877e-8090623c101d",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "vp58.cc.cd",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/Telegram/flag-cn/ @VPNine1",
-        "headers": {
-          "Host": [
-            "vp58.cc.cd"
-          ],
-          "User-Agent": [
-            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36"
-          ]
-        }
-      }
-    },
-    {
-      "server": "161.33.29.213",
-      "server_port": 443,
-      "tag": "🇯🇵日本JP060 测速未知中性 TG@jcnode",
-      "type": "vless",
-      "uuid": "7b102311-43fd-4e8f-877e-8090623c101d",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "vp58.cc.cd",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/TelegramU0001F1E8U0001F1F3 @VPNine1fp=chrome",
-        "headers": {
-          "Host": [
-            "vp58.cc.cd"
-          ]
-        }
-      }
-    },
-    {
-      "server": "185.233.184.70",
-      "server_port": 443,
-      "tag": "🇳🇱荷兰NL097 测速未知 TG@jcnode",
-      "type": "vless",
-      "uuid": "7b102311-43fd-4e8f-877e-8090623c101d",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "vp58.cc.cd",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/TelegramU0001F1E8U0001F1F3 @VPNine1fp=chrome",
-        "headers": {
-          "Host": [
-            "vp58.cc.cd"
-          ]
-        }
-      }
-    },
-    {
-      "server": "5.253.30.228",
-      "server_port": 443,
-      "tag": "🇮🇳印度IN004 测速未知 TG@jcnode",
-      "type": "vless",
-      "uuid": "7b102311-43fd-4e8f-877e-8090623c101d",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "vp58.cc.cd",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/TelegramU0001F1E8U0001F1F3 @VPNine1fp=chrome",
-        "headers": {
-          "Host": [
-            "vp58.cc.cd"
-          ]
-        }
-      }
-    },
-    {
-      "server": "185.185.41.34",
-      "server_port": 443,
-      "tag": "🇳🇱荷兰NL098 测速未知 TG@jcnode",
-      "type": "vless",
-      "uuid": "7b102311-43fd-4e8f-877e-8090623c101d",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "vp58.cc.cd",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/Telegram/flag-cn/ @VPNine1",
-        "headers": {
-          "Host": [
-            "vp58.cc.cd"
-          ]
-        }
-      }
-    },
-    {
       "server": "162.244.227.36",
       "server_port": 443,
       "tag": "🇺🇸美国US701 测速未知危险 TG@jcnode",
@@ -12931,206 +9330,6 @@
       }
     },
     {
-      "server": "194.147.58.242",
-      "server_port": 443,
-      "tag": "🇩🇪德国DE051 测速未知 TG@jcnode",
-      "type": "vless",
-      "uuid": "7b102311-43fd-4e8f-877e-8090623c101d",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "vp58.cc.cd",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/Telegram/flag-cn/ @VPNine1",
-        "headers": {
-          "Host": [
-            "vp58.cc.cd"
-          ]
-        }
-      }
-    },
-    {
-      "server": "95.182.80.47",
-      "server_port": 443,
-      "tag": "🇱🇻LV011 测速未知中性 TG@jcnode",
-      "type": "vless",
-      "uuid": "7b102311-43fd-4e8f-877e-8090623c101d",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "vp58.cc.cd",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/Telegram/flag-cn/ @VPNine1",
-        "headers": {
-          "Host": [
-            "vp58.cc.cd"
-          ]
-        }
-      }
-    },
-    {
-      "server": "45.158.81.143",
-      "server_port": 443,
-      "tag": "🇳🇱荷兰NL099 测速未知 TG@jcnode",
-      "type": "vless",
-      "uuid": "7b102311-43fd-4e8f-877e-8090623c101d",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "vp58.cc.cd",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/Telegram/flag-cn/ @VPNine1",
-        "headers": {
-          "Host": [
-            "vp58.cc.cd"
-          ]
-        }
-      }
-    },
-    {
-      "server": "45.147.199.13",
-      "server_port": 443,
-      "tag": "🇳🇱荷兰NL100 测速未知中性 TG@jcnode",
-      "type": "vless",
-      "uuid": "7b102311-43fd-4e8f-877e-8090623c101d",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "vp58.cc.cd",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/Telegram/flag-cn/ @VPNine1",
-        "headers": {
-          "Host": [
-            "vp58.cc.cd"
-          ]
-        }
-      }
-    },
-    {
-      "server": "212.87.222.32",
-      "server_port": 443,
-      "tag": "🇸🇪瑞典SE028 测速未知中性 TG@jcnode",
-      "type": "vless",
-      "uuid": "7b102311-43fd-4e8f-877e-8090623c101d",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "vp58.cc.cd",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/Telegram/flag-cn/ @VPNine1",
-        "headers": {
-          "Host": [
-            "vp58.cc.cd"
-          ]
-        }
-      }
-    },
-    {
-      "server": "141.148.187.195",
-      "server_port": 443,
-      "tag": "🇺🇸美国US702 测速未知 TG@jcnode",
-      "type": "vless",
-      "uuid": "7b102311-43fd-4e8f-877e-8090623c101d",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "vp58.cc.cd",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/TelegramU0001F1E8U0001F1F3 @VPNine1fp=chrome",
-        "headers": {
-          "Host": [
-            "vp58.cc.cd"
-          ]
-        }
-      }
-    },
-    {
-      "server": "62.60.217.174",
-      "server_port": 443,
-      "tag": "🇩🇪德国DE054 测速未知 TG@jcnode",
-      "type": "vless",
-      "uuid": "7b102311-43fd-4e8f-877e-8090623c101d",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "vp58.cc.cd",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/TelegramU0001F1E8U0001F1F3 @VPNine1fp=chrome",
-        "headers": {
-          "Host": [
-            "vp58.cc.cd"
-          ]
-        }
-      }
-    },
-    {
-      "server": "31.56.228.77",
-      "server_port": 443,
-      "tag": "🇫🇷法国FR122 测速未知 TG@jcnode",
-      "type": "vless",
-      "uuid": "7b102311-43fd-4e8f-877e-8090623c101d",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "vp58.cc.cd",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/TelegramU0001F1E8U0001F1F3 @VPNine1fp=chrome",
-        "headers": {
-          "Host": [
-            "vp58.cc.cd"
-          ]
-        }
-      }
-    },
-    {
       "server": "193.35.104.196",
       "server_port": 443,
       "tag": "🇨🇿CZ011 测速未知 TG@jcnode",
@@ -13139,31 +9338,6 @@
         "enabled": true,
         "server_name": "193.35.104.196",
         "insecure": true
-      }
-    },
-    {
-      "server": "185.17.123.114",
-      "server_port": 443,
-      "tag": "🇬🇧英国GB027 测速未知 TG@jcnode",
-      "type": "vless",
-      "uuid": "7b102311-43fd-4e8f-877e-8090623c101d",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "vp58.cc.cd",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/Telegram/flag-cn/ @VPNine1",
-        "headers": {
-          "Host": [
-            "vp58.cc.cd"
-          ]
-        }
       }
     },
     {
@@ -13189,12 +9363,6 @@
         "server_name": "a7acacbe.acsnet.co",
         "insecure": true
       }
-    },
-    {
-      "server": "45.138.157.212",
-      "server_port": 1080,
-      "tag": "🇷🇺俄罗斯RU028 测速未知 TG@jcnode",
-      "type": "socks"
     },
     {
       "server": "155.117.19.17",
@@ -13225,31 +9393,6 @@
       }
     },
     {
-      "server": "40.233.87.120",
-      "server_port": 443,
-      "tag": "🇨🇦加拿大CA005 测速未知中性 TG@jcnode",
-      "type": "vless",
-      "uuid": "7b102311-43fd-4e8f-877e-8090623c101d",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "vp58.cc.cd",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/TelegramU0001F1E8U0001F1F3 @VPNine1fp=chrome",
-        "headers": {
-          "Host": [
-            "vp58.cc.cd"
-          ]
-        }
-      }
-    },
-    {
       "server": "50.76.211.251",
       "server_port": 8090,
       "tag": "🇺🇸美国US709 测速未知 TG@jcnode",
@@ -13271,31 +9414,6 @@
         "enabled": true,
         "server_name": "167.172.172.190",
         "insecure": true
-      }
-    },
-    {
-      "server": "5.253.189.224",
-      "server_port": 443,
-      "tag": "🇳🇱荷兰NL104 测速未知 TG@jcnode",
-      "type": "vless",
-      "uuid": "7b102311-43fd-4e8f-877e-8090623c101d",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "vp58.cc.cd",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/Telegram/flag-cn/ @VPNine1",
-        "headers": {
-          "Host": [
-            "vp58.cc.cd"
-          ]
-        }
       }
     },
     {
@@ -13337,335 +9455,10 @@
       }
     },
     {
-      "server": "31.57.190.98",
-      "server_port": 443,
-      "tag": "🇪🇸西班牙ES008 测速未知 TG@jcnode",
-      "type": "vless",
-      "uuid": "7b102311-43fd-4e8f-877e-8090623c101d",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "vp58.cc.cd",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/TelegramU0001F1E8U0001F1F3 @VPNine1fp=chrome",
-        "headers": {
-          "Host": [
-            "vp58.cc.cd"
-          ]
-        }
-      }
-    },
-    {
-      "server": "5.180.182.128",
-      "server_port": 443,
-      "tag": "🇳🇱荷兰NL106 测速未知 TG@jcnode",
-      "type": "vless",
-      "uuid": "7b102311-43fd-4e8f-877e-8090623c101d",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "vp58.cc.cd",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/Telegram/flag-cn/ @VPNine1",
-        "headers": {
-          "Host": [
-            "vp58.cc.cd"
-          ]
-        }
-      }
-    },
-    {
-      "server": "45.144.154.149",
-      "server_port": 443,
-      "tag": "🇳🇱荷兰NL107 测速未知 TG@jcnode",
-      "type": "vless",
-      "uuid": "7b102311-43fd-4e8f-877e-8090623c101d",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "vp58.cc.cd",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/Telegram/flag-cn/ @VPNine1",
-        "headers": {
-          "Host": [
-            "vp58.cc.cd"
-          ]
-        }
-      }
-    },
-    {
-      "server": "37.203.209.50",
-      "server_port": 443,
-      "tag": "🇸🇪瑞典SE034 测速未知 TG@jcnode",
-      "type": "vless",
-      "uuid": "7b102311-43fd-4e8f-877e-8090623c101d",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "vp58.cc.cd",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/Telegram/flag-cn/ @VPNine1",
-        "headers": {
-          "Host": [
-            "vp58.cc.cd"
-          ]
-        }
-      }
-    },
-    {
-      "server": "104.143.206.87",
-      "server_port": 443,
-      "tag": "🇧🇬BG003 测速未知 TG@jcnode",
-      "type": "vless",
-      "uuid": "7b102311-43fd-4e8f-877e-8090623c101d",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "vp58.cc.cd",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/TelegramU0001F1E8U0001F1F3 @VPNine1fp=chrome",
-        "headers": {
-          "Host": [
-            "vp58.cc.cd"
-          ]
-        }
-      }
-    },
-    {
-      "server": "5.42.221.155",
-      "server_port": 443,
-      "tag": "🇸🇪瑞典SE035 测速未知中性 TG@jcnode",
-      "type": "vless",
-      "uuid": "7b102311-43fd-4e8f-877e-8090623c101d",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "vp58.cc.cd",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/TelegramU0001F1E8U0001F1F3 @VPNine1fp=chrome",
-        "headers": {
-          "Host": [
-            "vp58.cc.cd"
-          ]
-        }
-      }
-    },
-    {
-      "server": "80.78.19.50",
-      "server_port": 443,
-      "tag": "🇳🇴挪威NO004 测速未知 TG@jcnode",
-      "type": "vless",
-      "uuid": "7b102311-43fd-4e8f-877e-8090623c101d",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "vp58.cc.cd",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/Telegram/flag-cn/ @VPNine1",
-        "headers": {
-          "Host": [
-            "vp58.cc.cd"
-          ]
-        }
-      }
-    },
-    {
-      "server": "31.59.103.159",
-      "server_port": 443,
-      "tag": "🇫🇷法国FR129 测速未知中性 TG@jcnode",
-      "type": "vless",
-      "uuid": "7b102311-43fd-4e8f-877e-8090623c101d",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "vp58.cc.cd",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/Telegram/flag-cn/ @VPNine1",
-        "headers": {
-          "Host": [
-            "vp58.cc.cd"
-          ]
-        }
-      }
-    },
-    {
-      "server": "45.12.28.170",
-      "server_port": 443,
-      "tag": "🇸🇪瑞典SE036 测速未知中性 TG@jcnode",
-      "type": "vless",
-      "uuid": "7b102311-43fd-4e8f-877e-8090623c101d",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "vp58.cc.cd",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/TelegramU0001F1E8U0001F1F3 @VPNine1fp=chrome",
-        "headers": {
-          "Host": [
-            "vp58.cc.cd"
-          ]
-        }
-      }
-    },
-    {
       "server": "109.205.182.143",
       "server_port": 1088,
       "tag": "🇫🇷法国FR130 测速未知 TG@jcnode",
       "type": "socks"
-    },
-    {
-      "server": "173.212.215.195",
-      "server_port": 443,
-      "tag": "🇩🇪德国DE062 测速未知 TG@jcnode",
-      "type": "vless",
-      "uuid": "7b102311-43fd-4e8f-877e-8090623c101d",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "vp58.cc.cd",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/TelegramU0001F1E8U0001F1F3 @VPNine1fp=chrome",
-        "headers": {
-          "Host": [
-            "vp58.cc.cd"
-          ]
-        }
-      }
-    },
-    {
-      "server": "45.150.33.143",
-      "server_port": 443,
-      "tag": "🇩🇪德国DE064 测速未知 TG@jcnode",
-      "type": "vless",
-      "uuid": "7b102311-43fd-4e8f-877e-8090623c101d",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "vp58.cc.cd",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/Telegram/flag-cn/ @VPNine1",
-        "headers": {
-          "Host": [
-            "vp58.cc.cd"
-          ]
-        }
-      }
-    },
-    {
-      "server": "80.78.19.185",
-      "server_port": 443,
-      "tag": "🇳🇴挪威NO005 测速未知中性 TG@jcnode",
-      "type": "vless",
-      "uuid": "7b102311-43fd-4e8f-877e-8090623c101d",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "vp58.cc.cd",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/TelegramU0001F1E8U0001F1F3 @VPNine1fp=chrome",
-        "headers": {
-          "Host": [
-            "vp58.cc.cd"
-          ]
-        }
-      }
-    },
-    {
-      "server": "79.133.51.180",
-      "server_port": 443,
-      "tag": "🇩🇪德国DE066 测速未知 TG@jcnode",
-      "type": "vless",
-      "uuid": "7b102311-43fd-4e8f-877e-8090623c101d",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "vp58.cc.cd",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/TelegramU0001F1E8U0001F1F3 @VPNine1fp=chrome",
-        "headers": {
-          "Host": [
-            "vp58.cc.cd"
-          ]
-        }
-      }
     },
     {
       "server": "165.215.250.14",
@@ -13718,106 +9511,6 @@
       }
     },
     {
-      "server": "46.8.224.194",
-      "server_port": 443,
-      "tag": "🇫🇷法国FR138 测速未知中性 TG@jcnode",
-      "type": "vless",
-      "uuid": "7b102311-43fd-4e8f-877e-8090623c101d",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "vp58.cc.cd",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/Telegram/flag-cn/ @VPNine1",
-        "headers": {
-          "Host": [
-            "vp58.cc.cd"
-          ]
-        }
-      }
-    },
-    {
-      "server": "45.38.139.23",
-      "server_port": 443,
-      "tag": "🇱🇻LV017 测速未知中性 TG@jcnode",
-      "type": "vless",
-      "uuid": "7b102311-43fd-4e8f-877e-8090623c101d",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "vp58.cc.cd",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/Telegram/flag-cn/ @VPNine1",
-        "headers": {
-          "Host": [
-            "vp58.cc.cd"
-          ]
-        }
-      }
-    },
-    {
-      "server": "46.8.230.236",
-      "server_port": 443,
-      "tag": "🇱🇻LV018 测速未知中性 TG@jcnode",
-      "type": "vless",
-      "uuid": "7b102311-43fd-4e8f-877e-8090623c101d",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "vp58.cc.cd",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/Telegram/flag-cn/ @VPNine1",
-        "headers": {
-          "Host": [
-            "vp58.cc.cd"
-          ]
-        }
-      }
-    },
-    {
-      "server": "185.66.164.51",
-      "server_port": 443,
-      "tag": "🇬🇧英国GB034 测速未知 TG@jcnode",
-      "type": "vless",
-      "uuid": "7b102311-43fd-4e8f-877e-8090623c101d",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "vp58.cc.cd",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/Telegram/flag-cn/ @VPNine1",
-        "headers": {
-          "Host": [
-            "vp58.cc.cd"
-          ]
-        }
-      }
-    },
-    {
       "server": "170.199.233.89",
       "server_port": 443,
       "tag": "🇺🇸美国US749 测速未知纯净 TG@jcnode",
@@ -13826,34 +9519,6 @@
         "enabled": true,
         "server_name": "170.199.233.89",
         "insecure": true
-      }
-    },
-    {
-      "server": "103.102.228.113",
-      "server_port": 443,
-      "tag": "🇳🇱荷兰NL109 测速未知中性 TG@jcnode",
-      "type": "vless",
-      "uuid": "7b102311-43fd-4e8f-877e-8090623c101d",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "vp58.cc.cd",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/TelegramU0001F1E8U0001F1F3 @VPNine1fp=chrome",
-        "headers": {
-          "Host": [
-            "vp58.cc.cd"
-          ],
-          "User-Agent": [
-            "Mozilla/5.0 (Windows NT 6.2; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.90 Safari/537.36"
-          ]
-        }
       }
     },
     {
@@ -13899,31 +9564,6 @@
       }
     },
     {
-      "server": "213.155.119.28",
-      "server_port": 443,
-      "tag": "🇩🇪德国DE070 测速未知 TG@jcnode",
-      "type": "vless",
-      "uuid": "7b102311-43fd-4e8f-877e-8090623c101d",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "vp58.cc.cd",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/Telegram/flag-cn/ @VPNine1",
-        "headers": {
-          "Host": [
-            "vp58.cc.cd"
-          ]
-        }
-      }
-    },
-    {
       "server": "fbsv6.guardora.pro",
       "server_port": 443,
       "tag": "🇷🇺俄罗斯RU038 测速未知 TG@jcnode",
@@ -13952,59 +9592,6 @@
       }
     },
     {
-      "server": "36.138.54.45",
-      "server_port": 443,
-      "tag": "🇨🇳中国CN005 测速未知 TG@jcnode",
-      "type": "vless",
-      "uuid": "7b102311-43fd-4e8f-877e-8090623c101d",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "vp58.cc.cd",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/Telegram/flag-cn/ @VPNine1",
-        "headers": {
-          "Host": [
-            "vp58.cc.cd"
-          ]
-        }
-      }
-    },
-    {
-      "server": "103.102.228.113",
-      "server_port": 443,
-      "tag": "🇳🇱荷兰NL111 测速未知 TG@jcnode",
-      "type": "vless",
-      "uuid": "7b102311-43fd-4e8f-877e-8090623c101d",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "vp58.cc.cd",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/TelegramU0001F1E8U0001F1F3 @VPNine1fp=chrome",
-        "headers": {
-          "Host": [
-            "vp58.cc.cd"
-          ],
-          "User-Agent": [
-            "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.101 Safari/537.36"
-          ]
-        }
-      }
-    },
-    {
       "server": "fbsv6.guardora.pro",
       "server_port": 443,
       "tag": "🇷🇺俄罗斯RU039 测速未知 TG@jcnode",
@@ -14026,31 +9613,6 @@
       }
     },
     {
-      "server": "13.140.29.170",
-      "server_port": 443,
-      "tag": "🇧🇬BG005 测速未知 TG@jcnode",
-      "type": "vless",
-      "uuid": "7b102311-43fd-4e8f-877e-8090623c101d",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "vp58.cc.cd",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/Telegram/flag-cn/ @VPNine1",
-        "headers": {
-          "Host": [
-            "vp58.cc.cd"
-          ]
-        }
-      }
-    },
-    {
       "server": "fan.973511.xyz",
       "server_port": 443,
       "tag": "🇩🇪德国DE072 测速未知纯净 TG@jcnode",
@@ -14060,28 +9622,6 @@
         "enabled": true,
         "server_name": "fan.973511.xyz",
         "insecure": true
-      }
-    },
-    {
-      "server": "47.83.143.75",
-      "server_port": 443,
-      "tag": "🇭🇰香港HK043 测速未知 TG@jcnode",
-      "type": "vless",
-      "uuid": "1658f804-41bf-4b7c-a0be-ba01097e0f41",
-      "flow": "xtls-rprx-vision",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "www.cloudflare.com",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        },
-        "reality": {
-          "enabled": true,
-          "public_key": "Y9TEgB_8YVWzv8-wblXBjeX2t7IAtQhtQ3pE08gfNWw",
-          "short_id": "862266ae05b7a62f"
-        }
       }
     },
     {
@@ -14097,31 +9637,6 @@
       }
     },
     {
-      "server": "157.173.97.132",
-      "server_port": 443,
-      "tag": "🇩🇪德国DE073 测速未知 TG@jcnode",
-      "type": "vless",
-      "uuid": "7b102311-43fd-4e8f-877e-8090623c101d",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "vp58.cc.cd",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/Telegram/flag-cn/ @VPNine1",
-        "headers": {
-          "Host": [
-            "vp58.cc.cd"
-          ]
-        }
-      }
-    },
-    {
       "server": "31.57.248.176",
       "server_port": 50160,
       "tag": "🇭🇰香港HK045 测速未知 TG@jcnode",
@@ -14132,6 +9647,12 @@
         "server_name": "31.57.248.176",
         "insecure": true
       }
+    },
+    {
+      "server": "123.58.219.171",
+      "server_port": 10808,
+      "tag": "🇭🇰香港HK012 测速未知 TG@jcnode #2",
+      "type": "socks"
     },
     {
       "server": "twmoon1-cdn-route.couldflare-cdn.com",
@@ -14179,31 +9700,6 @@
       "tls": {
         "enabled": true,
         "server_name": "fan.240104.xyz"
-      }
-    },
-    {
-      "server": "172.67.78.115",
-      "server_port": 443,
-      "tag": "🇸🇬新加坡SG019 测速未知中性 TG@jcnode",
-      "type": "vless",
-      "uuid": "7b102311-43fd-4e8f-877e-8090623c101d",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "vp58.cc.cd",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/TelegramU0001F1E8U0001F1F3 @VPNine1fp=chrome",
-        "headers": {
-          "Host": [
-            "vp58.cc.cd"
-          ]
-        }
       }
     },
     {
@@ -14323,31 +9819,6 @@
       }
     },
     {
-      "server": "104.19.54.229",
-      "server_port": 443,
-      "tag": "🇺🇸美国US273 测速未知中性 TG@jcnode",
-      "type": "vless",
-      "uuid": "7b102311-43fd-4e8f-877e-8090623c101d",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "vp58.cc.cd",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/TelegramU0001F1E8U0001F1F3 @VPNine1fp=chrome",
-        "headers": {
-          "Host": [
-            "vp58.cc.cd"
-          ]
-        }
-      }
-    },
-    {
       "server": "fan.365747.xyz",
       "server_port": 443,
       "tag": "🇺🇸美国US323 测速未知危险 TG@jcnode",
@@ -14417,31 +9888,6 @@
           ],
           "User-Agent": [
             "Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.106 Safari/537.36"
-          ]
-        }
-      }
-    },
-    {
-      "server": "104.17.145.133",
-      "server_port": 443,
-      "tag": "🇺🇸美国US336 测速未知中性 TG@jcnode",
-      "type": "vless",
-      "uuid": "7b102311-43fd-4e8f-877e-8090623c101d",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "vp58.cc.cd",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/TelegramU0001F1E8U0001F1F3 @VPNine1fp=chrome",
-        "headers": {
-          "Host": [
-            "vp58.cc.cd"
           ]
         }
       }
@@ -14522,31 +9968,6 @@
         "headers": {
           "Host": [
             "edge.yzkvm.top"
-          ]
-        }
-      }
-    },
-    {
-      "server": "104.19.145.128",
-      "server_port": 443,
-      "tag": "🇺🇸美国US385 测速未知中性 TG@jcnode",
-      "type": "vless",
-      "uuid": "7b102311-43fd-4e8f-877e-8090623c101d",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "vp58.cc.cd",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/TelegramU0001F1E8U0001F1F3 @VPNine1fp=chrome",
-        "headers": {
-          "Host": [
-            "vp58.cc.cd"
           ]
         }
       }
@@ -14718,15 +10139,15 @@
       }
     },
     {
-      "server": "37.221.79.43",
+      "server": "proxyip.jp.cmliussss.net",
       "server_port": 443,
-      "tag": "🇹🇷土耳其TR004 测速未知 TG@jcnode",
+      "tag": "🇯🇵日本JP064 测速未知中性 TG@jcnode",
       "type": "vless",
       "uuid": "7b102311-43fd-4e8f-877e-8090623c101d",
       "packet_encoding": "xudp",
       "tls": {
         "enabled": true,
-        "server_name": "vp58.cc.cd",
+        "server_name": "vp10.pages.dev",
         "utls": {
           "enabled": true,
           "fingerprint": "chrome"
@@ -14734,35 +10155,13 @@
       },
       "transport": {
         "type": "ws",
-        "path": "/TelegramU0001F1E8U0001F1F3 @VPNine1fp=chrome",
+        "path": "/",
         "headers": {
           "Host": [
-            "vp58.cc.cd"
-          ]
-        }
-      }
-    },
-    {
-      "server": "155.117.155.115",
-      "server_port": 443,
-      "tag": "🇺🇸美国US520 测速未知中性 TG@jcnode",
-      "type": "vless",
-      "uuid": "a545e637-ca12-477f-9f91-f80e15cb51b0",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "usa1s.xn--ghqu5fm27b67w.com",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/pq/us1",
-        "headers": {
-          "Host": [
-            "usa1s.xn--ghqu5fm27b67w.com"
+            "vp10.pages.dev"
+          ],
+          "User-Agent": [
+            "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36"
           ]
         }
       }
@@ -14850,26 +10249,6 @@
       }
     },
     {
-      "server": "188.114.97.6",
-      "server_port": 8080,
-      "tag": "🇸🇬新加坡SG047 测速未知中性 TG@jcnode",
-      "type": "vless",
-      "uuid": "34ce8760-24ed-41e7-a1f5-aa6c2660a53c",
-      "packet_encoding": "xudp",
-      "transport": {
-        "type": "ws",
-        "path": "/pyip=ProxyIP.SG.CMLiussss.net",
-        "headers": {
-          "Host": [
-            "quiet-frost-ac61.333-07d.workers.dev"
-          ],
-          "User-Agent": [
-            "Mozilla/5.0 (Linux; Android 4.4.2; de-de; SAMSUNG GT-I9195 Build/KOT49H) AppleWebKit/537.36 (KHTML, like Gecko) Version/1.5 Chrome/28.0.1500.94 Mobile Safari/537.36"
-          ]
-        }
-      }
-    },
-    {
       "server": "209.148.53.153",
       "server_port": 8090,
       "tag": "🇺🇸美国US535 测速未知危险 TG@jcnode",
@@ -14889,31 +10268,6 @@
         "enabled": true,
         "server_name": "38.28.193.188",
         "insecure": true
-      }
-    },
-    {
-      "server": "2.56.172.107",
-      "server_port": 443,
-      "tag": "🇵🇱波兰PL021 测速未知中性 TG@jcnode",
-      "type": "vless",
-      "uuid": "7b102311-43fd-4e8f-877e-8090623c101d",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "vp58.cc.cd",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/TelegramU0001F1E8U0001F1F3 @VPNine1fp=chrome",
-        "headers": {
-          "Host": [
-            "vp58.cc.cd"
-          ]
-        }
       }
     },
     {
@@ -14939,31 +10293,6 @@
       }
     },
     {
-      "server": "37.27.11.192",
-      "server_port": 443,
-      "tag": "🇫🇮芬兰FI013 测速未知 TG@jcnode",
-      "type": "vless",
-      "uuid": "7b102311-43fd-4e8f-877e-8090623c101d",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "vp58.cc.cd",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/TelegramU0001F1E8U0001F1F3 @VPNine1fp=chrome",
-        "headers": {
-          "Host": [
-            "vp58.cc.cd"
-          ]
-        }
-      }
-    },
-    {
       "server": "154.26.139.24",
       "server_port": 443,
       "tag": "🇸🇬新加坡SG049 测速未知中性 TG@jcnode",
@@ -14972,31 +10301,6 @@
         "enabled": true,
         "server_name": "154.26.139.24",
         "insecure": true
-      }
-    },
-    {
-      "server": "31.57.190.67",
-      "server_port": 443,
-      "tag": "🇦🇪阿联酋AE004 测速未知 TG@jcnode",
-      "type": "vless",
-      "uuid": "7b102311-43fd-4e8f-877e-8090623c101d",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "vp58.cc.cd",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/TelegramU0001F1E8U0001F1F3 @VPNine1fp=chrome",
-        "headers": {
-          "Host": [
-            "vp58.cc.cd"
-          ]
-        }
       }
     },
     {
@@ -15041,31 +10345,6 @@
         "enabled": true,
         "server_name": "www.bing.com",
         "insecure": true
-      }
-    },
-    {
-      "server": "104.129.183.226",
-      "server_port": 443,
-      "tag": "🇺🇸美国US558 测速未知中性 TG@jcnode",
-      "type": "vless",
-      "uuid": "7b102311-43fd-4e8f-877e-8090623c101d",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "vp58.cc.cd",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/TelegramU0001F1E8U0001F1F3 @VPNine1fp=chrome",
-        "headers": {
-          "Host": [
-            "vp58.cc.cd"
-          ]
-        }
       }
     },
     {
@@ -15130,131 +10409,6 @@
         "enabled": true,
         "server_name": "fan.596189.xyz",
         "insecure": true
-      }
-    },
-    {
-      "server": "91.245.225.69",
-      "server_port": 443,
-      "tag": "🇺🇸美国US610 测速未知中性 TG@jcnode #2",
-      "type": "vless",
-      "uuid": "a545e637-ca12-477f-9f91-f80e15cb51b0",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "usa1s.xn--ghqu5fm27b67w.com",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/pq/us1",
-        "headers": {
-          "Host": [
-            "usa1s.xn--ghqu5fm27b67w.com"
-          ]
-        }
-      }
-    },
-    {
-      "server": "31.57.190.67",
-      "server_port": 443,
-      "tag": "🇦🇪阿联酋AE008 测速未知 TG@jcnode",
-      "type": "vless",
-      "uuid": "a545e637-ca12-477f-9f91-f80e15cb51b0",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "usa1s.xn--ghqu5fm27b67w.com",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/pq/us1",
-        "headers": {
-          "Host": [
-            "usa1s.xn--ghqu5fm27b67w.com"
-          ]
-        }
-      }
-    },
-    {
-      "server": "31.57.190.98",
-      "server_port": 443,
-      "tag": "🇦🇪阿联酋AE009 测速未知 TG@jcnode",
-      "type": "vless",
-      "uuid": "a545e637-ca12-477f-9f91-f80e15cb51b0",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "usa1s.xn--ghqu5fm27b67w.com",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/pq/us1",
-        "headers": {
-          "Host": [
-            "usa1s.xn--ghqu5fm27b67w.com"
-          ]
-        }
-      }
-    },
-    {
-      "server": "37.27.11.192",
-      "server_port": 443,
-      "tag": "🇫🇮芬兰FI017 测速未知 TG@jcnode",
-      "type": "vless",
-      "uuid": "a545e637-ca12-477f-9f91-f80e15cb51b0",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "usa1s.xn--ghqu5fm27b67w.com",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/pq/us1",
-        "headers": {
-          "Host": [
-            "usa1s.xn--ghqu5fm27b67w.com"
-          ]
-        }
-      }
-    },
-    {
-      "server": "116.202.132.205",
-      "server_port": 443,
-      "tag": "🇩🇪德国DE059 测速未知 TG@jcnode",
-      "type": "vless",
-      "uuid": "a545e637-ca12-477f-9f91-f80e15cb51b0",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "usa1s.xn--ghqu5fm27b67w.com",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/pq/us1",
-        "headers": {
-          "Host": [
-            "usa1s.xn--ghqu5fm27b67w.com"
-          ]
-        }
       }
     },
     {
@@ -15524,12 +10678,6 @@
       }
     },
     {
-      "server": "95.111.228.190",
-      "server_port": 1081,
-      "tag": "🇫🇷法国FR039 测速未知 TG@jcnode",
-      "type": "socks"
-    },
-    {
       "server": "fan.973511.xyz",
       "server_port": 443,
       "tag": "🇩🇪德国DE020 测速未知纯净 TG@jcnode #2",
@@ -15724,28 +10872,6 @@
       }
     },
     {
-      "server": "144.31.27.215",
-      "server_port": 43000,
-      "tag": "🇫🇮芬兰FI002 测速未知中性 TG@jcnode",
-      "type": "vless",
-      "uuid": "47f79fc1-0646-40e8-8a58-73e85d183d5a",
-      "flow": "xtls-rprx-vision",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "144.31.27.215",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        },
-        "reality": {
-          "enabled": true,
-          "public_key": "dxCQnOekn14riFxt3vdwDNydvW47FsmwFG6BJ2mUgEg",
-          "short_id": "568d87a47271344e"
-        }
-      }
-    },
-    {
       "server": "167.86.87.233",
       "server_port": 443,
       "tag": "🇮🇱以色列IL058 测速未知中性 TG@jcnode",
@@ -15770,29 +10896,6 @@
           "Host": [
             "fserver-worker-001.mapleridgeway.top"
           ]
-        }
-      }
-    },
-    {
-      "server": "144.31.27.215",
-      "server_port": 43000,
-      "tag": "🇫🇮芬兰FI003 测速未知中性 TG@jcnode",
-      "type": "vless",
-      "uuid": "47f79fc1-0646-40e8-8a58-73e85d183d5a",
-      "flow": "xtls-rprx-vision",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "144.31.27.215",
-        "insecure": false,
-        "utls": {
-          "enabled": true,
-          "fingerprint": "edge"
-        },
-        "reality": {
-          "enabled": true,
-          "public_key": "dxCQnOekn14riFxt3vdwDNydvW47FsmwFG6BJ2mUgEg",
-          "short_id": "568d87a47271344e"
         }
       }
     },
@@ -16327,152 +11430,6 @@
       }
     },
     {
-      "server": "185.250.37.47",
-      "server_port": 443,
-      "tag": "🇩🇪德国DE049 测速未知中性 TG@jcnode",
-      "type": "vless",
-      "uuid": "c18b978e-1c4e-415c-8bea-07942b563a64",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "shuma.ccwu.cc",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/",
-        "headers": {
-          "Host": [
-            "shuma.ccwu.cc"
-          ]
-        }
-      }
-    },
-    {
-      "server": "185.250.37.47",
-      "server_port": 443,
-      "tag": "🇫🇷法国FR055 测速未知中性 TG@jcnode #2",
-      "type": "vless",
-      "uuid": "c18b978e-1c4e-415c-8bea-07942b563a64",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "shuma.ccwu.cc",
-        "insecure": true,
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/",
-        "headers": {
-          "Host": [
-            "shuma.ccwu.cc"
-          ]
-        }
-      }
-    },
-    {
-      "server": "185.250.37.47",
-      "server_port": 443,
-      "tag": "🇩🇪德国DE076 测速未知中性 TG@jcnode",
-      "type": "vless",
-      "uuid": "c18b978e-1c4e-415c-8bea-07942b563a64",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "shuma.ccwu.cc",
-        "insecure": false
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/",
-        "headers": {
-          "Host": [
-            "shuma.ccwu.cc"
-          ]
-        }
-      }
-    },
-    {
-      "server": "95.182.82.191",
-      "server_port": 443,
-      "tag": "🇫🇷法国FR057 测速未知中性 TG@jcnode #2",
-      "type": "vless",
-      "uuid": "c18b978e-1c4e-415c-8bea-07942b563a64",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "shuma.ccwu.cc",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/",
-        "headers": {
-          "Host": [
-            "shuma.ccwu.cc"
-          ]
-        }
-      }
-    },
-    {
-      "server": "95.182.82.191",
-      "server_port": 443,
-      "tag": "🇫🇷法国FR064 测速未知 TG@jcnode",
-      "type": "vless",
-      "uuid": "c18b978e-1c4e-415c-8bea-07942b563a64",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "shuma.ccwu.cc",
-        "insecure": true,
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/",
-        "headers": {
-          "Host": [
-            "shuma.ccwu.cc"
-          ]
-        }
-      }
-    },
-    {
-      "server": "95.182.82.191",
-      "server_port": 443,
-      "tag": "🇫🇷法国FR065 测速未知中性 TG@jcnode #2",
-      "type": "vless",
-      "uuid": "c18b978e-1c4e-415c-8bea-07942b563a64",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "shuma.ccwu.cc",
-        "insecure": false
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/",
-        "headers": {
-          "Host": [
-            "shuma.ccwu.cc"
-          ]
-        }
-      }
-    },
-    {
       "server": "72.56.41.33",
       "server_port": 40443,
       "tag": "🇺🇸美国US502 测速未知 TG@jcnode",
@@ -16616,31 +11573,6 @@
       }
     },
     {
-      "server": "45.142.120.54",
-      "server_port": 443,
-      "tag": "🇺🇸美国US249 测速未知 TG@jcnode",
-      "type": "vless",
-      "uuid": "58112e44-a0d8-4ec7-87df-52fd34d150f4",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "dsfadfasdfwse87474.lllcc.top",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/",
-        "headers": {
-          "Host": [
-            "dsfadfasdfwse87474.lllcc.top"
-          ]
-        }
-      }
-    },
-    {
       "server": "mmgr.club",
       "server_port": 443,
       "tag": "🇺🇸美国US256 测速未知中性 TG@jcnode #2",
@@ -16651,31 +11583,6 @@
         "enabled": true,
         "server_name": "mmgr.club",
         "insecure": true
-      }
-    },
-    {
-      "server": "152.228.191.232",
-      "server_port": 443,
-      "tag": "🇳🇱荷兰NL066 测速未知 TG@jcnode #2",
-      "type": "vless",
-      "uuid": "58112e44-a0d8-4ec7-87df-52fd34d150f4",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "dsfadfasdfwse87474.lllcc.top",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/",
-        "headers": {
-          "Host": [
-            "dsfadfasdfwse87474.lllcc.top"
-          ]
-        }
       }
     },
     {

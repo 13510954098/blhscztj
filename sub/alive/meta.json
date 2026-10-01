@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-01T02:51:17+00:00",
+  "generated_at": "2026-10-01T03:34:26+00:00",
   "source_dir": "sub/merged",
   "daily_dir": "sub",
   "scope": "full",
@@ -13,55 +13,55 @@
   "prefilter": {
     "method": "TCP/TLS handshake",
     "timeout_s": 3.0,
-    "tcp_candidates": 19895,
+    "tcp_candidates": 19894,
     "udp_direct_candidates": 720,
     "unique_endpoints": 10795,
-    "endpoints_passed": 6718,
-    "endpoints_failed": 4077,
-    "candidates_dropped": 7062
+    "endpoints_passed": 6715,
+    "endpoints_failed": 4080,
+    "candidates_dropped": 7087
   },
   "clash_candidates": {
-    "total": 20615,
+    "total": 20614,
     "invalid": 0,
     "duplicate_name": 0
   },
-  "alive_unique_keys": 1327,
+  "alive_unique_keys": 1365,
   "alive_delay_ms": {
-    "min": 7.0,
-    "median": 164.0,
-    "max": 2139.0
+    "min": 10.0,
+    "median": 140.0,
+    "max": 1796.0
   },
   "node_status_counts": {
     "clash": {
-      "kept": 2707,
-      "failed": 10846,
-      "prefilter_dropped": 7062,
+      "kept": 2750,
+      "failed": 10777,
+      "prefilter_dropped": 7087,
       "load_error": 0,
       "invalid": 0,
       "duplicate_name": 0
     },
     "singbox": {
-      "kept": 960,
+      "kept": 754,
       "aux_kept": 0,
-      "dropped": 2051
+      "dropped": 2257
     },
     "v2ray": {
-      "kept": 910,
-      "dropped": 1969
+      "kept": 700,
+      "dropped": 2179
     }
   },
   "files": {
     "clash.yaml": {
-      "nodes": 2707,
-      "sha256_16": "fb5778420602b27c"
+      "nodes": 2750,
+      "sha256_16": "94210e7390946041"
     },
     "singbox.json": {
-      "nodes": 960,
-      "sha256_16": "0d35ed7fa2cb734c"
+      "nodes": 754,
+      "sha256_16": "8078e6f83b0175fa"
     },
     "v2ray.txt": {
-      "nodes": 910,
-      "sha256_16": "56a42fdce8a10327"
+      "nodes": 700,
+      "sha256_16": "247b9d27bad55e4d"
     }
   }
 }
