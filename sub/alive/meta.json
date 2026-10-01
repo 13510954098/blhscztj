@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-30T16:16:32+00:00",
+  "generated_at": "2026-10-01T02:51:17+00:00",
   "source_dir": "sub/merged",
   "daily_dir": "sub",
   "scope": "full",
@@ -8,7 +8,7 @@
   "timeout_s": 5.0,
   "concurrency": 128,
   "retries": 1,
-  "mihomo_version": "v1.19.31",
+  "mihomo_version": "v1.19.32",
   "output_validated": true,
   "prefilter": {
     "method": "TCP/TLS handshake",
@@ -16,52 +16,52 @@
     "tcp_candidates": 19895,
     "udp_direct_candidates": 720,
     "unique_endpoints": 10795,
-    "endpoints_passed": 6730,
-    "endpoints_failed": 4065,
-    "candidates_dropped": 7091
+    "endpoints_passed": 6718,
+    "endpoints_failed": 4077,
+    "candidates_dropped": 7062
   },
   "clash_candidates": {
     "total": 20615,
     "invalid": 0,
     "duplicate_name": 0
   },
-  "alive_unique_keys": 874,
+  "alive_unique_keys": 1327,
   "alive_delay_ms": {
-    "min": 4.0,
-    "median": 318.0,
-    "max": 3525.0
+    "min": 7.0,
+    "median": 164.0,
+    "max": 2139.0
   },
   "node_status_counts": {
     "clash": {
-      "kept": 1960,
-      "failed": 11564,
-      "prefilter_dropped": 7091,
+      "kept": 2707,
+      "failed": 10846,
+      "prefilter_dropped": 7062,
       "load_error": 0,
       "invalid": 0,
       "duplicate_name": 0
     },
     "singbox": {
-      "kept": 591,
+      "kept": 960,
       "aux_kept": 0,
-      "dropped": 2420
+      "dropped": 2051
     },
     "v2ray": {
-      "kept": 559,
-      "dropped": 2320
+      "kept": 910,
+      "dropped": 1969
     }
   },
   "files": {
     "clash.yaml": {
-      "nodes": 1960,
-      "sha256_16": "3f919bee125c66cd"
+      "nodes": 2707,
+      "sha256_16": "fb5778420602b27c"
     },
     "singbox.json": {
-      "nodes": 591,
-      "sha256_16": "89e40e5a483ae3e9"
+      "nodes": 960,
+      "sha256_16": "0d35ed7fa2cb734c"
     },
     "v2ray.txt": {
-      "nodes": 559,
-      "sha256_16": "4d2fe9e15eb26015"
+      "nodes": 910,
+      "sha256_16": "56a42fdce8a10327"
     }
   }
 }
