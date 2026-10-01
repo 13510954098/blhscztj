@@ -270065,14 +270065,11 @@ proxy-groups:
   - 🇧🇪 比利时自动
   - 🇨🇱 智利自动
   - 🇨🇿 捷克自动
-  - 🇩🇪 德国自动
   - 🇪🇸 西班牙自动
   - 🇫🇮 芬兰自动
   - 🇮🇹 意大利自动
   - 🇯🇵 日本自动
-  - 🇶🇦 卡塔尔自动
   - 🇸🇪 瑞典自动
-  - 🇸🇬 新加坡自动
   - 🇺🇸 美国自动
   - DIRECT
 - name: 🔰 手动选择
@@ -290935,16 +290932,13 @@ proxy-groups:
   proxies:
   - ☁️ 代理选择
   - ♻️ 自动选择
-  - 🇸🇬 新加坡自动
   - 🇧🇪 比利时自动
   - 🇨🇱 智利自动
   - 🇨🇿 捷克自动
-  - 🇩🇪 德国自动
   - 🇪🇸 西班牙自动
   - 🇫🇮 芬兰自动
   - 🇮🇹 意大利自动
   - 🇯🇵 日本自动
-  - 🇶🇦 卡塔尔自动
   - 🇸🇪 瑞典自动
   - 🇺🇸 美国自动
   - DIRECT
@@ -290953,16 +290947,13 @@ proxy-groups:
   proxies:
   - ☁️ 代理选择
   - ♻️ 自动选择
-  - 🇸🇬 新加坡自动
   - 🇯🇵 日本自动
   - 🇧🇪 比利时自动
   - 🇨🇱 智利自动
   - 🇨🇿 捷克自动
-  - 🇩🇪 德国自动
   - 🇪🇸 西班牙自动
   - 🇫🇮 芬兰自动
   - 🇮🇹 意大利自动
-  - 🇶🇦 卡塔尔自动
   - 🇸🇪 瑞典自动
   - 🇺🇸 美国自动
   - DIRECT
@@ -290976,28 +290967,22 @@ proxy-groups:
   - 🇧🇪 比利时自动
   - 🇨🇱 智利自动
   - 🇨🇿 捷克自动
-  - 🇩🇪 德国自动
   - 🇪🇸 西班牙自动
   - 🇫🇮 芬兰自动
   - 🇮🇹 意大利自动
-  - 🇶🇦 卡塔尔自动
   - 🇸🇪 瑞典自动
-  - 🇸🇬 新加坡自动
   - DIRECT
 - name: 📲 电报消息
   type: select
   proxies:
   - ☁️ 代理选择
-  - 🇸🇬 新加坡自动
   - 🇧🇪 比利时自动
   - 🇨🇱 智利自动
   - 🇨🇿 捷克自动
-  - 🇩🇪 德国自动
   - 🇪🇸 西班牙自动
   - 🇫🇮 芬兰自动
   - 🇮🇹 意大利自动
   - 🇯🇵 日本自动
-  - 🇶🇦 卡塔尔自动
   - 🇸🇪 瑞典自动
   - 🇺🇸 美国自动
   - DIRECT
@@ -291008,14 +290993,11 @@ proxy-groups:
   - 🇧🇪 比利时自动
   - 🇨🇱 智利自动
   - 🇨🇿 捷克自动
-  - 🇩🇪 德国自动
   - 🇪🇸 西班牙自动
   - 🇫🇮 芬兰自动
   - 🇮🇹 意大利自动
   - 🇯🇵 日本自动
-  - 🇶🇦 卡塔尔自动
   - 🇸🇪 瑞典自动
-  - 🇸🇬 新加坡自动
   - 🇺🇸 美国自动
   - DIRECT
 - name: 📺 国外媒体
@@ -291028,13 +291010,10 @@ proxy-groups:
   - 🇧🇪 比利时自动
   - 🇨🇱 智利自动
   - 🇨🇿 捷克自动
-  - 🇩🇪 德国自动
   - 🇪🇸 西班牙自动
   - 🇫🇮 芬兰自动
   - 🇮🇹 意大利自动
-  - 🇶🇦 卡塔尔自动
   - 🇸🇪 瑞典自动
-  - 🇸🇬 新加坡自动
   - DIRECT
 - name: Ⓜ️ 微软服务
   type: select
@@ -291045,14 +291024,11 @@ proxy-groups:
   - 🇧🇪 比利时自动
   - 🇨🇱 智利自动
   - 🇨🇿 捷克自动
-  - 🇩🇪 德国自动
   - 🇪🇸 西班牙自动
   - 🇫🇮 芬兰自动
   - 🇮🇹 意大利自动
   - 🇯🇵 日本自动
-  - 🇶🇦 卡塔尔自动
   - 🇸🇪 瑞典自动
-  - 🇸🇬 新加坡自动
   - DIRECT
 - name: 🇧🇪 比利时自动
   type: url-test
@@ -291080,14 +291056,6 @@ proxy-groups:
   lazy: true
   proxies:
   - 🇨🇿CZ004 0.63MB/s TG@jcnode
-- name: 🇩🇪 德国自动
-  type: url-test
-  url: https://www.gstatic.com/generate_204
-  interval: 300
-  tolerance: 50
-  lazy: true
-  proxies:
-  - 🇩🇪德国DE045 1.06MB/s中性 TG@jcnode
 - name: 🇪🇸 西班牙自动
   type: url-test
   url: https://www.gstatic.com/generate_204
@@ -291096,7 +291064,6 @@ proxy-groups:
   lazy: true
   proxies:
   - 🇪🇸西班牙ES003 1.39MB/s中性 TG@jcnode
-  - 🇪🇸西班牙ES001 0.78MB/s中性 TG@jcnode
 - name: 🇫🇮 芬兰自动
   type: url-test
   url: https://www.gstatic.com/generate_204
@@ -291121,16 +291088,7 @@ proxy-groups:
   lazy: true
   proxies:
   - '🇯🇵日本JP029 测速未知中性 TG@jcnode #2'
-  - 🇯🇵日本JP021 测速未知 TG@jcnode
   - 🇯🇵日本JP002 测速未知 TG@jcnode
-- name: 🇶🇦 卡塔尔自动
-  type: url-test
-  url: https://www.gstatic.com/generate_204
-  interval: 300
-  tolerance: 50
-  lazy: true
-  proxies:
-  - 🇶🇦QA002 0.48MB/s中性 TG@jcnode
 - name: 🇸🇪 瑞典自动
   type: url-test
   url: https://www.gstatic.com/generate_204
@@ -291140,15 +291098,6 @@ proxy-groups:
   proxies:
   - 🇸🇪瑞典SE007 1.77MB/s中性 TG@jcnode
   - 🇸🇪瑞典SE009 1.48MB/s中性 TG@jcnode
-  - 🇸🇪瑞典SE028 测速未知中性 TG@jcnode
-- name: 🇸🇬 新加坡自动
-  type: url-test
-  url: https://www.gstatic.com/generate_204
-  interval: 300
-  tolerance: 50
-  lazy: true
-  proxies:
-  - 🇺🇸美国US0216 测速未知 TG@jcnode
 - name: 🇺🇸 美国自动
   type: url-test
   url: https://www.gstatic.com/generate_204
