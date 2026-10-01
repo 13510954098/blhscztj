@@ -763,6 +763,49 @@ jobs:
               normalize(path)
           PY
 
+      - name: 用 FlClash 内置核心验证配置导入与加载
+        id: flclash-core-validation
+        if: steps.policy-normalization.outcome == 'success'
+        shell: bash
+        run: |
+          set -euo pipefail
+          version="v0.8.98"
+          asset="FlClash-0.8.98-linux-amd64.AppImage"
+          work="$(mktemp -d "${RUNNER_TEMP}/flclash-core.XXXXXX")"
+          trap 'rm -rf "$work"' EXIT
+          base="https://github.com/chen08209/FlClash/releases/download/${version}"
+          curl -fsSL --retry 3 --connect-timeout 20 --max-time 180 \
+            "${base}/${asset}" -o "${work}/${asset}"
+          curl -fsSL --retry 3 --connect-timeout 20 --max-time 60 \
+            "${base}/SHA256SUMS" -o "${work}/SHA256SUMS"
+          expected="$(awk -v name="./${asset}" '$2 == name {print $1}' "${work}/SHA256SUMS")"
+          test -n "${expected}"
+          printf '%s  %s\n' "${expected}" "${work}/${asset}" | sha256sum -c -
+          chmod +x "${work}/${asset}"
+          (cd "${work}" && "./${asset}" --appimage-extract >/dev/null)
+          core="${work}/squashfs-root/FlClashCore"
+          assets="${work}/squashfs-root/data/flutter_assets/assets/data"
+          test -x "${core}"
+          test -d "${assets}"
+          configs=(sub/clash.yaml sub/merged/clash.yaml)
+          if [ -s sub/alive/clash.yaml ]; then
+            configs+=(sub/alive/clash.yaml)
+            echo "FlClashCore 将实际加载 sub/alive/clash.yaml 并抽测最多 3 个存活节点"
+            python scripts/flclash_core_check.py \
+              --core "${core}" \
+              --assets "${assets}" \
+              --runtime-config sub/alive/clash.yaml \
+              --test-url "https://www.gstatic.com/generate_204" \
+              --timeout-ms 8000 \
+              --delay-samples 3 \
+              "${configs[@]}"
+          else
+            echo "⚠️ 没有 alive 配置：对 daily/merged 执行 FlClashCore 导入解析校验"
+            python scripts/flclash_core_check.py \
+              --core "${core}" \
+              "${configs[@]}"
+          fi
+
       - name: mihomo 最终校验统一策略配置
         id: policy-validation
         if: steps.policy-normalization.outcome == 'success'
