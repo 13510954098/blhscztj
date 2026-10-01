@@ -107,6 +107,7 @@ jobs:
           import hashlib
           import json
           from pathlib import Path
+          import unicodedata
           import yaml
 
           clash = Path(".incoming-sub/clash.yaml")
@@ -118,6 +119,22 @@ jobs:
 
           repairs = []
           original = copy.deepcopy(doc)
+          path_controls_encoded = [0]
+
+          def encode_url_path(value):
+              if isinstance(value, str):
+                  result = []
+                  for char in value:
+                      if unicodedata.category(char) == "Cc" and char not in "\\t\\r\\n":
+                          result.extend(f"%{byte:02X}" for byte in char.encode("utf-8"))
+                          path_controls_encoded[0] += 1
+                      else:
+                          result.append(char)
+                  return "".join(result)
+              if isinstance(value, list):
+                  return [encode_url_path(item) for item in value]
+              return value
+
           proxies = doc.get("proxies")
           if isinstance(proxies, dict):
               proxies = [proxies]
@@ -133,6 +150,10 @@ jobs:
               if not isinstance(proxy, dict):
                   repairs.append(f"proxies[{index}] 不是映射，已移除")
                   continue
+              for option_name in ("ws-opts", "http-opts"):
+                  path_options = proxy.get(option_name)
+                  if isinstance(path_options, dict) and "path" in path_options:
+                      path_options["path"] = encode_url_path(path_options["path"])
               opts = proxy.get("http-opts")
               if "http-opts" in proxy and not isinstance(opts, dict):
                   proxy.pop("http-opts", None)
@@ -170,6 +191,28 @@ jobs:
               valid_proxies.append(proxy)
           doc["proxies"] = valid_proxies
 
+          def find_control(value, location="root"):
+              if isinstance(value, str):
+                  if any(unicodedata.category(ch) == "Cc" and ch not in "\\t\\r\\n" for ch in value):
+                      return location
+              elif isinstance(value, dict):
+                  for key, item in value.items():
+                      found = find_control(key, location + ".<key>")
+                      if found:
+                          return found
+                      found = find_control(item, location + ".field")
+                      if found:
+                          return found
+              elif isinstance(value, list):
+                  for item_index, item in enumerate(value):
+                      found = find_control(item, f"{location}[{item_index}]")
+                      if found:
+                          return found
+              return None
+
+          location = find_control(doc)
+          if location:
+              raise ValueError(f"每日 Clash 仍含非路径控制字符（{location}），停止发布以避免 FlClash 无法加载")
           changed = original != doc
           output = raw
           if changed:
@@ -194,6 +237,7 @@ jobs:
           meta["sha256_16"]["clash"] = hashlib.sha256(output).hexdigest()[:16]
           meta["clash_normalization"] = {
               "http_opts_headers": "scalar_values_to_lists",
+              "flclash_path_controls_percent_encoded": path_controls_encoded[0],
               "changed": changed,
           }
           meta_path.write_text(json.dumps(meta, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
@@ -225,6 +269,95 @@ jobs:
             --incoming .incoming-sub \
             --history history/codes.log
           rm -rf .incoming-sub
+
+      - name: 修复综合 Clash 中 FlClash 不接受的路径控制字符
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import hashlib
+          import json
+          from pathlib import Path
+          import unicodedata
+          import yaml
+
+          path = Path("sub/merged/clash.yaml")
+          raw = path.read_bytes()
+          doc = yaml.safe_load(raw.decode("utf-8"))
+          if not isinstance(doc, dict) or not isinstance(doc.get("proxies"), list):
+              raise ValueError("合并 Clash 的 YAML/proxies 结构无效")
+          encoded = [0]
+
+          def encode_url_path(value):
+              if isinstance(value, str):
+                  result = []
+                  for char in value:
+                      if unicodedata.category(char) == "Cc" and char not in "\\t\\r\\n":
+                          result.extend(f"%{byte:02X}" for byte in char.encode("utf-8"))
+                          encoded[0] += 1
+                      else:
+                          result.append(char)
+                  return "".join(result)
+              if isinstance(value, list):
+                  return [encode_url_path(item) for item in value]
+              return value
+
+          for proxy in doc["proxies"]:
+              if not isinstance(proxy, dict):
+                  continue
+              for option_name in ("ws-opts", "http-opts"):
+                  options = proxy.get(option_name)
+                  if isinstance(options, dict) and "path" in options:
+                      options["path"] = encode_url_path(options["path"])
+
+          def find_control(value, location="root"):
+              if isinstance(value, str):
+                  if any(unicodedata.category(ch) == "Cc" and ch not in "\\t\\r\\n" for ch in value):
+                      return location
+              elif isinstance(value, dict):
+                  for key, item in value.items():
+                      found = find_control(key, location + ".<key>")
+                      if found:
+                          return found
+                      found = find_control(item, location + ".field")
+                      if found:
+                          return found
+              elif isinstance(value, list):
+                  for index, item in enumerate(value):
+                      found = find_control(item, f"{location}[{index}]")
+                      if found:
+                          return found
+              return None
+
+          location = find_control(doc)
+          if location:
+              raise ValueError(f"Clash 仍含非路径控制字符（{location}），为避免生成 FlClash 无法加载的配置，停止发布")
+          output = raw
+          if encoded[0]:
+              output = yaml.safe_dump(doc, allow_unicode=True, sort_keys=False,
+                                      default_flow_style=False, width=4096).encode("utf-8")
+              path.write_bytes(output)
+
+          meta_path = Path("sub/merged/meta.json")
+          try:
+              meta = json.loads(meta_path.read_text(encoding="utf-8"))
+          except (OSError, json.JSONDecodeError, UnicodeDecodeError):
+              meta = {}
+          if not isinstance(meta, dict):
+              meta = {}
+          for key in ("nodes", "sha256_16"):
+              if not isinstance(meta.get(key), dict):
+                  meta[key] = {}
+          meta["nodes"]["clash"] = len(doc["proxies"])
+          meta["sha256_16"]["clash"] = hashlib.sha256(output).hexdigest()[:16]
+          previous = meta.get("clash_normalization")
+          if not isinstance(previous, dict):
+              previous = {}
+          previous["flclash_path_controls_percent_encoded"] = encoded[0]
+          meta["clash_normalization"] = previous
+          meta_path.write_text(json.dumps(meta, ensure_ascii=False, indent=2) + "\\n", encoding="utf-8")
+          print(f"✅ merged Clash FlClash 路径字符检查通过；本次编码修复 {encoded[0]} 个控制字符")
+          PY
 
       - name: 下载 mihomo 内核（多版本回退 + 下载即体检，临时机每次全新下载）
         shell: bash
