@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-01T04:50:41+00:00",
+  "generated_at": "2026-10-01T07:13:55+00:00",
   "source_dir": "sub/merged",
   "daily_dir": "sub",
   "scope": "full",
@@ -13,55 +13,116 @@
   "prefilter": {
     "method": "TCP/TLS handshake",
     "timeout_s": 3.0,
-    "tcp_candidates": 19896,
-    "udp_direct_candidates": 720,
-    "unique_endpoints": 10795,
-    "endpoints_passed": 6712,
-    "endpoints_failed": 4083,
+    "tcp_candidates": 20124,
+    "udp_direct_candidates": 722,
+    "unique_endpoints": 10949,
+    "endpoints_passed": 6860,
+    "endpoints_failed": 4089,
     "candidates_dropped": 7071
   },
   "clash_candidates": {
-    "total": 20616,
+    "total": 20846,
     "invalid": 0,
     "duplicate_name": 0
   },
-  "alive_unique_keys": 1351,
+  "alive_unique_keys": 1347,
   "alive_delay_ms": {
-    "min": 5.0,
-    "median": 149.0,
-    "max": 1844.0
+    "min": 1.0,
+    "median": 161.0,
+    "max": 2641.0
   },
   "node_status_counts": {
     "clash": {
-      "kept": 2704,
-      "failed": 10841,
+      "kept": 2644,
+      "failed": 11131,
       "prefilter_dropped": 7071,
       "load_error": 0,
       "invalid": 0,
       "duplicate_name": 0
     },
     "singbox": {
-      "kept": 730,
+      "kept": 764,
       "aux_kept": 0,
-      "dropped": 2281
+      "dropped": 2466
     },
     "v2ray": {
-      "kept": 683,
-      "dropped": 2196
+      "kept": 724,
+      "dropped": 2375
     }
   },
   "files": {
     "clash.yaml": {
-      "nodes": 2704,
-      "sha256_16": "6becb95a40bb3905"
+      "nodes": 2644,
+      "sha256_16": "3edc5200407c458b"
     },
     "singbox.json": {
-      "nodes": 730,
-      "sha256_16": "09c35bdf42d542bc"
+      "nodes": 764,
+      "sha256_16": "59681e52fb0a9287"
     },
     "v2ray.txt": {
-      "nodes": 683,
-      "sha256_16": "6a5ba9bc7b896313"
+      "nodes": 724,
+      "sha256_16": "e2d3e5daa481a06c"
     }
+  },
+  "nodes": {
+    "clash": 2644
+  },
+  "sha256_16": {
+    "clash": "d98041afd5ef46f6"
+  },
+  "policy_normalization": {
+    "shared_template": true,
+    "country_groups": 49,
+    "country_codes": [
+      "AE",
+      "AT",
+      "AU",
+      "BD",
+      "BE",
+      "BG",
+      "BR",
+      "CA",
+      "CH",
+      "CL",
+      "CY",
+      "CZ",
+      "DE",
+      "EE",
+      "ES",
+      "FI",
+      "FR",
+      "GB",
+      "HK",
+      "ID",
+      "IE",
+      "IL",
+      "IN",
+      "IT",
+      "JP",
+      "KR",
+      "LK",
+      "LT",
+      "LU",
+      "LV",
+      "MO",
+      "MX",
+      "MY",
+      "NL",
+      "NO",
+      "PH",
+      "PL",
+      "PT",
+      "QA",
+      "RO",
+      "RS",
+      "RU",
+      "SC",
+      "SE",
+      "SG",
+      "TR",
+      "TW",
+      "US",
+      "ZA"
+    ]
   }
 }
