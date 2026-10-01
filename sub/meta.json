@@ -1,7 +1,7 @@
 {
   "code": "7788",
-  "updated_at": "2026-10-01T11:28:30+08:00",
-  "updated_at_utc": "2026-10-01T03:28:30+00:00",
+  "updated_at": "2026-10-01T12:44:39+08:00",
+  "updated_at_utc": "2026-10-01T04:44:39+00:00",
   "date": "2026-10-01",
   "source_page": "https://jcnode.com/posts/free-nodes/",
   "link_tier": "direct",
@@ -16,7 +16,7 @@
     "v2ray": 820
   },
   "sha256_16": {
-    "clash": "5d62eda83a3b8b4b",
+    "clash": "cbfc0284bab22f5c",
     "singbox": "ea368a77edf9606e",
     "v2ray": "222af05d047c956c"
   },
@@ -25,6 +25,8 @@
   },
   "clash_normalization": {
     "http_opts_headers": "scalar_values_to_lists",
+    "flclash_path_controls_percent_encoded": 8,
+    "reality_short_ids_quoted": 29,
     "changed": true
   }
 }

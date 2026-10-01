@@ -1,7 +1,7 @@
 {
   "code": "7788",
-  "updated_at": "2026-10-01T11:28:30+08:00",
-  "updated_at_utc": "2026-10-01T03:28:30+00:00",
+  "updated_at": "2026-10-01T12:44:39+08:00",
+  "updated_at_utc": "2026-10-01T04:44:39+00:00",
   "date": "2026-10-01",
   "source_page": "https://jcnode.com/posts/free-nodes/",
   "link_tier": "direct",
@@ -11,20 +11,23 @@
     "v2ray": "https://shz.al/djEM"
   },
   "nodes": {
-    "clash": 20614,
+    "clash": 20616,
     "singbox": 3011,
     "v2ray": 2879
   },
   "sha256_16": {
-    "clash.yaml": "5e9593569a57f761",
+    "clash.yaml": "8ec0c8664f2c32a6",
     "singbox.json": "e3ad6ad446289636",
-    "v2ray.txt": "bffe5137c5457d2a"
+    "v2ray.txt": "bffe5137c5457d2a",
+    "clash": "3581a6c7a61b54b1"
   },
   "source_sha256_16": {
     "clash": "2f41c7a2d70fa87e"
   },
   "clash_normalization": {
     "http_opts_headers": "scalar_values_to_lists",
+    "flclash_path_controls_percent_encoded": 8,
+    "reality_short_ids_quoted": 3934,
     "changed": true
   },
   "merge": {
@@ -35,13 +38,13 @@
       "direction": "descending",
       "missing": "stable-last"
     },
-    "updated_at": "2026-10-01T03:29:08+00:00",
+    "updated_at": "2026-10-01T04:45:07+00:00",
     "clash": {
       "incoming": 820,
-      "base": 20615,
-      "final": 20614,
+      "base": 20614,
+      "final": 20616,
       "added": 817,
-      "duplicates_removed": 821,
+      "duplicates_removed": 818,
       "sort": "name-mb-s-desc-stable",
       "template": "incoming-daily"
     },
