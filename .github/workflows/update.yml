@@ -98,6 +98,110 @@ jobs:
           echo "运行: python $SCRIPT --out-dir .incoming-sub ${ARGS:-（默认 AABB 枚举）}"
           python "$SCRIPT" --out-dir .incoming-sub --history .incoming-sub/codes.log $ARGS
 
+      - name: 自动修复每日 Clash 常见格式并校正元数据
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import copy
+          import hashlib
+          import json
+          from pathlib import Path
+          import yaml
+
+          clash = Path(".incoming-sub/clash.yaml")
+          meta_path = Path(".incoming-sub/meta.json")
+          raw = clash.read_bytes()
+          doc = yaml.safe_load(raw.decode("utf-8"))
+          if not isinstance(doc, dict):
+              raise ValueError("Clash YAML 根节点不是映射，无法安全自动修复")
+
+          repairs = []
+          original = copy.deepcopy(doc)
+          proxies = doc.get("proxies")
+          if isinstance(proxies, dict):
+              proxies = [proxies]
+              repairs.append("proxies 单项映射已包装为列表")
+          elif proxies is None:
+              proxies = []
+          elif not isinstance(proxies, list):
+              proxies = []
+              repairs.append("无效 proxies 已替换为空列表")
+
+          valid_proxies = []
+          for index, proxy in enumerate(proxies):
+              if not isinstance(proxy, dict):
+                  repairs.append(f"proxies[{index}] 不是映射，已移除")
+                  continue
+              opts = proxy.get("http-opts")
+              if "http-opts" in proxy and not isinstance(opts, dict):
+                  proxy.pop("http-opts", None)
+                  repairs.append(f"proxies[{index}].http-opts 结构无效，已移除")
+                  opts = None
+              if isinstance(opts, dict) and "headers" in opts:
+                  headers = opts["headers"]
+                  if headers is None or not isinstance(headers, dict):
+                      opts["headers"] = {}
+                      repairs.append(f"proxies[{index}].http-opts.headers 已修复为空映射")
+                  else:
+                      fixed = {}
+                      for key, value in headers.items():
+                          if not isinstance(key, (str, int, float, bool)):
+                              repairs.append(f"proxies[{index}] 请求头键无法识别，已移除")
+                              continue
+                          name = str(key)
+                          if value is None:
+                              repairs.append(f"请求头 {name} 为空，已移除")
+                          elif isinstance(value, str):
+                              fixed[name] = [value]
+                          elif isinstance(value, (int, float, bool)):
+                              fixed[name] = [str(value)]
+                          elif isinstance(value, list):
+                              values = [str(item) for item in value if isinstance(item, (str, int, float, bool))]
+                              if any(item is not None and not isinstance(item, (str, int, float, bool)) for item in value):
+                                  repairs.append(f"请求头 {name} 含嵌套值，已移除不安全部分")
+                              if values or not value:
+                                  fixed[name] = values
+                              else:
+                                  repairs.append(f"请求头 {name} 没有有效值，已移除")
+                          else:
+                              repairs.append(f"请求头 {name} 不是标量或列表，已移除")
+                      opts["headers"] = fixed
+              valid_proxies.append(proxy)
+          doc["proxies"] = valid_proxies
+
+          changed = original != doc
+          output = raw
+          if changed:
+              output = yaml.safe_dump(doc, allow_unicode=True, sort_keys=False,
+                                      default_flow_style=False, width=4096).encode("utf-8")
+              clash.write_bytes(output)
+
+          try:
+              meta = json.loads(meta_path.read_text(encoding="utf-8"))
+          except (json.JSONDecodeError, UnicodeDecodeError):
+              meta = {}
+              repairs.append("meta.json 无法解析，已重建校验字段")
+          if not isinstance(meta, dict):
+              meta = {}
+              repairs.append("meta.json 根结构无效，已重建")
+          for key in ("nodes", "sha256_16", "source_sha256_16"):
+              if not isinstance(meta.get(key), dict):
+                  meta[key] = {}
+                  repairs.append(f"meta.json 的 {key} 已重建")
+          meta["nodes"]["clash"] = len(doc.get("proxies") or [])
+          meta["source_sha256_16"]["clash"] = hashlib.sha256(raw).hexdigest()[:16]
+          meta["sha256_16"]["clash"] = hashlib.sha256(output).hexdigest()[:16]
+          meta["clash_normalization"] = {
+              "http_opts_headers": "scalar_values_to_lists",
+              "changed": changed,
+          }
+          meta_path.write_text(json.dumps(meta, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+          print(f"✅ 每日 Clash 处理完成：{len(doc.get('proxies') or [])} 个节点；元数据已同步")
+          for item in repairs:
+              print(f"⚠️ 自动修复：{item}")
+          PY
+
       - name: 保存当天订阅（覆盖 daily，保留综合版）
         shell: bash
         run: |
@@ -209,6 +313,33 @@ jobs:
             exit 1
           fi
 
+      - name: mihomo 预校验订阅配置（daily / merged / alive）
+        id: clash-validation
+        shell: bash
+        run: |
+          set -euo pipefail
+          # 不校验上一轮的 alive：它可能正是需要被本轮刷新修复的旧产物。
+          for file in sub/clash.yaml sub/merged/clash.yaml; do
+            test -s "$file"
+            echo "校验 $file"
+            .tools/mihomo -t -d "$(dirname "$file")" -f "$file"
+          done
+
+      - name: 备份上一次存活订阅
+        id: alive-backup
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf .alive-previous
+          if [ -d sub/alive ]; then
+            cp -a sub/alive .alive-previous
+            echo "exists=true" >> "$GITHUB_OUTPUT"
+            echo "✅ 已备份上一轮存活结果"
+          else
+            echo "exists=false" >> "$GITHUB_OUTPUT"
+            echo "ℹ️ 尚无上一轮存活结果"
+          fi
+
       - name: mihomo 内核实测活（TCP 预筛 + 真实代理延迟测试，聚合能连上的）
         id: alive
         continue-on-error: true
@@ -227,14 +358,38 @@ jobs:
             --concurrency 128 \
             --retries 1
 
-      - name: 提交变更（测活失败时也保住当天订阅更新，保留上一次 alive）
-        if: always() && (steps.alive.outcome == 'success' || steps.alive.outcome == 'failure')
+      - name: 校验新生成的存活订阅
+        id: alive-validation
+        if: steps.alive.outcome == 'success'
+        continue-on-error: true
         shell: bash
         run: |
           set -euo pipefail
-          if [ "${{ steps.alive.outcome }}" = "failure" ]; then
-            echo "⚠️ mihomo 实测活步骤失败：本次仅提交当天订阅与合并结果，sub/alive 保留上一次的版本"
-            EXTRA=" [alive-check failed, kept previous alive]"
+          test -s sub/alive/clash.yaml
+          .tools/mihomo -t -d sub/alive -f sub/alive/clash.yaml
+
+      - name: 新存活结果无效时恢复上一次结果
+        if: always() && steps.clash-validation.outcome == 'success' && (steps.alive.outcome == 'failure' || steps.alive-validation.outcome == 'failure')
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf sub/alive
+          if [ -d .alive-previous ]; then
+            cp -a .alive-previous sub/alive
+            echo "⚠️ 新存活结果失败，已恢复上一轮结果"
+          else
+            mkdir -p sub/alive
+            echo "⚠️ 新存活结果失败，且没有旧版本可恢复"
+          fi
+
+      - name: 提交变更（测活失败时也保住当天订阅更新，保留上一次 alive）
+        if: always() && steps.clash-validation.outcome == 'success' && (steps.alive.outcome == 'success' || steps.alive.outcome == 'failure')
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [ "${{ steps.alive.outcome }}" != "success" ] || [ "${{ steps.alive-validation.outcome }}" != "success" ]; then
+            echo "⚠️ 实测活或存活配置校验失败：本次提交当天订阅与合并结果，sub/alive 保留上一次的版本"
+            EXTRA=" [alive-check/validation failed, kept previous alive]"
           else
             EXTRA=""
           fi
@@ -258,10 +413,10 @@ jobs:
           retention-days: 7
 
       - name: 测活门禁（测活未成功必须让 Action 变红，绝不静默保留旧存活文件）
-        if: always() && steps.alive.outcome != 'success'
+        if: always() && steps.clash-validation.outcome == 'success' && (steps.alive.outcome != 'success' || steps.alive-validation.outcome != 'success')
         shell: bash
         run: |
-          echo "❌ mihomo 实测活步骤未成功（outcome=${{ steps.alive.outcome }}）"
-          echo "本次已提交当天订阅与合并结果，但 sub/alive 仍是上一轮的旧文件（订阅用户拿到的不是最新测活结果）。"
+          echo "❌ mihomo 实测活或新存活配置校验未成功（alive=${{ steps.alive.outcome }}, validation=${{ steps.alive-validation.outcome }}）"
+          echo "本次已提交当天订阅与合并结果；sub/alive 已恢复上一轮文件（可能仍是旧结果）。"
           echo "请展开上方『mihomo 内核实测活』步骤日志，把 ❌ / ⚠️ 开头的行和内核诊断信息复制反馈，以便定位。"
           exit 1
