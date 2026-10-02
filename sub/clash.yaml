@@ -10313,13 +10313,11 @@ proxy-groups:
   - 🇨🇿 捷克自动
   - 🇩🇪 德国自动
   - 🇫🇷 法国自动
-  - 🇮🇳 印度自动
   - 🇲🇽 墨西哥自动
   - 🇶🇦 卡塔尔自动
   - 🇸🇪 瑞典自动
   - 🇸🇬 新加坡自动
   - 🇺🇸 美国自动
-  - 🇿🇦 南非自动
   - DIRECT
 - name: 🔰 手动选择
   type: select
@@ -11221,12 +11219,10 @@ proxy-groups:
   - 🇨🇿 捷克自动
   - 🇩🇪 德国自动
   - 🇫🇷 法国自动
-  - 🇮🇳 印度自动
   - 🇲🇽 墨西哥自动
   - 🇶🇦 卡塔尔自动
   - 🇸🇪 瑞典自动
   - 🇺🇸 美国自动
-  - 🇿🇦 南非自动
   - DIRECT
 - name: 💬 人工智能
   type: select
@@ -11238,12 +11234,10 @@ proxy-groups:
   - 🇨🇿 捷克自动
   - 🇩🇪 德国自动
   - 🇫🇷 法国自动
-  - 🇮🇳 印度自动
   - 🇲🇽 墨西哥自动
   - 🇶🇦 卡塔尔自动
   - 🇸🇪 瑞典自动
   - 🇺🇸 美国自动
-  - 🇿🇦 南非自动
   - DIRECT
 - name: 🎮 游戏平台
   type: select
@@ -11255,12 +11249,10 @@ proxy-groups:
   - 🇨🇿 捷克自动
   - 🇩🇪 德国自动
   - 🇫🇷 法国自动
-  - 🇮🇳 印度自动
   - 🇲🇽 墨西哥自动
   - 🇶🇦 卡塔尔自动
   - 🇸🇪 瑞典自动
   - 🇸🇬 新加坡自动
-  - 🇿🇦 南非自动
   - DIRECT
 - name: 📲 电报消息
   type: select
@@ -11271,12 +11263,10 @@ proxy-groups:
   - 🇨🇿 捷克自动
   - 🇩🇪 德国自动
   - 🇫🇷 法国自动
-  - 🇮🇳 印度自动
   - 🇲🇽 墨西哥自动
   - 🇶🇦 卡塔尔自动
   - 🇸🇪 瑞典自动
   - 🇺🇸 美国自动
-  - 🇿🇦 南非自动
   - DIRECT
 - name: 🍎 苹果服务
   type: select
@@ -11286,13 +11276,11 @@ proxy-groups:
   - 🇨🇿 捷克自动
   - 🇩🇪 德国自动
   - 🇫🇷 法国自动
-  - 🇮🇳 印度自动
   - 🇲🇽 墨西哥自动
   - 🇶🇦 卡塔尔自动
   - 🇸🇪 瑞典自动
   - 🇸🇬 新加坡自动
   - 🇺🇸 美国自动
-  - 🇿🇦 南非自动
   - DIRECT
 - name: 📺 国外媒体
   type: select
@@ -11304,12 +11292,10 @@ proxy-groups:
   - 🇨🇿 捷克自动
   - 🇩🇪 德国自动
   - 🇫🇷 法国自动
-  - 🇮🇳 印度自动
   - 🇲🇽 墨西哥自动
   - 🇶🇦 卡塔尔自动
   - 🇸🇪 瑞典自动
   - 🇸🇬 新加坡自动
-  - 🇿🇦 南非自动
   - DIRECT
 - name: Ⓜ️ 微软服务
   type: select
@@ -11321,12 +11307,10 @@ proxy-groups:
   - 🇨🇿 捷克自动
   - 🇩🇪 德国自动
   - 🇫🇷 法国自动
-  - 🇮🇳 印度自动
   - 🇲🇽 墨西哥自动
   - 🇶🇦 卡塔尔自动
   - 🇸🇪 瑞典自动
   - 🇸🇬 新加坡自动
-  - 🇿🇦 南非自动
   - DIRECT
 - name: 🇧🇪 比利时自动
   type: url-test
@@ -11361,14 +11345,6 @@ proxy-groups:
   lazy: true
   proxies:
   - 🇫🇷法国FR005 2.09MB/s中性 TG@jcnode
-- name: 🇮🇳 印度自动
-  type: url-test
-  url: https://www.gstatic.com/generate_204
-  interval: 300
-  tolerance: 50
-  lazy: true
-  proxies:
-  - 🇮🇳印度IN004 测速未知 TG@jcnode
 - name: 🇲🇽 墨西哥自动
   type: url-test
   url: https://www.gstatic.com/generate_204
@@ -11411,14 +11387,7 @@ proxy-groups:
   - 🇺🇸美国US020 2.01MB/s中性 TG@jcnode
   - 🇺🇸美国US145 1.23MB/s中性 TG@jcnode
   - 🇺🇸美国US162 0.67MB/s中性 TG@jcnode
-- name: 🇿🇦 南非自动
-  type: url-test
-  url: https://www.gstatic.com/generate_204
-  interval: 300
-  tolerance: 50
-  lazy: true
-  proxies:
-  - 🇿🇦南非ZA003 测速未知 TG@jcnode
+  - 🇺🇸美国US702 测速未知纯净 TG@jcnode
 rules:
 - DOMAIN-SUFFIX,xn--ngstr-lra8j.com,☁️ 代理选择
 - DOMAIN-SUFFIX,services.googleapis.cn,☁️ 代理选择
