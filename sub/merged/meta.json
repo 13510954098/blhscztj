@@ -1,7 +1,7 @@
 {
   "code": "7788",
-  "updated_at": "2026-10-03T17:18:08+08:00",
-  "updated_at_utc": "2026-10-03T09:18:08+00:00",
+  "updated_at": "2026-10-03T22:30:24+08:00",
+  "updated_at_utc": "2026-10-03T14:30:24+00:00",
   "date": "2026-10-03",
   "source_page": "https://jcnode.com/posts/free-nodes/",
   "link_tier": "direct",
@@ -19,7 +19,7 @@
     "clash.yaml": "949ced2003e960b1",
     "singbox.json": "e8d809ba62f3a183",
     "v2ray.txt": "ec7375c1a67b8bbd",
-    "clash": "0b5fa7fe71d9f033"
+    "clash": "293704a916adffcd"
   },
   "source_sha256_16": {
     "clash": "7b6e079450d0906b"
@@ -38,29 +38,29 @@
       "direction": "descending",
       "missing": "stable-last"
     },
-    "updated_at": "2026-10-03T09:18:36+00:00",
+    "updated_at": "2026-10-03T14:30:47+00:00",
     "clash": {
       "incoming": 692,
-      "base": 21286,
+      "base": 21506,
       "final": 21506,
       "added": 687,
-      "duplicates_removed": 472,
+      "duplicates_removed": 692,
       "sort": "name-mb-s-desc-stable",
       "template": "incoming-daily"
     },
     "singbox": {
       "incoming": 683,
-      "base": 3661,
+      "base": 3873,
       "final": 3873,
       "added": 586,
-      "duplicates_removed": 471
+      "duplicates_removed": 683
     },
     "v2ray": {
       "incoming": 692,
-      "base": 3520,
+      "base": 3731,
       "final": 3731,
       "added": 556,
-      "duplicates_removed": 481
+      "duplicates_removed": 692
     }
   },
   "fresh_nodes": {
@@ -70,16 +70,12 @@
   },
   "policy_normalization": {
     "shared_template": true,
-    "country_groups": 11,
+    "country_groups": 7,
     "country_codes": [
       "CA",
       "CZ",
-      "FR",
       "IE",
-      "IL",
       "JP",
-      "QA",
-      "SE",
       "SG",
       "US",
       "ZA"
