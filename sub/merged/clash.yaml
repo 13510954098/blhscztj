@@ -284053,12 +284053,12 @@ proxy-groups:
   proxies:
   - 🔰 手动选择
   - ♻️ 自动选择
+  - 🇨🇦 加拿大自动
   - 🇨🇿 捷克自动
   - 🇩🇪 德国自动
   - 🇭🇰 香港自动
   - 🇮🇪 爱尔兰自动
   - 🇯🇵 日本自动
-  - 🇸🇬 新加坡自动
   - 🇹🇼 台湾自动
   - 🇺🇸 美国自动
   - 🇿🇦 南非自动
@@ -305894,7 +305894,7 @@ proxy-groups:
   - ♻️ 自动选择
   - 🇭🇰 香港自动
   - 🇹🇼 台湾自动
-  - 🇸🇬 新加坡自动
+  - 🇨🇦 加拿大自动
   - 🇨🇿 捷克自动
   - 🇩🇪 德国自动
   - 🇮🇪 爱尔兰自动
@@ -305909,8 +305909,8 @@ proxy-groups:
   - ♻️ 自动选择
   - 🇭🇰 香港自动
   - 🇹🇼 台湾自动
-  - 🇸🇬 新加坡自动
   - 🇯🇵 日本自动
+  - 🇨🇦 加拿大自动
   - 🇨🇿 捷克自动
   - 🇩🇪 德国自动
   - 🇮🇪 爱尔兰自动
@@ -305926,10 +305926,10 @@ proxy-groups:
   - 🇹🇼 台湾自动
   - 🇯🇵 日本自动
   - 🇺🇸 美国自动
+  - 🇨🇦 加拿大自动
   - 🇨🇿 捷克自动
   - 🇩🇪 德国自动
   - 🇮🇪 爱尔兰自动
-  - 🇸🇬 新加坡自动
   - 🇿🇦 南非自动
   - DIRECT
 - name: 📲 电报消息
@@ -305938,7 +305938,7 @@ proxy-groups:
   - ☁️ 代理选择
   - 🇭🇰 香港自动
   - 🇹🇼 台湾自动
-  - 🇸🇬 新加坡自动
+  - 🇨🇦 加拿大自动
   - 🇨🇿 捷克自动
   - 🇩🇪 德国自动
   - 🇮🇪 爱尔兰自动
@@ -305952,11 +305952,11 @@ proxy-groups:
   - ☁️ 代理选择
   - 🇭🇰 香港自动
   - 🇹🇼 台湾自动
+  - 🇨🇦 加拿大自动
   - 🇨🇿 捷克自动
   - 🇩🇪 德国自动
   - 🇮🇪 爱尔兰自动
   - 🇯🇵 日本自动
-  - 🇸🇬 新加坡自动
   - 🇺🇸 美国自动
   - 🇿🇦 南非自动
   - DIRECT
@@ -305967,11 +305967,11 @@ proxy-groups:
   - ♻️ 自动选择
   - 🇯🇵 日本自动
   - 🇺🇸 美国自动
+  - 🇨🇦 加拿大自动
   - 🇨🇿 捷克自动
   - 🇩🇪 德国自动
   - 🇭🇰 香港自动
   - 🇮🇪 爱尔兰自动
-  - 🇸🇬 新加坡自动
   - 🇹🇼 台湾自动
   - 🇿🇦 南非自动
   - DIRECT
@@ -305983,13 +305983,21 @@ proxy-groups:
   - 🇭🇰 香港自动
   - 🇹🇼 台湾自动
   - 🇺🇸 美国自动
+  - 🇨🇦 加拿大自动
   - 🇨🇿 捷克自动
   - 🇩🇪 德国自动
   - 🇮🇪 爱尔兰自动
   - 🇯🇵 日本自动
-  - 🇸🇬 新加坡自动
   - 🇿🇦 南非自动
   - DIRECT
+- name: 🇨🇦 加拿大自动
+  type: url-test
+  url: https://www.gstatic.com/generate_204
+  interval: 300
+  tolerance: 50
+  lazy: true
+  proxies:
+  - 🇨🇦加拿大CA010 测速未知 TG@jcnode
 - name: 🇨🇿 捷克自动
   type: url-test
   url: https://www.gstatic.com/generate_204
@@ -306032,15 +306040,7 @@ proxy-groups:
   proxies:
   - '🇯🇵日本JP029 测速未知中性 TG@jcnode #2'
   - 🇯🇵日本JP021 测速未知 TG@jcnode
-- name: 🇸🇬 新加坡自动
-  type: url-test
-  url: https://www.gstatic.com/generate_204
-  interval: 300
-  tolerance: 50
-  lazy: true
-  proxies:
-  - 🇸🇬新加坡SG002 5.52MB/s中性 TG@jcnode
-  - 🇸🇬新加坡SG003 4.92MB/s中性 TG@jcnode
+  - 🇯🇵日本JP002 测速未知 TG@jcnode
 - name: 🇹🇼 台湾自动
   type: url-test
   url: https://www.gstatic.com/generate_204
@@ -306062,39 +306062,38 @@ proxy-groups:
   - 🇺🇸美国US0009 2.03MB/s中性 TG@jcnode
   - 🇺🇸美国US0012 2.01MB/s中性 TG@jcnode
   - 🇺🇸美国US020 2.01MB/s中性 TG@jcnode
-  - 🇺🇸美国US069 1.67MB/s中性 TG@jcnode
   - 🇺🇸美国US0091 1.66MB/s中性 TG@jcnode
   - 🇺🇸美国US0107 1.59MB/s中性 TG@jcnode
   - 🇺🇸美国US0113 1.58MB/s中性 TG@jcnode
+  - 🇺🇸美国US0114 1.58MB/s中性 TG@jcnode
   - 🇺🇸美国US0142 1.39MB/s中性 TG@jcnode
   - 🇺🇸美国US0143 1.39MB/s TG@jcnode
   - 🇺🇸美国US0144 1.39MB/s中性 TG@jcnode
+  - 🇺🇸美国US0145 1.39MB/s中性 TG@jcnode
   - 🇺🇸美国US144 1.36MB/s中性 TG@jcnode
   - 🇺🇸美国US0150 1.31MB/s中性 TG@jcnode
   - 🇺🇸美国US0155 1.27MB/s中性 TG@jcnode
   - 🇺🇸美国US0157 1.26MB/s中性 TG@jcnode
   - 🇺🇸美国US0161 1.23MB/s中性 TG@jcnode
   - 🇺🇸美国US0171 1.2MB/s中性 TG@jcnode
-  - 🇺🇸美国US0175 1.17MB/s中性 TG@jcnode
   - 🇺🇸美国US0177 1.16MB/s中性 TG@jcnode
-  - 🇺🇸美国US0178 1.16MB/s中性 TG@jcnode
   - 🇺🇸美国US0180 1.14MB/s中性 TG@jcnode
   - 🇺🇸美国US0182 1.12MB/s中性 TG@jcnode
   - 🇺🇸美国US0183 1.12MB/s中性 TG@jcnode
   - 🇺🇸美国US0189 1.06MB/s TG@jcnode
   - 🇺🇸美国US0191 1.01MB/s中性 TG@jcnode
+  - 🇺🇸美国US0193 0.97MB/s中性 TG@jcnode
   - 🇺🇸美国US0199 0.79MB/s中性 TG@jcnode
   - 🇺🇸美国US0202 0.7MB/s中性 TG@jcnode
   - 🇺🇸美国US162 0.67MB/s中性 TG@jcnode
+  - 🇺🇸美国US0207 0.63MB/s中性 TG@jcnode
   - 🇺🇸美国US0209 0.62MB/s中性 TG@jcnode
   - 🇺🇸美国US0212 0.56MB/s中性 TG@jcnode
-  - 🇺🇸美国US420 测速未知中性 TG@jcnode
   - 🇺🇸美国US423 测速未知中性 TG@jcnode
   - 🇺🇸美国US0981 测速未知中性 TG@jcnode
+  - 🇺🇸美国US1091 测速未知中性 TG@jcnode
   - 🇺🇸美国US1108 测速未知中性 TG@jcnode
   - 🇺🇸美国US1115 测速未知中性 TG@jcnode
-  - 🇺🇸美国US192 测速未知中性 TG@jcnode
-  - 🇺🇸美国US173 测速未知 TG@jcnode
 - name: 🇿🇦 南非自动
   type: url-test
   url: https://www.gstatic.com/generate_204

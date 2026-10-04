@@ -8818,10 +8818,10 @@ proxy-groups:
   proxies:
   - 🔰 手动选择
   - ♻️ 自动选择
+  - 🇨🇦 加拿大自动
   - 🇨🇿 捷克自动
   - 🇩🇪 德国自动
   - 🇭🇰 香港自动
-  - 🇸🇬 新加坡自动
   - 🇹🇼 台湾自动
   - 🇺🇸 美国自动
   - 🇿🇦 南非自动
@@ -9656,7 +9656,7 @@ proxy-groups:
   - ♻️ 自动选择
   - 🇭🇰 香港自动
   - 🇹🇼 台湾自动
-  - 🇸🇬 新加坡自动
+  - 🇨🇦 加拿大自动
   - 🇨🇿 捷克自动
   - 🇩🇪 德国自动
   - 🇺🇸 美国自动
@@ -9669,7 +9669,7 @@ proxy-groups:
   - ♻️ 自动选择
   - 🇭🇰 香港自动
   - 🇹🇼 台湾自动
-  - 🇸🇬 新加坡自动
+  - 🇨🇦 加拿大自动
   - 🇨🇿 捷克自动
   - 🇩🇪 德国自动
   - 🇺🇸 美国自动
@@ -9683,9 +9683,9 @@ proxy-groups:
   - 🇭🇰 香港自动
   - 🇹🇼 台湾自动
   - 🇺🇸 美国自动
+  - 🇨🇦 加拿大自动
   - 🇨🇿 捷克自动
   - 🇩🇪 德国自动
-  - 🇸🇬 新加坡自动
   - 🇿🇦 南非自动
   - DIRECT
 - name: 📲 电报消息
@@ -9694,7 +9694,7 @@ proxy-groups:
   - ☁️ 代理选择
   - 🇭🇰 香港自动
   - 🇹🇼 台湾自动
-  - 🇸🇬 新加坡自动
+  - 🇨🇦 加拿大自动
   - 🇨🇿 捷克自动
   - 🇩🇪 德国自动
   - 🇺🇸 美国自动
@@ -9706,9 +9706,9 @@ proxy-groups:
   - ☁️ 代理选择
   - 🇭🇰 香港自动
   - 🇹🇼 台湾自动
+  - 🇨🇦 加拿大自动
   - 🇨🇿 捷克自动
   - 🇩🇪 德国自动
-  - 🇸🇬 新加坡自动
   - 🇺🇸 美国自动
   - 🇿🇦 南非自动
   - DIRECT
@@ -9718,10 +9718,10 @@ proxy-groups:
   - ☁️ 代理选择
   - ♻️ 自动选择
   - 🇺🇸 美国自动
+  - 🇨🇦 加拿大自动
   - 🇨🇿 捷克自动
   - 🇩🇪 德国自动
   - 🇭🇰 香港自动
-  - 🇸🇬 新加坡自动
   - 🇹🇼 台湾自动
   - 🇿🇦 南非自动
   - DIRECT
@@ -9733,11 +9733,19 @@ proxy-groups:
   - 🇭🇰 香港自动
   - 🇹🇼 台湾自动
   - 🇺🇸 美国自动
+  - 🇨🇦 加拿大自动
   - 🇨🇿 捷克自动
   - 🇩🇪 德国自动
-  - 🇸🇬 新加坡自动
   - 🇿🇦 南非自动
   - DIRECT
+- name: 🇨🇦 加拿大自动
+  type: url-test
+  url: https://www.gstatic.com/generate_204
+  interval: 300
+  tolerance: 50
+  lazy: true
+  proxies:
+  - 🇨🇦加拿大CA010 测速未知 TG@jcnode
 - name: 🇨🇿 捷克自动
   type: url-test
   url: https://www.gstatic.com/generate_204
@@ -9763,15 +9771,6 @@ proxy-groups:
   proxies:
   - 🇭🇰香港HK004 4.92MB/s中性 TG@jcnode
   - 🇭🇰香港HK006 3.23MB/s中性 TG@jcnode
-- name: 🇸🇬 新加坡自动
-  type: url-test
-  url: https://www.gstatic.com/generate_204
-  interval: 300
-  tolerance: 50
-  lazy: true
-  proxies:
-  - 🇸🇬新加坡SG002 5.52MB/s中性 TG@jcnode
-  - 🇸🇬新加坡SG003 4.92MB/s中性 TG@jcnode
 - name: 🇹🇼 台湾自动
   type: url-test
   url: https://www.gstatic.com/generate_204
@@ -9787,9 +9786,7 @@ proxy-groups:
   tolerance: 50
   lazy: true
   proxies:
-  - 🇺🇸美国US069 1.67MB/s中性 TG@jcnode
   - 🇺🇸美国US144 1.36MB/s中性 TG@jcnode
-  - 🇺🇸美国US420 测速未知中性 TG@jcnode
   - 🇺🇸美国US423 测速未知中性 TG@jcnode
 - name: 🇿🇦 南非自动
   type: url-test

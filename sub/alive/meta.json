@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-04T10:17:46+00:00",
+  "generated_at": "2026-10-04T15:23:39+00:00",
   "source_dir": "sub/merged",
   "daily_dir": "sub",
   "scope": "full",
@@ -11,18 +11,10 @@
     "https://www.cloudflare.com/cdn-cgi/trace"
   ],
   "strict_https_retries": 2,
-  "strict_https_passed": 1796,
+  "strict_https_passed": 1594,
   "actual_exit_country_by_name": {
-    "🇸🇬新加坡SG002 5.52MB/s中性 TG@jcnode": {
-      "country_code": "SG",
-      "source": "geoip.metadb"
-    },
     "🇭🇰香港HK004 4.92MB/s中性 TG@jcnode": {
       "country_code": "HK",
-      "source": "geoip.metadb"
-    },
-    "🇸🇬新加坡SG003 4.92MB/s中性 TG@jcnode": {
-      "country_code": "SG",
       "source": "geoip.metadb"
     },
     "🇹🇼台湾TW001 3.37MB/s中性 TG@jcnode": {
@@ -57,10 +49,6 @@
       "country_code": "US",
       "source": "geoip.metadb"
     },
-    "🇺🇸美国US069 1.67MB/s中性 TG@jcnode": {
-      "country_code": "US",
-      "source": "geoip.metadb"
-    },
     "🇺🇸美国US0091 1.66MB/s中性 TG@jcnode": {
       "country_code": "US",
       "source": "geoip.metadb"
@@ -73,6 +61,10 @@
       "country_code": "US",
       "source": "geoip.metadb"
     },
+    "🇺🇸美国US0114 1.58MB/s中性 TG@jcnode": {
+      "country_code": "US",
+      "source": "geoip.metadb"
+    },
     "🇺🇸美国US0142 1.39MB/s中性 TG@jcnode": {
       "country_code": "US",
       "source": "geoip.metadb"
@@ -82,6 +74,10 @@
       "source": "geoip.metadb"
     },
     "🇺🇸美国US0144 1.39MB/s中性 TG@jcnode": {
+      "country_code": "US",
+      "source": "geoip.metadb"
+    },
+    "🇺🇸美国US0145 1.39MB/s中性 TG@jcnode": {
       "country_code": "US",
       "source": "geoip.metadb"
     },
@@ -109,15 +105,7 @@
       "country_code": "US",
       "source": "geoip.metadb"
     },
-    "🇺🇸美国US0175 1.17MB/s中性 TG@jcnode": {
-      "country_code": "US",
-      "source": "geoip.metadb"
-    },
     "🇺🇸美国US0177 1.16MB/s中性 TG@jcnode": {
-      "country_code": "US",
-      "source": "geoip.metadb"
-    },
-    "🇺🇸美国US0178 1.16MB/s中性 TG@jcnode": {
       "country_code": "US",
       "source": "geoip.metadb"
     },
@@ -141,6 +129,10 @@
       "country_code": "US",
       "source": "geoip.metadb"
     },
+    "🇺🇸美国US0193 0.97MB/s中性 TG@jcnode": {
+      "country_code": "US",
+      "source": "geoip.metadb"
+    },
     "🇺🇸美国US0199 0.79MB/s中性 TG@jcnode": {
       "country_code": "US",
       "source": "geoip.metadb"
@@ -161,6 +153,10 @@
       "country_code": "US",
       "source": "geoip.metadb"
     },
+    "🇺🇸美国US0207 0.63MB/s中性 TG@jcnode": {
+      "country_code": "US",
+      "source": "geoip.metadb"
+    },
     "🇺🇸美国US0209 0.62MB/s中性 TG@jcnode": {
       "country_code": "US",
       "source": "geoip.metadb"
@@ -173,12 +169,12 @@
       "country_code": "IE",
       "source": "geoip.metadb"
     },
-    "🇺🇸美国US420 测速未知中性 TG@jcnode": {
+    "🇺🇸美国US423 测速未知中性 TG@jcnode": {
       "country_code": "US",
       "source": "geoip.metadb"
     },
-    "🇺🇸美国US423 测速未知中性 TG@jcnode": {
-      "country_code": "US",
+    "🇨🇦加拿大CA010 测速未知 TG@jcnode": {
+      "country_code": "CA",
       "source": "geoip.metadb"
     },
     "🇩🇪德国DE078 测速未知中性 TG@jcnode": {
@@ -186,6 +182,10 @@
       "source": "geoip.metadb"
     },
     "🇺🇸美国US0981 测速未知中性 TG@jcnode": {
+      "country_code": "US",
+      "source": "geoip.metadb"
+    },
+    "🇺🇸美国US1091 测速未知中性 TG@jcnode": {
       "country_code": "US",
       "source": "geoip.metadb"
     },
@@ -197,34 +197,22 @@
       "country_code": "US",
       "source": "geoip.metadb"
     },
-    "🇺🇸美国US192 测速未知中性 TG@jcnode": {
-      "country_code": "US",
-      "source": "geoip.metadb"
-    },
     "🇯🇵日本JP029 测速未知中性 TG@jcnode #2": {
       "country_code": "JP",
-      "source": "geoip.metadb"
-    },
-    "🇺🇸美国US173 测速未知 TG@jcnode": {
-      "country_code": "US",
       "source": "geoip.metadb"
     },
     "🇯🇵日本JP021 测速未知 TG@jcnode": {
       "country_code": "JP",
       "source": "geoip.metadb"
+    },
+    "🇯🇵日本JP002 测速未知 TG@jcnode": {
+      "country_code": "JP",
+      "source": "geoip.metadb"
     }
   },
   "actual_exit_country_by_identity": {
-    "cb4018338d040407711c35f7614b6bf881a1b3ae57065cc6801a0092e7ebdcf4": {
-      "country_code": "SG",
-      "source": "geoip.metadb"
-    },
     "e5bc08a8c53989851572d285c3703d50be37254bf3a8bd34896b475eeb79d7db": {
       "country_code": "HK",
-      "source": "geoip.metadb"
-    },
-    "e8a6787565ea4f6d5d17fe2a326a6703adfe90c72b99db1440f852973f966556": {
-      "country_code": "SG",
       "source": "geoip.metadb"
     },
     "2ee101fb83789ee220389ecb4631f427b55c65153a52ade47ca3fb28dfc6515a": {
@@ -259,10 +247,6 @@
       "country_code": "US",
       "source": "geoip.metadb"
     },
-    "93f9fc464d30f88785e6ea0c11f6fb552e41e41f53286f3c2b0b17b4dffa4c50": {
-      "country_code": "US",
-      "source": "geoip.metadb"
-    },
     "1d95cadbc8314599006ec244be90dec6ad9b5c1aa0eee7fc65966a1a0da3aa3a": {
       "country_code": "US",
       "source": "geoip.metadb"
@@ -275,6 +259,10 @@
       "country_code": "US",
       "source": "geoip.metadb"
     },
+    "6ed63ef74f893dabb388461236e6385e4de491f60888b2f2ab15f025173fc6f7": {
+      "country_code": "US",
+      "source": "geoip.metadb"
+    },
     "ed3d7d2a92b04b49533860b65e2de2f9cb4fe7df5e7ec622872372a7dec02941": {
       "country_code": "US",
       "source": "geoip.metadb"
@@ -284,6 +272,10 @@
       "source": "geoip.metadb"
     },
     "0b8be149011427a03469ad761a3c489fe86fb6eb761cfe688a030df2f42f42fa": {
+      "country_code": "US",
+      "source": "geoip.metadb"
+    },
+    "2643337e6975cde9a8cbcf45098a70b626d4b48a60a3ef9b72b9377d819611d6": {
       "country_code": "US",
       "source": "geoip.metadb"
     },
@@ -311,15 +303,7 @@
       "country_code": "US",
       "source": "geoip.metadb"
     },
-    "c8aa3e7c998f4d57889b26cc25ef3a9dc07bf5890cdbc31edb58e9c815c25387": {
-      "country_code": "US",
-      "source": "geoip.metadb"
-    },
     "8885049fb15e8e306656e1bb8120ac35c370aed68f132bdea0e161b55b3b366a": {
-      "country_code": "US",
-      "source": "geoip.metadb"
-    },
-    "6deef5aaf111e149166652ea049acf6370c1d6f0fd1d0c863e3d088ae1252ef9": {
       "country_code": "US",
       "source": "geoip.metadb"
     },
@@ -343,6 +327,10 @@
       "country_code": "US",
       "source": "geoip.metadb"
     },
+    "1a2ba5c05b5a0e3d32cf57242dc5fb9668e5cfb01e4bbc89e776faa909245a4a": {
+      "country_code": "US",
+      "source": "geoip.metadb"
+    },
     "fce618559a555e40aa2efa46681676a1c5ed755d7126091d12d8fe230a9f6a09": {
       "country_code": "US",
       "source": "geoip.metadb"
@@ -363,6 +351,10 @@
       "country_code": "US",
       "source": "geoip.metadb"
     },
+    "590fb2738cd8628cec677271a34d80952588cd00aed18ba833403d517d51b59a": {
+      "country_code": "US",
+      "source": "geoip.metadb"
+    },
     "43b4069c4d189a018627867682b6251f6d60f4421e92a33408a6e47692f42040": {
       "country_code": "US",
       "source": "geoip.metadb"
@@ -375,12 +367,12 @@
       "country_code": "IE",
       "source": "geoip.metadb"
     },
-    "4e54f15eea23cd8e4b5b7e9610e8a2122f0c1e9cf70385da56d508aa0447d928": {
+    "78482c1125388a05ab1dd7615e941204c50319b33800422fcaefc2c33e001e51": {
       "country_code": "US",
       "source": "geoip.metadb"
     },
-    "78482c1125388a05ab1dd7615e941204c50319b33800422fcaefc2c33e001e51": {
-      "country_code": "US",
+    "c02e1d90dbab416b60f2b70638521d1306f4038e36832ebfab55ec4c6643e748": {
+      "country_code": "CA",
       "source": "geoip.metadb"
     },
     "aef7838a33de33679be37eb3da652c316fa1277c03b12d464870ad84773619ac": {
@@ -388,6 +380,10 @@
       "source": "geoip.metadb"
     },
     "8b90241fbbe40b8cfc6f8e3a01689ec73290dd82da7c8dcb7538c29574623704": {
+      "country_code": "US",
+      "source": "geoip.metadb"
+    },
+    "d874c7cf548d42205bc5ce17fbc576f06d0d6f2877446aab583cc10304a8403c": {
       "country_code": "US",
       "source": "geoip.metadb"
     },
@@ -399,19 +395,15 @@
       "country_code": "US",
       "source": "geoip.metadb"
     },
-    "6c9a2cd2614c986bb19d86d0f5c6c83b8922755fd3d3ec211f24018b4d8e39b0": {
-      "country_code": "US",
-      "source": "geoip.metadb"
-    },
     "072cbd3e3f71b132f8c0912fcd64873550cf87409c2d2a3c98a8519fc48384f8": {
       "country_code": "JP",
       "source": "geoip.metadb"
     },
-    "44f13f41ea89f0a06d3012d3761b8d606123459b44503a301e42501ccc028938": {
-      "country_code": "US",
+    "2f0c59e52252ecb7b1e795fa5b806be9f874f47c59ea81ee3b712663c6f6749b": {
+      "country_code": "JP",
       "source": "geoip.metadb"
     },
-    "2f0c59e52252ecb7b1e795fa5b806be9f874f47c59ea81ee3b712663c6f6749b": {
+    "54dbc4de3e5918b7406ac4e6a48b032e6e26e6696aa405b4fd29c5c9c7f52bb3": {
       "country_code": "JP",
       "source": "geoip.metadb"
     }
@@ -428,70 +420,70 @@
     "tcp_candidates": 21087,
     "udp_direct_candidates": 728,
     "unique_endpoints": 11476,
-    "endpoints_passed": 7066,
-    "endpoints_failed": 4410,
-    "candidates_dropped": 7512
+    "endpoints_passed": 7034,
+    "endpoints_failed": 4442,
+    "candidates_dropped": 7616
   },
   "clash_candidates": {
     "total": 21815,
     "invalid": 0,
     "duplicate_name": 0
   },
-  "alive_unique_keys": 1279,
+  "alive_unique_keys": 1087,
   "alive_delay_ms": {
-    "min": 10.0,
-    "median": 118.0,
-    "max": 2617.0
+    "min": 6.0,
+    "median": 108.0,
+    "max": 2000.0
   },
   "node_status_counts": {
     "clash": {
-      "kept": 1796,
-      "failed": 12507,
-      "prefilter_dropped": 7512,
+      "kept": 1594,
+      "failed": 12605,
+      "prefilter_dropped": 7616,
       "load_error": 0,
       "invalid": 0,
       "duplicate_name": 0
     },
     "singbox": {
-      "kept": 446,
+      "kept": 410,
       "aux_kept": 0,
-      "dropped": 3717
+      "dropped": 3753
     },
     "v2ray": {
-      "kept": 257,
-      "dropped": 3768
+      "kept": 240,
+      "dropped": 3785
     }
   },
   "files": {
     "clash.yaml": {
-      "nodes": 1796,
-      "sha256_16": "638189206c96e5bb"
+      "nodes": 1594,
+      "sha256_16": "17e36c91d3e49421"
     },
     "singbox.json": {
-      "nodes": 446,
-      "sha256_16": "423fb8e7ee1f3565"
+      "nodes": 410,
+      "sha256_16": "b2ce14ed09e6ada6"
     },
     "v2ray.txt": {
-      "nodes": 257,
-      "sha256_16": "0ccb673f96da004c"
+      "nodes": 240,
+      "sha256_16": "73da1c18fedaa4ef"
     }
   },
   "nodes": {
-    "clash": 1796
+    "clash": 1594
   },
   "sha256_16": {
-    "clash": "7d8395fcfd320073"
+    "clash": "f3d5a957febc1a87"
   },
   "policy_normalization": {
     "shared_template": true,
     "country_groups": 9,
     "country_codes": [
+      "CA",
       "CZ",
       "DE",
       "HK",
       "IE",
       "JP",
-      "SG",
       "TW",
       "US",
       "ZA"
