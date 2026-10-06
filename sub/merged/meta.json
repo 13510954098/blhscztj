@@ -1,33 +1,33 @@
 {
   "code": "7788",
-  "updated_at": "2026-10-05T18:40:56+08:00",
-  "updated_at_utc": "2026-10-05T10:40:56+00:00",
-  "date": "2026-10-05",
+  "updated_at": "2026-10-06T14:42:23+08:00",
+  "updated_at_utc": "2026-10-06T06:42:23+00:00",
+  "date": "2026-10-06",
   "source_page": "https://jcnode.com/posts/free-nodes/",
   "link_tier": "direct",
   "links": {
-    "clash": "https://shz.al/kzST",
-    "singbox": "https://shz.al/dZZk",
-    "v2ray": "https://shz.al/bsEa"
+    "clash": "https://shz.al/2sJk",
+    "singbox": "https://shz.al/p5dJ",
+    "v2ray": "https://shz.al/w6Dy"
   },
   "nodes": {
-    "clash": 22337,
-    "singbox": 4660,
-    "v2ray": 4534
+    "clash": 22566,
+    "singbox": 4866,
+    "v2ray": 4750
   },
   "sha256_16": {
-    "clash.yaml": "c426acecd0533015",
-    "singbox.json": "fc06d3f409f7f00c",
-    "v2ray.txt": "3fded429214ff890",
-    "clash": "26c1ef51a9d43da0"
+    "clash.yaml": "9005df138ce27380",
+    "singbox.json": "4139cdd54e4e8328",
+    "v2ray.txt": "560aeb91ba2b2538",
+    "clash": "6656b756c0807997"
   },
   "source_sha256_16": {
-    "clash": "901230a0b1ed04d3"
+    "clash": "f5f1876480fd8353"
   },
   "clash_normalization": {
     "http_opts_headers": "scalar_values_to_lists",
     "flclash_path_controls_percent_encoded": 0,
-    "reality_short_ids_quoted": 4231,
+    "reality_short_ids_quoted": 4288,
     "changed": true
   },
   "merge": {
@@ -38,46 +38,46 @@
       "direction": "descending",
       "missing": "stable-last"
     },
-    "updated_at": "2026-10-05T10:41:19+00:00",
+    "updated_at": "2026-10-06T06:42:58+00:00",
     "clash": {
-      "incoming": 1133,
-      "base": 21815,
-      "final": 22337,
-      "added": 1131,
-      "duplicates_removed": 611,
+      "incoming": 890,
+      "base": 22337,
+      "final": 22566,
+      "added": 888,
+      "duplicates_removed": 661,
       "sort": "name-mb-s-desc-stable",
       "template": "incoming-daily"
     },
     "singbox": {
-      "incoming": 1105,
-      "base": 4163,
-      "final": 4660,
-      "added": 1002,
-      "duplicates_removed": 608
+      "incoming": 870,
+      "base": 4660,
+      "final": 4866,
+      "added": 759,
+      "duplicates_removed": 664
     },
     "v2ray": {
-      "incoming": 1133,
-      "base": 4025,
-      "final": 4534,
-      "added": 979,
-      "duplicates_removed": 624
+      "incoming": 890,
+      "base": 4534,
+      "final": 4750,
+      "added": 753,
+      "duplicates_removed": 674
     }
   },
   "fresh_nodes": {
-    "clash": 1133,
-    "singbox": 1105,
-    "v2ray": 1133
+    "clash": 890,
+    "singbox": 870,
+    "v2ray": 890
   },
   "policy_normalization": {
     "shared_template": true,
     "country_groups": 7,
     "country_codes": [
-      "AU",
+      "CA",
       "CZ",
       "DE",
       "IE",
       "JP",
-      "TW",
+      "MX",
       "US"
     ]
   }

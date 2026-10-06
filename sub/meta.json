@@ -1,40 +1,41 @@
 {
   "code": "7788",
-  "updated_at": "2026-10-05T18:40:56+08:00",
-  "updated_at_utc": "2026-10-05T10:40:56+00:00",
-  "date": "2026-10-05",
+  "updated_at": "2026-10-06T14:42:23+08:00",
+  "updated_at_utc": "2026-10-06T06:42:23+00:00",
+  "date": "2026-10-06",
   "source_page": "https://jcnode.com/posts/free-nodes/",
   "link_tier": "direct",
   "links": {
-    "clash": "https://shz.al/kzST",
-    "singbox": "https://shz.al/dZZk",
-    "v2ray": "https://shz.al/bsEa"
+    "clash": "https://shz.al/2sJk",
+    "singbox": "https://shz.al/p5dJ",
+    "v2ray": "https://shz.al/w6Dy"
   },
   "nodes": {
-    "clash": 1133,
-    "singbox": 1105,
-    "v2ray": 1133
+    "clash": 890,
+    "singbox": 870,
+    "v2ray": 890
   },
   "sha256_16": {
-    "clash": "f0abfcd936caae65",
-    "singbox": "913eee36e9e3c2c1",
-    "v2ray": "ec83ec21bb1927b0"
+    "clash": "20d2a4d9725f71ef",
+    "singbox": "4aa60b2872a058ed",
+    "v2ray": "a371cff2de1d3fc7"
   },
   "source_sha256_16": {
-    "clash": "901230a0b1ed04d3"
+    "clash": "f5f1876480fd8353"
   },
   "clash_normalization": {
     "http_opts_headers": "scalar_values_to_lists",
-    "flclash_path_controls_percent_encoded": 20,
-    "reality_short_ids_quoted": 61,
+    "flclash_path_controls_percent_encoded": 0,
+    "reality_short_ids_quoted": 70,
     "changed": true
   },
   "policy_normalization": {
     "shared_template": true,
-    "country_groups": 3,
+    "country_groups": 4,
     "country_codes": [
       "CZ",
-      "TW",
+      "DE",
+      "MX",
       "US"
     ]
   }
