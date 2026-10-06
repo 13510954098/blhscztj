@@ -295199,12 +295199,13 @@ proxy-groups:
   proxies:
   - 🔰 手动选择
   - ♻️ 自动选择
-  - 🇨🇦 加拿大自动
   - 🇨🇿 捷克自动
   - 🇩🇪 德国自动
+  - 🇪🇸 西班牙自动
   - 🇮🇪 爱尔兰自动
   - 🇯🇵 日本自动
   - 🇲🇽 墨西哥自动
+  - 🇷🇺 俄罗斯自动
   - 🇺🇸 美国自动
   - DIRECT
 - name: 🔰 手动选择
@@ -317787,12 +317788,13 @@ proxy-groups:
   proxies:
   - ☁️ 代理选择
   - ♻️ 自动选择
-  - 🇨🇦 加拿大自动
   - 🇨🇿 捷克自动
   - 🇩🇪 德国自动
+  - 🇪🇸 西班牙自动
   - 🇮🇪 爱尔兰自动
   - 🇯🇵 日本自动
   - 🇲🇽 墨西哥自动
+  - 🇷🇺 俄罗斯自动
   - 🇺🇸 美国自动
   - DIRECT
 - name: 💬 人工智能
@@ -317801,11 +317803,12 @@ proxy-groups:
   - ☁️ 代理选择
   - ♻️ 自动选择
   - 🇯🇵 日本自动
-  - 🇨🇦 加拿大自动
   - 🇨🇿 捷克自动
   - 🇩🇪 德国自动
+  - 🇪🇸 西班牙自动
   - 🇮🇪 爱尔兰自动
   - 🇲🇽 墨西哥自动
+  - 🇷🇺 俄罗斯自动
   - 🇺🇸 美国自动
   - DIRECT
 - name: 🎮 游戏平台
@@ -317815,34 +317818,37 @@ proxy-groups:
   - ♻️ 自动选择
   - 🇯🇵 日本自动
   - 🇺🇸 美国自动
-  - 🇨🇦 加拿大自动
   - 🇨🇿 捷克自动
   - 🇩🇪 德国自动
+  - 🇪🇸 西班牙自动
   - 🇮🇪 爱尔兰自动
   - 🇲🇽 墨西哥自动
+  - 🇷🇺 俄罗斯自动
   - DIRECT
 - name: 📲 电报消息
   type: select
   proxies:
   - ☁️ 代理选择
-  - 🇨🇦 加拿大自动
   - 🇨🇿 捷克自动
   - 🇩🇪 德国自动
+  - 🇪🇸 西班牙自动
   - 🇮🇪 爱尔兰自动
   - 🇯🇵 日本自动
   - 🇲🇽 墨西哥自动
+  - 🇷🇺 俄罗斯自动
   - 🇺🇸 美国自动
   - DIRECT
 - name: 🍎 苹果服务
   type: select
   proxies:
   - ☁️ 代理选择
-  - 🇨🇦 加拿大自动
   - 🇨🇿 捷克自动
   - 🇩🇪 德国自动
+  - 🇪🇸 西班牙自动
   - 🇮🇪 爱尔兰自动
   - 🇯🇵 日本自动
   - 🇲🇽 墨西哥自动
+  - 🇷🇺 俄罗斯自动
   - 🇺🇸 美国自动
   - DIRECT
 - name: 📺 国外媒体
@@ -317852,11 +317858,12 @@ proxy-groups:
   - ♻️ 自动选择
   - 🇯🇵 日本自动
   - 🇺🇸 美国自动
-  - 🇨🇦 加拿大自动
   - 🇨🇿 捷克自动
   - 🇩🇪 德国自动
+  - 🇪🇸 西班牙自动
   - 🇮🇪 爱尔兰自动
   - 🇲🇽 墨西哥自动
+  - 🇷🇺 俄罗斯自动
   - DIRECT
 - name: Ⓜ️ 微软服务
   type: select
@@ -317864,21 +317871,14 @@ proxy-groups:
   - ☁️ 代理选择
   - ♻️ 自动选择
   - 🇺🇸 美国自动
-  - 🇨🇦 加拿大自动
   - 🇨🇿 捷克自动
   - 🇩🇪 德国自动
+  - 🇪🇸 西班牙自动
   - 🇮🇪 爱尔兰自动
   - 🇯🇵 日本自动
   - 🇲🇽 墨西哥自动
+  - 🇷🇺 俄罗斯自动
   - DIRECT
-- name: 🇨🇦 加拿大自动
-  type: url-test
-  url: https://www.gstatic.com/generate_204
-  interval: 300
-  tolerance: 50
-  lazy: true
-  proxies:
-  - '🇨🇦加拿大CA010 测速未知 TG@jcnode #2'
 - name: 🇨🇿 捷克自动
   type: url-test
   url: https://www.gstatic.com/generate_204
@@ -317895,6 +317895,14 @@ proxy-groups:
   lazy: true
   proxies:
   - 🇩🇪德国DE120 测速未知中性 TG@jcnode
+- name: 🇪🇸 西班牙自动
+  type: url-test
+  url: https://www.gstatic.com/generate_204
+  interval: 300
+  tolerance: 50
+  lazy: true
+  proxies:
+  - 🇺🇸美国US 327 5.5MB/s TG@jcnode
 - name: 🇮🇪 爱尔兰自动
   type: url-test
   url: https://www.gstatic.com/generate_204
@@ -317920,6 +317928,14 @@ proxy-groups:
   lazy: true
   proxies:
   - 🇲🇽墨西哥MX002 测速未知中性 TG@jcnode
+- name: 🇷🇺 俄罗斯自动
+  type: url-test
+  url: https://www.gstatic.com/generate_204
+  interval: 300
+  tolerance: 50
+  lazy: true
+  proxies:
+  - 🇷🇺俄罗斯RU028 测速未知 TG@jcnode
 - name: 🇺🇸 美国自动
   type: url-test
   url: https://www.gstatic.com/generate_204
@@ -317927,21 +317943,12 @@ proxy-groups:
   tolerance: 50
   lazy: true
   proxies:
-  - '🇺🇸美国US 192 4.9MB/s TG@jcnode #2'
-  - 🇺🇸美国US077 4.9MB/s中性 TG@jcnode
   - 🇺🇸美国US007 2.09MB/s纯净 TG@jcnode
   - 🇺🇸美国US030 2.09MB/s TG@jcnode
-  - 🇰🇷韩国KR004 测速未知中性 TG@jcnode
-  - 🇺🇸美国US0347 测速未知 TG@jcnode
-  - 🇰🇷韩国KR017 测速未知中性 TG@jcnode
+  - 🇺🇸美国US151 1.37MB/s TG@jcnode
+  - 🇺🇸美国US184 测速未知 TG@jcnode
   - 🇺🇸美国US192 测速未知中性 TG@jcnode
-  - 🇺🇸美国US199 测速未知 TG@jcnode
-  - '🇸🇬新加坡SG023 测速未知 TG@jcnode #2'
-  - 🇺🇸美国US320 测速未知 TG@jcnode
   - 🇺🇸美国US418 测速未知 TG@jcnode
-  - '🇸🇬新加坡SG026 测速未知中性 TG@jcnode #2 #2'
-  - '🇯🇵日本JP054 测速未知 TG@jcnode #2'
-  - '🇺🇸美国US331 测速未知中性 TG@jcnode #2'
 rules:
 - DOMAIN-SUFFIX,xn--ngstr-lra8j.com,☁️ 代理选择
 - DOMAIN-SUFFIX,services.googleapis.cn,☁️ 代理选择
