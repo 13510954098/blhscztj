@@ -10282,7 +10282,6 @@ proxy-groups:
   proxies:
   - 🔰 手动选择
   - ♻️ 自动选择
-  - 🇦🇪 阿联酋自动
   - 🇦🇺 澳大利亚自动
   - 🇧🇩 孟加拉国自动
   - 🇧🇷 巴西自动
@@ -11221,7 +11220,6 @@ proxy-groups:
   - 🇭🇰 香港自动
   - 🇹🇼 台湾自动
   - 🇸🇬 新加坡自动
-  - 🇦🇪 阿联酋自动
   - 🇦🇺 澳大利亚自动
   - 🇧🇩 孟加拉国自动
   - 🇧🇷 巴西自动
@@ -11259,7 +11257,6 @@ proxy-groups:
   - 🇹🇼 台湾自动
   - 🇸🇬 新加坡自动
   - 🇯🇵 日本自动
-  - 🇦🇪 阿联酋自动
   - 🇦🇺 澳大利亚自动
   - 🇧🇩 孟加拉国自动
   - 🇧🇷 巴西自动
@@ -11296,7 +11293,6 @@ proxy-groups:
   - 🇹🇼 台湾自动
   - 🇯🇵 日本自动
   - 🇺🇸 美国自动
-  - 🇦🇪 阿联酋自动
   - 🇦🇺 澳大利亚自动
   - 🇧🇩 孟加拉国自动
   - 🇧🇷 巴西自动
@@ -11332,7 +11328,6 @@ proxy-groups:
   - 🇭🇰 香港自动
   - 🇹🇼 台湾自动
   - 🇸🇬 新加坡自动
-  - 🇦🇪 阿联酋自动
   - 🇦🇺 澳大利亚自动
   - 🇧🇩 孟加拉国自动
   - 🇧🇷 巴西自动
@@ -11367,7 +11362,6 @@ proxy-groups:
   - ☁️ 代理选择
   - 🇭🇰 香港自动
   - 🇹🇼 台湾自动
-  - 🇦🇪 阿联酋自动
   - 🇦🇺 澳大利亚自动
   - 🇧🇩 孟加拉国自动
   - 🇧🇷 巴西自动
@@ -11404,7 +11398,6 @@ proxy-groups:
   - 🇯🇵 日本自动
   - 🇺🇸 美国自动
   - DIRECT
-  - 🇦🇪 阿联酋自动
   - 🇦🇺 澳大利亚自动
   - 🇧🇩 孟加拉国自动
   - 🇧🇷 巴西自动
@@ -11442,7 +11435,6 @@ proxy-groups:
   - 🇭🇰 香港自动
   - 🇹🇼 台湾自动
   - 🇺🇸 美国自动
-  - 🇦🇪 阿联酋自动
   - 🇦🇺 澳大利亚自动
   - 🇧🇩 孟加拉国自动
   - 🇧🇷 巴西自动
@@ -11470,14 +11462,6 @@ proxy-groups:
   - 🇸🇬 新加坡自动
   - 🇹🇷 土耳其自动
   - ❓ 未识别地区
-- name: 🇦🇪 阿联酋自动
-  type: url-test
-  url: https://www.gstatic.com/generate_204
-  interval: 300
-  tolerance: 50
-  lazy: true
-  proxies:
-  - 🇫🇷法国FR073 测速未知中性 TG@jcnode
 - name: 🇦🇺 澳大利亚自动
   type: url-test
   url: https://www.gstatic.com/generate_204
@@ -11519,7 +11503,8 @@ proxy-groups:
   tolerance: 50
   lazy: true
   proxies:
-  - 🇩🇪德国DE002 3.33MB/s纯净 TG@jcnode
+  - 🇩🇪德国DE001 3.68MB/s中性 TG@jcnode
+  - 🇩🇪德国DE003 3.27MB/s中性 TG@jcnode
   - 🇩🇪德国DE004 3.11MB/s中性 TG@jcnode
   - 🇩🇪德国DE005 2.88MB/s中性 TG@jcnode
   - 🇩🇪德国DE007 2.41MB/s中性 TG@jcnode
@@ -11538,6 +11523,7 @@ proxy-groups:
   - 🇩🇪德国DE028 1.71MB/s危险 TG@jcnode
   - 🇩🇪德国DE029 1.68MB/s中性 TG@jcnode
   - 🇩🇪德国DE030 1.66MB/s中性 TG@jcnode
+  - 🇩🇪德国DE033 1.61MB/s中性 TG@jcnode
   - 🇩🇪德国DE035 1.58MB/s危险 TG@jcnode
   - 🇩🇪德国DE036 1.57MB/s中性 TG@jcnode
   - 🇩🇪德国DE037 1.55MB/s纯净 TG@jcnode
@@ -11552,18 +11538,8 @@ proxy-groups:
   - 🇩🇪德国DE076 0.59MB/s纯净 TG@jcnode
   - 🇩🇪德国DE078 0.43MB/s中性 TG@jcnode
   - 🇩🇪德国DE079 0.42MB/s中性 TG@jcnode
-  - 🇩🇪德国DE080 测速未知纯净 TG@jcnode
-  - 🇩🇪德国DE081 测速未知纯净 TG@jcnode
-  - 🇩🇪德国DE082 测速未知纯净 TG@jcnode
   - 🇩🇪德国DE085 测速未知中性 TG@jcnode
-  - 🇩🇪德国DE093 测速未知纯净 TG@jcnode
-  - 🇩🇪德国DE106 测速未知纯净 TG@jcnode
-  - 🇩🇪德国DE110 测速未知纯净 TG@jcnode
-  - 🇩🇪德国DE115 测速未知纯净 TG@jcnode
-  - 🇩🇪德国DE120 测速未知中性 TG@jcnode
-  - 🇩🇪德国DE137 测速未知中性 TG@jcnode
   - 🇩🇪德国DE147 测速未知中性 TG@jcnode
-  - 🇩🇪德国DE155 测速未知中性 TG@jcnode
   - 🇩🇪德国DE157 测速未知纯净 TG@jcnode
 - name: 🇪🇪 爱沙尼亚自动
   type: url-test
@@ -11581,7 +11557,6 @@ proxy-groups:
   - 🇪🇪EE010 测速未知中性 TG@jcnode
   - 🇪🇪EE011 测速未知中性 TG@jcnode
   - 🇪🇪EE016 测速未知中性 TG@jcnode
-  - 🇪🇪EE020 测速未知中性 TG@jcnode
 - name: 🇪🇸 西班牙自动
   type: url-test
   url: https://www.gstatic.com/generate_204
@@ -11622,10 +11597,8 @@ proxy-groups:
   - 🇫🇷法国FR024 1.33MB/s中性 TG@jcnode
   - 🇫🇷法国FR025 1.28MB/s中性 TG@jcnode
   - 🇫🇷法国FR027 1.24MB/s中性 TG@jcnode
-  - 🇫🇷法国FR028 1.24MB/s中性 TG@jcnode
   - 🇫🇷法国FR029 1.22MB/s中性 TG@jcnode
   - 🇫🇷法国FR030 1.2MB/s中性 TG@jcnode
-  - 🇫🇷法国FR031 1.19MB/s中性 TG@jcnode
   - 🇫🇷法国FR032 1.14MB/s中性 TG@jcnode
   - 🇫🇷法国FR033 1.07MB/s纯净 TG@jcnode
   - 🇫🇷法国FR036 0.87MB/s危险 TG@jcnode
@@ -11678,7 +11651,6 @@ proxy-groups:
   - 🇭🇰香港HK011 测速未知中性 TG@jcnode
   - 🇭🇰香港HK013 测速未知纯净 TG@jcnode
   - 🇭🇰香港HK014 测速未知纯净 TG@jcnode
-  - 🇷🇺俄罗斯RU011 测速未知纯净 TG@jcnode
 - name: 🇮🇩 印度尼西亚自动
   type: url-test
   url: https://www.gstatic.com/generate_204
@@ -11716,6 +11688,7 @@ proxy-groups:
   proxies:
   - 🇮🇹意大利IT001 1.52MB/s危险 TG@jcnode
   - 🇮🇹意大利IT004 0.72MB/s危险 TG@jcnode
+  - 🇮🇹意大利IT005 0.63MB/s危险 TG@jcnode
 - name: 🇯🇵 日本自动
   type: url-test
   url: https://www.gstatic.com/generate_204
@@ -11723,7 +11696,6 @@ proxy-groups:
   tolerance: 50
   lazy: true
   proxies:
-  - 🇯🇵日本JP060 0.77MB/s中性 TG@jcnode
   - 🇯🇵日本JP097 测速未知中性 TG@jcnode
   - 🇯🇵日本JP098 测速未知 TG@jcnode
   - 🇯🇵日本JP100 测速未知中性 TG@jcnode
@@ -11827,7 +11799,6 @@ proxy-groups:
   - 🇳🇱荷兰NL073 1.4MB/s危险 TG@jcnode
   - 🇳🇱荷兰NL075 1.37MB/s危险 TG@jcnode
   - 🇳🇱荷兰NL077 1.34MB/s危险 TG@jcnode
-  - 🇳🇱荷兰NL079 1.29MB/s危险 TG@jcnode
   - 🇳🇱荷兰NL080 1.29MB/s危险 TG@jcnode
   - 🇳🇱荷兰NL082 1.27MB/s危险 TG@jcnode
   - 🇳🇱荷兰NL083 1.26MB/s纯净 TG@jcnode
@@ -11839,7 +11810,6 @@ proxy-groups:
   - 🇳🇱荷兰NL091 0.8MB/s危险 TG@jcnode
   - 🇳🇱荷兰NL092 0.56MB/s中性 TG@jcnode
   - 🇳🇱荷兰NL093 0.53MB/s中性 TG@jcnode
-  - 🇺🇸美国US501 测速未知纯净 TG@jcnode
   - 🇳🇱荷兰NL117 测速未知纯净 TG@jcnode
 - name: 🇵🇱 波兰自动
   type: url-test
@@ -11855,6 +11825,7 @@ proxy-groups:
   - 🇵🇱波兰PL008 1.67MB/s纯净 TG@jcnode
   - 🇵🇱波兰PL009 1.51MB/s中性 TG@jcnode
   - 🇵🇱波兰PL011 1.44MB/s中性 TG@jcnode
+  - 🇵🇱波兰PL013 1.39MB/s危险 TG@jcnode
   - 🇵🇱波兰PL014 1.39MB/s危险 TG@jcnode
   - 🇵🇱波兰PL016 1.1MB/s危险 TG@jcnode
   - 🇵🇱波兰PL017 1.03MB/s危险 TG@jcnode
@@ -12019,7 +11990,6 @@ proxy-groups:
   - 🇹🇷土耳其TR002 1.5MB/s危险 TG@jcnode
   - 🇹🇷土耳其TR003 0.88MB/s纯净 TG@jcnode
   - 🇹🇷土耳其TR004 0.56MB/s纯净 TG@jcnode
-  - 🇳🇱荷兰NL127 测速未知危险 TG@jcnode
 - name: 🇹🇼 台湾自动
   type: url-test
   url: https://www.gstatic.com/generate_204
@@ -12133,6 +12103,7 @@ proxy-groups:
   - 🇺🇸美国US122 1.55MB/s危险 TG@jcnode
   - 🇫🇮芬兰FI004 1.55MB/s中性 TG@jcnode
   - 🇺🇸美国US123 1.54MB/s危险 TG@jcnode
+  - 🇺🇸美国US124 1.54MB/s中性 TG@jcnode
   - 🇺🇸美国US126 1.53MB/s危险 TG@jcnode
   - 🇺🇸美国US127 1.53MB/s危险 TG@jcnode
   - 🇺🇸美国US128 1.53MB/s中性 TG@jcnode
@@ -12150,9 +12121,9 @@ proxy-groups:
   - 🇺🇸美国US140 1.44MB/s中性 TG@jcnode
   - 🇺🇸美国US141 1.44MB/s中性 TG@jcnode
   - 🇺🇸美国US142 1.43MB/s中性 TG@jcnode
+  - 🇺🇸美国US143 1.43MB/s中性 TG@jcnode
   - 🇺🇸美国US144 1.4MB/s中性 TG@jcnode
   - 🇺🇸美国US145 1.39MB/s中性 TG@jcnode
-  - 🇺🇸美国US146 1.38MB/s中性 TG@jcnode
   - 🇺🇸美国US147 1.38MB/s中性 TG@jcnode
   - 🇺🇸美国US151 1.34MB/s危险 TG@jcnode
   - 🇺🇸美国US153 1.34MB/s中性 TG@jcnode
@@ -12162,6 +12133,7 @@ proxy-groups:
   - 🇺🇸美国US157 1.31MB/s中性 TG@jcnode
   - 🇺🇸美国US158 1.3MB/s中性 TG@jcnode
   - 🇺🇸美国US159 1.3MB/s中性 TG@jcnode
+  - 🇺🇸美国US160 1.3MB/s中性 TG@jcnode
   - 🇺🇸美国US161 1.3MB/s中性 TG@jcnode
   - 🇺🇸美国US162 1.29MB/s中性 TG@jcnode
   - 🇫🇮芬兰FI005 1.28MB/s中性 TG@jcnode
@@ -12200,14 +12172,18 @@ proxy-groups:
   - 🇺🇸美国US201 0.96MB/s中性 TG@jcnode
   - 🇺🇸美国US203 0.95MB/s中性 TG@jcnode
   - 🇺🇸美国US204 0.92MB/s中性 TG@jcnode
+  - 🇺🇸美国US205 0.85MB/s中性 TG@jcnode
   - 🇺🇸美国US207 0.8MB/s危险 TG@jcnode
   - 🇺🇸美国US208 0.79MB/s中性 TG@jcnode
   - 🇭🇰香港HK006 0.78MB/s TG@jcnode
+  - 🇯🇵日本JP060 0.77MB/s中性 TG@jcnode
   - 🇺🇸美国US212 0.68MB/s中性 TG@jcnode
+  - 🇺🇸美国US213 0.64MB/s有风险 TG@jcnode
   - 🇺🇸美国US214 0.64MB/s纯净 TG@jcnode
   - 🇺🇸美国US216 0.62MB/s中性 TG@jcnode
   - 🇺🇸美国US218 0.6MB/s中性 TG@jcnode
   - 🇺🇸美国US219 0.58MB/s中性 TG@jcnode
+  - 🇺🇸美国US220 0.57MB/s危险 TG@jcnode
   - 🇺🇸美国US222 0.53MB/s危险 TG@jcnode
   - 🇺🇸美国US223 0.53MB/s中性 TG@jcnode
   - 🇺🇸美国US224 0.51MB/s危险 TG@jcnode
@@ -12240,6 +12216,7 @@ proxy-groups:
   - 🇺🇸美国US447 测速未知中性 TG@jcnode
   - 🇺🇸美国US451 测速未知危险 TG@jcnode
   - 🇺🇸美国US467 测速未知危险 TG@jcnode
+  - 🇺🇸美国US469 测速未知有风险 TG@jcnode
   - 🇺🇸美国US485 测速未知中性 TG@jcnode
   - 🇺🇸美国US490 测速未知中性 TG@jcnode
   - 🇺🇸美国US491 测速未知中性 TG@jcnode
@@ -12250,11 +12227,11 @@ proxy-groups:
   - 🇺🇸美国US540 测速未知危险 TG@jcnode
   - 🇺🇸美国US543 测速未知危险 TG@jcnode
   - 🇺🇸美国US545 测速未知中性 TG@jcnode
-  - 🇺🇸美国US548 测速未知危险 TG@jcnode
   - 🇺🇸美国US552 测速未知中性 TG@jcnode
   - 🇺🇸美国US554 测速未知中性 TG@jcnode
   - 🇺🇸美国US564 测速未知中性 TG@jcnode
   - 🇺🇸美国US569 测速未知中性 TG@jcnode
+  - 🇵🇱波兰PL043 测速未知 TG@jcnode
   - 🇺🇸美国US574 测速未知中性 TG@jcnode
   - 🇺🇸美国US576 测速未知中性 TG@jcnode
   - 🇺🇸美国US577 测速未知中性 TG@jcnode
@@ -12271,14 +12248,13 @@ proxy-groups:
   - 🇭🇰香港HK002 6.95MB/s纯净 TG@jcnode
   - 🇸🇬新加坡SG001 6.74MB/s中性 TG@jcnode
   - 🇸🇬新加坡SG002 3.98MB/s中性 TG@jcnode
-  - 🇩🇪德国DE001 3.68MB/s中性 TG@jcnode
   - 🇯🇵日本JP001 3.64MB/s纯净 TG@jcnode
   - 🇯🇵日本JP002 3.52MB/s中性 TG@jcnode
   - 🇯🇵日本JP003 3.48MB/s纯净 TG@jcnode
   - 🇯🇵日本JP004 3.33MB/s中性 TG@jcnode
+  - 🇩🇪德国DE002 3.33MB/s纯净 TG@jcnode
   - 🇯🇵日本JP005 3.28MB/s中性 TG@jcnode
   - 🇯🇵日本JP006 3.27MB/s中性 TG@jcnode
-  - 🇩🇪德国DE003 3.27MB/s中性 TG@jcnode
   - 🇯🇵日本JP007 3.17MB/s中性 TG@jcnode
   - 🇯🇵日本JP008 3.11MB/s中性 TG@jcnode
   - 🇯🇵日本JP009 3.08MB/s中性 TG@jcnode
@@ -12345,7 +12321,6 @@ proxy-groups:
   - 🇩🇪德国DE031 1.66MB/s中性 TG@jcnode
   - 🇩🇪德国DE032 1.65MB/s中性 TG@jcnode
   - 🇯🇵日本JP024 1.61MB/s中性 TG@jcnode
-  - 🇩🇪德国DE033 1.61MB/s中性 TG@jcnode
   - 🇺🇸美国US103 1.6MB/s中性 TG@jcnode
   - 🇯🇵日本JP025 1.6MB/s中性 TG@jcnode
   - 🇯🇵日本JP026 1.58MB/s中性 TG@jcnode
@@ -12355,7 +12330,6 @@ proxy-groups:
   - 🇯🇵日本JP028 1.55MB/s中性 TG@jcnode
   - 🇩🇪德国DE038 1.54MB/s TG@jcnode
   - 🇷🇴罗马尼亚RO041 1.54MB/s危险 TG@jcnode
-  - 🇺🇸美国US124 1.54MB/s中性 TG@jcnode
   - 🇺🇸美国US125 1.54MB/s纯净 TG@jcnode
   - 🇯🇵日本JP029 1.52MB/s中性 TG@jcnode
   - 🇨🇭瑞士CH002 1.52MB/s TG@jcnode
@@ -12377,15 +12351,14 @@ proxy-groups:
   - 🇩🇪德国DE044 1.44MB/s中性 TG@jcnode
   - 🇩🇪德国DE045 1.44MB/s中性 TG@jcnode
   - 🇨🇭瑞士CH003 1.43MB/s TG@jcnode
-  - 🇺🇸美国US143 1.43MB/s中性 TG@jcnode
   - 🇯🇵日本JP035 1.41MB/s中性 TG@jcnode
   - 🇵🇱波兰PL012 1.41MB/s危险 TG@jcnode
   - 🇷🇺俄罗斯RU004 1.4MB/s纯净 TG@jcnode
   - 🇦🇪阿联酋AE001 1.4MB/s TG@jcnode
   - 🇳🇱荷兰NL074 1.39MB/s纯净 TG@jcnode
-  - 🇵🇱波兰PL013 1.39MB/s危险 TG@jcnode
   - 🇯🇵日本JP036 1.39MB/s中性 TG@jcnode
   - 🇷🇺俄罗斯RU005 1.38MB/s中性 TG@jcnode
+  - 🇺🇸美国US146 1.38MB/s中性 TG@jcnode
   - 🇺🇸美国US149 1.36MB/s中性 TG@jcnode
   - 🇫🇷法国FR021 1.36MB/s中性 TG@jcnode
   - 🇳🇱荷兰NL076 1.36MB/s纯净 TG@jcnode
@@ -12400,8 +12373,8 @@ proxy-groups:
   - 🇩🇪德国DE052 1.31MB/s危险 TG@jcnode
   - 🇯🇵日本JP037 1.3MB/s中性 TG@jcnode
   - 🇬🇧英国GB004 1.3MB/s TG@jcnode
-  - 🇺🇸美国US160 1.3MB/s中性 TG@jcnode
   - 🇩🇪德国DE053 1.29MB/s中性 TG@jcnode
+  - 🇳🇱荷兰NL079 1.29MB/s危险 TG@jcnode
   - 🇷🇺俄罗斯RU006 1.29MB/s中性 TG@jcnode
   - 🇵🇱波兰PL015 1.29MB/s危险 TG@jcnode
   - 🇳🇱荷兰NL081 1.29MB/s TG@jcnode
@@ -12415,6 +12388,7 @@ proxy-groups:
   - 🇵🇹PT002 1.25MB/s纯净 TG@jcnode
   - 🇯🇵日本JP039 1.24MB/s中性 TG@jcnode
   - 🇵🇹PT003 1.24MB/s纯净 TG@jcnode
+  - 🇫🇷法国FR028 1.24MB/s中性 TG@jcnode
   - 🇵🇹PT004 1.23MB/s纯净 TG@jcnode
   - 🇵🇹PT005 1.23MB/s纯净 TG@jcnode
   - 🇵🇹PT006 1.22MB/s纯净 TG@jcnode
@@ -12429,6 +12403,7 @@ proxy-groups:
   - 🇺🇸美国US170 1.2MB/s纯净 TG@jcnode
   - 🇯🇵日本JP042 1.19MB/s中性 TG@jcnode
   - 🇯🇵日本JP043 1.19MB/s中性 TG@jcnode
+  - 🇫🇷法国FR031 1.19MB/s中性 TG@jcnode
   - 🇩🇪德国DE059 1.19MB/s危险 TG@jcnode
   - 🇩🇪德国DE060 1.18MB/s中性 TG@jcnode
   - 🇩🇪德国DE061 1.17MB/s中性 TG@jcnode
@@ -12478,7 +12453,6 @@ proxy-groups:
   - 🇯🇵日本JP057 0.88MB/s中性 TG@jcnode
   - 🇵🇹PT013 0.87MB/s纯净 TG@jcnode
   - 🇯🇵日本JP058 0.85MB/s中性 TG@jcnode
-  - 🇺🇸美国US205 0.85MB/s中性 TG@jcnode
   - 🇯🇵日本JP059 0.84MB/s中性 TG@jcnode
   - 🇵🇹PT014 0.84MB/s纯净 TG@jcnode
   - 🇫🇷法国FR037 0.83MB/s TG@jcnode
@@ -12486,9 +12460,6 @@ proxy-groups:
   - 🇯🇵日本JP062 0.75MB/s纯净 TG@jcnode
   - 🇷🇺俄罗斯RU008 0.72MB/s纯净 TG@jcnode
   - 🇩🇪德国DE075 0.66MB/s TG@jcnode
-  - 🇺🇸美国US213 0.64MB/s有风险 TG@jcnode
-  - 🇮🇹意大利IT005 0.63MB/s危险 TG@jcnode
-  - 🇺🇸美国US220 0.57MB/s危险 TG@jcnode
   - 🇺🇸美国US221 0.54MB/s TG@jcnode
   - 🇷🇺俄罗斯RU009 0.54MB/s纯净 TG@jcnode
   - 🇵🇹PT015 0.52MB/s纯净 TG@jcnode
@@ -12514,7 +12485,10 @@ proxy-groups:
   - 🇯🇵日本JP110 测速未知中性 TG@jcnode
   - 🇺🇸美国US232 测速未知 TG@jcnode
   - 🇯🇵日本JP130 测速未知中性 TG@jcnode
+  - 🇩🇪德国DE080 测速未知纯净 TG@jcnode
+  - 🇩🇪德国DE081 测速未知纯净 TG@jcnode
   - 🇸🇬新加坡SG045 测速未知中性 TG@jcnode
+  - 🇩🇪德国DE082 测速未知纯净 TG@jcnode
   - 🇺🇸美国US269 测速未知中性 TG@jcnode
   - 🇰🇷韩国KR003 测速未知中性 TG@jcnode
   - 🇳🇱荷兰NL097 测速未知中性 TG@jcnode
@@ -12522,6 +12496,7 @@ proxy-groups:
   - 🇷🇺俄罗斯RU010 测速未知中性 TG@jcnode
   - 🇩🇪德国DE089 测速未知中性 TG@jcnode
   - 🇺🇸美国US300 测速未知中性 TG@jcnode
+  - 🇩🇪德国DE093 测速未知纯净 TG@jcnode
   - 🇺🇸美国US322 测速未知 TG@jcnode
   - 🇵🇱波兰PL020 测速未知中性 TG@jcnode
   - 🇺🇸美国US342 测速未知 TG@jcnode
@@ -12530,6 +12505,7 @@ proxy-groups:
   - 🇯🇵日本JP135 测速未知中性 TG@jcnode
   - 🇫🇷法国FR048 测速未知 TG@jcnode
   - 🇺🇸美国US375 测速未知中性 TG@jcnode
+  - 🇷🇺俄罗斯RU011 测速未知纯净 TG@jcnode
   - 🇨🇭瑞士CH010 测速未知中性 TG@jcnode
   - 🇫🇷法国FR050 测速未知中性 TG@jcnode
   - 🇸🇪瑞典SE005 测速未知中性 TG@jcnode
@@ -12539,20 +12515,27 @@ proxy-groups:
   - 🇱🇻LV006 测速未知中性 TG@jcnode
   - 🇷🇴罗马尼亚RO104 测速未知中性 TG@jcnode
   - 🇫🇷法国FR057 测速未知中性 TG@jcnode
+  - 🇩🇪德国DE106 测速未知纯净 TG@jcnode
   - 🇷🇸RS001 测速未知中性 TG@jcnode
   - 🇵🇱波兰PL027 测速未知中性 TG@jcnode
+  - 🇩🇪德国DE110 测速未知纯净 TG@jcnode
   - 🇱🇻LV008 测速未知中性 TG@jcnode
   - 🇹🇷土耳其TR005 测速未知 TG@jcnode
   - 🇸🇬新加坡SG050 测速未知纯净 TG@jcnode
+  - 🇩🇪德国DE115 测速未知纯净 TG@jcnode
   - 🇺🇸美国US434 测速未知纯净 TG@jcnode
   - 🇪🇪EE012 测速未知中性 TG@jcnode
+  - 🇩🇪德国DE120 测速未知中性 TG@jcnode
   - 🇩🇪德国DE122 测速未知中性 TG@jcnode
   - 🇪🇪EE013 测速未知中性 TG@jcnode
-  - 🇺🇸美国US469 测速未知有风险 TG@jcnode
   - 🇸🇬新加坡SG053 测速未知中性 TG@jcnode
   - 🇺🇸美国US472 测速未知 TG@jcnode
+  - 🇫🇷法国FR073 测速未知中性 TG@jcnode
   - 🇫🇷法国FR075 测速未知危险 TG@jcnode
+  - 🇺🇸美国US501 测速未知纯净 TG@jcnode
   - 🇳🇱荷兰NL110 测速未知中性 TG@jcnode
+  - 🇩🇪德国DE137 测速未知中性 TG@jcnode
+  - 🇪🇪EE020 测速未知中性 TG@jcnode
   - 🇳🇱荷兰NL114 测速未知中性 TG@jcnode
   - 🇫🇮芬兰FI010 测速未知 TG@jcnode
   - 🇳🇱荷兰NL118 测速未知纯净 TG@jcnode
@@ -12562,17 +12545,19 @@ proxy-groups:
   - 🇸🇬新加坡SG065 测速未知 TG@jcnode
   - 🇩🇪德国DE146 测速未知纯净 TG@jcnode
   - 🇩🇴DO001 测速未知中性 TG@jcnode
+  - 🇺🇸美国US548 测速未知危险 TG@jcnode
   - 🇺🇸美国US551 测速未知中性 TG@jcnode
   - 🇳🇱荷兰NL126 测速未知中性 TG@jcnode
   - 🇩🇪德国DE153 测速未知中性 TG@jcnode
   - 🇲🇽墨西哥MX002 测速未知中性 TG@jcnode
-  - 🇵🇱波兰PL043 测速未知 TG@jcnode
   - 🇨🇦加拿大CA019 测速未知 TG@jcnode
   - 🇵🇹PT019 测速未知纯净 TG@jcnode
+  - 🇩🇪德国DE155 测速未知中性 TG@jcnode
   - 🇯🇵日本JP151 测速未知中性 TG@jcnode
   - 🇩🇪德国DE156 测速未知中性 TG@jcnode
   - 🇯🇵日本JP153 测速未知中性 TG@jcnode
   - 🇯🇵日本JP156 测速未知中性 TG@jcnode
+  - 🇳🇱荷兰NL127 测速未知危险 TG@jcnode
 rules:
 - DOMAIN-SUFFIX,xn--ngstr-lra8j.com,☁️ 代理选择
 - DOMAIN-SUFFIX,services.googleapis.cn,☁️ 代理选择
