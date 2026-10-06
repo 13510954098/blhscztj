@@ -605,210 +605,24 @@ jobs:
             echo "⚠️ 新存活结果失败，且没有旧版本可恢复"
           fi
 
-      - name: 统一策略组并按实际出口 GeoIP 国家生成国家组
+      - name: 统一策略组并校验国家分组覆盖率
         id: policy-normalization
         if: always() && steps.clash-validation.outcome == 'success'
         shell: bash
+        env:
+          COUNTRY_TTL_HOURS: ${{ vars.COUNTRY_TTL_HOURS }}
+          COUNTRY_MIN_COVERAGE: ${{ vars.COUNTRY_MIN_COVERAGE }}
+          COUNTRY_FAIL_LOW_COVERAGE: ${{ vars.COUNTRY_FAIL_LOW_COVERAGE }}
         run: |
           set -euo pipefail
-          python - <<'PY'
-          import copy
-          import hashlib
-          import json
-          import re
-          import unicodedata
-          from collections import Counter, defaultdict
-          from pathlib import Path
-          import yaml
-          
-          class QuotedShortId(str):
-              pass
-          class ClashDumper(yaml.SafeDumper):
-              pass
-          ClashDumper.add_representer(QuotedShortId, lambda d, v: d.represent_scalar('tag:yaml.org,2002:str', str(v), style='"'))
-          
-          FLAG_RE = re.compile(r'([\U0001F1E6-\U0001F1FF]{2})')
-          SHORT_ID_RE = re.compile(r'(?m)^([ \t]*short-id[ \t]*:[ \t]*)(?![\"\'])([0-9A-Fa-f]+)([ \t]*(?:#.*)?)$')
-          COUNTRY_CODE_RE = re.compile(r'(?<![A-Z])([A-Z]{2})(?![A-Z])')
-          INVALID_COUNTRY_CODES = {'EU','AP','A1','A2'}
-          COUNTRY_ZH = {
-           'AE':'阿联酋','AL':'阿尔巴尼亚','AM':'亚美尼亚','AR':'阿根廷','AT':'奥地利','AU':'澳大利亚','BA':'波黑','BD':'孟加拉国','BE':'比利时','BG':'保加利亚','BR':'巴西','BY':'白俄罗斯','CA':'加拿大','CH':'瑞士','CL':'智利','CN':'中国','CO':'哥伦比亚','CY':'塞浦路斯','QA':'卡塔尔','XK':'科索沃','CZ':'捷克','DE':'德国','DK':'丹麦','EE':'爱沙尼亚','ES':'西班牙','FI':'芬兰','FR':'法国','GB':'英国','GE':'格鲁吉亚','GR':'希腊','HK':'香港','HR':'克罗地亚','HU':'匈牙利','ID':'印度尼西亚','IE':'爱尔兰','IL':'以色列','IN':'印度','IQ':'伊拉克','IR':'伊朗','IS':'冰岛','IT':'意大利','JP':'日本','KZ':'哈萨克斯坦','KR':'韩国','LK':'斯里兰卡','LT':'立陶宛','LU':'卢森堡','LV':'拉脱维亚','MD':'摩尔多瓦','MK':'北马其顿','MM':'缅甸','MN':'蒙古','MO':'澳门','MX':'墨西哥','MY':'马来西亚','NL':'荷兰','NO':'挪威','OM':'阿曼','PH':'菲律宾','PL':'波兰','PT':'葡萄牙','RO':'罗马尼亚','RS':'塞尔维亚','RU':'俄罗斯','SC':'塞舌尔','SE':'瑞典','SG':'新加坡','SI':'斯洛文尼亚','SK':'斯洛伐克','TH':'泰国','TR':'土耳其','TW':'台湾','UA':'乌克兰','US':'美国','VG':'英属维尔京群岛','VN':'越南','YE':'也门','ZA':'南非'
-          }
-          
-          def country_code_from_flag(value):
-              if len(value) < 2:
-                  return ''
-              first, second = value[0], value[1]
-              if not (0x1F1E6 <= ord(first) <= 0x1F1FF and 0x1F1E6 <= ord(second) <= 0x1F1FF):
-                  return ''
-              code=''.join(chr(ord('A') + ord(ch) - 0x1F1E6) for ch in (first, second))
-              return '' if code in INVALID_COUNTRY_CODES else code
-
-          def normalize_country_code(value):
-              text=str(value or '').strip().upper()
-              if not text:
-                  return ''
-              flag_code=country_code_from_flag(text)
-              if flag_code:
-                  return flag_code
-              for match in COUNTRY_CODE_RE.finditer(text):
-                  code=match.group(1)
-                  if code not in INVALID_COUNTRY_CODES:
-                      return code
-              return ''
-
-          def flag_for_country(code):
-              code=normalize_country_code(code)
-              if not code:
-                  return ''
-              return ''.join(chr(0x1F1E6 + ord(char) - ord('A')) for char in code)
-          
-          def quote_short_ids(value):
-              if isinstance(value, dict):
-                  for key, item in list(value.items()):
-                      if key in ('short-id', 'short_id') and isinstance(item, str):
-                          value[key] = QuotedShortId(item)
-                      else:
-                          quote_short_ids(item)
-              elif isinstance(value, list):
-                  for item in value:
-                      quote_short_ids(item)
-          
-          def encode_path_controls(value):
-              if isinstance(value, str):
-                  out=[]
-                  for ch in value:
-                      if unicodedata.category(ch)=='Cc' and ch not in '\t\r\n':
-                          out.extend(f'%{b:02X}' for b in ch.encode('utf-8'))
-                      else: out.append(ch)
-                  return ''.join(out)
-              if isinstance(value,list): return [encode_path_controls(x) for x in value]
-              return value
-          
-          def flag_group(name):
-              return bool(FLAG_RE.match(name))
-          
-          paths=[Path('sub/clash.yaml'),Path('sub/merged/clash.yaml'),Path('sub/alive/clash.yaml')]
-          for p in paths:
-              p.parent.mkdir(parents=True,exist_ok=True)
-          
-          # Use daily's routing policy template as the canonical shared policy skeleton.
-          template_path=paths[0]
-          template_text=SHORT_ID_RE.sub(lambda m:m.group(1)+'"'+m.group(2)+'"'+m.group(3), template_path.read_text(encoding='utf-8'))
-          template=yaml.safe_load(template_text)
-          if not isinstance(template,dict): raise ValueError('daily Clash YAML root invalid')
-          all_template_groups=template.get('proxy-groups') or []
-          base_names={'☁️ 代理选择','🔰 手动选择','♻️ 自动选择'}
-          service_templates=[copy.deepcopy(g) for g in all_template_groups if isinstance(g,dict) and g.get('name') not in base_names and not flag_group(str(g.get('name','')))]
-          geo_by_identity={}
-          geo_meta_path=Path('sub/alive/meta.json')
-          if geo_meta_path.exists():
-              try:
-                  geo_meta=json.loads(geo_meta_path.read_text(encoding='utf-8'))
-                  candidate_map=geo_meta.get('actual_exit_country_by_identity',{}) if isinstance(geo_meta,dict) else {}
-                  if isinstance(candidate_map,dict): geo_by_identity=candidate_map
-              except (OSError,json.JSONDecodeError,UnicodeDecodeError):
-                  print('⚠️ alive GeoIP 元数据不可读：本轮不生成未验证地区组')
-          if not geo_by_identity:
-              print('⚠️ 没有实际出口 GeoIP 结果；国家组将为空，不再按节点名称猜测地区')
-
-          def proxy_identity_hash(proxy):
-              payload={key:value for key,value in proxy.items() if key!='name'}
-              serialized=json.dumps(payload,sort_keys=True,separators=(',',':'),ensure_ascii=False,default=str)
-              return hashlib.sha256(serialized.encode('utf-8')).hexdigest()
-          
-          def normalize(path):
-              if not path.exists():
-                  return None
-              text=SHORT_ID_RE.sub(lambda m:m.group(1)+'"'+m.group(2)+'"'+m.group(3),path.read_text(encoding='utf-8'))
-              doc=yaml.safe_load(text)
-              if not isinstance(doc,dict) or not isinstance(doc.get('proxies'),list):
-                  raise ValueError(f'{path}: invalid Clash proxies')
-              proxies=doc['proxies']
-              names=[]
-              by_country=defaultdict(list)
-              for proxy in proxies:
-                  if not isinstance(proxy,dict) or not isinstance(proxy.get('name'),str):
-                      continue
-                  name=proxy['name']; names.append(name)
-                  detected=geo_by_identity.get(proxy_identity_hash(proxy))
-                  code=(detected.get('country_code') if isinstance(detected,dict) else detected)
-                  code=normalize_country_code(code)
-                  if code:
-                      by_country[code].append(name)
-              country_entries=[]
-              for code,members in by_country.items():
-                  flag=flag_for_country(code)
-                  if not flag:
-                      continue
-                  label=COUNTRY_ZH.get(code,code)
-                  group_name=f'{flag} {label}自动'
-                  country_entries.append((code,group_name,members))
-              country_entries.sort(key=lambda x:x[0])
-              country_names=[g[1] for g in country_entries]
-              # Build the same policy skeleton for all outputs; country groups only appear where that subscription has nodes.
-              all_group_names=set(base_names)|set(country_names)|{str(g.get('name')) for g in service_templates}
-              groups=[]
-              def template_group(name):
-                  for g in all_template_groups:
-                      if isinstance(g,dict) and g.get('name')==name:
-                          return copy.deepcopy(g)
-                  return {'name':name,'type':'select','proxies':[]}
-              main=template_group('☁️ 代理选择')
-              main['proxies']=['🔰 手动选择','♻️ 自动选择']+country_names+['DIRECT']
-              manual=template_group('🔰 手动选择'); manual['proxies']=names
-              automatic=template_group('♻️ 自动选择'); automatic['proxies']=names
-              groups.extend([main,manual,automatic])
-              country_set=set(country_names)
-              for service in service_templates:
-                  g=copy.deepcopy(service)
-                  refs=g.get('proxies') if isinstance(g.get('proxies'),list) else []
-                  # Retain the standard policy choices and existing order, drop stale country refs, then expose every available country.
-                  valid=[]
-                  for ref in refs:
-                      if ref in ('☁️ 代理选择','🔰 手动选择','♻️ 自动选择','DIRECT','REJECT','COMPATIBLE') or ref in country_set:
-                          if ref in all_group_names and ref not in valid:
-                              valid.append(ref)
-                  for ref in country_names:
-                      if ref not in valid: valid.append(ref)
-                  if 'DIRECT' not in valid: valid.append('DIRECT')
-                  g['proxies']=valid
-                  groups.append(g)
-              for _, group_name, members in country_entries:
-                  groups.append({'name':group_name,'type':'url-test','url':'https://www.gstatic.com/generate_204','interval':300,'tolerance':50,'lazy':True,'proxies':members})
-              doc['proxy-groups']=groups
-              for proxy in proxies:
-                  if isinstance(proxy,dict):
-                      for key in ('ws-opts','http-opts'):
-                          opts=proxy.get(key)
-                          if isinstance(opts,dict) and 'path' in opts: opts['path']=encode_path_controls(opts['path'])
-              quote_short_ids(doc)
-              def has_control(v):
-                  if isinstance(v,str): return any(unicodedata.category(c)=='Cc' and c not in '\t\r\n' for c in v)
-                  if isinstance(v,dict): return any(has_control(k) or has_control(x) for k,x in v.items())
-                  if isinstance(v,list): return any(has_control(x) for x in v)
-                  return False
-              if has_control(doc): raise ValueError(f'{path}: control characters remain')
-              out=yaml.dump(doc,Dumper=ClashDumper,allow_unicode=True,sort_keys=False,default_flow_style=False,width=4096).encode()
-              path.write_bytes(out)
-              meta_path=path.parent/'meta.json'
-              if meta_path.exists():
-                  meta=json.loads(meta_path.read_text(encoding='utf-8'))
-                  if not isinstance(meta,dict): meta={}
-                  for key in ('nodes','sha256_16'):
-                      if not isinstance(meta.get(key),dict): meta[key]={}
-                  meta['nodes']['clash']=len(proxies)
-                  meta['sha256_16']['clash']=hashlib.sha256(out).hexdigest()[:16]
-                  meta['policy_normalization']={'shared_template':True,'country_groups':len(country_entries),'country_codes':[x[0] for x in country_entries]}
-                  meta_path.write_text(json.dumps(meta,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
-              print(f'{path}: proxies={len(proxies)} groups={len(groups)} countries={len(country_entries)}')
-              print(' countries:',', '.join(g[1] for g in country_entries))
-              return doc
-          
-          # Normalize daily first so it is also the canonical template for this run.
-          for path in paths:
-              normalize(path)
-          PY
+          args=(--ttl-hours "${COUNTRY_TTL_HOURS:-24}" --min-coverage "${COUNTRY_MIN_COVERAGE:-0.8}")
+          if [[ "${{ steps.alive.outcome }}" == "success" && "${{ steps.alive-validation.outcome }}" == "success" ]]; then
+            args+=(--fresh-verification)
+          fi
+          if [[ "${COUNTRY_FAIL_LOW_COVERAGE:-false}" == "true" ]]; then
+            args+=(--fail-low-coverage)
+          fi
+          python scripts/normalize_country_groups.py "${args[@]}"
 
       - name: 用 FlClash 内置核心验证配置导入与加载
         id: flclash-core-validation

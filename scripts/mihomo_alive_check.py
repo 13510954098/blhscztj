@@ -503,9 +503,7 @@ def clash_state_key(proxy: dict) -> tuple[str, int, str, str] | None:
     if endpoint is None:
         return None
     proto = canon_protocol(proxy.get("type"))
-    payload = {key: value for key, value in proxy.items() if key not in {"name"}}
-    serialized = json.dumps(payload, sort_keys=True, separators=(",", ":"), ensure_ascii=False, default=str)
-    return endpoint.host, endpoint.port, proto, hashlib.sha256(serialized.encode()).hexdigest()
+    return endpoint.host, endpoint.port, proto, proxy_identity_hash(proxy)
 
 
 def singbox_node_key(node) -> tuple[str, int, str, str] | None:
@@ -911,41 +909,14 @@ def _request_with_retries(url: str, port: int, expected_status: int, timeout_s: 
     }
 
 
-_INVALID_COUNTRY_CODES = {"EU", "AP", "A1", "A2"}
-_COUNTRY_CODE_RE = re.compile(r"(?<![A-Z])([A-Z]{2})(?![A-Z])")
-
-
-def _country_code_from_flag(value: str) -> str:
-    """Return an ISO country code represented by a leading emoji flag, if any."""
-    if len(value) < 2:
-        return ""
-    first, second = value[0], value[1]
-    if not (0x1F1E6 <= ord(first) <= 0x1F1FF and 0x1F1E6 <= ord(second) <= 0x1F1FF):
-        return ""
-    code = "".join(chr(ord("A") + ord(ch) - 0x1F1E6) for ch in (first, second))
-    return "" if code in _INVALID_COUNTRY_CODES else code
-
-
-def _normalize_country_code(value) -> str:
-    """Normalize GeoIP country strings such as ``jp`` or ``🇯🇵JP`` to ``JP``.
-
-    The repository ``geoip.metadb`` can return country labels as decorated strings
-    (for example ``🇨🇳CN``) rather than a bare ISO-3166 alpha-2 code.  Keep the
-    stored metadata canonical so country policy groups can be generated reliably.
-    """
-    text = str(value or "").strip().upper()
-    if not text:
-        return ""
-
-    flag_code = _country_code_from_flag(text)
-    if flag_code:
-        return flag_code
-
-    for match in _COUNTRY_CODE_RE.finditer(text):
-        code = match.group(1)
-        if code not in _INVALID_COUNTRY_CODES:
-            return code
-    return ""
+# Shared parser is also used by the policy generator.
+from geo_country import (
+    country_code_from_flag as _country_code_from_flag,
+    normalize_country_code as _normalize_country_code,
+    country_for_ip as _country_for_ip,
+    country_for_ip_details,
+    proxy_identity_hash,
+)
 
 
 def _parse_cloudflare_trace(body: bytes) -> dict | None:
@@ -959,40 +930,6 @@ def _parse_cloudflare_trace(body: bytes) -> dict | None:
         return {"ip": ip, "loc": loc}
     except (UnicodeDecodeError, ValueError):
         return None
-
-
-def _country_for_ip(reader, ip: str, trace_country: str) -> tuple[str, str]:
-    """Resolve the tested egress IP via repository GeoIP DB; trace loc is a fallback."""
-    if reader is not None:
-        try:
-            record = reader.get(ip)
-        except Exception:
-            record = None
-        candidates = []
-        if isinstance(record, dict):
-            for path in (
-                ("country", "iso_code"),
-                ("registered_country", "iso_code"),
-                ("represented_country", "iso_code"),
-            ):
-                value = record
-                for part in path:
-                    value = value.get(part) if isinstance(value, dict) else None
-                if value:
-                    candidates.append(value)
-        elif isinstance(record, list):
-            candidates.extend(value for value in record if isinstance(value, str))
-        for value in candidates:
-            code = _normalize_country_code(value)
-            if code:
-                return code, "geoip.metadb"
-        # When a GeoIP reader is available, an unknown IP stays unclassified;
-        # never silently replace database-based grouping with a different source.
-        return "", ""
-    country_code = _normalize_country_code(trace_country)
-    if country_code:
-        return country_code, "cloudflare-trace-loc"
-    return "", ""
 
 
 def _verify_one_candidate(candidate: Candidate, port: int, timeout_s: float, retries: int, geo_reader=None) -> dict:
@@ -1015,7 +952,7 @@ def _verify_one_candidate(candidate: Candidate, port: int, timeout_s: float, ret
             "targets": target_results,
             "geo_target": {k: v for k, v in trace.items() if k != "body"},
         }
-    country, country_source = _country_for_ip(geo_reader, trace_info["ip"], trace_info["loc"])
+    country_details = country_for_ip_details(geo_reader, trace_info["ip"], trace_info["loc"])
     return {
         "ok": True,
         "error": "",
@@ -1023,8 +960,7 @@ def _verify_one_candidate(candidate: Candidate, port: int, timeout_s: float, ret
         "geo_target": {k: v for k, v in trace.items() if k != "body"},
         "exit_ip": trace_info["ip"],
         "trace_country": trace_info["loc"],
-        "country_code": country,
-        "country_source": country_source,
+        **country_details,
     }
 
 
@@ -1644,14 +1580,16 @@ def run_alive_check(
                 delay_by_key[key] = min(delay, delay_by_key.get(key, delay))
         verification = strict_results.get(candidate.name, {})
         country_code = _normalize_country_code(verification.get("country_code"))
-        if country_code:
-            geo_record = {
-                "country_code": country_code,
-                "source": verification.get("country_source") or "",
-            }
-            actual_exit_country_by_name[candidate.name] = geo_record
-            if candidate.state_key is not None:
-                actual_exit_country_by_identity[candidate.state_key[3]] = geo_record
+        geo_record = {
+            "country_code": country_code,
+            "source": verification.get("country_source") or "",
+            "status": verification.get("country_status") or ("identified" if country_code else "missing_verification"),
+            "country_field": verification.get("country_field") or "",
+            "verified_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+        }
+        actual_exit_country_by_name[candidate.name] = geo_record
+        if candidate.state_key is not None:
+            actual_exit_country_by_identity[candidate.state_key[3]] = geo_record
 
     bad_names = {c.name for c in bad_proxies}
     print(
@@ -1761,6 +1699,14 @@ def run_alive_check(
         "strict_https_passed": sum(1 for c in alive_candidates if c.name in strict_results),
         "actual_exit_country_by_name": actual_exit_country_by_name,
         "actual_exit_country_by_identity": actual_exit_country_by_identity,
+        "geo_verification": {
+            "run_id": os.environ.get("GITHUB_RUN_ID", "local") + ":" + os.environ.get("GITHUB_RUN_ATTEMPT", "1"),
+            "verified_at": now_iso,
+            "database_sha256": hashlib.sha256(geoip_path.read_bytes()).hexdigest() if geoip_path.is_file() else None,
+            "input_identity_sha256": hashlib.sha256("\n".join(sorted(c.state_key[3] for c in real_set if c.state_key)).encode()).hexdigest(),
+            "verified_nodes": len(alive_candidates),
+            "identified_nodes": sum(bool(v.get("country_code")) for v in actual_exit_country_by_name.values()),
+        },
         "geoip_database": str(geoip_path) if geoip_path.is_file() else "cloudflare trace fallback",
         "timeout_s": timeout,
         "concurrency": concurrency,
