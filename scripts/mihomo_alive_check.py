@@ -911,13 +911,50 @@ def _request_with_retries(url: str, port: int, expected_status: int, timeout_s: 
     }
 
 
+_INVALID_COUNTRY_CODES = {"EU", "AP", "A1", "A2"}
+_COUNTRY_CODE_RE = re.compile(r"(?<![A-Z])([A-Z]{2})(?![A-Z])")
+
+
+def _country_code_from_flag(value: str) -> str:
+    """Return an ISO country code represented by a leading emoji flag, if any."""
+    if len(value) < 2:
+        return ""
+    first, second = value[0], value[1]
+    if not (0x1F1E6 <= ord(first) <= 0x1F1FF and 0x1F1E6 <= ord(second) <= 0x1F1FF):
+        return ""
+    code = "".join(chr(ord("A") + ord(ch) - 0x1F1E6) for ch in (first, second))
+    return "" if code in _INVALID_COUNTRY_CODES else code
+
+
+def _normalize_country_code(value) -> str:
+    """Normalize GeoIP country strings such as ``jp`` or ``🇯🇵JP`` to ``JP``.
+
+    The repository ``geoip.metadb`` can return country labels as decorated strings
+    (for example ``🇨🇳CN``) rather than a bare ISO-3166 alpha-2 code.  Keep the
+    stored metadata canonical so country policy groups can be generated reliably.
+    """
+    text = str(value or "").strip().upper()
+    if not text:
+        return ""
+
+    flag_code = _country_code_from_flag(text)
+    if flag_code:
+        return flag_code
+
+    for match in _COUNTRY_CODE_RE.finditer(text):
+        code = match.group(1)
+        if code not in _INVALID_COUNTRY_CODES:
+            return code
+    return ""
+
+
 def _parse_cloudflare_trace(body: bytes) -> dict | None:
     try:
         text = body.decode("utf-8", errors="strict")
         fields = dict(line.split("=", 1) for line in text.splitlines() if "=" in line)
         ip = str(ipaddress.ip_address(fields.get("ip", "")))
-        loc = str(fields.get("loc", "")).strip().upper()
-        if not re.fullmatch(r"[A-Z]{2}", loc):
+        loc = _normalize_country_code(fields.get("loc", ""))
+        if not loc:
             return None
         return {"ip": ip, "loc": loc}
     except (UnicodeDecodeError, ValueError):
@@ -942,17 +979,19 @@ def _country_for_ip(reader, ip: str, trace_country: str) -> tuple[str, str]:
                 for part in path:
                     value = value.get(part) if isinstance(value, dict) else None
                 if value:
-                    candidates.append(str(value).upper())
+                    candidates.append(value)
         elif isinstance(record, list):
-            candidates.extend(str(value).upper() for value in record if isinstance(value, str))
+            candidates.extend(value for value in record if isinstance(value, str))
         for value in candidates:
-            if re.fullmatch(r"[A-Z]{2}", value) and value not in {"EU", "AP", "A1", "A2"}:
-                return value, "geoip.metadb"
+            code = _normalize_country_code(value)
+            if code:
+                return code, "geoip.metadb"
         # When a GeoIP reader is available, an unknown IP stays unclassified;
         # never silently replace database-based grouping with a different source.
         return "", ""
-    if re.fullmatch(r"[A-Z]{2}", str(trace_country or "")):
-        return str(trace_country).upper(), "cloudflare-trace-loc"
+    country_code = _normalize_country_code(trace_country)
+    if country_code:
+        return country_code, "cloudflare-trace-loc"
     return "", ""
 
 
@@ -1604,7 +1643,7 @@ def run_alive_check(
             if delay is not None:
                 delay_by_key[key] = min(delay, delay_by_key.get(key, delay))
         verification = strict_results.get(candidate.name, {})
-        country_code = str(verification.get("country_code") or "").upper()
+        country_code = _normalize_country_code(verification.get("country_code"))
         if country_code:
             geo_record = {
                 "country_code": country_code,
