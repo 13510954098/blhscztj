@@ -541,6 +541,18 @@ class MihomoConfigAndQueryTests(unittest.TestCase):
             def get(self, ip): return ["jp","test-network"]
         self.assertEqual(mihomo_check._country_for_ip(Reader(),"203.0.113.7","US"),
                          ("JP","geoip.metadb"))
+        class DecoratedReader:
+            def get(self, ip): return ["test-network", "🇨🇳CN"]
+        self.assertEqual(mihomo_check._country_for_ip(DecoratedReader(),"203.0.113.7","US"),
+                         ("CN","geoip.metadb"))
+        class FlagOnlyReader:
+            def get(self, ip): return ["🇯🇵"]
+        self.assertEqual(mihomo_check._country_for_ip(FlagOnlyReader(),"203.0.113.7","US"),
+                         ("JP","geoip.metadb"))
+        class NoiseReader:
+            def get(self, ip): return ["test-network"]
+        self.assertEqual(mihomo_check._country_for_ip(NoiseReader(),"203.0.113.7","US"),
+                         ("", ""))
         self.assertEqual(mihomo_check._country_for_ip(None,"203.0.113.7","US"),
                          ("US","cloudflare-trace-loc"))
         class MissingReader:
