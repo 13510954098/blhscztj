@@ -1,52 +1,51 @@
 {
   "code": "7788",
-  "updated_at": "2026-10-07T11:53:18+08:00",
-  "updated_at_utc": "2026-10-07T03:53:18+00:00",
+  "updated_at": "2026-10-07T18:15:50+08:00",
+  "updated_at_utc": "2026-10-07T10:15:50+00:00",
   "date": "2026-10-07",
   "source_page": "https://jcnode.com/posts/free-nodes/",
   "link_tier": "direct",
   "links": {
-    "clash": "https://shz.al/2sJk",
-    "singbox": "https://shz.al/p5dJ",
-    "v2ray": "https://shz.al/w6Dy"
+    "clash": "https://shz.al/sNjt",
+    "singbox": "https://shz.al/B8SX",
+    "v2ray": "https://shz.al/tPEH"
   },
   "nodes": {
-    "clash": 890,
-    "singbox": 870,
-    "v2ray": 890
+    "clash": 763,
+    "singbox": 751,
+    "v2ray": 763
   },
   "sha256_16": {
-    "clash": "d1ff329c51803b58",
-    "singbox": "4aa60b2872a058ed",
-    "v2ray": "a371cff2de1d3fc7"
+    "clash": "4f3c974ea8714b8f",
+    "singbox": "987ad4499d951d4e",
+    "v2ray": "f5787f132eaffd23"
   },
   "source_sha256_16": {
-    "clash": "f5f1876480fd8353"
+    "clash": "186d2c7be0b83585"
   },
   "clash_normalization": {
     "http_opts_headers": "scalar_values_to_lists",
     "flclash_path_controls_percent_encoded": 0,
-    "reality_short_ids_quoted": 70,
+    "reality_short_ids_quoted": 55,
     "changed": true
   },
   "policy_normalization": {
-    "total_nodes": 890,
-    "grouped_country_nodes": 570,
-    "unknown_nodes": 320,
-    "coverage": 0.6404494382022472,
+    "total_nodes": 763,
+    "grouped_country_nodes": 583,
+    "unknown_nodes": 180,
+    "coverage": 0.7640891218872871,
     "unknown_reasons": {
-      "missing_verification": 320
+      "missing_verification": 180
     },
-    "country_groups": 30,
+    "country_groups": 27,
     "country_codes": [
       "AE",
       "AU",
-      "BD",
       "BR",
+      "CA",
       "CZ",
       "DE",
-      "EE",
-      "ES",
+      "FI",
       "FR",
       "GB",
       "GR",
@@ -59,11 +58,9 @@
       "KR",
       "LT",
       "LV",
-      "MX",
       "NL",
       "PL",
       "RO",
-      "RU",
       "SE",
       "SG",
       "TR",
@@ -72,9 +69,9 @@
     ],
     "partition_validated": true,
     "shared_template": true,
-    "normalization_at": "2026-10-07T04:16:16+00:00",
-    "verification_run_id": "37568800608:1",
-    "verification_generated_at": "2026-10-07T04:16:16+00:00",
+    "normalization_at": "2026-10-07T10:37:41+00:00",
+    "verification_run_id": "37606177986:1",
+    "verification_generated_at": "2026-10-07T10:37:40+00:00",
     "verification_reused": false,
     "stale": false,
     "ttl_hours": 24.0

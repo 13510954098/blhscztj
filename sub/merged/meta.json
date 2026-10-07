@@ -1,33 +1,33 @@
 {
   "code": "7788",
-  "updated_at": "2026-10-07T11:53:18+08:00",
-  "updated_at_utc": "2026-10-07T03:53:18+00:00",
+  "updated_at": "2026-10-07T18:15:50+08:00",
+  "updated_at_utc": "2026-10-07T10:15:50+00:00",
   "date": "2026-10-07",
   "source_page": "https://jcnode.com/posts/free-nodes/",
   "link_tier": "direct",
   "links": {
-    "clash": "https://shz.al/2sJk",
-    "singbox": "https://shz.al/p5dJ",
-    "v2ray": "https://shz.al/w6Dy"
+    "clash": "https://shz.al/sNjt",
+    "singbox": "https://shz.al/B8SX",
+    "v2ray": "https://shz.al/tPEH"
   },
   "nodes": {
-    "clash": 22566,
-    "singbox": 4866,
-    "v2ray": 4750
+    "clash": 22793,
+    "singbox": 5071,
+    "v2ray": 4959
   },
   "sha256_16": {
-    "clash.yaml": "9005df138ce27380",
-    "singbox.json": "4139cdd54e4e8328",
-    "v2ray.txt": "560aeb91ba2b2538",
-    "clash": "28980c1536899fbf"
+    "clash.yaml": "8963fe4035c1d98d",
+    "singbox.json": "d8f6d602b167e822",
+    "v2ray.txt": "5f4c1b24abbe9ed1",
+    "clash": "d05cd4fbe4078f78"
   },
   "source_sha256_16": {
-    "clash": "f5f1876480fd8353"
+    "clash": "186d2c7be0b83585"
   },
   "clash_normalization": {
     "http_opts_headers": "scalar_values_to_lists",
     "flclash_path_controls_percent_encoded": 0,
-    "reality_short_ids_quoted": 4288,
+    "reality_short_ids_quoted": 4325,
     "changed": true
   },
   "merge": {
@@ -38,60 +38,58 @@
       "direction": "descending",
       "missing": "stable-last"
     },
-    "updated_at": "2026-10-07T03:53:59+00:00",
+    "updated_at": "2026-10-07T10:16:33+00:00",
     "clash": {
-      "incoming": 890,
+      "incoming": 763,
       "base": 22566,
-      "final": 22566,
-      "added": 888,
-      "duplicates_removed": 890,
+      "final": 22793,
+      "added": 762,
+      "duplicates_removed": 536,
       "sort": "name-mb-s-desc-stable",
       "template": "incoming-daily"
     },
     "singbox": {
-      "incoming": 870,
+      "incoming": 751,
       "base": 4866,
-      "final": 4866,
-      "added": 759,
-      "duplicates_removed": 870
+      "final": 5071,
+      "added": 638,
+      "duplicates_removed": 546
     },
     "v2ray": {
-      "incoming": 890,
+      "incoming": 763,
       "base": 4750,
-      "final": 4750,
-      "added": 753,
-      "duplicates_removed": 890
+      "final": 4959,
+      "added": 625,
+      "duplicates_removed": 554
     }
   },
   "fresh_nodes": {
-    "clash": 890,
-    "singbox": 870,
-    "v2ray": 890
+    "clash": 763,
+    "singbox": 751,
+    "v2ray": 763
   },
   "policy_normalization": {
-    "total_nodes": 22566,
-    "grouped_country_nodes": 1786,
-    "unknown_nodes": 20780,
-    "coverage": 0.07914561730036337,
+    "total_nodes": 22793,
+    "grouped_country_nodes": 1591,
+    "unknown_nodes": 21202,
+    "coverage": 0.06980213223358049,
     "unknown_reasons": {
-      "missing_verification": 20780
+      "missing_verification": 21202
     },
-    "country_groups": 48,
+    "country_groups": 43,
     "country_codes": [
       "AE",
       "AL",
-      "AM",
       "AU",
-      "BD",
       "BG",
       "BR",
+      "BY",
       "CA",
       "CH",
       "CL",
       "CY",
       "CZ",
       "DE",
-      "DK",
       "EE",
       "ES",
       "FI",
@@ -103,20 +101,18 @@
       "IE",
       "IL",
       "IN",
-      "IQ",
       "IT",
       "JP",
-      "KG",
       "KR",
-      "KZ",
       "LT",
       "LV",
-      "MU",
       "MX",
       "NL",
+      "PH",
       "PK",
       "PL",
       "RO",
+      "RS",
       "RU",
       "SC",
       "SE",
@@ -124,14 +120,13 @@
       "TR",
       "TW",
       "UA",
-      "US",
-      "ZA"
+      "US"
     ],
     "partition_validated": true,
     "shared_template": true,
-    "normalization_at": "2026-10-07T04:16:16+00:00",
-    "verification_run_id": "37568800608:1",
-    "verification_generated_at": "2026-10-07T04:16:16+00:00",
+    "normalization_at": "2026-10-07T10:37:41+00:00",
+    "verification_run_id": "37606177986:1",
+    "verification_generated_at": "2026-10-07T10:37:40+00:00",
     "verification_reused": false,
     "stale": false,
     "ttl_hours": 24.0
