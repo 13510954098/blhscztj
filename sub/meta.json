@@ -1,45 +1,46 @@
 {
   "code": "7788",
-  "updated_at": "2026-10-08T18:34:58+08:00",
-  "updated_at_utc": "2026-10-08T10:34:58+00:00",
-  "date": "2026-10-08",
+  "updated_at": "2026-10-09T18:33:27+08:00",
+  "updated_at_utc": "2026-10-09T10:33:27+00:00",
+  "date": "2026-10-09",
   "source_page": "https://jcnode.com/posts/free-nodes/",
   "link_tier": "direct",
   "links": {
-    "clash": "https://shz.al/fppN",
-    "singbox": "https://shz.al/ZjKp",
-    "v2ray": "https://shz.al/TtCc"
+    "clash": "https://shz.al/cGZD",
+    "singbox": "https://shz.al/Nd3p",
+    "v2ray": "https://shz.al/4jJy"
   },
   "nodes": {
-    "clash": 974,
-    "singbox": 963,
-    "v2ray": 974
+    "clash": 979,
+    "singbox": 974,
+    "v2ray": 979
   },
   "sha256_16": {
-    "clash": "40592f693a1f2b29",
-    "singbox": "12ce2a12be6ecd76",
-    "v2ray": "58760c189428d548"
+    "clash": "14a1fc22fcda41b2",
+    "singbox": "3e5fff1de333bff6",
+    "v2ray": "c48a5d16f1298db6"
   },
   "source_sha256_16": {
-    "clash": "2c1d2c298c7268d2"
+    "clash": "c42b5dda48431f93"
   },
   "clash_normalization": {
     "http_opts_headers": "scalar_values_to_lists",
     "flclash_path_controls_percent_encoded": 0,
-    "reality_short_ids_quoted": 19,
+    "reality_short_ids_quoted": 38,
     "changed": true
   },
   "policy_normalization": {
-    "total_nodes": 974,
-    "grouped_country_nodes": 595,
-    "unknown_nodes": 379,
-    "coverage": 0.6108829568788501,
+    "total_nodes": 979,
+    "grouped_country_nodes": 481,
+    "unknown_nodes": 498,
+    "coverage": 0.491317671092952,
     "unknown_reasons": {
-      "missing_verification": 379
+      "missing_verification": 498
     },
-    "country_groups": 27,
+    "country_groups": 28,
     "country_codes": [
       "AE",
+      "AM",
       "AU",
       "BR",
       "CA",
@@ -58,20 +59,20 @@
       "KR",
       "LT",
       "LV",
-      "MX",
       "NL",
       "PL",
       "RO",
       "SE",
       "SG",
       "TR",
+      "TW",
       "US"
     ],
     "partition_validated": true,
     "shared_template": true,
-    "normalization_at": "2026-10-08T10:56:40+00:00",
-    "verification_run_id": "37764361560:1",
-    "verification_generated_at": "2026-10-08T10:56:40+00:00",
+    "normalization_at": "2026-10-09T10:56:39+00:00",
+    "verification_run_id": "37918287028:1",
+    "verification_generated_at": "2026-10-09T10:56:38+00:00",
     "verification_reused": false,
     "stale": false,
     "ttl_hours": 24.0
