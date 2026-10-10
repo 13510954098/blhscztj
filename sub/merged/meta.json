@@ -1,7 +1,7 @@
 {
   "code": "7788",
-  "updated_at": "2026-10-10T17:50:30+08:00",
-  "updated_at_utc": "2026-10-10T09:50:30+00:00",
+  "updated_at": "2026-10-10T18:12:44+08:00",
+  "updated_at_utc": "2026-10-10T10:12:44+00:00",
   "date": "2026-10-10",
   "source_page": "https://jcnode.com/posts/free-nodes/",
   "link_tier": "direct",
@@ -19,7 +19,7 @@
     "clash.yaml": "185c8517b8e3c8bd",
     "singbox.json": "97ccb9804ddce236",
     "v2ray.txt": "31c202660c223453",
-    "clash": "d41820f198a90469"
+    "clash": "8da6620885d7469c"
   },
   "source_sha256_16": {
     "clash": "89fadfb81a0e038d"
@@ -38,29 +38,29 @@
       "direction": "descending",
       "missing": "stable-last"
     },
-    "updated_at": "2026-10-10T09:51:15+00:00",
+    "updated_at": "2026-10-10T10:13:11+00:00",
     "clash": {
       "incoming": 926,
-      "base": 23607,
+      "base": 24031,
       "final": 24031,
       "added": 925,
-      "duplicates_removed": 502,
+      "duplicates_removed": 926,
       "sort": "name-mb-s-desc-stable",
       "template": "incoming-daily"
     },
     "singbox": {
       "incoming": 919,
-      "base": 5839,
+      "base": 6241,
       "final": 6241,
       "added": 785,
-      "duplicates_removed": 517
+      "duplicates_removed": 919
     },
     "v2ray": {
       "incoming": 926,
-      "base": 5725,
+      "base": 6132,
       "final": 6132,
       "added": 767,
-      "duplicates_removed": 519
+      "duplicates_removed": 926
     }
   },
   "fresh_nodes": {
@@ -70,43 +70,33 @@
   },
   "policy_normalization": {
     "total_nodes": 24031,
-    "grouped_country_nodes": 1545,
-    "unknown_nodes": 22486,
-    "coverage": 0.06429195622321168,
+    "grouped_country_nodes": 1112,
+    "unknown_nodes": 22919,
+    "coverage": 0.04627356331405268,
     "unknown_reasons": {
-      "missing_verification": 22486
+      "missing_verification": 22919
     },
-    "country_groups": 42,
+    "country_groups": 32,
     "country_codes": [
-      "AE",
-      "AL",
       "AM",
       "AU",
-      "BD",
-      "BG",
-      "BR",
       "BY",
       "CA",
       "CH",
       "CY",
-      "CZ",
       "DE",
       "EE",
       "ES",
       "FI",
       "FR",
       "GB",
-      "GR",
       "HK",
       "ID",
       "IE",
-      "IL",
       "IN",
       "IT",
       "JP",
-      "KG",
       "KR",
-      "LT",
       "LV",
       "MX",
       "NL",
@@ -123,9 +113,9 @@
     ],
     "partition_validated": true,
     "shared_template": true,
-    "normalization_at": "2026-10-10T10:10:58+00:00",
-    "verification_run_id": "38042784433:1",
-    "verification_generated_at": "2026-10-10T10:10:58+00:00",
+    "normalization_at": "2026-10-10T10:31:07+00:00",
+    "verification_run_id": "38043379339:1",
+    "verification_generated_at": "2026-10-10T10:31:07+00:00",
     "verification_reused": false,
     "stale": false,
     "ttl_hours": 24.0
