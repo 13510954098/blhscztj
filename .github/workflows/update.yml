@@ -2,9 +2,9 @@ name: Update JCNode subscription
 
 on:
   schedule:
-    # 站点一般在北京时间 08:30-10:40 更新，这里 11:30 抓一次，18:00 再补一次
+    # 站点一般在北京时间 08:30-10:40 更新，这里 11:58 抓一次，18:00 再补一次
     # 注意：cron 用 UTC，北京时间 = UTC + 8
-    - cron: "30 3 * * *"    # 11:30 CST
+    - cron: "58 3 * * *"    # 11:58 CST
     - cron: "0 10 * * *"    # 18:00 CST
     # Low-cost catch-up ticks. GitHub cron may be delayed/dropped; gate deduplicates.
     - cron: "17,47 3-15 * * *"

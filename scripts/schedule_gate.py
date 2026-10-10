@@ -9,13 +9,18 @@ from zoneinfo import ZoneInfo
 
 TZ = ZoneInfo('Asia/Shanghai')
 STATE = Path('.schedule/success.json')
+MORNING_SLOT = '11:58'
+EVENING_SLOT = '18:00'
+MORNING_START_MINUTE = 11 * 60 + 58
+EVENING_START_MINUTE = 18 * 60
 
 def slot_at(now):
     local = now.astimezone(TZ)
     minute = local.hour * 60 + local.minute
-    if minute < 690:  # Before today's 11:30: never replay yesterday's stale data.
+    if minute < MORNING_START_MINUTE:  # Never replay before today's morning slot.
         return None
-    return local.strftime('%Y-%m-%d') + ('/18:00' if minute >= 1080 else '/11:30')
+    slot_name = EVENING_SLOT if minute >= EVENING_START_MINUTE else MORNING_SLOT
+    return f'{local:%Y-%m-%d}/{slot_name}'
 
 def decide(now, state, event='schedule'):
     slot = slot_at(now)
@@ -37,7 +42,7 @@ def main():
         if not args.mark:
             return
         datetime.strptime(args.mark, '%Y-%m-%d/%H:%M')
-        if args.mark[-5:] not in ('11:30', '18:00'):
+        if args.mark[-5:] not in (MORNING_SLOT, EVENING_SLOT):
             raise ValueError('invalid slot')
         STATE.parent.mkdir(exist_ok=True)
         temp = STATE.with_suffix('.tmp')
