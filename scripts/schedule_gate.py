@@ -10,9 +10,9 @@ from zoneinfo import ZoneInfo
 TZ = ZoneInfo('Asia/Shanghai')
 STATE = Path('.schedule/success.json')
 MORNING_SLOT = '11:58'
-EVENING_SLOT = '18:00'
+EVENING_SLOT = '21:00'
 MORNING_START_MINUTE = 11 * 60 + 58
-EVENING_START_MINUTE = 18 * 60
+EVENING_START_MINUTE = 21 * 60
 
 def slot_at(now):
     local = now.astimezone(TZ)
