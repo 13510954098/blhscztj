@@ -1,2 +1,5 @@
 __pycache__/
 *.py[cod]
+# mihomo -t 在各校验目录生成的 GeoIP 副本；只保留 sub/geoip.metadb
+sub/merged/geoip.metadb
+sub/alive/geoip.metadb
