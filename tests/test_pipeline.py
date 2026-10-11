@@ -42,6 +42,45 @@ class CandidateOrderTests(unittest.TestCase):
             self.assertEqual(len(candidates), 91)
 
 
+class SourceDateTests(unittest.TestCase):
+    """抓到的内容属于哪一期：页面日期为准，但内容必须真的换了。"""
+
+    PREV = {"source_sha256_16": {"clash": "old"}, "source_date": "2026-10-10"}
+
+    def test_parse_page_updated(self):
+        html = "<p>免费节点订阅 最后更新：2026-10-10 11:12（北京时间）</p>"
+        self.assertEqual(fetch_jcnode.parse_page_updated(html), ("2026-10-10", "2026-10-10 11:12"))
+        self.assertEqual(fetch_jcnode.parse_page_updated("最后更新：2026-9-7"), ("2026-09-07", "2026-09-07"))
+        self.assertEqual(fetch_jcnode.parse_page_updated("<html></html>"), (None, None))
+
+    def test_page_not_updated_yet(self):
+        r = fetch_jcnode.resolve_source_date("2026-10-10", "2026-10-11", "old", self.PREV)
+        self.assertEqual(r, "2026-10-10")
+
+    def test_new_issue(self):
+        r = fetch_jcnode.resolve_source_date("2026-10-11", "2026-10-11", "new", self.PREV)
+        self.assertEqual(r, "2026-10-11")
+
+    def test_page_bumped_but_links_still_old(self):
+        r = fetch_jcnode.resolve_source_date("2026-10-11", "2026-10-11", "old", self.PREV)
+        self.assertEqual(r, "2026-10-10")
+
+    def test_second_fetch_of_same_issue_stays_fresh(self):
+        prev = {"source_sha256_16": {"clash": "new"}, "source_date": "2026-10-11"}
+        self.assertEqual(fetch_jcnode.resolve_source_date("2026-10-11", "2026-10-11", "new", prev), "2026-10-11")
+
+    def test_page_unreadable_falls_back_to_content(self):
+        self.assertEqual(fetch_jcnode.resolve_source_date(None, "2026-10-11", "new", self.PREV), "2026-10-11")
+        self.assertEqual(fetch_jcnode.resolve_source_date(None, "2026-10-11", "old", self.PREV), "2026-10-10")
+
+    def test_legacy_meta_without_source_date(self):
+        legacy = {"sha256_16": {"clash": "old"}}
+        self.assertEqual(fetch_jcnode.resolve_source_date("2026-10-10", "2026-10-11", "old", legacy), "2026-10-10")
+        self.assertEqual(fetch_jcnode.resolve_source_date("2026-10-11", "2026-10-11", "old", legacy), "")
+        self.assertEqual(fetch_jcnode.resolve_source_date("2026-10-11", "2026-10-11", "new", legacy), "2026-10-11")
+        self.assertEqual(fetch_jcnode.resolve_source_date(None, "2026-10-11", "x", {}), "2026-10-11")
+
+
 class MergeTests(unittest.TestCase):
     def test_clash_uses_daily_template_and_globally_sorts_speed(self):
         with tempfile.TemporaryDirectory() as tmp:
