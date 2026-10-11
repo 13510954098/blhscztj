@@ -1,0 +1,82 @@
+name: TEMP fetch handoff
+
+# 临时工作流：在 GitHub runner 上下载用户提供的 handoff 压缩包并提交回本分支，
+# 供本地会话（只能访问 github.com）取用。用完即删（删除本文件与 .tmp-handoff/）。
+
+on:
+  # workflow_dispatch 要求工作流存在于默认分支，所以这里用 push 触发。
+  push:
+    branches:
+      - arena/a1d23447-blhscztj
+    paths:
+      - .github/workflows/tmp-fetch-handoff.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: tmp-fetch-handoff
+  cancel-in-progress: true
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      HANDOFF_URL: "https://x0.at/mGud.zip"
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: ${{ github.ref_name }}
+
+      - name: 下载 handoff（失败也继续，便于回传诊断）
+        continue-on-error: true
+        run: |
+          set -uo pipefail
+          mkdir -p .tmp-handoff
+          log=.tmp-handoff/diagnostics.log
+          {
+            echo "url=${HANDOFF_URL}"
+            echo "runner_time_utc=$(date -u +%FT%TZ)"
+          } > "$log"
+          ok=0
+          for ua in "curl/8.5.0" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36"; do
+            echo "--- try UA: ${ua}" >> "$log"
+            rm -f .tmp-handoff/handoff.zip
+            curl -sS -L --retry 3 --connect-timeout 20 --max-time 300 -A "$ua" \
+              -D .tmp-handoff/headers.txt -o .tmp-handoff/handoff.zip \
+              -w 'http_code=%{http_code} size=%{size_download} type=%{content_type} final=%{url_effective}\n' \
+              "${HANDOFF_URL}" >> "$log" 2>&1
+            cat .tmp-handoff/headers.txt >> "$log" 2>/dev/null || true
+            if [ -s .tmp-handoff/handoff.zip ] && unzip -tq .tmp-handoff/handoff.zip >> "$log" 2>&1; then
+              ok=1
+              break
+            fi
+            echo "not a valid zip with this UA" >> "$log"
+            file .tmp-handoff/handoff.zip >> "$log" 2>&1 || true
+            head -c 400 .tmp-handoff/handoff.zip >> "$log" 2>/dev/null || true
+            echo >> "$log"
+          done
+          echo "ok=${ok}" >> "$log"
+          if [ "$ok" = 1 ]; then
+            {
+              echo "--- checksums"
+              sha256sum .tmp-handoff/handoff.zip
+              md5sum .tmp-handoff/handoff.zip
+              echo "--- listing"
+              unzip -l .tmp-handoff/handoff.zip
+            } >> "$log" 2>&1
+          fi
+          rm -f .tmp-handoff/headers.txt
+          cat "$log"
+
+      - name: 提交结果（含诊断日志）回本分支
+        if: always()
+        run: |
+          set -euo pipefail
+          ls -la .tmp-handoff || true
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f .tmp-handoff
+          git commit -m "tmp: relay handoff zip [skip ci]" || { echo "nothing to commit"; exit 0; }
+          git push origin "HEAD:${{ github.ref_name }}"
