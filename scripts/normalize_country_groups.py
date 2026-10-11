@@ -12,7 +12,7 @@ from collections import Counter
 from datetime import datetime, timezone
 from pathlib import Path
 import yaml
-from geo_country import normalize_country_code, country_code_from_flag, proxy_identity_hash
+from geo_country import normalize_country_code, proxy_identity_hash
 from merge_subscriptions import atomic_write
 
 UNKNOWN = '❓ 未识别地区'

@@ -33,6 +33,18 @@ def slot_at(now):
     slot_name = EVENING_SLOT if minute >= EVENING_START_MINUTE else MORNING_SLOT
     return f'{local:%Y-%m-%d}/{slot_name}'
 
+def run_mode(slot, state, event='schedule', trigger=''):
+    """'alive' = evening re-test only (skip fetch/merge), 'full' = whole pipeline.
+
+    The site publishes once a day, so the 21:00 slot only needs to drop nodes
+    that died during the day -- but only if that day's 11:00 slot actually
+    published; otherwise the evening run must still fetch. Manual runs are full.
+    """
+    if not is_clock_tick(event, trigger) or not slot or not slot.endswith('/' + EVENING_SLOT):
+        return 'full'
+    morning = slot[:-len(EVENING_SLOT)] + MORNING_SLOT
+    return 'alive' if state.get('slot') == morning else 'full'
+
 def next_slot_start(now):
     """Start of the next slot strictly after ``now`` (aware datetime)."""
     local = now.astimezone(TZ)
@@ -167,15 +179,17 @@ def main():
     state = json.loads(STATE.read_text()) if STATE.exists() else {}
     if not isinstance(state, dict):
         raise ValueError('invalid scheduling state')
-    due, slot, reason = decide(now, state, os.environ.get('GITHUB_EVENT_NAME', 'schedule'),
-                               os.environ.get('GATE_TRIGGER', ''))
-    print(f'{now.isoformat()} slot={slot} due={due}: {reason}')
+    event = os.environ.get('GITHUB_EVENT_NAME', 'schedule')
+    trigger = os.environ.get('GATE_TRIGGER', '')
+    due, slot, reason = decide(now, state, event, trigger)
+    mode = run_mode(slot, state, event, trigger)
+    print(f'{now.isoformat()} slot={slot} due={due} mode={mode}: {reason}')
     if output := os.environ.get('GITHUB_OUTPUT'):
         with open(output, 'a') as f:
-            f.write(f'due={str(due).lower()}\nslot={slot}\n')
+            f.write(f'due={str(due).lower()}\nslot={slot}\nmode={mode}\n')
     if summary := os.environ.get('GITHUB_STEP_SUMMARY'):
         with open(summary, 'a') as f:
-            f.write(f'## Scheduling\n\nActual UTC: {now.isoformat()}\n\nCST slot: `{slot}`; due: {due}; {reason}.\n')
+            f.write(f'## Scheduling\n\nActual UTC: {now.isoformat()}\n\nCST slot: `{slot}`; due: {due}; mode: {mode}; {reason}.\n')
 
 if __name__ == '__main__':
     main()
