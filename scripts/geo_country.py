@@ -48,14 +48,13 @@ def proxy_identity_hash(proxy: dict) -> str:
     return hashlib.sha256(serialized.encode('utf-8')).hexdigest()
 
 
-def country_for_ip_details(reader, ip: str, trace_country: str) -> dict:
-    def result(code='', source='', status='db_no_match', field=''):
-        return {'country_code': code, 'country_source': source,
+def db_country_details(reader, ip: str) -> dict:
+    """Look up ``ip`` in a local MMDB only (no Cloudflare fallback)."""
+    def result(code='', status='db_no_match', field=''):
+        return {'country_code': code, 'country_source': 'geoip.metadb' if code else '',
                 'country_status': status, 'country_field': field}
     if reader is None:
-        code = normalize_country_code(trace_country)
-        return result(code, 'cloudflare-trace-loc' if code else '',
-                      'identified' if code else 'invalid_trace_country', 'loc')
+        return result(status='db_unavailable')
     try:
         record = reader.get(ip)
     except Exception:
@@ -77,9 +76,33 @@ def country_for_ip_details(reader, ip: str, trace_country: str) -> dict:
     for value, field in candidates:
         code = normalize_country_code(value)
         if code:
-            return result(code, 'geoip.metadb', 'identified', field)
-    # An available database never silently falls back to Cloudflare's loc.
+            return result(code, 'identified', field)
     return result(status='invalid_country_code')
+
+
+def country_for_ip_details(reader, ip: str, trace_country: str) -> dict:
+    """Country of the *actual* exit IP.
+
+    Primary source is Cloudflare's own geolocation of the exit IP (``loc`` in
+    /cdn-cgi/trace), observed live through the proxy.  The bundled
+    MetaCubeX ``geoip.metadb`` is a routing database (multi-tag records such
+    as ``['cloudflare','us']``, registrant-country data for many hosting
+    ranges) and was found to mislabel VPS exits (e.g. DE->RU, ES->AM,
+    FI->TR, RU->HK).  It is therefore only a fallback when ``loc`` is
+    missing/invalid, and its answer is recorded for auditing.
+    """
+    db = db_country_details(reader, ip)
+    trace_code = normalize_country_code(trace_country)
+    if trace_code:
+        return {'country_code': trace_code, 'country_source': 'cloudflare-trace-loc',
+                'country_status': 'identified', 'country_field': 'loc',
+                'db_country_code': db['country_code'],
+                'db_agrees': (db['country_code'] == trace_code) if db['country_code'] else None}
+    if db['country_code']:
+        return {**db, 'db_country_code': db['country_code'], 'db_agrees': None}
+    status = db['country_status'] if reader is not None else 'invalid_trace_country'
+    return {'country_code': '', 'country_source': '', 'country_status': status,
+            'country_field': '', 'db_country_code': '', 'db_agrees': None}
 
 
 def country_for_ip(reader, ip: str, trace_country: str) -> tuple[str, str]:

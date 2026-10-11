@@ -3,8 +3,9 @@
 """Mihomo 存活检查：代理延迟预筛后，逐节点用固定出站 HTTP listeners 做严格 HTTPS 检查。
 
 流程：TCP 可用性预筛（UDP/QUIC 跳过）→ Mihomo delay 粗筛 → 两个独立 HTTPS
-目标必须精确返回 204 → Cloudflare HTTPS trace 返回有效出口 IP → 仓库 geoip.metadb
-解析真实出口国家。只有严格检查通过的 Clash 节点进入 alive；Sing-box/V2Ray 只按
+目标必须精确返回 204 → Cloudflare HTTPS trace 返回有效出口 IP 及 Cloudflare 对该
+出口 IP 的国家判定（loc，作为真实出口国家）；仓库 geoip.metadb 仅在 loc 无效时兜底，
+并记录其结果用于比对。只有严格检查通过的 Clash 节点进入 alive；Sing-box/V2Ray 只按
 完整的 endpoint + 认证/TLS/传输参数指纹匹配，无法完整辨认的协议/条目 fail closed。
 
 state.json v3 使用完整连接参数身份，避免相同 endpoint/protocol 的不同凭据共享历史。
@@ -1585,6 +1586,8 @@ def run_alive_check(
             "source": verification.get("country_source") or "",
             "status": verification.get("country_status") or ("identified" if country_code else "missing_verification"),
             "country_field": verification.get("country_field") or "",
+            "db_country_code": verification.get("db_country_code") or "",
+            "db_agrees": verification.get("db_agrees"),
             "verified_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
         }
         actual_exit_country_by_name[candidate.name] = geo_record
