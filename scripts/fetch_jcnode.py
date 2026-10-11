@@ -122,6 +122,55 @@ def read_cached_code(out_dir: str) -> str | None:
         return None
 
 
+# ---------------------------------------------------------------- 来源日期
+
+SOURCE_DATE_RE = re.compile(r"最后更新\s*[：:]\s*(\d{4})-(\d{1,2})-(\d{1,2})(?:\s+(\d{1,2}:\d{2}))?")
+
+
+def parse_page_updated(html: str) -> tuple[str | None, str | None]:
+    """页面「最后更新：YYYY-MM-DD HH:MM」→ (日期, 原文)；找不到返回 (None, None)。"""
+    m = SOURCE_DATE_RE.search(html or "")
+    if not m:
+        return None, None
+    day = f"{int(m[1]):04d}-{int(m[2]):02d}-{int(m[3]):02d}"
+    return day, (f"{day} {m[4]}" if m[4] else day)
+
+
+def page_updated(timeout: int) -> tuple[str | None, str | None]:
+    try:
+        return parse_page_updated(_request(PAGE_URL, timeout=timeout).decode("utf-8", "ignore"))
+    except Exception as e:  # 页面读不到不影响抓取，退回按内容判断
+        log(f"⚠️ 读取页面「最后更新」失败：{type(e).__name__}: {e}")
+        return None, None
+
+
+def resolve_source_date(page_day: str | None, today: str, clash_sha: str, prev: dict) -> str:
+    """本次订阅属于哪一天的期号。
+
+    页面日期为准，但内容必须真的换了（或上次已经是同一期）——防止页面先改了
+    日期、接口还在返回旧链接。读不到页面时，内容变了算今天，没变沿用上次。
+    """
+    prev_sha = ((prev.get("source_sha256_16") or {}).get("clash")
+                or (prev.get("sha256_16") or {}).get("clash"))
+    prev_day = str(prev.get("source_date") or "")
+    changed = not prev_sha or clash_sha != prev_sha
+    if page_day:
+        if changed or prev_day == page_day:
+            return page_day
+        # 内容没换：沿用上次的期号；旧 meta 没记期号时，页面旧日期本身就是答案
+        return prev_day or (page_day if page_day != today else "")
+    return today if changed else prev_day
+
+
+def read_prev_meta(out_dir: str) -> dict:
+    try:
+        with open(os.path.join(out_dir, "meta.json"), encoding="utf-8") as f:
+            data = json.load(f)
+        return data if isinstance(data, dict) else {}
+    except Exception:
+        return {}
+
+
 # ---------------------------------------------------------------- 抓取
 
 def find_code(candidates: list[str], args) -> tuple[str, dict]:
@@ -242,6 +291,9 @@ def main() -> int:
     ap.add_argument("--history", default="history/codes.log", help="口令变更记录文件")
     args = ap.parse_args()
 
+    prev_meta = read_prev_meta(args.out_dir)
+    page_day, page_text = page_updated(args.timeout)
+    log(f"页面最后更新：{page_text or '未读到'}")
     candidates = build_candidates(args)
     log(f"候选口令 {len(candidates)} 个（mode={args.mode}），开始尝试…")
 
@@ -263,11 +315,17 @@ def main() -> int:
         log(f"  {filename:12s} {len(raw):>8d} bytes  节点 {n:<4d}  {label}")
 
     now = datetime.now(CST)
+    today = now.strftime("%Y-%m-%d")
+    source_date = resolve_source_date(page_day, today, sha["clash"], prev_meta)
+    if source_date != today:
+        log(f"⚠️ 来源还没更新到今天（本期属于 {source_date or '未知'}，页面最后更新 {page_text or '未读到'}）")
     meta = {
         "code": code,
         "updated_at": now.isoformat(timespec="seconds"),
         "updated_at_utc": now.astimezone(timezone.utc).isoformat(timespec="seconds"),
-        "date": now.strftime("%Y-%m-%d"),
+        "date": today,
+        "source_date": source_date,
+        "source_updated": page_text,
         "source_page": PAGE_URL,
         "link_tier": tier,
         "links": urls,
@@ -301,6 +359,7 @@ def main() -> int:
             f.write(
                 f"## JCNode 订阅更新 {meta['date']}\n\n"
                 f"- 口令：`{code}`（{tier} 链接）\n"
+                f"- 来源期号：{source_date or '未知'}（页面最后更新 {page_text or '未读到'}）\n"
                 f"- 节点数：Clash {counts['clash']} / Sing-box {counts['singbox']} / V2Ray {counts['v2ray']}\n"
                 f"- 时间：{meta['updated_at']}\n"
                 f"- 文件：`sub/clash.yaml` `sub/singbox.json` `sub/v2ray.txt`\n"
