@@ -45,6 +45,8 @@ jobs:
     outputs:
       due: ${{ steps.gate.outputs.due }}
       slot: ${{ steps.gate.outputs.slot }}
+      # full = 抓取+合并+测活；alive = 21:00 晚间仅复测（当天 11:00 已成功发布时）
+      mode: ${{ steps.gate.outputs.mode }}
     steps:
       - uses: actions/checkout@v7
         with:
@@ -77,39 +79,8 @@ jobs:
       - name: 离线测试（不探测外部节点）
         run: python -m unittest discover -s tests -v
 
-      - name: 定位抓取脚本
-        id: locate-fetch
-        shell: bash
-        run: |
-          set -euo pipefail
-          if [ -f scripts/fetch_jcnode.py ]; then
-            echo "path=scripts/fetch_jcnode.py" >> "$GITHUB_OUTPUT"
-            echo "✅ 找到 scripts/fetch_jcnode.py"
-          elif [ -f fetch_jcnode.py ]; then
-            echo "path=fetch_jcnode.py" >> "$GITHUB_OUTPUT"
-            echo "✅ 找到根目录 fetch_jcnode.py"
-          else
-            echo "❌ 仓库里没有 fetch_jcnode.py"
-            exit 1
-          fi
-
-      - name: 定位合并脚本
-        id: locate-merge
-        shell: bash
-        run: |
-          set -euo pipefail
-          if [ -f scripts/merge_subscriptions.py ]; then
-            echo "path=scripts/merge_subscriptions.py" >> "$GITHUB_OUTPUT"
-            echo "✅ 找到 scripts/merge_subscriptions.py"
-          elif [ -f merge_subscriptions.py ]; then
-            echo "path=merge_subscriptions.py" >> "$GITHUB_OUTPUT"
-            echo "✅ 找到根目录 merge_subscriptions.py"
-          else
-            echo "❌ 仓库里没有 merge_subscriptions.py"
-            exit 1
-          fi
-
       - name: 抓取到临时目录（不碰旧订阅）
+        if: needs.gate.outputs.mode != 'alive'
         env:
           INPUT_CODE: ${{ inputs.code }}
           INPUT_FULL: ${{ inputs.full_sweep }}
@@ -120,7 +91,7 @@ jobs:
           mkdir -p .incoming-sub
           # 让抓取脚本继续优先尝试上次口令；本次 meta 会在抓取后覆盖
           if [ -f sub/meta.json ]; then cp sub/meta.json .incoming-sub/meta.json; fi
-          SCRIPT="${{ steps.locate-fetch.outputs.path }}"
+          SCRIPT="scripts/fetch_jcnode.py"
           ARGS=""
           if [ -n "${INPUT_CODE:-}" ]; then ARGS="$ARGS --code ${INPUT_CODE}"; fi
           if [ "${INPUT_FULL:-false}" = "true" ]; then ARGS="$ARGS --mode full"; fi
@@ -128,6 +99,7 @@ jobs:
           python "$SCRIPT" --out-dir .incoming-sub --history .incoming-sub/codes.log $ARGS
 
       - name: 自动修复每日 Clash 常见格式并校正元数据
+        if: needs.gate.outputs.mode != 'alive'
         shell: bash
         run: |
           set -euo pipefail
@@ -309,6 +281,7 @@ jobs:
           PY
 
       - name: 保存当天订阅（覆盖 daily，保留综合版）
+        if: needs.gate.outputs.mode != 'alive'
         shell: bash
         run: |
           set -euo pipefail
@@ -321,10 +294,11 @@ jobs:
           echo "✅ 当天订阅已更新到 sub/ 根目录"
 
       - name: 合并到综合订阅（当日结构模板，全库按 MB/s 排序）
+        if: needs.gate.outputs.mode != 'alive'
         shell: bash
         run: |
           set -euo pipefail
-          MERGER="${{ steps.locate-merge.outputs.path }}"
+          MERGER="scripts/merge_subscriptions.py"
           python "$MERGER" \
             --base sub/merged \
             --out sub/merged \
@@ -333,6 +307,7 @@ jobs:
           rm -rf .incoming-sub
 
       - name: 修复综合 Clash 中 FlClash 不接受的路径控制字符
+        if: needs.gate.outputs.mode != 'alive'
         shell: bash
         run: |
           set -euo pipefail
@@ -546,10 +521,13 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+          # 只保留 sub/geoip.metadb 一份：给其他校验目录临时复制（避免重复下载），提交前删除
+          reuse_geoip() { [ "$1" = sub ] || [ ! -s sub/geoip.metadb ] || cp -f sub/geoip.metadb "$1/geoip.metadb"; }
           # 不校验上一轮的 alive：它可能正是需要被本轮刷新修复的旧产物。
           for file in sub/clash.yaml sub/merged/clash.yaml; do
             test -s "$file"
             echo "校验 $file"
+            reuse_geoip "$(dirname "$file")"
             .tools/mihomo -t -d "$(dirname "$file")" -f "$file"
           done
 
@@ -595,7 +573,10 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+          # 只保留 sub/geoip.metadb 一份：给其他校验目录临时复制（避免重复下载），提交前删除
+          reuse_geoip() { [ "$1" = sub ] || [ ! -s sub/geoip.metadb ] || cp -f sub/geoip.metadb "$1/geoip.metadb"; }
           test -s sub/alive/clash.yaml
+          reuse_geoip sub/alive
           .tools/mihomo -t -d sub/alive -f sub/alive/clash.yaml
 
       - name: 新存活结果无效时恢复上一次结果
@@ -682,13 +663,17 @@ jobs:
           ALIVE_OUTCOME: ${{ steps.alive.outcome }}
         run: |
           set -euo pipefail
+          # 只保留 sub/geoip.metadb 一份：给其他校验目录临时复制（避免重复下载），提交前删除
+          reuse_geoip() { [ "$1" = sub ] || [ ! -s sub/geoip.metadb ] || cp -f sub/geoip.metadb "$1/geoip.metadb"; }
           for file in sub/clash.yaml sub/merged/clash.yaml; do
             test -s "$file"
             echo "最终校验 $file"
+            reuse_geoip "$(dirname "$file")"
             .tools/mihomo -t -d "$(dirname "$file")" -f "$file"
           done
           if [ -s sub/alive/clash.yaml ]; then
             echo "最终校验 sub/alive/clash.yaml"
+            reuse_geoip sub/alive
             .tools/mihomo -t -d sub/alive -f sub/alive/clash.yaml
           elif [ "${ALIVE_OUTCOME}" = "success" ]; then
             echo "❌ alive 步骤成功却没有生成存活 Clash 文件"
@@ -717,13 +702,20 @@ jobs:
              [ "${{ steps.flclash-core-validation.outcome }}" = "success" ]; then
             python scripts/schedule_gate.py --mark "${{ needs.gate.outputs.slot }}"
           fi
+          rm -f sub/merged/geoip.metadb sub/alive/geoip.metadb
+          git rm -q --cached --ignore-unmatch sub/merged/geoip.metadb sub/alive/geoip.metadb
           git add sub history
           if [ -f .schedule/success.json ]; then git add .schedule/success.json; fi
           if git diff --cached --quiet; then
             echo "本次合并后无变更，跳过提交"
             exit 0
           fi
-          git commit -m "chore(sub): 去重合并 JCNode 订阅 $(TZ=Asia/Shanghai date +'%Y-%m-%d %H:%M')${EXTRA}"
+          if [ "${{ needs.gate.outputs.mode }}" = "alive" ]; then
+            TITLE="chore(alive): 晚间复测存活节点"
+          else
+            TITLE="chore(sub): 去重合并 JCNode 订阅"
+          fi
+          git commit -m "${TITLE} $(TZ=Asia/Shanghai date +'%Y-%m-%d %H:%M')${EXTRA}"
           git push || { git pull --rebase --autostash && git push; }
 
       - name: 刷新 jsDelivr daily / merged / alive 缓存

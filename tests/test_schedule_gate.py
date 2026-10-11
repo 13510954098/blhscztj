@@ -35,6 +35,14 @@ class ScheduleTests(unittest.TestCase):
         self.assertTrue(self.at('11:30:00', {'slot':'2026-10-04/21:00'}, wd, trigger='timer')[0])
         self.assertFalse(self.at('09:00:00', event=wd, trigger='timer')[0])
         self.assertTrue(self.at('09:00:00', event=wd, trigger='manual')[0])
+    def test_evening_mode_is_alive_only_after_morning_published(self):
+        m=gate.run_mode
+        self.assertEqual(m('2026-10-05/21:00', {'slot':'2026-10-05/11:00'}), 'alive')
+        self.assertEqual(m('2026-10-05/21:00', {'slot':'2026-10-05/11:00'}, 'workflow_dispatch', 'timer'), 'alive')
+        self.assertEqual(m('2026-10-05/21:00', {'slot':'2026-10-04/21:00'}), 'full')   # morning never published
+        self.assertEqual(m('2026-10-05/11:00', {'slot':'2026-10-04/21:00'}), 'full')
+        self.assertEqual(m('2026-10-05/21:00', {'slot':'2026-10-05/11:00'}, 'workflow_dispatch', 'manual'), 'full')
+        self.assertEqual(m('', {}), 'full')
     def test_next_slot_start(self):
         f=lambda t: gate.next_slot_start(datetime.fromisoformat(t)).isoformat()
         self.assertEqual(f('2026-10-05T09:00:00+08:00'),'2026-10-05T11:00:00+08:00')

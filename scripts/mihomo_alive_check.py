@@ -51,12 +51,11 @@ except ImportError:  # 测试/本地运行可使用 Cloudflare trace 的 loc 作
     maxminddb = None
 
 try:
-    from merge_subscriptions import SPECIAL_PROXY_REFS, NoAliasDumper, atomic_write, proxy_name
+    from merge_subscriptions import NoAliasDumper, atomic_write, proxy_name
     from healthcheck_subscriptions import (
         Endpoint,
         _decode_base64_text,
         _filter_clash_groups,
-        _parse_ss_base64,
         make_endpoint,
         probe_all,
     )
@@ -463,7 +462,6 @@ def clash_connection_key(proxy: dict) -> tuple[str, int, str, str] | None:
         return None
     proto = canon_protocol(proxy.get("type"))
     transport = _tls_and_transport_from_clash(proxy, proto)
-    reality = proxy.get("reality-opts") or proxy.get("reality_opts") or {}
     fields = _canonical_connection_fields(
         proto,
         uuid=_first_value(proxy,"uuid","id"),
@@ -912,7 +910,6 @@ def _request_with_retries(url: str, port: int, expected_status: int, timeout_s: 
 
 # Shared parser is also used by the policy generator.
 from geo_country import (
-    country_code_from_flag as _country_code_from_flag,
     normalize_country_code as _normalize_country_code,
     country_for_ip as _country_for_ip,
     country_for_ip_details,
@@ -1594,7 +1591,6 @@ def run_alive_check(
         if candidate.state_key is not None:
             actual_exit_country_by_identity[candidate.state_key[3]] = geo_record
 
-    bad_names = {c.name for c in bad_proxies}
     print(
         f"实测完成：真实可用 {len(alive_candidates)} / {len(real_set)}"
         f"（剔除无法加载节点 {len(bad_proxies)} 个，唯一可用键 {len(alive_keys)} 个）"
