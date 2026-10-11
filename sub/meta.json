@@ -18,7 +18,7 @@
     "v2ray": 1079
   },
   "sha256_16": {
-    "clash": "49fc84033b77ca14",
+    "clash": "42ac0e36e763fa1f",
     "singbox": "7dba2e0d2718dcc4",
     "v2ray": "97efba973a937196"
   },
@@ -33,11 +33,11 @@
   },
   "policy_normalization": {
     "total_nodes": 1079,
-    "grouped_country_nodes": 566,
-    "unknown_nodes": 513,
-    "coverage": 0.5245597775718258,
+    "grouped_country_nodes": 562,
+    "unknown_nodes": 517,
+    "coverage": 0.5208526413345691,
     "unknown_reasons": {
-      "missing_verification": 513
+      "missing_verification": 517
     },
     "country_groups": 34,
     "country_codes": [
@@ -45,6 +45,7 @@
       "AU",
       "BR",
       "CA",
+      "CH",
       "CZ",
       "DE",
       "EE",
@@ -69,7 +70,6 @@
       "RU",
       "SE",
       "SG",
-      "TH",
       "TR",
       "TW",
       "US",
@@ -78,11 +78,13 @@
     ],
     "partition_validated": true,
     "shared_template": true,
-    "normalization_at": "2026-10-11T09:23:25+00:00",
-    "verification_run_id": "38126841457:1",
-    "verification_generated_at": "2026-10-11T09:23:25+00:00",
+    "normalization_at": "2026-10-11T13:19:55+00:00",
+    "verification_run_id": "38141432886:1",
+    "verification_generated_at": "2026-10-11T13:19:54+00:00",
     "verification_reused": false,
     "stale": false,
-    "ttl_hours": 24.0
+    "ttl_hours": 24.0,
+    "previous_coverage": 0.5245597775718258,
+    "coverage_change": -0.003707136237256714
   }
 }
