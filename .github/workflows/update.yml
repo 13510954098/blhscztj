@@ -1,13 +1,13 @@
 name: Update JCNode subscription
 
 on:
+  # 主触发：仓库内的精确定时器 .github/workflows/timer.yml 到点用 workflow_dispatch
+  # 调起本工作流（trigger=timer）。时段：11:00（站点 08:30-10:40 更新完）与 21:00。
+  # 备用：GitHub 自带 cron 实测延迟数小时、丢弃约 85-90%，只作兜底；gate 按时段去重。
+  # cron 用 UTC，北京时间 = UTC + 8；避开整点。
   schedule:
-    # 站点一般在北京时间 08:30-10:40 更新，这里 13:00 抓一次，21:00 再补一次
-    # 注意：cron 用 UTC，北京时间 = UTC + 8
-    - cron: "0 5 * * *"     # 13:00 CST
-    - cron: "0 13 * * *"    # 21:00 CST
-    # Low-cost catch-up ticks. GitHub cron may be delayed/dropped; gate deduplicates.
-    - cron: "17,47 3-15 * * *"
+    - cron: "17,47 3-15 * * *"   # 11:17-23:47 CST
+    - cron: "17 16-21 * * *"     # 00:17-05:17 CST，接住拖到凌晨的晚间时段
   workflow_dispatch:
     inputs:
       code:
@@ -23,6 +23,11 @@ on:
         type: choice
         options: [full, daily]
         default: full
+      trigger:
+        description: "触发来源：manual=手动（无视时段强制运行）；timer=精确定时器（按时段去重）"
+        type: choice
+        options: [manual, timer]
+        default: manual
 
 permissions:
   contents: write
@@ -46,6 +51,8 @@ jobs:
           ref: ${{ github.ref_name }}
           persist-credentials: false
       - id: gate
+        env:
+          GATE_TRIGGER: ${{ inputs.trigger }}
         run: python3 scripts/schedule_gate.py
 
   update:

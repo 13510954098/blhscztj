@@ -34,12 +34,24 @@ class CountryParsingTests(unittest.TestCase):
     def test_direct_strings_go_through_the_actual_checker(self):
         for raw,code in [('us','US'),('cn','CN'),('hk','HK'),('jp','JP'),(' sg ','SG'),(' Jp ','JP'),('🇯🇵JP','JP'),('🇨🇳CN','CN'),('🇯🇵','JP')]:
             with self.subTest(raw=raw):
-                self.assertEqual(checker._country_for_ip(Reader(raw),'192.0.2.1','US'),(code,'geoip.metadb'))
+                self.assertEqual(checker._country_for_ip(Reader(raw),'192.0.2.1',''),(code,'geoip.metadb'))
+                self.assertEqual(geo.db_country_details(Reader(raw),'192.0.2.1')['country_code'],code)
     def test_lists_dicts_and_field_provenance(self):
         for record in [['us','google'],{'country':{'iso_code':'US'}},{'registered_country':{'iso_code':'US'}}]:
-            self.assertEqual(geo.country_for_ip(Reader(record),'test','JP'),('US','geoip.metadb'))
-        result=geo.country_for_ip_details(Reader({'registered_country':{'iso_code':'US'}}),'test','JP')
+            self.assertEqual(geo.country_for_ip(Reader(record),'test',''),('US','geoip.metadb'))
+        result=geo.db_country_details(Reader({'registered_country':{'iso_code':'US'}}),'test')
         self.assertEqual(result['country_field'],'registered_country.iso_code')
+    def test_cloudflare_loc_beats_routing_database(self):
+        # Real cases: metadb said RU/AM/TR/HK while the exit IP was DE/ES/FI/RU.
+        for db,loc in [('ru','DE'),('am','ES'),('tr','FI'),('hk','RU'),(['cloudflare','us'],'SG')]:
+            with self.subTest(db=db,loc=loc):
+                result=geo.country_for_ip_details(Reader(db),'test',loc)
+                self.assertEqual((result['country_code'],result['country_source']),(loc,'cloudflare-trace-loc'))
+                self.assertFalse(result['db_agrees'])
+        agree=geo.country_for_ip_details(Reader('jp'),'test','JP')
+        self.assertTrue(agree['db_agrees'])
+        missing=geo.country_for_ip_details(Reader(None),'test','JP')
+        self.assertEqual(missing['country_code'],'JP');self.assertIsNone(missing['db_agrees'])
     def test_noise_invalid_codes_and_conflicts(self):
         for value in ['private','cloudflare','test-network','EU','AP','A1','A2','ZZ','IP','AS13335','🇯🇵US','foo-US',None,12]:
             with self.subTest(value=value): self.assertEqual(geo.normalize_country_code(value),'')
@@ -49,7 +61,7 @@ class CountryParsingTests(unittest.TestCase):
         class Broken:
             def get(self,ip): raise ValueError('bad')
         for reader,status in [(Reader(None),'db_no_match'),(Reader(123),'unsupported_record_type'),(Reader('private'),'invalid_country_code'),(Broken(),'db_lookup_error')]:
-            result=geo.country_for_ip_details(reader,'test','JP')
+            result=geo.country_for_ip_details(reader,'test','')
             self.assertEqual(result['country_code'],'');self.assertEqual(result['country_status'],status)
         self.assertEqual(geo.country_for_ip(None,'test','jp'),('JP','cloudflare-trace-loc'))
     def test_shared_identity_matches_state(self):

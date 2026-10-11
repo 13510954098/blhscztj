@@ -1,0 +1,94 @@
+name: Precise timer
+
+# 仓库内自维持的精确定时器：始终只保留一条任务链。
+# 每个任务：读取发布状态 → 必要时调起 update.yml（trigger=timer）→ 睡到下一个决策点
+# （最长 5.5 小时，低于 6 小时作业上限）→ 用 workflow_dispatch 重新调起自己。
+# GITHUB_TOKEN 触发的 workflow_dispatch 允许创建新的运行，因此不需要外部服务或 PAT。
+on:
+  workflow_dispatch:
+    inputs:
+      attempt_slot:
+        description: "（内部）上一任务携带的时段"
+        required: false
+        default: ""
+      attempts:
+        description: "（内部）该时段已调起次数"
+        required: false
+        default: "0"
+      last_dispatch:
+        description: "（内部）上次调起时间"
+        required: false
+        default: ""
+  # 首次推送本文件即自动启动任务链
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/timer.yml
+      - scripts/schedule_gate.py
+  # 兜底：任务链意外中断时，GitHub cron 哪怕迟到也能把它重新拉起
+  schedule:
+    - cron: "41 */4 * * *"
+
+permissions:
+  actions: write
+  contents: read
+
+# 运行中 1 条 + 排队 1 条；新的排队会顶掉旧的排队，所以永远只有一条链。
+concurrency:
+  group: jcnode-timer
+  cancel-in-progress: false
+
+jobs:
+  tick:
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    env:
+      GH_TOKEN: ${{ github.token }}
+      GH_REPO: ${{ github.repository }}
+      DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
+    steps:
+      - name: 检出（读取最新发布状态）
+        uses: actions/checkout@v7
+        with:
+          ref: ${{ github.event.repository.default_branch }}
+          persist-credentials: false
+          sparse-checkout: |
+            .schedule
+            scripts
+
+      - name: 检查 update.yml 是否在排队/运行
+        id: busy
+        run: |
+          set -euo pipefail
+          n=$(gh run list --workflow update.yml --limit 20 --json status \
+                --jq '[.[] | select(.status != "completed")] | length')
+          echo "update_busy=$([ "${n}" -gt 0 ] && echo true || echo false)" >> "$GITHUB_OUTPUT"
+          echo "未完成的 update 运行：${n}"
+
+      - name: 决策
+        id: plan
+        run: |
+          python3 scripts/schedule_gate.py --plan \
+            --attempt-slot "${{ inputs.attempt_slot }}" \
+            --attempts "${{ inputs.attempts || '0' }}" \
+            --last-dispatch "${{ inputs.last_dispatch }}" \
+            --update-busy "${{ steps.busy.outputs.update_busy }}"
+
+      - name: 调起 update.yml
+        if: steps.plan.outputs.dispatch == 'true'
+        run: gh workflow run update.yml --ref "${DEFAULT_BRANCH}" -f trigger=timer
+
+      - name: 等待到下一个决策点
+        if: ${{ !cancelled() }}
+        run: |
+          s="${{ steps.plan.outputs.wait_seconds || 600 }}"
+          echo "睡眠 ${s} 秒（约 $((s / 60)) 分钟）"
+          sleep "${s}"
+
+      - name: 重新调起自己（维持任务链）
+        if: ${{ !cancelled() }}
+        run: |
+          gh workflow run timer.yml --ref "${DEFAULT_BRANCH}" \
+            -f attempt_slot="${{ steps.plan.outputs.attempt_slot }}" \
+            -f attempts="${{ steps.plan.outputs.attempts || '0' }}" \
+            -f last_dispatch="${{ steps.plan.outputs.last_dispatch }}"

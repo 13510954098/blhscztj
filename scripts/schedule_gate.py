@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Wall-clock slots, not nominal cron timestamps. Asia/Shanghai, fail closed on bad state."""
 import argparse
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 import json
 import os
 from pathlib import Path
@@ -9,22 +9,45 @@ from zoneinfo import ZoneInfo
 
 TZ = ZoneInfo('Asia/Shanghai')
 STATE = Path('.schedule/success.json')
-MORNING_SLOT = '13:00'
+MORNING_SLOT = '11:00'
 EVENING_SLOT = '21:00'
-MORNING_START_MINUTE = 13 * 60
+MORNING_START_MINUTE = 11 * 60
 EVENING_START_MINUTE = 21 * 60
+# GitHub's own cron is often hours late; a late evening tick that lands after
+# midnight still belongs to the previous day's 21:00 slot until this cutoff.
+EVENING_GRACE_END_MINUTE = 6 * 60
+# workflow_dispatch with trigger=timer comes from .github/workflows/timer.yml and
+# is a clock tick (deduplicated by slot); a plain manual dispatch always runs.
+TIMER_TRIGGER = 'timer'
+
+def is_clock_tick(event, trigger=''):
+    return event == 'schedule' or (event == 'workflow_dispatch' and trigger == TIMER_TRIGGER)
 
 def slot_at(now):
     local = now.astimezone(TZ)
     minute = local.hour * 60 + local.minute
-    if minute < MORNING_START_MINUTE:  # Never replay before today's morning slot.
+    if minute < EVENING_GRACE_END_MINUTE:
+        return f'{local - timedelta(days=1):%Y-%m-%d}/{EVENING_SLOT}'
+    if minute < MORNING_START_MINUTE:  # Site updates ~08:30-10:40; nothing new yet.
         return None
     slot_name = EVENING_SLOT if minute >= EVENING_START_MINUTE else MORNING_SLOT
     return f'{local:%Y-%m-%d}/{slot_name}'
 
-def decide(now, state, event='schedule'):
+def next_slot_start(now):
+    """Start of the next slot strictly after ``now`` (aware datetime)."""
+    local = now.astimezone(TZ)
+    day = local.replace(hour=0, minute=0, second=0, microsecond=0)
+    for offset in (0, 1):
+        base = day + timedelta(days=offset)
+        for minute in (MORNING_START_MINUTE, EVENING_START_MINUTE):
+            start = base + timedelta(minutes=minute)
+            if start > local:
+                return start
+    raise AssertionError('unreachable')
+
+def decide(now, state, event='schedule', trigger=''):
     slot = slot_at(now)
-    if event != 'schedule':
+    if not is_clock_tick(event, trigger):
         return True, slot or '', 'manual override'
     if slot is None:
         return False, '', 'before first window'
@@ -32,11 +55,102 @@ def decide(now, state, event='schedule'):
         return False, slot, 'already published successfully'
     return True, slot, 'due or retry'
 
+
+# ---- Precise timer (.github/workflows/timer.yml) ---------------------------
+# GitHub's own cron for this repo was measured hours late with ~85-90% of ticks
+# dropped. timer.yml keeps one job chain alive: each job calls ``--plan``,
+# optionally dispatches update.yml (trigger=timer), sleeps (<= 5.5 h, under the
+# 6 h job limit) and re-dispatches itself via workflow_dispatch (allowed with
+# GITHUB_TOKEN).
+MAX_ATTEMPTS_PER_SLOT = 4             # dispatches per slot before giving up until the next slot
+RETRY_GAP = timedelta(minutes=30)     # minimum spacing between two dispatches of the same slot
+BUSY_POLL = timedelta(minutes=15)     # re-check interval while update.yml is queued/running
+MAX_WAIT = timedelta(hours=5, minutes=30)
+MIN_WAIT = timedelta(seconds=30)
+
+
+def _parse(value):
+    try:
+        result = datetime.fromisoformat(str(value))
+        return result if result.tzinfo else None
+    except (TypeError, ValueError):
+        return None
+
+
+def _wait_until(now, target):
+    return max(MIN_WAIT, min(target - now, MAX_WAIT))
+
+
+def plan(now, state, attempt_slot='', attempts=0, last_dispatch='', update_busy=False):
+    """Return what this timer job should do.
+
+    Keys: dispatch (bool), wait_seconds (int), attempt_slot, attempts,
+    last_dispatch (carry for the next job) and reason.
+    """
+    slot = slot_at(now)
+    done = bool(slot) and state.get('slot') == slot
+    if attempt_slot != slot:
+        attempts, last_dispatch = 0, ''
+    carry = {'attempt_slot': slot or '', 'attempts': attempts, 'last_dispatch': last_dispatch}
+
+    def result(dispatch, wait, reason, **override):
+        return {'dispatch': dispatch, 'wait_seconds': int(wait.total_seconds()),
+                'reason': reason, **carry, **override}
+
+    if not slot or done:
+        return result(False, _wait_until(now, next_slot_start(now)),
+                      'slot already published' if done else 'waiting for next slot')
+    if update_busy:
+        return result(False, BUSY_POLL, 'update workflow queued/running')
+    if attempts >= MAX_ATTEMPTS_PER_SLOT:
+        return result(False, _wait_until(now, next_slot_start(now)),
+                      f'gave up after {attempts} attempts for {slot}')
+    last = _parse(last_dispatch)
+    if last is not None and now - last < RETRY_GAP:
+        return result(False, max(MIN_WAIT, RETRY_GAP - (now - last)), 'retry backoff')
+    return result(True, BUSY_POLL, f'dispatch attempt {attempts + 1} for {slot}',
+                  attempts=attempts + 1, last_dispatch=now.isoformat(timespec='seconds'))
+
+
+def run_plan(args, now):
+    try:
+        state = json.loads(STATE.read_text()) if STATE.exists() else {}
+    except ValueError:
+        state = {}
+    if not isinstance(state, dict):
+        state = {}
+    try:
+        attempts = max(0, int(args.attempts or 0))
+    except ValueError:
+        attempts = 0
+    decision = plan(now, state, args.attempt_slot, attempts, args.last_dispatch,
+                    args.update_busy.strip().lower() == 'true')
+    print(json.dumps({'now': now.isoformat(timespec='seconds'), 'state_slot': state.get('slot'),
+                      **decision}, ensure_ascii=False))
+    if output := os.environ.get('GITHUB_OUTPUT'):
+        with open(output, 'a') as f:
+            for key in ('dispatch', 'wait_seconds', 'attempt_slot', 'attempts', 'last_dispatch'):
+                value = decision[key]
+                f.write(f'{key}={str(value).lower() if isinstance(value, bool) else value}\n')
+    if summary := os.environ.get('GITHUB_STEP_SUMMARY'):
+        with open(summary, 'a') as f:
+            wake = now + timedelta(seconds=decision['wait_seconds'])
+            f.write(f"## Precise timer\n\n- now (UTC): {now.isoformat(timespec='seconds')}\n"
+                    f"- decision: dispatch={decision['dispatch']} — {decision['reason']}\n"
+                    f"- next wake (UTC): {wake.isoformat(timespec='seconds')}\n")
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--mark', default=None)
+    parser.add_argument('--plan', action='store_true', help='precise timer decision (timer.yml)')
+    parser.add_argument('--attempt-slot', default='')
+    parser.add_argument('--attempts', default='0')
+    parser.add_argument('--last-dispatch', default='')
+    parser.add_argument('--update-busy', default='false')
     args = parser.parse_args()
     now = datetime.now(timezone.utc)
+    if args.plan:
+        return run_plan(args, now)
     if args.mark is not None:
         # Mark the slot picked by gate, not the slot at completion.
         if not args.mark:
@@ -53,7 +167,8 @@ def main():
     state = json.loads(STATE.read_text()) if STATE.exists() else {}
     if not isinstance(state, dict):
         raise ValueError('invalid scheduling state')
-    due, slot, reason = decide(now, state, os.environ.get('GITHUB_EVENT_NAME', 'schedule'))
+    due, slot, reason = decide(now, state, os.environ.get('GITHUB_EVENT_NAME', 'schedule'),
+                               os.environ.get('GATE_TRIGGER', ''))
     print(f'{now.isoformat()} slot={slot} due={due}: {reason}')
     if output := os.environ.get('GITHUB_OUTPUT'):
         with open(output, 'a') as f:
