@@ -1,7 +1,7 @@
 {
   "code": "7788",
-  "updated_at": "2026-10-11T11:00:35+08:00",
-  "updated_at_utc": "2026-10-11T03:00:35+00:00",
+  "updated_at": "2026-10-11T11:58:31+08:00",
+  "updated_at_utc": "2026-10-11T03:58:31+00:00",
   "date": "2026-10-11",
   "source_page": "https://jcnode.com/posts/free-nodes/",
   "link_tier": "direct",
@@ -19,7 +19,7 @@
     "clash.yaml": "185c8517b8e3c8bd",
     "singbox.json": "97ccb9804ddce236",
     "v2ray.txt": "31c202660c223453",
-    "clash": "bd4de518ed712ba5"
+    "clash": "1801749ff2afab55"
   },
   "source_sha256_16": {
     "clash": "89fadfb81a0e038d"
@@ -38,7 +38,7 @@
       "direction": "descending",
       "missing": "stable-last"
     },
-    "updated_at": "2026-10-11T03:01:20+00:00",
+    "updated_at": "2026-10-11T03:59:16+00:00",
     "clash": {
       "incoming": 926,
       "base": 24031,
@@ -70,16 +70,17 @@
   },
   "policy_normalization": {
     "total_nodes": 24031,
-    "grouped_country_nodes": 1845,
-    "unknown_nodes": 22186,
-    "coverage": 0.07677583121801007,
+    "grouped_country_nodes": 1784,
+    "unknown_nodes": 22247,
+    "coverage": 0.07423744330240106,
     "unknown_reasons": {
-      "missing_verification": 22186
+      "missing_verification": 22247
     },
     "country_groups": 38,
     "country_codes": [
       "AE",
       "AL",
+      "AM",
       "AU",
       "BG",
       "BR",
@@ -108,7 +109,6 @@
       "MX",
       "NL",
       "PL",
-      "PT",
       "RO",
       "RU",
       "SE",
@@ -119,9 +119,9 @@
     ],
     "partition_validated": true,
     "shared_template": true,
-    "normalization_at": "2026-10-11T03:29:05+00:00",
-    "verification_run_id": "38106966998:1",
-    "verification_generated_at": "2026-10-11T03:29:04+00:00",
+    "normalization_at": "2026-10-11T04:20:08+00:00",
+    "verification_run_id": "38110071148:1",
+    "verification_generated_at": "2026-10-11T04:20:08+00:00",
     "verification_reused": false,
     "stale": false,
     "ttl_hours": 24.0
