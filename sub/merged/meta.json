@@ -1,8 +1,8 @@
 {
   "code": "7788",
-  "updated_at": "2026-10-10T18:12:44+08:00",
-  "updated_at_utc": "2026-10-10T10:12:44+00:00",
-  "date": "2026-10-10",
+  "updated_at": "2026-10-11T11:00:35+08:00",
+  "updated_at_utc": "2026-10-11T03:00:35+00:00",
+  "date": "2026-10-11",
   "source_page": "https://jcnode.com/posts/free-nodes/",
   "link_tier": "direct",
   "links": {
@@ -19,7 +19,7 @@
     "clash.yaml": "185c8517b8e3c8bd",
     "singbox.json": "97ccb9804ddce236",
     "v2ray.txt": "31c202660c223453",
-    "clash": "8da6620885d7469c"
+    "clash": "bd4de518ed712ba5"
   },
   "source_sha256_16": {
     "clash": "89fadfb81a0e038d"
@@ -38,7 +38,7 @@
       "direction": "descending",
       "missing": "stable-last"
     },
-    "updated_at": "2026-10-10T10:13:11+00:00",
+    "updated_at": "2026-10-11T03:01:20+00:00",
     "clash": {
       "incoming": 926,
       "base": 24031,
@@ -70,20 +70,23 @@
   },
   "policy_normalization": {
     "total_nodes": 24031,
-    "grouped_country_nodes": 1112,
-    "unknown_nodes": 22919,
-    "coverage": 0.04627356331405268,
+    "grouped_country_nodes": 1845,
+    "unknown_nodes": 22186,
+    "coverage": 0.07677583121801007,
     "unknown_reasons": {
-      "missing_verification": 22919
+      "missing_verification": 22186
     },
-    "country_groups": 32,
+    "country_groups": 38,
     "country_codes": [
-      "AM",
+      "AE",
+      "AL",
       "AU",
+      "BG",
+      "BR",
       "BY",
       "CA",
       "CH",
-      "CY",
+      "CZ",
       "DE",
       "EE",
       "ES",
@@ -93,29 +96,32 @@
       "HK",
       "ID",
       "IE",
+      "IL",
       "IN",
       "IT",
       "JP",
       "KR",
+      "KZ",
+      "LT",
       "LV",
+      "MU",
       "MX",
       "NL",
       "PL",
+      "PT",
       "RO",
       "RU",
-      "SC",
       "SE",
       "SG",
       "TR",
       "TW",
-      "UA",
       "US"
     ],
     "partition_validated": true,
     "shared_template": true,
-    "normalization_at": "2026-10-10T10:31:07+00:00",
-    "verification_run_id": "38043379339:1",
-    "verification_generated_at": "2026-10-10T10:31:07+00:00",
+    "normalization_at": "2026-10-11T03:29:05+00:00",
+    "verification_run_id": "38106966998:1",
+    "verification_generated_at": "2026-10-11T03:29:04+00:00",
     "verification_reused": false,
     "stale": false,
     "ttl_hours": 24.0
