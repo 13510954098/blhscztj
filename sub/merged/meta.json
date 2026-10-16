@@ -1,35 +1,35 @@
 {
   "code": "7788",
-  "updated_at": "2026-10-15T11:10:49+08:00",
-  "updated_at_utc": "2026-10-15T03:10:49+00:00",
-  "date": "2026-10-15",
-  "source_date": "2026-10-15",
-  "source_updated": "2026-10-15 10:33",
+  "updated_at": "2026-10-16T11:51:28+08:00",
+  "updated_at_utc": "2026-10-16T03:51:28+00:00",
+  "date": "2026-10-16",
+  "source_date": "2026-10-16",
+  "source_updated": "2026-10-16 10:44",
   "source_page": "https://jcnode.com/posts/free-nodes/",
   "link_tier": "direct",
   "links": {
-    "clash": "https://shz.al/ePbE",
-    "singbox": "https://shz.al/MGwW",
-    "v2ray": "https://shz.al/m4h4"
+    "clash": "https://shz.al/msfr",
+    "singbox": "https://shz.al/hSYd",
+    "v2ray": "https://shz.al/7455"
   },
   "nodes": {
-    "clash": 25545,
-    "singbox": 7570,
-    "v2ray": 7573
+    "clash": 25628,
+    "singbox": 7634,
+    "v2ray": 7646
   },
   "sha256_16": {
-    "clash.yaml": "2ec63c488a41a0ba",
-    "singbox.json": "2dd264fc6677b036",
-    "v2ray.txt": "ba35e6d23dbcba7d",
-    "clash": "94fcce760393dcea"
+    "clash.yaml": "9ce6cecb4fd644b8",
+    "singbox.json": "4c2fa304ec9a38f7",
+    "v2ray.txt": "a019fb87ef41c949",
+    "clash": "510c4e851d1579da"
   },
   "source_sha256_16": {
-    "clash": "54bc378c208eac9e"
+    "clash": "c02dfebfb5905985"
   },
   "clash_normalization": {
     "http_opts_headers": "scalar_values_to_lists",
     "flclash_path_controls_percent_encoded": 0,
-    "reality_short_ids_quoted": 4640,
+    "reality_short_ids_quoted": 4660,
     "changed": true
   },
   "merge": {
@@ -40,46 +40,47 @@
       "direction": "descending",
       "missing": "stable-last"
     },
-    "updated_at": "2026-10-15T03:11:24+00:00",
+    "updated_at": "2026-10-16T03:52:12+00:00",
     "clash": {
-      "incoming": 979,
-      "base": 25171,
-      "final": 25545,
-      "added": 976,
-      "duplicates_removed": 605,
+      "incoming": 694,
+      "base": 25545,
+      "final": 25628,
+      "added": 691,
+      "duplicates_removed": 611,
       "sort": "name-mb-s-desc-stable",
       "template": "incoming-daily"
     },
     "singbox": {
-      "incoming": 967,
-      "base": 7207,
-      "final": 7570,
-      "added": 775,
-      "duplicates_removed": 604
+      "incoming": 681,
+      "base": 7570,
+      "final": 7634,
+      "added": 480,
+      "duplicates_removed": 617
     },
     "v2ray": {
-      "incoming": 979,
-      "base": 7204,
-      "final": 7573,
-      "added": 761,
-      "duplicates_removed": 610
+      "incoming": 694,
+      "base": 7573,
+      "final": 7646,
+      "added": 472,
+      "duplicates_removed": 621
     }
   },
   "fresh_nodes": {
-    "clash": 979,
-    "singbox": 967,
-    "v2ray": 979
+    "clash": 694,
+    "singbox": 681,
+    "v2ray": 694
   },
   "policy_normalization": {
-    "total_nodes": 25545,
-    "grouped_country_nodes": 1494,
-    "unknown_nodes": 24051,
-    "coverage": 0.05848502642395772,
+    "total_nodes": 25628,
+    "grouped_country_nodes": 1823,
+    "unknown_nodes": 23805,
+    "coverage": 0.07113313563290151,
     "unknown_reasons": {
-      "missing_verification": 24051
+      "missing_verification": 23805
     },
-    "country_groups": 35,
+    "country_groups": 39,
     "country_codes": [
+      "AE",
       "AL",
       "AU",
       "BG",
@@ -94,6 +95,7 @@
       "FR",
       "GB",
       "HK",
+      "HU",
       "ID",
       "IE",
       "IL",
@@ -101,6 +103,7 @@
       "IT",
       "JP",
       "KR",
+      "KZ",
       "LT",
       "LV",
       "MD",
@@ -108,6 +111,7 @@
       "MY",
       "NL",
       "PL",
+      "PT",
       "RO",
       "RU",
       "SE",
@@ -118,13 +122,11 @@
     ],
     "partition_validated": true,
     "shared_template": true,
-    "normalization_at": "2026-10-15T13:18:36+00:00",
-    "verification_run_id": "38739047402:1",
-    "verification_generated_at": "2026-10-15T13:18:35+00:00",
+    "normalization_at": "2026-10-16T04:11:52+00:00",
+    "verification_run_id": "38847568868:1",
+    "verification_generated_at": "2026-10-16T04:11:51+00:00",
     "verification_reused": false,
     "stale": false,
-    "ttl_hours": 24.0,
-    "previous_coverage": 0.07598355842630652,
-    "coverage_change": -0.017498532002348806
+    "ttl_hours": 24.0
   }
 }
