@@ -21,7 +21,7 @@
     "clash.yaml": "0b0579df4ed399ce",
     "singbox.json": "0feb97a7ec38b515",
     "v2ray.txt": "e72addb3a78a715a",
-    "clash": "8d0f36a991babbf4"
+    "clash": "f03bfbdcbe24f6bc"
   },
   "source_sha256_16": {
     "clash": "30601e8efc8b8cb1"
@@ -72,26 +72,25 @@
   },
   "policy_normalization": {
     "total_nodes": 26040,
-    "grouped_country_nodes": 2037,
-    "unknown_nodes": 24003,
-    "coverage": 0.07822580645161291,
+    "grouped_country_nodes": 1572,
+    "unknown_nodes": 24468,
+    "coverage": 0.060368663594470046,
     "unknown_reasons": {
-      "missing_verification": 24003
+      "missing_verification": 24468
     },
-    "country_groups": 46,
+    "country_groups": 41,
     "country_codes": [
       "AE",
       "AL",
       "AT",
       "AU",
+      "BD",
       "BG",
       "BR",
       "CA",
       "CH",
-      "CO",
       "CZ",
       "DE",
-      "DK",
       "EE",
       "EG",
       "ES",
@@ -107,17 +106,13 @@
       "IT",
       "JP",
       "KR",
-      "KZ",
       "LT",
       "LV",
       "MD",
-      "MU",
       "MX",
       "MY",
       "NL",
-      "NO",
       "PL",
-      "PT",
       "RO",
       "RU",
       "SE",
@@ -129,11 +124,13 @@
     ],
     "partition_validated": true,
     "shared_template": true,
-    "normalization_at": "2026-10-17T03:33:56+00:00",
-    "verification_run_id": "38997082172:1",
-    "verification_generated_at": "2026-10-17T03:33:56+00:00",
+    "normalization_at": "2026-10-17T13:18:08+00:00",
+    "verification_run_id": "39034762287:1",
+    "verification_generated_at": "2026-10-17T13:18:08+00:00",
     "verification_reused": false,
     "stale": false,
-    "ttl_hours": 24.0
+    "ttl_hours": 24.0,
+    "previous_coverage": 0.07822580645161291,
+    "coverage_change": -0.017857142857142863
   }
 }
