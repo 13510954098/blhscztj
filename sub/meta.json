@@ -1,47 +1,49 @@
 {
   "code": "7788",
-  "updated_at": "2026-10-18T12:47:45+08:00",
-  "updated_at_utc": "2026-10-18T04:47:45+00:00",
-  "date": "2026-10-18",
-  "source_date": "2026-10-18",
-  "source_updated": "2026-10-18 10:41",
+  "updated_at": "2026-10-19T11:00:35+08:00",
+  "updated_at_utc": "2026-10-19T03:00:35+00:00",
+  "date": "2026-10-19",
+  "source_date": "2026-10-19",
+  "source_updated": "2026-10-19 10:34",
   "source_page": "https://jcnode.com/posts/free-nodes/",
   "link_tier": "direct",
   "links": {
-    "clash": "https://shz.al/Sw8t",
-    "singbox": "https://shz.al/8yKX",
-    "v2ray": "https://shz.al/paGb"
+    "clash": "https://shz.al/hNSi",
+    "singbox": "https://shz.al/858e",
+    "v2ray": "https://shz.al/Ke8y"
   },
   "nodes": {
-    "clash": 788,
-    "singbox": 776,
-    "v2ray": 788
+    "clash": 819,
+    "singbox": 800,
+    "v2ray": 819
   },
   "sha256_16": {
-    "clash": "55f15738240966d1",
-    "singbox": "f4609615ccb17453",
-    "v2ray": "40b9ee779bf62457"
+    "clash": "95667febd53d9df9",
+    "singbox": "b356cc7295a1e396",
+    "v2ray": "b08f662e446aeca0"
   },
   "source_sha256_16": {
-    "clash": "7503e063bc74cf8a"
+    "clash": "0912554c0efea220"
   },
   "clash_normalization": {
     "http_opts_headers": "scalar_values_to_lists",
     "flclash_path_controls_percent_encoded": 0,
-    "reality_short_ids_quoted": 37,
+    "reality_short_ids_quoted": 17,
     "changed": true
   },
   "policy_normalization": {
-    "total_nodes": 788,
-    "grouped_country_nodes": 605,
-    "unknown_nodes": 183,
-    "coverage": 0.7677664974619289,
+    "total_nodes": 819,
+    "grouped_country_nodes": 705,
+    "unknown_nodes": 114,
+    "coverage": 0.8608058608058609,
     "unknown_reasons": {
-      "missing_verification": 183
+      "missing_verification": 114
     },
-    "country_groups": 30,
+    "country_groups": 32,
     "country_codes": [
       "AU",
+      "BE",
+      "BG",
       "BR",
       "CA",
       "CZ",
@@ -58,7 +60,7 @@
       "IN",
       "IT",
       "JP",
-      "KZ",
+      "KR",
       "LT",
       "LV",
       "MX",
@@ -74,13 +76,11 @@
     ],
     "partition_validated": true,
     "shared_template": true,
-    "normalization_at": "2026-10-18T13:17:47+00:00",
-    "verification_run_id": "39129639491:1",
-    "verification_generated_at": "2026-10-18T13:17:46+00:00",
+    "normalization_at": "2026-10-19T03:23:09+00:00",
+    "verification_run_id": "39192580876:1",
+    "verification_generated_at": "2026-10-19T03:23:08+00:00",
     "verification_reused": false,
     "stale": false,
-    "ttl_hours": 24.0,
-    "previous_coverage": 0.8274111675126904,
-    "coverage_change": -0.05964467005076146
+    "ttl_hours": 24.0
   }
 }
