@@ -18,7 +18,7 @@
     "v2ray": 769
   },
   "sha256_16": {
-    "clash": "afc52b309a121cd4",
+    "clash": "e3d18b1cd4bef3a3",
     "singbox": "9e108b7a1607bd2a",
     "v2ray": "24be9cb6cd5e1145"
   },
@@ -33,19 +33,18 @@
   },
   "policy_normalization": {
     "total_nodes": 769,
-    "grouped_country_nodes": 676,
-    "unknown_nodes": 93,
-    "coverage": 0.8790637191157347,
+    "grouped_country_nodes": 595,
+    "unknown_nodes": 174,
+    "coverage": 0.7737321196358907,
     "unknown_reasons": {
-      "missing_verification": 93
+      "missing_verification": 174
     },
-    "country_groups": 29,
+    "country_groups": 28,
     "country_codes": [
       "AU",
       "BG",
       "BR",
       "CA",
-      "CH",
       "CZ",
       "DE",
       "EE",
@@ -73,11 +72,13 @@
     ],
     "partition_validated": true,
     "shared_template": true,
-    "normalization_at": "2026-10-22T04:35:23+00:00",
-    "verification_run_id": "39720984676:1",
-    "verification_generated_at": "2026-10-22T04:35:23+00:00",
+    "normalization_at": "2026-10-22T13:20:13+00:00",
+    "verification_run_id": "39783043387:1",
+    "verification_generated_at": "2026-10-22T13:20:12+00:00",
     "verification_reused": false,
     "stale": false,
-    "ttl_hours": 24.0
+    "ttl_hours": 24.0,
+    "previous_coverage": 0.8790637191157347,
+    "coverage_change": -0.10533159947984394
   }
 }
