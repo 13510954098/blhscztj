@@ -1,43 +1,43 @@
 {
   "code": "7788",
-  "updated_at": "2026-10-21T11:00:45+08:00",
-  "updated_at_utc": "2026-10-21T03:00:45+00:00",
-  "date": "2026-10-21",
-  "source_date": "2026-10-21",
-  "source_updated": "2026-10-21 10:32",
+  "updated_at": "2026-10-22T12:11:57+08:00",
+  "updated_at_utc": "2026-10-22T04:11:57+00:00",
+  "date": "2026-10-22",
+  "source_date": "2026-10-22",
+  "source_updated": "2026-10-22 10:46",
   "source_page": "https://jcnode.com/posts/free-nodes/",
   "link_tier": "direct",
   "links": {
-    "clash": "https://shz.al/caQw",
-    "singbox": "https://shz.al/DCT4",
-    "v2ray": "https://shz.al/DETa"
+    "clash": "https://shz.al/CFiH",
+    "singbox": "https://shz.al/5PTY",
+    "v2ray": "https://shz.al/zw2b"
   },
   "nodes": {
-    "clash": 660,
-    "singbox": 654,
-    "v2ray": 660
+    "clash": 769,
+    "singbox": 765,
+    "v2ray": 769
   },
   "sha256_16": {
-    "clash": "4126432416aa8bb4",
-    "singbox": "15b6c2f55f6d833f",
-    "v2ray": "42db0e22b1b8a770"
+    "clash": "afc52b309a121cd4",
+    "singbox": "9e108b7a1607bd2a",
+    "v2ray": "24be9cb6cd5e1145"
   },
   "source_sha256_16": {
-    "clash": "e8321ec274db50f4"
+    "clash": "1b86a45a148868f1"
   },
   "clash_normalization": {
     "http_opts_headers": "scalar_values_to_lists",
     "flclash_path_controls_percent_encoded": 0,
-    "reality_short_ids_quoted": 19,
+    "reality_short_ids_quoted": 23,
     "changed": true
   },
   "policy_normalization": {
-    "total_nodes": 660,
-    "grouped_country_nodes": 614,
-    "unknown_nodes": 46,
-    "coverage": 0.9303030303030303,
+    "total_nodes": 769,
+    "grouped_country_nodes": 676,
+    "unknown_nodes": 93,
+    "coverage": 0.8790637191157347,
     "unknown_reasons": {
-      "missing_verification": 46
+      "missing_verification": 93
     },
     "country_groups": 29,
     "country_codes": [
@@ -49,14 +49,13 @@
       "CZ",
       "DE",
       "EE",
+      "ES",
       "FI",
       "FR",
-      "GB",
       "HK",
       "ID",
       "IE",
       "IL",
-      "IN",
       "IT",
       "JP",
       "KR",
@@ -65,6 +64,7 @@
       "NL",
       "PL",
       "RO",
+      "RU",
       "SE",
       "SG",
       "TR",
@@ -73,13 +73,11 @@
     ],
     "partition_validated": true,
     "shared_template": true,
-    "normalization_at": "2026-10-21T13:17:56+00:00",
-    "verification_run_id": "39604189234:1",
-    "verification_generated_at": "2026-10-21T13:17:55+00:00",
+    "normalization_at": "2026-10-22T04:35:23+00:00",
+    "verification_run_id": "39720984676:1",
+    "verification_generated_at": "2026-10-22T04:35:23+00:00",
     "verification_reused": false,
     "stale": false,
-    "ttl_hours": 24.0,
-    "previous_coverage": 0.9666666666666667,
-    "coverage_change": -0.036363636363636376
+    "ttl_hours": 24.0
   }
 }
