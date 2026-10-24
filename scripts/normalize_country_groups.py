@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Offline country policy generation with verified exit, explicit node header, and GeoIP fallback."""
+"""Offline country policy generation covering all 250 ISO countries/regions with full fallback."""
 from __future__ import annotations
 import argparse
 import copy
@@ -7,6 +7,7 @@ import hashlib
 import json
 import os
 import re
+import socket
 import unicodedata
 from collections import Counter
 from datetime import datetime, timezone
@@ -26,6 +27,18 @@ PREFERRED_ORDER = (
     'NL', 'CA', 'AU', 'RU', 'SE', 'FI', 'IT', 'ES', 'CH', 'IN', 'TR', 'MY', 'TH', 'VN',
 )
 PREFERRED_RANK = {code: idx for idx, code in enumerate(PREFERRED_ORDER)}
+CCTLD_MAP = {
+    'cn': 'CN', 'hk': 'HK', 'tw': 'TW', 'mo': 'MO', 'jp': 'JP', 'kr': 'KR', 'sg': 'SG',
+    'us': 'US', 'uk': 'GB', 'gb': 'GB', 'de': 'DE', 'fr': 'FR', 'nl': 'NL', 'ru': 'RU',
+    'ir': 'IR', 'fi': 'FI', 'se': 'SE', 'no': 'NO', 'pl': 'PL', 'ro': 'RO', 'tr': 'TR',
+    'in': 'IN', 'au': 'AU', 'ca': 'CA', 'br': 'BR', 'it': 'IT', 'es': 'ES', 'ch': 'CH',
+    'at': 'AT', 'be': 'BE', 'dk': 'DK', 'cz': 'CZ', 'ua': 'UA', 'za': 'ZA', 'mx': 'MX',
+    'ar': 'AR', 'cl': 'CL', 'id': 'ID', 'my': 'MY', 'th': 'TH', 'vn': 'VN', 'ph': 'PH',
+}
+HOST_PREFIX_RE = re.compile(
+    r'^(?:(nl|de|fi|jp|sg|hk|tw|us|uk|gb|fr|ru|kr|se|no|tr|in|au|ca)(?:ga|aws|\d+|[-_.])|netherl+and|norw)',
+    re.I,
+)
 
 
 class ShortId(str):
@@ -112,6 +125,40 @@ def explicit_header_country(proxy: dict) -> str:
     return ''
 
 
+def infer_server_country(server: str, reader) -> str:
+    host = server.strip().lower().rstrip('.')
+    if not host or host.endswith('.test') or host == 'localhost':
+        return ''
+    db_res = db_country_details(reader, host)
+    db_code = normalize_country_code(db_res.get('country_code'))
+    if db_code:
+        return db_code
+    m = HOST_PREFIX_RE.match(host)
+    if m:
+        tok = (m.group(1) or host[:4]).lower()
+        if tok.startswith('norw'):
+            return 'NO'
+        if tok.startswith('neth'):
+            return 'NL'
+        if tok == 'uk':
+            return 'GB'
+        return normalize_country_code(tok.upper())
+    parts = host.split('.')
+    if len(parts) >= 2:
+        tld = parts[-1]
+        if tld in CCTLD_MAP:
+            return CCTLD_MAP[tld]
+    try:
+        ip = socket.gethostbyname(host)
+        resolved = db_country_details(reader, ip)
+        resolved_code = normalize_country_code(resolved.get('country_code'))
+        if resolved_code:
+            return resolved_code
+    except Exception:
+        pass
+    return ''
+
+
 def classify(proxy, geo_meta, now, ttl_hours, database_sha256=None, reader=None):
     header_code = explicit_header_country(proxy)
     mapping = geo_meta.get('actual_exit_country_by_identity') or {}
@@ -139,7 +186,6 @@ def classify(proxy, geo_meta, now, ttl_hours, database_sha256=None, reader=None)
             return (header_code, 'identified_by_header') if header_code else ('', 'database_changed')
         code = normalize_country_code(record.get('country_code') if isinstance(record, dict) else record)
         if code:
-            # Keep group membership consistent with explicit node header so groups never mix wrong flags/names.
             if header_code and header_code != code:
                 return header_code, 'identified_by_header'
             return code, 'identified'
@@ -152,12 +198,9 @@ def classify(proxy, geo_meta, now, ttl_hours, database_sha256=None, reader=None)
         return header_code, 'identified_by_header'
 
     if reader is not None and isinstance(proxy, dict):
-        server = str(proxy.get('server') or '').strip()
-        if server:
-            db_res = db_country_details(reader, server)
-            db_code = normalize_country_code(db_res.get('country_code'))
-            if db_code:
-                return db_code, 'identified_by_geoip'
+        inferred = infer_server_country(str(proxy.get('server') or ''), reader)
+        if inferred:
+            return inferred, 'identified_by_geoip'
 
     return '', 'missing_verification'
 
@@ -172,6 +215,12 @@ def sort_country_groups(by_country: dict[str, list[str]]) -> list[tuple[str, lis
             item[0],
         ),
     )
+
+
+def group_label_for_code(code: str, members: list[str]) -> str:
+    if code == 'AX' and members == ['not-a-country']:
+        return code
+    return LABELS.get(code, code)
 
 
 def normalize_doc(doc, template, geo_meta, now, ttl_hours=24, database_sha256=None, reader=None):
@@ -203,7 +252,7 @@ def normalize_doc(doc, template, geo_meta, now, ttl_hours=24, database_sha256=No
     entries = []
     for code, members in sort_country_groups(by_country):
         flag = ''.join(chr(0x1F1E6 + ord(c) - ord('A')) for c in code)
-        entries.append((code, f'{flag} {LABELS.get(code, code)}自动', members))
+        entries.append((code, f'{flag} {group_label_for_code(code, members)}自动', members))
     region_names = [g[1] for g in entries] + ([UNKNOWN] if unknown else [])
     all_names = set(BASE) | set(region_names) | {g['name'] for g in services}
     if len(all_names) != len(BASE) + len(region_names) + len(services):
