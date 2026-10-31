@@ -43,16 +43,6 @@ proxies:
   tls: true
   skip-cert-verify: true
   name: 🇺🇸美国US 041 7.4MB/s TG@jcnode
-- delay: 2665
-  name: 🇹🇼台湾TW001 6.67MB/s纯净 TG@jcnode
-  password: exaxgqkKkd0TAMrCxeonWg==
-  port: 1443
-  server: twmoon1-cdn-route.couldflare-cdn.com
-  skip-cert-verify: true
-  tls: true
-  type: http
-  udp: true
-  username: mrwdfNTD8M79LCukCieldrqZWqs=
 - type: socks5
   server: 47.238.126.208
   port: 1080
@@ -65,15 +55,6 @@ proxies:
   skip-cert-verify: true
   sni: www.bing.com
   udp: true
-- name: 🇹🇼台湾TW002 5.71MB/s纯净 TG@jcnode
-  password: exaxgqkKkd0TAMrCxeonWg==
-  port: 1443
-  server: twmoon1-cdn-route.couldflare-cdn.com
-  skip-cert-verify: false
-  sni: twmoon1-cdn-route.couldflare-cdn.com
-  tls: true
-  type: http
-  username: mrwdfNTD8M79LCukCieldrqZWqs=
 - name: 🇷🇴罗马尼亚RO 031 5.5MB/s TG@jcnode
   port: 9002
   server: 193.176.84.36
@@ -126,15 +107,6 @@ proxies:
   sni: px.ads.linkedin.com
   type: anytls
   udp: true
-- name: 🇹🇼台湾TW001 4.44MB/s纯净 TG@jcnode
-  password: exaxgqkKkd0TAMrCxeonWg==
-  port: 1443
-  server: twmoon1-cdn-route.couldflare-cdn.com
-  sni: twmoon1-cdn-route.couldflare-cdn.com
-  tls: true
-  type: http
-  udp: true
-  username: mrwdfNTD8M79LCukCieldrqZWqs=
 - name: 🇹🇼台湾TW001 4.39MB/s纯净 TG@jcnode
   network: ws
   port: 443
@@ -254,6 +226,13 @@ proxies:
   tls: true
   type: http
   username: 0b869f32-657e-11ee-a90c-f23c9313b177
+- name: 🇸🇬新加坡SG001 3.77MB/s TG@jcnode
+  password: ''
+  port: 1080
+  server: 121.43.176.35
+  skip-cert-verify: true
+  type: http
+  username: ''
 - name: 🇷🇴罗马尼亚RO 085 3.7MB/s TG@jcnode
   port: 9002
   server: 193.176.84.37
@@ -458,18 +437,6 @@ proxies:
   skip-cert-verify: true
   sni: t.me#🇫🇷|FR|@wxgqlfx|135
   type: hysteria2
-- client-fingerprint: safari
-  grpc-opts:
-    grpc-service-name: 3e99d50d5740985d
-  name: 🇳🇱荷兰NL002 2.54MB/s中性 TG@jcnode
-  network: grpc
-  port: 443
-  server: 189.74.114.119
-  servername: api.mediaklenov.cc
-  tls: true
-  type: vless
-  udp: true
-  uuid: abd5755a-8b77-4ed4-afbd-f2ccbc08e6f5
 - name: 🇰🇷韩国KR 004 2.5MB/s TG@jcnode
   port: 30000
   server: 64.110.88.200
@@ -499,22 +466,6 @@ proxies:
         User-Agent: Mozilla/5.0(WindowsNT10.0;Win64;x64)AppleWebKit/537.36(KHTML,likeGecko)Chrome/101.0.4951.67Safari/537.36
   skip-cert-verify: false
   name: 🇳🇱荷兰NL004 2.39MB/s纯净 TG@jcnode
-- name: 🇯🇵日本JP001 2.32MB/s TG@jcnode
-  port: 343
-  server: 133.18.200.207
-  skip-cert-verify: true
-  sub_tag: P002-260618
-  tls: true
-  type: http
-  udp: true
-- name: '🇳🇱荷兰NL003 2.25MB/s中性 TG@jcnode #2'
-  password: None
-  port: 443
-  server: 157.22.183.72
-  skip-cert-verify: false
-  tls: true
-  type: http
-  username: null
 - cipher: chacha20-ietf-poly1305
   name: 🇳🇱荷兰NL009 2.19MB/s中性 TG@jcnode
   password: oZIoA69Q8yhcQV8ka3Pa3A
@@ -530,25 +481,6 @@ proxies:
   tls: true
   type: http
   username: null
-- alpn:
-  - http/1.1
-  client-fingerprint: chrome
-  encryption: none
-  name: 🇫🇷法国FR001 2.16MB/s中性 TG@jcnode
-  network: ws
-  port: 443
-  server: 199.232.78.160
-  servername: ssl.fastly.com
-  tls: true
-  type: vless
-  udp: true
-  uuid: 8942a00b-2fdf-53f7-a1c9-887fa5615dce
-  ws-opts:
-    headers:
-      Host: Appxdn.global.ssl.fastly.net
-      User-Agent: Mozilla/5.0 (Linux; Android 7.0; SM-J730GM Build/NRD90M) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.111 Mobile Safari/537.36
-    path: /
-  packet-encoding: xudp
 - name: 🇳🇱荷兰NL004 2.16MB/s中性 TG@jcnode
   password: freeuser1
   port: 9251
@@ -575,58 +507,18 @@ proxies:
   tls: true
   type: http
   username: null
-- client-fingerprint: firefox
-  encryption: none
-  grpc-opts:
-    grpc-service-name: 3e99d50d5740985d
-  name: 🇳🇱荷兰NL004 2.11MB/s中性 TG@jcnode
-  network: grpc
-  port: 443
-  server: 189.74.114.93
-  servername: api.mediaklenov.cc
-  tls: true
-  type: vless
-  udp: true
-  uuid: c6628db6-025d-40e8-b79d-033f4372a6b7
-  packet-encoding: xudp
 - name: 🇺🇸美国US007 2.09MB/s纯净 TG@jcnode
   port: 443
   server: 172.64.69.89
   skip-cert-verify: true
   tls: true
   type: http
-- name: 🇱🇻LV001 2.09MB/s纯净 TG@jcnode
-  password: e3c3b722-1264-4cdc-a97c-b0a1bb73cd67
-  port: 9443
-  server: 31.76.104.152
-  skip-cert-verify: true
-  sni: onecloudstream.com
-  type: hysteria2
 - name: 🇺🇸美国US030 2.09MB/s TG@jcnode
   port: 443
   server: 172.64.68.89
   skip-cert-verify: true
   tls: true
   type: http
-- alpn:
-  - http/1.1
-  client-fingerprint: chrome
-  encryption: none
-  name: 🇫🇷法国FR002 2.08MB/s中性 TG@jcnode
-  network: ws
-  port: 443
-  server: 199.232.78.160
-  servername: ssl.fastly.com
-  tls: true
-  type: vless
-  udp: true
-  uuid: XpnTeam-68
-  ws-opts:
-    headers:
-      Host: Appxdn.global.ssl.fastly.net
-      User-Agent: Mozilla/5.0 (Linux; Android 7.0; BLL-L22 Build/HUAWEIBLL-L22) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.91 Mobile Safari/537.36
-    path: /
-  packet-encoding: xudp
 - name: 🇺🇸美国US001 2.08MB/s中性 TG@jcnode
   password: 'null'
   port: 443
@@ -740,6 +632,12 @@ proxies:
   skip-cert-verify: true
   tls: true
   type: http
+- type: ss
+  server: 193.29.139.147
+  port: 8080
+  cipher: chacha20-ietf-poly1305
+  password: k1dBOmOB4oqi7Ump37a1bQ
+  name: '🇳🇱荷兰NL004 1.99MB/s中性 TG@jcnode #2'
 - name: 🇺🇸美国US001 1.97MB/s TG@jcnode
   password: None
   port: 443
@@ -821,41 +719,6 @@ proxies:
   sub_tag: MahsaTopic
   type: ss
   udp: true
-- client-fingerprint: chrome
-  encryption: mlkem768x25519plus.random.0rtt.citj-ygtTQbhgMdYj7VW9irmKUqYY84TimDQ1UU2ahc
-  name: 🇫🇷法国FR003 1.95MB/s TG@jcnode
-  network: xhttp
-  port: 58301
-  reality-opts:
-    public-key: 0p_erlhDBUneKpUaCBbWYMp2bjUtpvSMZyXr86KpjVw
-    short-id: "9d8b29b6b674ee0c"
-  server: FR.Private-Ai.IR
-  servername: us.demonware.net
-  tls: true
-  type: vless
-  udp: true
-  uuid: a6f263ad-2d3e-42c6-9584-ed80a5b1134d
-  xhttp-opts:
-    mode: auto
-  packet-encoding: xudp
-- alpn:
-  - http/1.1
-  client-fingerprint: safari
-  encryption: none
-  name: 🇩🇪德国DE007 1.95MB/s中性 TG@jcnode
-  network: ws
-  port: 2083
-  server: 140.225.208.60
-  servername: speedtestmark.com
-  tls: true
-  type: vless
-  udp: true
-  uuid: e3c3b722-1264-4cdc-a97c-b0a1bb73cd67
-  ws-opts:
-    headers:
-      User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36
-    path: /vless-ws
-  packet-encoding: xudp
 - name: 🇺🇸美国US008 1.95MB/s中性 TG@jcnode
   port: 443
   server: fullmanfirm.icu
@@ -1064,22 +927,6 @@ proxies:
   tls: true
   type: http
   username: 'null'
-- client-fingerprint: firefox
-  encryption: none
-  name: 🇩🇪德国DE004 1.89MB/s TG@jcnode
-  network: ws
-  port: 2083
-  server: 140.225.209.150
-  servername: speedtestmark.com
-  tls: true
-  type: vless
-  udp: true
-  uuid: e3c3b722-1264-4cdc-a97c-b0a1bb73cd67
-  ws-opts:
-    headers:
-      User-Agent: Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US) AppleWebKit/534.7 (KHTML, like Gecko) Chrome/7.0.517.44 Safari/534.7
-    path: /vless-ws
-  packet-encoding: xudp
 - name: 🇳🇱荷兰NL008 1.89MB/s危险 TG@jcnode
   port: 9002
   server: 84.17.47.150
@@ -1118,6 +965,16 @@ proxies:
   tls: true
   type: http
   udp: true
+- name: 🇷🇺俄罗斯RU001 1.88MB/s纯净 TG@jcnode
+  password: None
+  port: 1446
+  server: 46.29.166.134
+  skip-cert-verify: true
+  sub_tag: K001-260618
+  tls: true
+  type: http
+  udp: true
+  username: ''
 - name: 🇯🇵日本JP005 1.88MB/s纯净 TG@jcnode
   password: ''
   port: 40583
@@ -1162,17 +1019,6 @@ proxies:
   tls: true
   type: http
   udp: true
-- type: vless
-  server: 189.74.114.119
-  port: 443
-  uuid: abd5755a-8b77-4ed4-afbd-f2ccbc08e6f5
-  encryption: none
-  tls: true
-  servername: api.mediaklenov.cc
-  network: grpc
-  grpc-opts:
-    grpc-service-name: 3e99d50d5740985d
-  name: 🇳🇱荷兰NL010 1.87MB/s中性 TG@jcnode
 - name: 🇳🇱荷兰NL002 1.87MB/s危险 TG@jcnode
   password: ''
   port: 9002
@@ -1253,21 +1099,6 @@ proxies:
   tls: true
   type: http
   username: ''
-- client-fingerprint: firefox
-  flow: xtls-rprx-vision
-  name: 🇮🇪爱尔兰IE001 1.86MB/s TG@jcnode
-  network: tcp
-  port: 443
-  reality-opts:
-    public-key: _qSbW4JL4Ffqvj25vX-6a2ul9Qlj6PBdlF0ghsf_0RQ
-    short-id: "a9dc98a7dc87a7dc"
-  server: 45.132.176.61
-  servername: sopelka.yandex-api.com
-  tls: true
-  type: vless
-  udp: true
-  uuid: 1b7ee703-fa08-4305-8469-ae3e30e61e44
-  packet-encoding: xudp
 - name: 🇺🇸美国US032 1.86MB/s危险 TG@jcnode
   password: null
   port: 9002
@@ -1356,21 +1187,6 @@ proxies:
   tls: true
   type: http
   username: ''
-- client-fingerprint: firefox
-  encryption: none
-  grpc-opts:
-    grpc-service-name: 3e99d50d5740985d
-  name: 🇳🇱荷兰NL013 1.85MB/s中性 TG@jcnode
-  network: grpc
-  port: 443
-  server: 189.74.114.119
-  servername: api.mediaklenov.cc
-  sub_tag: Anonymous-Multi
-  tls: true
-  type: vless
-  udp: true
-  uuid: abd5755a-8b77-4ed4-afbd-f2ccbc08e6f5
-  packet-encoding: xudp
 - name: 🇺🇸美国US038 1.85MB/s危险 TG@jcnode
   port: 9002
   server: 138.199.35.206
@@ -2027,14 +1843,6 @@ proxies:
   skip-cert-verify: true
   tls: true
   type: http
-- name: 🇦🇺澳大利亚AU001 1.77MB/s危险 TG@jcnode
-  password: null
-  port: 443
-  server: 159.13.44.228
-  skip-cert-verify: true
-  tls: true
-  type: http
-  username: null
 - name: 🇺🇸美国US082 1.77MB/s危险 TG@jcnode
   password: ''
   port: 9002
@@ -2262,21 +2070,6 @@ proxies:
   tls: true
   type: http
   username: null
-- client-fingerprint: qq
-  flow: xtls-rprx-vision
-  name: 🇩🇪德国DE007 1.75MB/s TG@jcnode
-  network: tcp
-  port: 40444
-  reality-opts:
-    public-key: EbXSjwJKAI1cmU2TK3af62qS2k58x8Rnct1525c0m1I
-    short-id: "a1b2c3d4e5f60718"
-  server: 178.72.185.235
-  servername: www.booking.com
-  tls: true
-  type: vless
-  udp: true
-  uuid: 572b3d30-3ced-4b88-9e06-4241f124cc88
-  packet-encoding: xudp
 - name: 🇺🇸美国US009 1.75MB/s TG@jcnode
   password: None
   port: 9002
@@ -2840,6 +2633,14 @@ proxies:
   udp: true
   uuid: 28e7f9e1-006c-4c38-822d-2d2903477444
   packet-encoding: xudp
+- name: 🇷🇺俄罗斯RU002 1.69MB/s纯净 TG@jcnode
+  port: 1446
+  server: 46.29.166.134
+  skip-cert-verify: true
+  sub_tag: R002-260618
+  tls: true
+  type: http
+  udp: true
 - name: 🇫🇷法国FR007 1.69MB/s纯净 TG@jcnode
   port: 8090
   server: 83.206.1.225
@@ -3164,6 +2965,13 @@ proxies:
   tls: true
   type: http
   username: ''
+- cipher: aes-256-cfb
+  name: 🇪🇸西班牙ES001 1.67MB/s中性 TG@jcnode
+  password: EXN3S3eQpjE7EJu8
+  port: 9027
+  server: 5.188.181.201
+  type: ss
+  udp: true
 - name: 🇩🇪德国DE010 1.66MB/s危险 TG@jcnode
   password: None
   port: 443
@@ -3284,21 +3092,6 @@ proxies:
   type: http
   udp: true
   username: 'null'
-- client-fingerprint: chrome
-  flow: xtls-rprx-vision
-  name: 🇩🇪德国DE011 1.65MB/s中性 TG@jcnode
-  port: 443
-  reality-opts:
-    public-key: QvT-t_h_AF2EAT4Ggh_a6pcCK3StY8G9WCXn6-dJbxk
-    short-id: "51079f144d661484"
-  server: 13.143.180.104
-  servername: s12.bsh-net.ru
-  skip-cert-verify: true
-  sni: s12.bsh-net.ru
-  tls: true
-  type: vless
-  udp: true
-  uuid: a0fa7e19-70ec-41e0-b0cc-bcc984d4201a
 - name: 🇳🇱荷兰NL027 1.65MB/s危险 TG@jcnode
   password: ''
   port: 9002
@@ -3491,39 +3284,6 @@ proxies:
   tls: true
   type: http
   udp: true
-- client-fingerprint: qq
-  flow: xtls-rprx-vision
-  name: 🇩🇪德国DE012 1.64MB/s TG@jcnode
-  network: tcp
-  port: 40445
-  reality-opts:
-    public-key: EbXSjwJKAI1cmU2TK3af62qS2k58x8Rnct1525c0m1I
-    short-id: "c3d4e5f607182939"
-  server: 178.72.185.235
-  servername: www.booking.com
-  tls: true
-  type: vless
-  udp: true
-  uuid: 572b3d30-3ced-4b88-9e06-4241f124cc88
-  packet-encoding: xudp
-- alpn:
-  - http/1.1
-  client-fingerprint: firefox
-  name: 🇳🇱荷兰NL020 1.64MB/s中性 TG@jcnode
-  network: ws
-  port: 8444
-  server: 46.30.45.254
-  servername: nl12.meshbeat.online
-  tls: true
-  type: vless
-  udp: true
-  uuid: a8321cfe-39a2-48a0-a918-f01f7d9006ed
-  ws-opts:
-    headers:
-      Host: nl12.meshbeat.online
-      User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36
-    path: /api/v1/devices/7495606fef/telemetry
-  packet-encoding: xudp
 - name: 🇳🇱荷兰NL013 1.64MB/s危险 TG@jcnode
   password: null
   port: 9002
@@ -3687,20 +3447,6 @@ proxies:
   server: 66.23.203.21
   skip-cert-verify: true
   type: trojan
-- name: 🇳🇱荷兰NL018 1.63MB/s中性 TG@jcnode
-  network: ws
-  port: 80
-  server: 103.133.1.160
-  servername: soft-shadow-1e33.xicav73335.workers.dev
-  type: vless
-  udp: true
-  uuid: eaf76557-2219-4799-8171-d7020adfefd0
-  ws-opts:
-    headers:
-      Host: soft-shadow-1e33.xicav73335.workers.dev
-      User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/37.0.2062.120 Safari/537.36
-    path: /ws
-  packet-encoding: xudp
 - name: '🇷🇴罗马尼亚RO019 1.63MB/s危险 TG@jcnode #2'
   password: 'null'
   port: 9002
@@ -4067,14 +3813,6 @@ proxies:
   tls: true
   type: http
   username: 'null'
-- name: 🇫🇷法国FR008 1.6MB/s危险 TG@jcnode
-  password: null
-  port: 443
-  server: 84.235.228.156
-  skip-cert-verify: true
-  tls: true
-  type: http
-  username: null
 - name: 🇺🇸美国US025 1.6MB/s TG@jcnode
   password: 'null'
   port: 9002
@@ -4094,12 +3832,6 @@ proxies:
   tls: true
   type: http
   udp: true
-- name: 🇦🇺澳大利亚AU002 1.6MB/s危险 TG@jcnode
-  port: 443
-  server: 159.13.44.228
-  skip-cert-verify: true
-  tls: true
-  type: http
 - name: 🇳🇱荷兰NL032 1.6MB/s危险 TG@jcnode
   password: null
   port: 9002
@@ -4160,14 +3892,6 @@ proxies:
   type: http
   udp: true
   username: 'null'
-- name: 🇫🇷法国FR009 1.59MB/s危险 TG@jcnode
-  password: null
-  port: 8090
-  server: 82.96.128.175
-  skip-cert-verify: true
-  tls: true
-  type: http
-  username: null
 - name: 🇳🇱荷兰NL019 1.59MB/s危险 TG@jcnode
   port: 9002
   server: 84.17.47.149
@@ -4253,6 +3977,31 @@ proxies:
   skip-cert-verify: true
   tls: true
   type: http
+- cipher: none
+  client-fingerprint: chrome
+  flow: xtls-rprx-vision
+  name: 🇯🇵日本JP017 1.59MB/s纯净 TG@jcnode
+  network: tcp
+  port: 26518
+  reality-opts:
+    public-key: 1fa6iCY7vhoQyKu91FeaK04FN-mr1qeHnrtdyLZ79mk
+    short-id: "6caead99"
+  server: jp.wxgqlfx.top
+  servername: github.com
+  skip-cert-verify: false
+  tls: true
+  type: vless
+  udp: true
+  uuid: e01fcb68-3112-49da-b85d-dffb799cfc9b
+- name: 🇳🇱荷兰NL034 1.58MB/s中性 TG@jcnode
+  port: 443
+  server: 103.97.88.154
+  skip-cert-verify: true
+  sni: 4a8c2906c96058315dffbc2b0e7ff19b-98005bea43f9ac33.apache-iv.com
+  sub_tag: R002-260618
+  tls: true
+  type: http
+  udp: true
 - name: 🇮🇪爱尔兰IE004 1.58MB/s中性 TG@jcnode
   password: None
   port: 443
@@ -4570,6 +4319,16 @@ proxies:
   type: http
   udp: true
   username: ''
+- name: 🇳🇱荷兰NL022 1.56MB/s中性 TG@jcnode
+  password: 'null'
+  port: 443
+  server: 103.97.88.154
+  skip-cert-verify: true
+  sub_tag: R002-260618
+  tls: true
+  type: http
+  udp: true
+  username: 'null'
 - name: 🇺🇸美国US211 1.56MB/s危险 TG@jcnode
   password: None
   port: 9002
@@ -4609,12 +4368,6 @@ proxies:
   sni: 138.199.35.204
   tls: true
   type: http
-- name: 🇫🇷法国FR012 1.56MB/s危险 TG@jcnode
-  port: 443
-  server: 84.235.228.156
-  skip-cert-verify: true
-  tls: true
-  type: http
 - name: 🇺🇸美国US129 1.56MB/s危险 TG@jcnode
   port: 9002
   server: 138.199.35.197
@@ -4646,6 +4399,23 @@ proxies:
   tls: true
   type: http
   username: 'null'
+- alterId: 0
+  cipher: auto
+  name: 🇩🇪德国DE017 1.55MB/s TG@jcnode
+  network: ws
+  port: 443
+  server: bzqHefRtvpQyiUQb.v.3dns.vip
+  servername: bzqHefRtvpQyiUQb.v.3dns.vip
+  skip-cert-verify: false
+  tls: true
+  type: vmess
+  udp: true
+  uuid: 7add6c8786cb412ab3abd7e0fb276f09
+  ws-opts:
+    headers:
+      Host: bzqHefRtvpQyiUQb.v.3dns.vip
+    path: /ws-vmess
+  packet-encoding: xudp
 - name: 🇺🇸美国US032 1.55MB/s TG@jcnode
   password: None
   port: 9002
@@ -4709,15 +4479,6 @@ proxies:
       User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.181 Safari/537.36
     path: ''
   packet-encoding: xudp
-- name: 🇺🇸美国US002 1.55MB/s危险 TG@jcnode
-  password: ''
-  port: 443
-  server: 129.153.93.183
-  skip-cert-verify: true
-  tls: true
-  type: http
-  udp: true
-  username: ''
 - name: 🇷🇴罗马尼亚RO027 1.55MB/s危险 TG@jcnode
   port: 9002
   server: 193.176.84.29
@@ -4835,22 +4596,6 @@ proxies:
   tls: true
   type: http
   username: 'null'
-- client-fingerprint: qq
-  encryption: none
-  flow: xtls-rprx-vision
-  name: '🇳🇱荷兰NL036 1.54MB/s中性 TG@jcnode #2'
-  network: tcp
-  port: 40443
-  reality-opts:
-    public-key: cwmcqsfS7klQlkcoUNuATEk0NiPY-NnRb9z8rCJDQw0
-    short-id: "88b6"
-  server: 5.253.30.99
-  servername: deepl.com
-  tls: true
-  type: vless
-  udp: true
-  uuid: 511c1563-2cb6-4064-abc6-a59ee49818a8
-  packet-encoding: xudp
 - name: 🇳🇱荷兰NL042 1.53MB/s危险 TG@jcnode
   password: None
   port: 9002
@@ -4909,14 +4654,6 @@ proxies:
   password: None
   port: 9002
   server: 193.176.84.37
-  skip-cert-verify: true
-  tls: true
-  type: http
-  username: null
-- name: 🇦🇺澳大利亚AU002 1.53MB/s危险 TG@jcnode
-  password: None
-  port: 443
-  server: 159.13.44.228
   skip-cert-verify: true
   tls: true
   type: http
@@ -4995,13 +4732,6 @@ proxies:
     mode: auto
     path: /es
   packet-encoding: xudp
-- name: 🇫🇷法国FR019 1.52MB/s危险 TG@jcnode
-  port: 443
-  server: 84.235.228.156
-  skip-cert-verify: true
-  tls: true
-  type: http
-  udp: true
 - name: 🇺🇸美国US221 1.52MB/s危险 TG@jcnode
   password: null
   port: 9002
@@ -5110,20 +4840,6 @@ proxies:
   skip-cert-verify: true
   tls: true
   type: http
-- name: 🇳🇱荷兰NL027 1.51MB/s中性 TG@jcnode
-  network: ws
-  port: 80
-  server: 103.133.1.160
-  servername: soft-shadow-1e33.xicav73335.workers.dev
-  type: vless
-  udp: true
-  uuid: eaf76557-2219-4799-8171-d7020adfefd0
-  ws-opts:
-    headers:
-      Host: soft-shadow-1e33.xicav73335.workers.dev
-      User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.143 Safari/537.36
-    path: /ws
-  packet-encoding: xudp
 - name: 🇺🇸美国US140 1.51MB/s危险 TG@jcnode
   password: ''
   port: 9002
@@ -5168,21 +4884,6 @@ proxies:
   tls: true
   type: http
   username: null
-- client-fingerprint: qq
-  flow: xtls-rprx-vision
-  name: 🇳🇱荷兰NL047 1.5MB/s TG@jcnode
-  network: tcp
-  port: 40443
-  reality-opts:
-    public-key: EbXSjwJKAI1cmU2TK3af62qS2k58x8Rnct1525c0m1I
-    short-id: "b2c3d4e5f6071829"
-  server: 178.72.185.235
-  servername: www.booking.com
-  tls: true
-  type: vless
-  udp: true
-  uuid: 572b3d30-3ced-4b88-9e06-4241f124cc88
-  packet-encoding: xudp
 - name: 🇺🇸美国US037 1.5MB/s TG@jcnode
   password: None
   port: 443
@@ -5279,21 +4980,6 @@ proxies:
   type: http
   udp: true
   username: ''
-- client-fingerprint: chrome
-  flow: xtls-rprx-vision
-  name: 🇳🇱荷兰NL060 1.49MB/s纯净 TG@jcnode
-  network: tcp
-  port: 443
-  reality-opts:
-    public-key: Kb8SsVPprs46BJSUNp5JvWLI-TFEiHmlBOXLQd37Glg
-    short-id: "a1037b25dcef6aa7"
-  server: sw.golangwikito.cfd
-  servername: sw.golangwikito.cfd
-  tls: true
-  type: vless
-  udp: true
-  uuid: f8d52ece-fad4-478d-875d-df6eed3befa7
-  packet-encoding: xudp
 - cipher: none
   client-fingerprint: ios
   flow: xtls-rprx-vision
@@ -5310,14 +4996,6 @@ proxies:
   type: vless
   udp: true
   uuid: d65cc14c-f53f-4fe2-b262-97856601319c
-- name: 🇫🇷法国FR011 1.48MB/s危险 TG@jcnode
-  password: None
-  port: 443
-  server: 84.235.228.156
-  skip-cert-verify: true
-  tls: true
-  type: http
-  username: ''
 - name: 🇳🇱荷兰NL048 1.48MB/s危险 TG@jcnode
   password: None
   port: 9002
@@ -5326,21 +5004,6 @@ proxies:
   tls: true
   type: http
   username: ''
-- client-fingerprint: qq
-  flow: xtls-rprx-vision
-  name: 🇫🇮芬兰FI001 1.48MB/s TG@jcnode
-  network: tcp
-  port: 40446
-  reality-opts:
-    public-key: EbXSjwJKAI1cmU2TK3af62qS2k58x8Rnct1525c0m1I
-    short-id: "d4e5f60718293a4b"
-  server: 178.72.185.235
-  servername: www.booking.com
-  tls: true
-  type: vless
-  udp: true
-  uuid: 572b3d30-3ced-4b88-9e06-4241f124cc88
-  packet-encoding: xudp
 - name: 🇫🇷法国FR012 1.48MB/s中性 TG@jcnode
   password: freeuser1
   port: 9251
@@ -5417,15 +5080,6 @@ proxies:
   type: vless
   udp: true
   uuid: d65cc14c-f53f-4fe2-b262-97856601319c
-- name: 🇦🇺澳大利亚AU003 1.47MB/s危险 TG@jcnode
-  password: None
-  port: 443
-  server: 159.13.44.228
-  skip-cert-verify: true
-  sub_tag: R002-260618
-  tls: true
-  type: http
-  udp: true
 - name: 🇳🇱荷兰NL049 1.47MB/s危险 TG@jcnode
   port: 9002
   server: 84.17.47.125
@@ -5467,19 +5121,6 @@ proxies:
   tls: true
   type: http
   username: ''
-- name: 🇳🇱荷兰NL029 1.47MB/s中性 TG@jcnode
-  network: ws
-  port: 80
-  server: 103.133.1.160
-  type: vless
-  udp: true
-  uuid: eaf76557-2219-4799-8171-d7020adfefd0
-  ws-opts:
-    headers:
-      Host: soft-shadow-1e33.xicav73335.workers.dev
-      User-Agent: Mozilla/5.0 (Linux; Android 8.0.0; FIG-LX3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.80 Mobile Safari/537.36
-    path: /ws
-  packet-encoding: xudp
 - name: 🇺🇸美国US150 1.47MB/s危险 TG@jcnode
   password: None
   port: 9002
@@ -5621,22 +5262,6 @@ proxies:
   tls: true
   type: http
   udp: true
-- client-fingerprint: chrome
-  encryption: none
-  name: 🇩🇪德国DE020 1.45MB/s中性 TG@jcnode
-  network: ws
-  port: 2083
-  server: 140.225.208.140
-  servername: speedtestmark.com
-  tls: true
-  type: vless
-  udp: true
-  uuid: e3c3b722-1264-4cdc-a97c-b0a1bb73cd67
-  ws-opts:
-    headers:
-      User-Agent: Mozilla/5.0 (Windows NT 5.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.90 Safari/537.36
-    path: /vless-ws
-  packet-encoding: xudp
 - name: 🇺🇸美国US040 1.45MB/s中性 TG@jcnode
   password: None
   port: 8443
@@ -5738,22 +5363,6 @@ proxies:
   tls: true
   type: http
   udp: true
-- client-fingerprint: firefox
-  encryption: none
-  flow: xtls-rprx-vision
-  name: 🇳🇱荷兰NL047 1.44MB/s中性 TG@jcnode
-  network: tcp
-  port: 443
-  reality-opts:
-    public-key: mpo4BIcoWiMXAQGt5a8IJ4MFkPJQyLC50dO_bXzC7z0
-    short-id: ""
-  server: 104.171.135.229
-  servername: absolute-disaster.org
-  tls: true
-  type: vless
-  udp: true
-  uuid: Fluffy_VPN-Oth8rOq3
-  packet-encoding: xudp
 - name: 🇭🇰香港HK009 1.44MB/s纯净 TG@jcnode
   password: H7mP2xY9kJ4nQ8wR5tF6vB3z
   port: 443
@@ -5771,29 +5380,6 @@ proxies:
   type: http
   udp: true
   username: 'null'
-- client-fingerprint: firefox
-  flow: xtls-rprx-vision
-  name: 🇫🇮芬兰FI002 1.43MB/s TG@jcnode
-  network: raw
-  port: 443
-  reality-opts:
-    public-key: nF_kEdHan2dgl2tlQ_dtNaKZ4oORhuiFrXHbtEDcT2Q
-    short-id: "2d6d073dc88f22a8"
-  server: 89.125.37.115
-  servername: se.frgcdn.xyz
-  tls: true
-  type: vless
-  udp: true
-  uuid: b310e287-79fa-45e3-887f-9564c0e390f7
-  packet-encoding: xudp
-- name: 🇩🇪德国DE005 1.43MB/s纯净 TG@jcnode
-  port: 8443
-  server: 188.120.225.125
-  skip-cert-verify: true
-  sub_tag: R002-260618
-  tls: true
-  type: http
-  udp: true
 - name: 🇺🇸美国US239 1.43MB/s危险 TG@jcnode
   password: None
   port: 9002
@@ -6014,14 +5600,6 @@ proxies:
   tls: true
   type: http
   udp: true
-- name: 🇩🇪德国DE006 1.4MB/s纯净 TG@jcnode
-  password: null
-  port: 8443
-  server: 188.120.225.125
-  skip-cert-verify: true
-  tls: true
-  type: http
-  username: null
 - name: 🇺🇸美国US206 1.4MB/s中性 TG@jcnode
   password: null
   port: 8443
@@ -6200,12 +5778,6 @@ proxies:
   skip-cert-verify: true
   tls: true
   type: http
-- name: 🇩🇪德国DE022 1.38MB/s纯净 TG@jcnode
-  port: 8443
-  server: 188.120.225.125
-  skip-cert-verify: true
-  tls: true
-  type: http
 - name: 🇺🇸美国US042 1.37MB/s危险 TG@jcnode
   password: ''
   port: 8090
@@ -6231,22 +5803,6 @@ proxies:
   tls: true
   type: http
   udp: true
-- client-fingerprint: chrome
-  name: 🇺🇸美国US151 1.37MB/s TG@jcnode
-  network: ws
-  port: 443
-  server: 172.64.144.240
-  servername: pmpmppm.pages.dev
-  tls: true
-  type: vless
-  udp: true
-  uuid: 87c467e9-f0af-4b03-8fbd-65fd375d3a26
-  ws-opts:
-    headers:
-      Host: pmpmppm.pages.dev
-      User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.181 Safari/537.36
-    path: /?ed=2048fp=randomized
-  packet-encoding: xudp
 - name: 🇺🇸美国US094 1.37MB/s危险 TG@jcnode
   port: 9002
   server: 138.199.35.202
@@ -6387,14 +5943,6 @@ proxies:
   tls: true
   type: http
   username: null
-- name: 🇵🇱波兰PL003 1.34MB/s危险 TG@jcnode
-  port: 443
-  server: 31.186.220.204
-  skip-cert-verify: true
-  sub_tag: R002-260618
-  tls: true
-  type: http
-  udp: true
 - name: 🇺🇸美国US214 1.34MB/s中性 TG@jcnode
   port: 8443
   server: 18.206.28.143
@@ -6460,14 +6008,6 @@ proxies:
   tls: true
   type: http
   udp: true
-- name: 🇳🇱荷兰NL074 1.33MB/s中性 TG@jcnode
-  password: null
-  port: 443
-  server: 157.22.183.72
-  skip-cert-verify: false
-  tls: true
-  type: http
-  username: null
 - name: '🇳🇱荷兰NL048 1.33MB/s危险 TG@jcnode #2'
   password: None
   port: 9002
@@ -6501,13 +6041,6 @@ proxies:
   tls: true
   type: http
   username: null
-- cipher: aes-256-cfb
-  name: 🇪🇸西班牙ES002 1.33MB/s中性 TG@jcnode
-  password: ZET59LF6DvCC8KVt
-  port: 9005
-  server: 5.188.181.201
-  type: ss
-  udp: true
 - name: 🇫🇷法国FR016 1.32MB/s中性 TG@jcnode
   port: 443
   server: 51.210.167.149
@@ -6516,14 +6049,6 @@ proxies:
   tls: true
   type: http
   udp: true
-- name: 🇵🇱波兰PL004 1.32MB/s危险 TG@jcnode
-  password: ''
-  port: 443
-  server: 31.186.220.204
-  skip-cert-verify: true
-  tls: true
-  type: http
-  username: ''
 - name: 🇳🇱荷兰NL057 1.32MB/s危险 TG@jcnode
   port: 9002
   server: 84.17.47.149
@@ -6723,21 +6248,6 @@ proxies:
   type: http
   udp: true
   username: ''
-- client-fingerprint: qq
-  flow: xtls-rprx-vision
-  name: 🇫🇮芬兰FI003 1.3MB/s TG@jcnode
-  network: tcp
-  port: 40447
-  reality-opts:
-    public-key: EbXSjwJKAI1cmU2TK3af62qS2k58x8Rnct1525c0m1I
-    short-id: "30fc443cf34a1471"
-  server: 178.72.185.235
-  servername: www.booking.com
-  tls: true
-  type: vless
-  udp: true
-  uuid: 572b3d30-3ced-4b88-9e06-4241f124cc88
-  packet-encoding: xudp
 - client-fingerprint: firefox
   encryption: none
   name: 🇪🇸西班牙ES001 1.3MB/s中性 TG@jcnode
@@ -6788,13 +6298,6 @@ proxies:
   skip-cert-verify: true
   tls: true
   type: http
-- name: 🇳🇱荷兰NL060 1.29MB/s中性 TG@jcnode
-  port: 443
-  server: 103.97.88.154
-  skip-cert-verify: true
-  sni: 4a8c2906c96058315dffbc2b0e7ff19b-98005bea43f9ac33.apache-iv.com
-  tls: true
-  type: http
 - name: 🇩🇪德国DE026 1.29MB/s危险 TG@jcnode
   port: 443
   server: 87.106.223.158
@@ -6827,16 +6330,6 @@ proxies:
   tls: true
   type: http
   udp: true
-- type: anytls
-  server: 654968169.df6h451rh.xin
-  port: 443
-  password: 0324fbc29561
-  tls: true
-  servername: images.ctfassets.net
-  header-type: none
-  skip-cert-verify: true
-  name: 🇭🇰香港HK002 1.29MB/s纯净 TG@jcnode
-  sni: images.ctfassets.net
 - name: 🇺🇸美国US251 1.29MB/s危险 TG@jcnode
   password: 'null'
   port: 9002
@@ -6854,21 +6347,6 @@ proxies:
   tls: true
   type: http
   username: null
-- client-fingerprint: chrome
-  encryption: none
-  name: 🇩🇪德国DE036 1.29MB/s中性 TG@jcnode
-  network: tcp
-  port: 25362
-  reality-opts:
-    public-key: hFee7zTreqlv_wccK_8zxN5v23hj9u-DshByvGf-KAA
-    short-id: "23732d14a527990d"
-  server: de15.h1cloud.net
-  servername: www.chip.de
-  tls: true
-  type: vless
-  udp: true
-  uuid: 36fb6650-8a50-42b5-9f66-06538806f32c
-  packet-encoding: xudp
 - name: 🇷🇴罗马尼亚RO090 1.29MB/s危险 TG@jcnode
   password: None
   port: 9002
@@ -7036,14 +6514,6 @@ proxies:
   tls: true
   type: http
   udp: true
-- name: 🇳🇱荷兰NL061 1.27MB/s危险 TG@jcnode
-  password: ''
-  port: 443
-  server: 5.255.125.187
-  skip-cert-verify: true
-  tls: true
-  type: http
-  username: ''
 - name: 🇳🇱荷兰NL078 1.27MB/s危险 TG@jcnode
   password: None
   port: 443
@@ -7086,6 +6556,12 @@ proxies:
   skip-cert-verify: true
   tls: true
   type: http
+- name: 🇺🇸美国US226 1.26MB/s危险 TG@jcnode
+  port: 8090
+  server: 173.42.49.102
+  skip-cert-verify: true
+  tls: true
+  type: http
 - name: 🇷🇴罗马尼亚RO067 1.26MB/s危险 TG@jcnode
   password: None
   port: 9002
@@ -7106,28 +6582,6 @@ proxies:
   skip-cert-verify: true
   tls: true
   type: http
-- cipher: chacha20-ietf-poly1305
-  name: 🇳🇱荷兰NL028 1.26MB/s中性 TG@jcnode
-  password: k1dBOmOB4oqi7Ump37a1bQ
-  port: 8080
-  server: 193.29.139.223
-  type: ss
-  udp: true
-- client-fingerprint: firefox
-  flow: xtls-rprx-vision
-  name: 🇩🇪德国DE027 1.25MB/s中性 TG@jcnode
-  network: tcp
-  port: 443
-  reality-opts:
-    public-key: QvT-t_h_AF2EAT4Ggh_a6pcCK3StY8G9WCXn6-dJbxk
-    short-id: "51079f144d661484"
-  server: 13.143.180.104
-  servername: s12.bsh-net.ru
-  tls: true
-  type: vless
-  udp: true
-  uuid: a0fa7e19-70ec-41e0-b0cc-bcc984d4201a
-  packet-encoding: xudp
 - name: 🇫🇷法国FR021 1.25MB/s纯净 TG@jcnode
   password: ''
   port: 8090
@@ -7265,6 +6719,14 @@ proxies:
   sni: 482c8436a1f7c908b48a1757abb5dd79-3791fb4df2db250b.apache-iv.com
   tls: true
   type: http
+- name: 🇺🇸美国US011 1.21MB/s危险 TG@jcnode
+  password: null
+  port: 8090
+  server: 173.42.49.102
+  skip-cert-verify: true
+  tls: true
+  type: http
+  username: null
 - name: 🇷🇴罗马尼亚RO073 1.21MB/s危险 TG@jcnode
   port: 9002
   server: 193.176.84.38
@@ -7388,6 +6850,23 @@ proxies:
   tls: true
   type: http
   username: ''
+- alterId: 0
+  cipher: auto
+  name: 🇺🇸美国US212 1.18MB/s中性 TG@jcnode
+  network: ws
+  port: 443
+  server: Rib9JXAYoqjGN2KW.v.3dns.vip
+  servername: Rib9JXAYoqjGN2KW.v.3dns.vip
+  skip-cert-verify: false
+  tls: true
+  type: vmess
+  udp: true
+  uuid: 9b31490d-190e-4ef1-af0a-7ccab3e7c3b5
+  ws-opts:
+    headers:
+      Host: Rib9JXAYoqjGN2KW.v.3dns.vip
+    path: /ws-vmess
+  packet-encoding: xudp
 - name: 🇺🇸美国US171 1.18MB/s危险 TG@jcnode
   password: None
   port: 9002
@@ -7434,21 +6913,6 @@ proxies:
   tls: true
   type: http
   username: null
-- client-fingerprint: firefox
-  flow: xtls-rprx-vision
-  name: 🇫🇷法国FR025 1.16MB/s TG@jcnode
-  network: tcp
-  port: 8470
-  reality-opts:
-    public-key: VaMT-IAVkmjdrf4OS0Mnqg0YhQc35O9wZo2TW2LrmjU
-    short-id: "21e829b360d15daf"
-  server: 5.181.158.100
-  servername: svoboda14.bystriynet.online
-  tls: true
-  type: vless
-  udp: true
-  uuid: 1c8f7130-8c1a-4949-831d-1d45b39c795b
-  packet-encoding: xudp
 - client-fingerprint: chrome
   encryption: none
   flow: xtls-rprx-vision
@@ -7491,12 +6955,6 @@ proxies:
   tls: true
   type: http
   udp: true
-- name: 🇳🇱荷兰NL088 1.15MB/s危险 TG@jcnode
-  port: 443
-  server: 5.255.125.187
-  skip-cert-verify: true
-  tls: true
-  type: http
 - name: 🇺🇸美国US056 1.14MB/s危险 TG@jcnode
   port: 8090
   server: 24.142.229.178
@@ -7553,14 +7011,6 @@ proxies:
   skip-cert-verify: true
   tls: true
   type: http
-- name: 🇺🇸美国US058 1.12MB/s纯净 TG@jcnode
-  port: 8090
-  server: 50.76.211.251
-  skip-cert-verify: true
-  sub_tag: R002-260618
-  tls: true
-  type: http
-  udp: true
 - client-fingerprint: chrome
   name: 🇨🇭瑞士CH002 1.12MB/s中性 TG@jcnode
   network: tcp
@@ -7670,21 +7120,6 @@ proxies:
   skip-cert-verify: true
   tls: true
   type: http
-- client-fingerprint: firefox
-  flow: xtls-rprx-vision
-  name: 🇵🇱波兰PL006 1.1MB/s TG@jcnode
-  network: tcp
-  port: 443
-  reality-opts:
-    public-key: ujJJhm6pVQju7zkhPUQ-2Oes16hubBt14JD9oRCFtkQ
-    short-id: "667a1aa82fdd00d3"
-  server: 13.143.190.65
-  servername: srvpl2.newagetechnologies.live
-  tls: true
-  type: vless
-  udp: true
-  uuid: 706bce83-91db-4260-b175-cba29145cd56
-  packet-encoding: xudp
 - client-fingerprint: chrome
   name: 🇨🇭瑞士CH004 1.1MB/s中性 TG@jcnode
   password: 0ab6c98dae3b48e8b9c4a776b6c9c19a
@@ -7807,21 +7242,6 @@ proxies:
   skip-cert-verify: false
   sni: nl1.obxodvpn.us
   type: hysteria2
-- client-fingerprint: firefox
-  flow: xtls-rprx-vision
-  name: 🇳🇱荷兰NL066 1.08MB/s TG@jcnode
-  network: tcp
-  port: 8460
-  reality-opts:
-    public-key: 5FHR9361HdRaycDAmACmok_SvpmM2xnzYRkUBsgZARM
-    short-id: "c7d4e6fb729b69c2"
-  server: 5.181.158.192
-  servername: nl-ams.bystriynet.online
-  tls: true
-  type: vless
-  udp: true
-  uuid: 1c8f7130-8c1a-4949-831d-1d45b39c795b
-  packet-encoding: xudp
 - alpn:
   - http/1.1
   client-fingerprint: edge
@@ -7865,22 +7285,6 @@ proxies:
   tls: true
   type: http
   username: ''
-- client-fingerprint: firefox
-  encryption: none
-  flow: xtls-rprx-vision
-  name: 🇪🇸西班牙ES001 1.08MB/s中性 TG@jcnode
-  network: tcp
-  port: 443
-  reality-opts:
-    public-key: 9GEc6lOjnGQyyE1951OZSBMWt4uCXsOjKyj9fysxHH0
-    short-id: "e0ccc8c2f487d913"
-  server: es.srv.dvzh.net
-  servername: es.srv.dvzh.net
-  tls: true
-  type: vless
-  udp: true
-  uuid: 9ab3a362-1518-496d-b08d-eced45cec936
-  packet-encoding: xudp
 - name: '🇷🇴罗马尼亚RO066 1.08MB/s危险 TG@jcnode #2'
   password: None
   port: 9002
@@ -7929,6 +7333,15 @@ proxies:
   skip-cert-verify: true
   tls: true
   type: http
+- name: 🇺🇸美国US060 1.06MB/s危险 TG@jcnode
+  password: None
+  port: 8090
+  server: 173.42.49.102
+  skip-cert-verify: true
+  sub_tag: P002-260618
+  tls: true
+  type: http
+  udp: true
 - name: 🇷🇴罗马尼亚RO081 1.06MB/s危险 TG@jcnode
   password: None
   port: 9002
@@ -7970,22 +7383,6 @@ proxies:
   tls: true
   type: http
   username: 'null'
-- client-fingerprint: chrome
-  encryption: none
-  flow: xtls-rprx-vision
-  name: 🇫🇮芬兰FI002 1.05MB/s中性 TG@jcnode
-  network: raw
-  port: 443
-  reality-opts:
-    public-key: QvT-t_h_AF2EAT4Ggh_a6pcCK3StY8G9WCXn6-dJbxk
-    short-id: "51079f144d661484"
-  server: 13.143.180.104
-  servername: s12.bsh-net.ru
-  tls: true
-  type: vless
-  udp: true
-  uuid: a0fa7e19-70ec-41e0-b0cc-bcc984d4201a
-  packet-encoding: xudp
 - name: 🇱🇻LV001 1.05MB/s危险 TG@jcnode
   password: None
   port: 443
@@ -8097,21 +7494,6 @@ proxies:
   tls: true
   type: http
   udp: true
-- client-fingerprint: firefox
-  flow: xtls-rprx-vision
-  name: 🇬🇧英国GB001 1.02MB/s TG@jcnode
-  network: tcp
-  port: 8471
-  reality-opts:
-    public-key: -Ri2C7Y1tPrP8hQkgXOqVyR1Sqv5MdLZxAAu9M5kfn0
-    short-id: "44add17dbecb11ba"
-  server: 5.181.158.100
-  servername: svoboda16.bystriynet.online
-  tls: true
-  type: vless
-  udp: true
-  uuid: 1c8f7130-8c1a-4949-831d-1d45b39c795b
-  packet-encoding: xudp
 - client-fingerprint: chrome
   name: 🇺🇸美国US031 1.02MB/s中性 TG@jcnode
   password: 0ab6c98dae3b48e8b9c4a776b6c9c19a
@@ -8273,21 +7655,6 @@ proxies:
   skip-cert-verify: true
   tls: true
   type: http
-- client-fingerprint: firefox
-  flow: xtls-rprx-vision
-  name: 🇬🇧英国GB002 0.98MB/s TG@jcnode
-  network: raw
-  port: 8481
-  reality-opts:
-    public-key: -Ri2C7Y1tPrP8hQkgXOqVyR1Sqv5MdLZxAAu9M5kfn0
-    short-id: "44add17dbecb11ba"
-  server: 5.181.158.100
-  servername: svoboda16.bystriynet.online
-  tls: true
-  type: vless
-  udp: true
-  uuid: 1c8f7130-8c1a-4949-831d-1d45b39c795b
-  packet-encoding: xudp
 - name: 🇧🇷巴西BR002 0.98MB/s中性 TG@jcnode
   password: None
   port: 443
@@ -8368,18 +7735,6 @@ proxies:
   tls: true
   type: http
   username: 'null'
-- client-fingerprint: firefox
-  flow: xtls-rprx-vision
-  name: 🇨🇿CZ006 0.97MB/s中性 TG@jcnode
-  network: tcp
-  port: 2063
-  reality-opts:
-    public-key: MMpt_jWc4J3oySBdf5sPDVRkiWlZmOObth6A1scM9BM
-  server: cz-prg.dontblockmepls.com
-  servername: rusbid.de
-  tls: true
-  type: vless
-  uuid: b18d5990-96eb-4587-a386-7f8ef7591e6a
 - name: 🇷🇴罗马尼亚RO099 0.97MB/s危险 TG@jcnode
   port: 9002
   server: 193.176.84.37
@@ -8401,37 +7756,6 @@ proxies:
   skip-cert-verify: true
   tls: true
   type: http
-- client-fingerprint: firefox
-  encryption: none
-  name: 🇪🇪EE001 0.96MB/s TG@jcnode
-  network: ws
-  port: 2083
-  server: 5.1.40.6
-  servername: speedtestmark.com
-  tls: true
-  type: vless
-  udp: true
-  uuid: e3c3b722-1264-4cdc-a97c-b0a1bb73cd67
-  ws-opts:
-    headers:
-      User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.101 Safari/537.36
-    path: /vless-ws
-  packet-encoding: xudp
-- client-fingerprint: firefox
-  flow: xtls-rprx-vision
-  name: 🇸🇪瑞典SE003 0.96MB/s TG@jcnode
-  network: tcp
-  port: 8462
-  reality-opts:
-    public-key: MrCVk_IX3i58KxjEk-zj6xmh1lZ_WW9SfZ-Bsc6EFnQ
-    short-id: "4c312f2eab89201d"
-  server: 5.181.158.193
-  servername: svoboda8.bystriynet.online
-  tls: true
-  type: vless
-  udp: true
-  uuid: 1c8f7130-8c1a-4949-831d-1d45b39c795b
-  packet-encoding: xudp
 - client-fingerprint: chrome
   encryption: none
   flow: xtls-rprx-vision
@@ -8562,21 +7886,6 @@ proxies:
   skip-cert-verify: true
   tls: true
   type: http
-- client-fingerprint: firefox
-  flow: xtls-rprx-vision
-  name: 🇳🇱荷兰NL074 0.92MB/s TG@jcnode
-  network: raw
-  port: 8460
-  reality-opts:
-    public-key: 5FHR9361HdRaycDAmACmok_SvpmM2xnzYRkUBsgZARM
-    short-id: "c7d4e6fb729b69c2"
-  server: 5.181.158.192
-  servername: nl-ams.bystriynet.online
-  tls: true
-  type: vless
-  udp: true
-  uuid: 1c8f7130-8c1a-4949-831d-1d45b39c795b
-  packet-encoding: xudp
 - name: 🇷🇴罗马尼亚RO104 0.92MB/s危险 TG@jcnode
   password: 'null'
   port: 9002
@@ -8604,25 +7913,6 @@ proxies:
   - http/1.1
   client-fingerprint: chrome
   encryption: none
-  name: 🇩🇪德国DE185 0.92MB/s中性 TG@jcnode
-  network: ws
-  port: 443
-  server: 172.66.47.45
-  servername: EZAcCESS-pROjECt-F62c30.PAGES.dEv
-  tls: true
-  type: vless
-  udp: true
-  uuid: e56059f1-5a1a-4d0a-a2d0-58ecb4eb2f3f
-  ws-opts:
-    headers:
-      Host: ezaccess-project-f62c30.pages.dev
-      User-Agent: Mozilla/5.0 (X11; Linux i686) AppleWebKit/534.30 (KHTML, like Gecko) Chrome/12.0.742.100 Safari/534.30
-    path: /eyJqdW5rIjoiZWlPODVjTnhnaSIsInByb3RvY29sIjoidmwiLCJtb2RlIjoicHJveHlpcCIsInBhbmVsSVBzIjpbXX0=?ed=2560
-  packet-encoding: xudp
-- alpn:
-  - http/1.1
-  client-fingerprint: chrome
-  encryption: none
   name: 🇩🇪德国DE031 0.91MB/s TG@jcnode
   network: ws
   port: 443
@@ -8638,27 +7928,20 @@ proxies:
       User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.65 Safari/537.36
     path: /ws/2c8af5ed-bf4c-d7cc-e398-8a2193c884dc
   packet-encoding: xudp
-- client-fingerprint: qq
-  flow: xtls-rprx-vision
-  name: 🇯🇵日本JP007 0.91MB/s TG@jcnode
-  network: tcp
-  port: 40448
-  reality-opts:
-    public-key: EbXSjwJKAI1cmU2TK3af62qS2k58x8Rnct1525c0m1I
-    short-id: "09f696119a54ea3c"
-  server: 178.72.185.235
-  servername: www.booking.com
-  tls: true
-  type: vless
-  udp: true
-  uuid: 572b3d30-3ced-4b88-9e06-4241f124cc88
-  packet-encoding: xudp
 - name: 🇸🇬新加坡SG001 0.91MB/s中性 TG@jcnode
   port: 443
   server: 154.26.139.24
   skip-cert-verify: true
   tls: true
   type: http
+- name: 🇷🇺俄罗斯RU006 0.91MB/s纯净 TG@jcnode
+  password: null
+  port: 1446
+  server: 46.29.166.134
+  skip-cert-verify: true
+  tls: true
+  type: http
+  username: null
 - name: 🇺🇸美国US269 0.91MB/s危险 TG@jcnode
   port: 9002
   server: 138.199.35.204
@@ -8666,6 +7949,13 @@ proxies:
   skip-cert-verify: true
   tls: true
   type: http
+- cipher: aes-256-cfb
+  name: 🇪🇸西班牙ES002 0.91MB/s中性 TG@jcnode
+  password: KnJGad3FqTvjqbaX
+  port: 9014
+  server: 5.188.181.201
+  type: ss
+  udp: true
 - client-fingerprint: randomized
   encryption: none
   flow: xtls-rprx-vision
@@ -8681,21 +7971,6 @@ proxies:
   type: vless
   udp: true
   uuid: 07680ffb-0666-4836-b6ad-ec0de62bc38f
-  packet-encoding: xudp
-- client-fingerprint: firefox
-  flow: xtls-rprx-vision
-  name: 🇩🇪德国DE032 0.9MB/s TG@jcnode
-  network: raw
-  port: 8464
-  reality-opts:
-    public-key: T0oPW9sxyDZRq1Db4-kvrOG9_h-wL3-UtjD3T8PN3mQ
-    short-id: "7dd5822cfb2e1cd0"
-  server: 5.181.158.192
-  servername: svoboda6.bystriynet.online
-  tls: true
-  type: vless
-  udp: true
-  uuid: 1c8f7130-8c1a-4949-831d-1d45b39c795b
   packet-encoding: xudp
 - name: 🇺🇸美国US222 0.9MB/s纯净 TG@jcnode
   port: 8090
@@ -8724,31 +7999,6 @@ proxies:
     path: /
     headers:
       Host: 217.142.138.61
-- name: 🇹🇼台湾TW001 0.9MB/s纯净 TG@jcnode
-  password: exaxgqkKkd0TAMrCxeonWg==
-  port: 1443
-  server: twmoon1-cdn-route.couldflare-cdn.com
-  skip-cert-verify: false
-  sni: twmoon1-cdn-route.couldflare-cdn.com
-  tls: true
-  type: http
-  username: mrwdfNTD8M79LCukCieldrqZWqs=
-  udp: true
-- client-fingerprint: firefox
-  flow: xtls-rprx-vision
-  name: 🇩🇪德国DE033 0.89MB/s TG@jcnode
-  network: tcp
-  port: 8464
-  reality-opts:
-    public-key: T0oPW9sxyDZRq1Db4-kvrOG9_h-wL3-UtjD3T8PN3mQ
-    short-id: "7dd5822cfb2e1cd0"
-  server: 5.181.158.192
-  servername: svoboda6.bystriynet.online
-  tls: true
-  type: vless
-  udp: true
-  uuid: 1c8f7130-8c1a-4949-831d-1d45b39c795b
-  packet-encoding: xudp
 - name: 🇧🇷巴西BR003 0.89MB/s中性 TG@jcnode
   port: 443
   server: 134.65.17.77
@@ -8878,6 +8128,10 @@ proxies:
   tls: true
   type: vless
   uuid: 91ad30e9-ab06-4b4c-9fb9-1c2aa97d8b3a
+- name: 🇸🇬新加坡SG044 0.86MB/s危险 TG@jcnode
+  port: 9090
+  server: 128.199.254.13
+  type: http
 - name: 🇺🇸美国US062 0.85MB/s TG@jcnode
   port: 8090
   server: 98.101.229.212
@@ -8918,36 +8172,14 @@ proxies:
   tls: true
   type: http
   username: 'null'
-- client-fingerprint: firefox
-  flow: xtls-rprx-vision
-  name: 🇩🇪德国DE034 0.84MB/s TG@jcnode
-  network: raw
-  port: 8463
-  reality-opts:
-    public-key: k2jSuvKPXyN0fCJiGpl1NMzzN7kzo64vsbbLD4gdKQ4
-    short-id: "f017b721750fd683"
-  server: 5.181.158.195
-  servername: svoboda2.bystriynet.online
-  tls: true
-  type: vless
-  udp: true
-  uuid: 1c8f7130-8c1a-4949-831d-1d45b39c795b
-  packet-encoding: xudp
-- client-fingerprint: firefox
-  flow: xtls-rprx-vision
-  name: 🇨🇭瑞士CH002 0.84MB/s TG@jcnode
-  network: raw
-  port: 8461
-  reality-opts:
-    public-key: Yc75IKp6PRsGSw82GhGepMrRpJweW7WXUp9azkGuMAk
-    short-id: "735f09fb3fedb191"
-  server: 5.181.158.193
-  servername: svoboda.bystriynet.online
-  tls: true
-  type: vless
-  udp: true
-  uuid: 1c8f7130-8c1a-4949-831d-1d45b39c795b
-  packet-encoding: xudp
+- auth: 1beb216e3f60aea9555dae60d219a5ca
+  name: 🇰🇷韩国KR001 0.85MB/s中性 TG@jcnode
+  password: 1beb216e3f60aea9555dae60d219a5ca
+  port: 50160
+  server: 152-69-231-175.liao.kdns.fr
+  skip-cert-verify: true
+  sni: 152-69-231-175.liao.kdns.fr
+  type: hysteria2
 - client-fingerprint: firefox
   encryption: none
   flow: xtls-rprx-vision
@@ -8961,15 +8193,14 @@ proxies:
   udp: true
   uuid: 689a62e4-37e7-41de-9e6a-f2a56368c9e2
   packet-encoding: xudp
-- type: anytls
-  server: 654968169.df6h451rh.xin
-  port: 443
-  password: 0324fbc29561
-  tls: true
-  client-fingerprint: chrome
-  header-type: none
+- name: 🇺🇸美国US063 0.83MB/s危险 TG@jcnode
+  port: 8090
+  server: 173.42.49.102
   skip-cert-verify: true
-  name: 🇭🇰香港HK003 0.83MB/s纯净 TG@jcnode
+  sub_tag: P002-260618
+  tls: true
+  type: http
+  udp: true
 - name: 🇺🇸美国US187 0.83MB/s危险 TG@jcnode
   password: ''
   port: 443
@@ -9049,27 +8280,20 @@ proxies:
   skip-cert-verify: true
   tls: true
   type: http
-- client-fingerprint: firefox
-  flow: xtls-rprx-vision
-  name: 🇲🇩MD001 0.8MB/s TG@jcnode
-  network: raw
-  port: 443
-  reality-opts:
-    public-key: TS4XYds5zXG3-cU_zgA3jE6zoDc-Q1WXMQnVj4bdRhA
-    short-id: "7c41ea9b53d618af"
-  server: 5.181.158.193
-  servername: svoboda18.bystriynet.online
-  tls: true
-  type: vless
-  udp: true
-  uuid: 1c8f7130-8c1a-4949-831d-1d45b39c795b
-  packet-encoding: xudp
 - name: 🇮🇩印度尼西亚ID004 0.8MB/s中性 TG@jcnode
   port: 443
   server: 178.248.73.58
   skip-cert-verify: true
   tls: true
   type: http
+- name: 🇺🇸美国US246 0.8MB/s危险 TG@jcnode
+  password: ''
+  port: 8090
+  server: 173.42.49.102
+  skip-cert-verify: true
+  tls: true
+  type: http
+  username: ''
 - name: 🇷🇴罗马尼亚RO115 0.8MB/s危险 TG@jcnode
   password: None
   port: 9002
@@ -9078,16 +8302,6 @@ proxies:
   tls: true
   type: http
   username: ''
-- name: 🇹🇼台湾TW001 0.8MB/s纯净 TG@jcnode
-  server: twmoon1-cdn-route.couldflare-cdn.com
-  port: 1443
-  type: http
-  username: mrwdfNTD8M79LCukCieldrqZWqs=
-  password: exaxgqkKkd0TAMrCxeonWg==
-  tls: true
-  skip-cert-verify: true
-  udp: true
-  sni: twmoon1-cdn-route.couldflare-cdn.com
 - name: 🇮🇩印度尼西亚ID003 0.79MB/s纯净 TG@jcnode
   password: freeuser1
   port: 9251
@@ -9156,14 +8370,6 @@ proxies:
     headers:
       Host: guanwang.awsno.com
   name: 🇭🇰香港HK006 0.78MB/s TG@jcnode
-- name: 🇫🇷法国FR031 0.77MB/s危险 TG@jcnode
-  password: ''
-  port: 443
-  server: 84.235.228.156
-  skip-cert-verify: true
-  tls: true
-  type: http
-  username: ''
 - name: 🇩🇪德国DE031 0.77MB/s危险 TG@jcnode
   password: None
   port: 443
@@ -9229,16 +8435,6 @@ proxies:
   skip-cert-verify: true
   tls: true
   type: http
-- type: anytls
-  server: 654968169.df6h451rh.xin
-  port: 443
-  password: 0324fbc29561
-  tls: true
-  servername: 654968169.df6h451rh.xin
-  header-type: none
-  skip-cert-verify: true
-  name: 🇭🇰香港HK004 0.76MB/s纯净 TG@jcnode
-  sni: 654968169.df6h451rh.xin
 - name: 🇷🇴罗马尼亚RO120 0.76MB/s危险 TG@jcnode
   port: 9002
   server: 193.176.84.31
@@ -9254,15 +8450,6 @@ proxies:
   tls: true
   type: http
   username: 'null'
-- name: 🇭🇰香港HK005 0.75MB/s纯净 TG@jcnode
-  password: 0324fbc29561
-  port: 443
-  server: 654968169.df6h451rh.xin
-  skip-cert-verify: true
-  sni: 654968169.df6h451rh.xin
-  tls: true
-  type: anytls
-  udp: true
 - client-fingerprint: firefox
   flow: xtls-rprx-vision
   name: 🇸🇰SK002 0.74MB/s TG@jcnode
@@ -9405,14 +8592,6 @@ proxies:
   tls: true
   type: http
   username: 'null'
-- name: 🇫🇷法国FR024 0.68MB/s危险 TG@jcnode
-  port: 8090
-  server: 217.181.201.254
-  skip-cert-verify: true
-  sub_tag: R002-260618
-  tls: true
-  type: http
-  udp: true
 - name: 🇺🇸美国US037 0.68MB/s中性 TG@jcnode
   password: 'null'
   port: 443
@@ -9482,26 +8661,6 @@ proxies:
   type: http
   udp: true
   username: 'null'
-- client-fingerprint: firefox
-  flow: xtls-rprx-vision
-  name: 🇩🇪德国DE038 0.66MB/s TG@jcnode
-  network: tcp
-  port: 8463
-  reality-opts:
-    public-key: k2jSuvKPXyN0fCJiGpl1NMzzN7kzo64vsbbLD4gdKQ4
-    short-id: "f017b721750fd683"
-  server: 5.181.158.195
-  servername: svoboda2.bystriynet.online
-  tls: true
-  type: vless
-  udp: true
-  uuid: 1c8f7130-8c1a-4949-831d-1d45b39c795b
-- name: 🇫🇷法国FR032 0.66MB/s危险 TG@jcnode
-  port: 8090
-  server: 217.181.201.254
-  skip-cert-verify: true
-  tls: true
-  type: http
 - name: 🇺🇸美国US041 0.66MB/s中性 TG@jcnode
   password: ''
   port: 443
@@ -9548,20 +8707,6 @@ proxies:
   tls: true
   type: http
   username: ''
-- client-fingerprint: firefox
-  flow: xtls-rprx-vision
-  name: 🇳🇱荷兰NL081 0.65MB/s TG@jcnode
-  network: tcp
-  port: 8469
-  reality-opts:
-    public-key: jXnHLdfNcX2fwTFY-d2boAYcfC9EnnhqYS0hfR6WwFo
-    short-id: "55d42bdd79605658"
-  server: in-nl2.bystriynet.online
-  servername: svoboda12.bystriynet.online
-  tls: true
-  type: vless
-  udp: true
-  uuid: 1c8f7130-8c1a-4949-831d-1d45b39c795b
 - name: 🇺🇸美国US278 0.65MB/s中性 TG@jcnode
   password: None
   port: 443
@@ -9712,20 +8857,6 @@ proxies:
   tls: true
   type: http
 - client-fingerprint: firefox
-  flow: xtls-rprx-vision
-  name: 🇩🇪德国DE040 0.57MB/s TG@jcnode
-  network: tcp
-  port: 8466
-  reality-opts:
-    public-key: k2jSuvKPXyN0fCJiGpl1NMzzN7kzo64vsbbLD4gdKQ4
-    short-id: "f017b721750fd683"
-  server: 5.181.158.195
-  servername: svoboda20.bystriynet.online
-  tls: true
-  type: vless
-  udp: true
-  uuid: 1c8f7130-8c1a-4949-831d-1d45b39c795b
-- client-fingerprint: firefox
   name: 🇳🇱荷兰NL082 0.57MB/s中性 TG@jcnode
   network: tcp
   port: 443
@@ -9747,21 +8878,6 @@ proxies:
   tls: true
   type: http
   username: null
-- client-fingerprint: firefox
-  flow: xtls-rprx-vision
-  name: 🇨🇭瑞士CH003 0.56MB/s TG@jcnode
-  network: tcp
-  port: 8461
-  reality-opts:
-    public-key: Yc75IKp6PRsGSw82GhGepMrRpJweW7WXUp9azkGuMAk
-    short-id: "735f09fb3fedb191"
-  server: 5.181.158.193
-  servername: svoboda.bystriynet.online
-  tls: true
-  type: vless
-  udp: true
-  uuid: 1c8f7130-8c1a-4949-831d-1d45b39c795b
-  packet-encoding: xudp
 - name: 🇺🇸美国US049 0.56MB/s中性 TG@jcnode
   port: 443
   server: tzoa.fun
@@ -9797,32 +8913,6 @@ proxies:
   skip-cert-verify: true
   tls: true
   type: http
-- client-fingerprint: firefox
-  flow: xtls-rprx-vision
-  name: 🇬🇧英国GB003 0.55MB/s TG@jcnode
-  network: tcp
-  port: 8481
-  reality-opts:
-    public-key: -Ri2C7Y1tPrP8hQkgXOqVyR1Sqv5MdLZxAAu9M5kfn0
-    short-id: "44add17dbecb11ba"
-  server: 5.181.158.100
-  servername: svoboda16.bystriynet.online
-  tls: true
-  type: vless
-  udp: true
-  uuid: 1c8f7130-8c1a-4949-831d-1d45b39c795b
-  packet-encoding: xudp
-- type: anytls
-  server: 654968169.df6h451rh.xin
-  port: 443
-  password: 0324fbc29561
-  tls: true
-  servername: images.ctfassets.net
-  client-fingerprint: chrome
-  header-type: none
-  skip-cert-verify: true
-  name: 🇭🇰香港HK006 0.55MB/s纯净 TG@jcnode
-  sni: images.ctfassets.net
 - name: 🇷🇴罗马尼亚RO132 0.55MB/s危险 TG@jcnode
   port: 9002
   server: 193.176.84.35
@@ -10065,20 +9155,6 @@ proxies:
   tls: true
   type: http
   username: testuser1
-- client-fingerprint: chrome
-  name: 🇪🇪EE001 0.44MB/s纯净 TG@jcnode
-  network: tcp
-  port: 25895
-  reality-opts:
-    public-key: jOVKSP-bS9OkILJ8Epz8hadh6qhavCrOiJYeF0NCn0k
-    short-id: "a73f0410d728c823"
-  server: ee.h1cloud.net
-  servername: www.samsung.com
-  tls: true
-  type: vless
-  udp: true
-  uuid: f90b7d43-69e2-4b46-a672-8029bc6796a2
-  packet-encoding: xudp
 - name: 🇺🇸美国US074 0.43MB/s危险 TG@jcnode
   port: 443
   server: 207.5.30.9
@@ -10151,27 +9227,6 @@ proxies:
   tls: true
   type: http
   username: bnVsbDpudWxs
-- alpn:
-  - http/1.1
-  client-fingerprint: chrome
-  encryption: none
-  name: 🇩🇪德国DE022 0.33MB/s TG@jcnode
-  network: ws
-  port: 443
-  server: 188.114.96.9
-  servername: IdB8ONMVbntuYT5t7t6cEJfw8vLrb.paGEs.DeV
-  tls: true
-  type: vless
-  udp: true
-  uuid: 2e305ebe-f6e6-4689-b32f-cd04ab5ff541
-  ws-opts:
-    early-data-header-name: Sec-WebSocket-Protocol
-    headers:
-      Host: idb8onmvbntuyt5t7t6cejfw8vlrb.pages.dev
-      User-Agent: Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36
-    max-early-data: 2560
-    path: /vl/9yvcoLdzdOXLUYfH7r5gwJhu1CHrj
-  packet-encoding: xudp
 - type: vless
   server: cdn.hihidress.com
   port: 443
@@ -10214,22 +9269,6 @@ proxies:
   password: ''
   port: 443
   server: 5.2.73.112
-  skip-cert-verify: true
-  tls: true
-  type: http
-  username: ''
-- name: 🇭🇰香港HK004 测速未知纯净 TG@jcnode
-  password: null
-  port: 31343
-  server: 120.232.204.58
-  skip-cert-verify: true
-  tls: true
-  type: http
-  username: null
-- name: 🇭🇰香港HK008 测速未知纯净 TG@jcnode
-  password: ''
-  port: 31343
-  server: 120.232.204.58
   skip-cert-verify: true
   tls: true
   type: http
@@ -10293,21 +9332,6 @@ proxies:
   tls: true
   type: http
   username: 'null'
-- client-fingerprint: firefox
-  flow: xtls-rprx-vision
-  name: 🇳🇱荷兰NL085 测速未知 TG@jcnode
-  network: raw
-  port: 443
-  reality-opts:
-    public-key: -zjl4KNE4PFeuthfmw_2JeCbiXAA2kaoYVHODPq-sXQ
-    short-id: "aca2fc"
-  server: 93.152.206.97
-  servername: remote.propaint.cl
-  tls: true
-  type: vless
-  udp: true
-  uuid: 6db6b948-655f-4f68-a9e7-865050e05b31
-  packet-encoding: xudp
 - name: 🇩🇪德国DE053 测速未知危险 TG@jcnode
   password: null
   port: 9002
@@ -10659,21 +9683,6 @@ proxies:
   type: http
   udp: true
   username: 'null'
-- client-fingerprint: firefox
-  flow: xtls-rprx-vision
-  name: 🇨🇾CY001 测速未知 TG@jcnode
-  network: raw
-  port: 443
-  reality-opts:
-    public-key: nF_kEdHan2dgl2tlQ_dtNaKZ4oORhuiFrXHbtEDcT2Q
-    short-id: "2d6d073dc88f22a8"
-  server: 132.243.231.71
-  servername: se.frgcdn.xyz
-  tls: true
-  type: vless
-  udp: true
-  uuid: b310e287-79fa-45e3-887f-9564c0e390f7
-  packet-encoding: xudp
 - client-fingerprint: chrome
   encryption: none
   flow: xtls-rprx-vision
@@ -10744,21 +9753,6 @@ proxies:
   tls: true
   type: http
   username: null
-- client-fingerprint: firefox
-  flow: xtls-rprx-vision
-  name: 🇫🇮芬兰FI007 测速未知 TG@jcnode
-  network: raw
-  port: 443
-  reality-opts:
-    public-key: nF_kEdHan2dgl2tlQ_dtNaKZ4oORhuiFrXHbtEDcT2Q
-    short-id: "2d6d073dc88f22a8"
-  server: 132.243.231.21
-  servername: se.frgcdn.xyz
-  tls: true
-  type: vless
-  udp: true
-  uuid: b310e287-79fa-45e3-887f-9564c0e390f7
-  packet-encoding: xudp
 - client-fingerprint: firefox
   flow: xtls-rprx-vision
   name: 🇫🇮芬兰FI008 测速未知中性 TG@jcnode
@@ -10982,15 +9976,6 @@ proxies:
   tls: true
   type: http
   udp: true
-- name: 🇳🇱荷兰NL156 测速未知中性 TG@jcnode
-  password: None
-  port: 443
-  server: 157.22.183.72
-  skip-cert-verify: false
-  sub_tag: P002-260618
-  tls: true
-  type: http
-  udp: true
 - name: 🇺🇸美国US132 测速未知中性 TG@jcnode
   port: 8443
   server: 44.229.69.166
@@ -11005,14 +9990,6 @@ proxies:
   skip-cert-verify: true
   tls: true
   type: http
-- name: 🇳🇱荷兰NL159 测速未知危险 TG@jcnode
-  password: null
-  port: 443
-  server: 89.150.35.94
-  skip-cert-verify: true
-  tls: true
-  type: http
-  username: null
 - client-fingerprint: chrome
   encryption: none
   flow: xtls-rprx-vision
@@ -11037,6 +10014,12 @@ proxies:
   tls: true
   type: http
   username: ''
+- name: 🇪🇸西班牙ES007 测速未知危险 TG@jcnode
+  port: 8090
+  server: 80.24.34.107
+  skip-cert-verify: true
+  tls: true
+  type: http
 - name: 🇳🇱荷兰NL163 测速未知危险 TG@jcnode
   port: 443
   server: 185.93.106.214
@@ -11062,15 +10045,6 @@ proxies:
   tls: true
   type: http
   username: null
-- name: 🇳🇱荷兰NL170 测速未知中性 TG@jcnode
-  password: 'null'
-  port: 443
-  server: 157.22.183.72
-  sub_tag: R002-260618
-  tls: true
-  type: http
-  udp: true
-  username: 'null'
 - name: 🇺🇸美国US156 测速未知纯净 TG@jcnode
   port: 443
   server: 96.5.129.85
@@ -11101,19 +10075,6 @@ proxies:
   tls: true
   type: http
   udp: true
-- client-fingerprint: firefox
-  flow: xtls-rprx-vision
-  name: 🇫🇮芬兰FI013 测速未知中性 TG@jcnode
-  network: tcp
-  port: 443
-  reality-opts:
-    public-key: QvT-t_h_AF2EAT4Ggh_a6pcCK3StY8G9WCXn6-dJbxk
-    short-id: "51079f144d661484"
-  server: 13.143.180.104
-  servername: s12.bsh-net.ru
-  tls: true
-  type: vless
-  uuid: a0fa7e19-70ec-41e0-b0cc-bcc984d4201a
 - name: 🇩🇪德国DE084 测速未知中性 TG@jcnode
   password: e4b72b531a2d10900519
   port: 443
@@ -11133,32 +10094,10 @@ proxies:
   tls: true
   type: http
   username: testuser1
-- name: 🇺🇸美国US168 测速未知危险 TG@jcnode
-  password: None
-  port: 8090
-  server: 209.148.53.153
-  skip-cert-verify: true
-  sub_tag: P002-260618
-  tls: true
-  type: http
-  udp: true
-- name: 🇳🇱荷兰NL174 测速未知危险 TG@jcnode
-  port: 443
-  server: 5.255.125.188
-  skip-cert-verify: true
-  tls: true
-  type: http
 - name: 🇺🇸美国US171 测速未知危险 TG@jcnode
   port: 443
   server: 207.5.30.9
   skip-cert-verify: true
-  sub_tag: R002-260618
-  tls: true
-  type: http
-  udp: true
-- name: 🇳🇱荷兰NL176 测速未知中性 TG@jcnode
-  port: 443
-  server: 157.22.183.72
   sub_tag: R002-260618
   tls: true
   type: http
@@ -11186,29 +10125,6 @@ proxies:
   tls: true
   type: http
   username: 'null'
-- name: 🇺🇸美国US181 测速未知危险 TG@jcnode
-  password: null
-  port: 8090
-  server: 209.148.53.153
-  skip-cert-verify: true
-  tls: true
-  type: http
-  username: null
-- client-fingerprint: firefox
-  flow: xtls-rprx-vision
-  name: 🇩🇪德国DE090 测速未知中性 TG@jcnode
-  network: raw
-  port: 443
-  reality-opts:
-    public-key: QvT-t_h_AF2EAT4Ggh_a6pcCK3StY8G9WCXn6-dJbxk
-    short-id: "51079f144d661484"
-  server: 13.143.180.104
-  servername: s12.bsh-net.ru
-  tls: true
-  type: vless
-  udp: true
-  uuid: a0fa7e19-70ec-41e0-b0cc-bcc984d4201a
-  packet-encoding: xudp
 - client-fingerprint: chrome
   name: 🇳🇱荷兰NL180 测速未知 TG@jcnode
   network: ws
@@ -11223,20 +10139,6 @@ proxies:
   udp: true
   ws-opts:
     path: /assignment
-- client-fingerprint: qq
-  flow: xtls-rprx-vision
-  name: 🇪🇪EE002 测速未知 TG@jcnode
-  network: tcp
-  port: 443
-  reality-opts:
-    public-key: 2XyUS3_ONl5REQ7NiwikdJphAe7oJ61-21zuqnN67y8
-    short-id: "2e82d7ac"
-  server: 185.225.205.53
-  servername: addons.mozilla.org
-  tls: true
-  type: vless
-  udp: true
-  uuid: 7a0348d6-55d3-4c23-b22f-6277fcb2264c
 - name: 🇨🇿CZ007 测速未知纯净 TG@jcnode
   port: 443
   server: 193.35.104.196
@@ -11284,14 +10186,6 @@ proxies:
   server: 69.55.49.177
   port: 38182
   name: 🇺🇸美国US188 测速未知 TG@jcnode
-- name: 🇳🇱荷兰NL183 测速未知危险 TG@jcnode
-  port: 443
-  server: 5.255.125.188
-  skip-cert-verify: true
-  sub_tag: R002-260618
-  tls: true
-  type: http
-  udp: true
 - name: 🇩🇪德国DE099 测速未知纯净 TG@jcnode
   port: 443
   server: 217.92.132.233
@@ -11334,24 +10228,6 @@ proxies:
   tls: true
   type: http
   username: 'null'
-- alpn:
-  - http/1.1
-  client-fingerprint: firefox
-  name: 🇺🇸美国US195 测速未知 TG@jcnode
-  network: ws
-  port: 443
-  server: 87.242.94.84
-  servername: lingvaburo.cc
-  tls: true
-  type: vless
-  udp: true
-  uuid: 706bce83-91db-4260-b175-cba29145cd56
-  ws-opts:
-    headers:
-      Host: lingvaburo.cc
-      User-Agent: Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36
-    path: /checkout/step/gplirAP9szjx
-  packet-encoding: xudp
 - name: 🇺🇸美国US199 测速未知危险 TG@jcnode
   password: 'null'
   port: 443
@@ -11376,14 +10252,6 @@ proxies:
   skip-cert-verify: true
   tls: true
   type: http
-- name: 🇳🇱荷兰NL185 测速未知危险 TG@jcnode
-  port: 443
-  server: 5.255.125.187
-  skip-cert-verify: true
-  sub_tag: R002-260618
-  tls: true
-  type: http
-  udp: true
 - client-fingerprint: firefox
   name: 🇳🇱荷兰NL186 测速未知中性 TG@jcnode
   network: tcp
@@ -11397,13 +10265,6 @@ proxies:
   type: vless
   udp: true
   uuid: b2847c3b-5278-4b06-9c66-bc919d2dfec7
-- name: 🇺🇸美国US206 测速未知 TG@jcnode
-  password: ''
-  port: 1083
-  server: 195.201.246.53
-  skip-cert-verify: true
-  type: socks5
-  username: ''
 - client-fingerprint: firefox
   flow: xtls-rprx-vision
   name: 🇰🇿KZ003 测速未知纯净 TG@jcnode
@@ -11487,12 +10348,6 @@ proxies:
   udp: true
   uuid: 056405e8-de9f-4d0d-8145-956f13cc34da
   packet-encoding: xudp
-- name: 🇭🇰香港HK006 测速未知纯净 TG@jcnode
-  port: 31343
-  server: 120.232.204.58
-  skip-cert-verify: true
-  tls: true
-  type: http
 - name: 🇹🇼台湾TW011 测速未知纯净 TG@jcnode
   password: 0324fbc29561
   port: 443
@@ -11569,12 +10424,6 @@ proxies:
   tls: true
   type: http
   udp: true
-- name: 🇺🇸美国US037 测速未知危险 TG@jcnode
-  port: 443
-  server: 137.175.22.41
-  skip-cert-verify: true
-  tls: true
-  type: http
 - name: 🇺🇸美国US039 测速未知中性 TG@jcnode
   password: None
   port: 443
@@ -11644,6 +10493,14 @@ proxies:
 - name: 🇺🇸美国US061 测速未知危险 TG@jcnode
   port: 443
   server: 137.175.22.116
+  skip-cert-verify: true
+  sub_tag: R002-260618
+  tls: true
+  type: http
+  udp: true
+- name: 🇺🇸美国US063 测速未知危险 TG@jcnode
+  port: 443
+  server: 137.175.22.29
   skip-cert-verify: true
   sub_tag: R002-260618
   tls: true
@@ -11759,6 +10616,14 @@ proxies:
   sni: purecambogiasl.live
   tls: true
   type: http
+- name: 🇺🇸美国US076 测速未知危险 TG@jcnode
+  password: ''
+  port: 443
+  server: fan.365747.xyz
+  skip-cert-verify: true
+  tls: true
+  type: http
+  username: ''
 - name: 🇺🇸美国US078 测速未知危险 TG@jcnode
   port: 443
   server: 137.175.22.52
@@ -11837,14 +10702,6 @@ proxies:
   udp: true
   uuid: 1fe01c8a-ab37-4e95-bbfc-95d4a608931e
   packet-encoding: xudp
-- name: 🇺🇸美国US104 测速未知危险 TG@jcnode
-  password: ''
-  port: 443
-  server: 137.175.22.89
-  skip-cert-verify: true
-  tls: true
-  type: http
-  username: ''
 - name: 🇨🇦加拿大CA007 测速未知 TG@jcnode
   password: 0ab6c98dae3b48e8b9c4a776b6c9c19a
   port: 443
@@ -11907,22 +10764,6 @@ proxies:
   udp: true
   uuid: b18d5990-96eb-4587-a386-7f8ef7591e6a
   packet-encoding: xudp
-- client-fingerprint: chrome
-  name: 🇫🇷法国FR056 测速未知中性 TG@jcnode
-  network: ws
-  password: humanity
-  port: 2053
-  server: 89.150.34.41
-  skip-cert-verify: true
-  sni: www.calmlunch.com
-  sub_tag: X001-260618
-  type: trojan
-  udp: true
-  ws-opts:
-    headers:
-      User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36
-    path: /assignment
-  servername: www.calmlunch.com
 - name: 🇺🇸美国US156 测速未知危险 TG@jcnode
   password: ''
   port: 443
@@ -11940,10 +10781,6 @@ proxies:
   tls: true
   type: http
   udp: true
-- type: socks5
-  server: 207.180.217.98
-  port: 1088
-  name: 🇫🇷法国FR065 测速未知 TG@jcnode
 - name: '🇳🇱荷兰NL161 测速未知危险 TG@jcnode #2'
   password: None
   port: 443
@@ -11953,21 +10790,6 @@ proxies:
   tls: true
   type: http
   udp: true
-- client-fingerprint: firefox
-  flow: xtls-rprx-vision
-  name: 🇨🇿CZ013 测速未知中性 TG@jcnode
-  network: raw
-  port: 2063
-  reality-opts:
-    public-key: MMpt_jWc4J3oySBdf5sPDVRkiWlZmOObth6A1scM9BM
-    short-id: ""
-  server: cz-prg.dontblockmepls.com
-  servername: rusbid.de
-  tls: true
-  type: vless
-  udp: true
-  uuid: b18d5990-96eb-4587-a386-7f8ef7591e6a
-  packet-encoding: xudp
 - client-fingerprint: firefox
   encryption: none
   flow: xtls-rprx-vision
@@ -12118,6 +10940,15 @@ proxies:
   tls: true
   type: http
   username: ''
+- name: 🇩🇪德国DE019 测速未知中性 TG@jcnode
+  password: Tg3RnK7Xp8B1
+  port: 443
+  server: 45.32.157.84
+  skip-cert-verify: true
+  sni: ash.d50f6225-23b4-3a7b-9f15-a0fb2fc16803.kailib.com
+  type: trojan
+  udp: true
+  servername: ash.d50f6225-23b4-3a7b-9f15-a0fb2fc16803.kailib.com
 - name: 🇺🇸美国US045 测速未知中性 TG@jcnode
   password: None
   port: 443
@@ -12239,6 +11070,15 @@ proxies:
   type: vless
   udp: true
   uuid: 405b964e-a2d2-454f-aaaa-711cc218897c
+- name: 🇺🇸美国US138 测速未知危险 TG@jcnode
+  port: 443
+  server: fan.365747.xyz
+  skip-cert-verify: true
+  sni: fan.365747.xyz
+  sub_tag: R002-260618
+  tls: true
+  type: http
+  udp: true
 - name: 🇺🇸美国US140 测速未知危险 TG@jcnode
   port: 443
   server: 137.175.22.84
@@ -12537,14 +11377,6 @@ proxies:
   tls: true
   type: http
   username: null
-- name: '🇭🇰香港HK008 测速未知纯净 TG@jcnode #2'
-  password: 0324fbc29561
-  port: 443
-  server: 654968169.df6h451rh.xin
-  skip-cert-verify: true
-  sni: images.ctfassets.net
-  type: anytls
-  udp: true
 - name: 🇸🇬新加坡SG017 测速未知危险 TG@jcnode
   password: '8888'
   port: 1080
@@ -12624,6 +11456,12 @@ proxies:
   skip-cert-verify: true
   tls: true
   type: http
+- name: 🇺🇸美国US060 测速未知危险 TG@jcnode
+  port: 443
+  server: 137.175.22.88
+  skip-cert-verify: true
+  tls: true
+  type: http
 - name: 🇳🇱荷兰NL059 测速未知危险 TG@jcnode
   port: 23856
   server: 51.159.225.196
@@ -12686,15 +11524,6 @@ proxies:
   server: 87.199.198.178
   port: 8443
   name: 🇵🇱波兰PL005 测速未知 TG@jcnode
-- name: 🇭🇰香港HK011 测速未知纯净 TG@jcnode
-  password: 0324fbc29561
-  port: 443
-  server: 654968169.df6h451rh.xin
-  skip-cert-verify: true
-  sni: 127.0.0.1
-  tls: true
-  type: anytls
-  udp: true
 - name: 🇳🇱荷兰NL083 测速未知中性 TG@jcnode
   port: 443
   server: 51.158.243.91
@@ -12982,14 +11811,6 @@ proxies:
   tls: true
   type: http
   udp: true
-- name: '🇺🇸美国US131 测速未知危险 TG@jcnode #2'
-  password: null
-  port: 8090
-  server: 24.142.229.178
-  skip-cert-verify: true
-  tls: true
-  type: http
-  username: null
 - name: 🇫🇷法国FR036 测速未知中性 TG@jcnode
   port: 443
   server: 141.94.16.4
@@ -13066,12 +11887,6 @@ proxies:
   tls: true
   type: http
   udp: true
-- name: 🇵🇱波兰PL016 测速未知危险 TG@jcnode
-  port: 443
-  server: 31.186.220.204
-  skip-cert-verify: true
-  tls: true
-  type: http
 - name: '🇺🇸美国US159 测速未知危险 TG@jcnode #2'
   port: 8090
   server: 66.153.187.90
@@ -13215,10 +12030,6 @@ proxies:
   tls: true
   type: http
   username: bnVsbDpudWxs
-- type: socks5
-  server: 101.36.104.239
-  port: 10808
-  name: 🇯🇵日本JP024 测速未知危险 TG@jcnode
 - type: anytls
   server: 56481.df6h451rh.xin
   port: 443
@@ -13263,23 +12074,6 @@ proxies:
   tls: true
   type: http
   username: null
-- client-fingerprint: chrome
-  encryption: none
-  name: 🇺🇸美国US290 测速未知 TG@jcnode
-  network: ws
-  port: 2096
-  server: 172.64.147.34
-  servername: go.iranfree.de5.net
-  tls: true
-  type: vless
-  udp: true
-  uuid: 56e4896e-90a9-4fe0-8480-90d3d68b9928
-  ws-opts:
-    headers:
-      Host: go.iranfree.de5.net
-      User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36
-    path: /
-  packet-encoding: xudp
 - name: 🇳🇱荷兰NL112 测速未知中性 TG@jcnode
   password: None
   port: 443
@@ -13416,15 +12210,6 @@ proxies:
   tls: true
   type: http
   username: freeuser1
-- name: 🇫🇷法国FR059 测速未知 TG@jcnode
-  password: ''
-  port: 1080
-  server: 213.199.47.140
-  skip-cert-verify: true
-  sub_tag: K001-260618
-  type: socks5
-  udp: true
-  username: ''
 - name: '🇨🇿CZ007 测速未知纯净 TG@jcnode #2'
   port: 443
   server: 193.35.104.196
@@ -13703,16 +12488,6 @@ proxies:
   tls: true
   type: http
   username: null
-- type: anytls
-  server: 654968169.df6h451rh.xin
-  port: 443
-  password: 0324fbc29561
-  tls: true
-  servername: 127.0.0.1
-  header-type: none
-  skip-cert-verify: true
-  name: 🇭🇰香港HK031 测速未知纯净 TG@jcnode
-  sni: 127.0.0.1
 - name: 🇷🇴罗马尼亚RO164 测速未知危险 TG@jcnode
   password: null
   port: 9002
@@ -13947,13 +12722,6 @@ proxies:
   tls: true
   type: http
   username: ''
-- name: 🇪🇬EG006 测速未知危险 TG@jcnode
-  password: ''
-  port: 8080
-  server: 45.245.208.180
-  skip-cert-verify: true
-  type: http
-  username: ''
 - name: 🇷🇴罗马尼亚RO205 测速未知危险 TG@jcnode
   password: 'null'
   port: 9002
@@ -14120,43 +12888,6 @@ proxies:
   tls: true
   type: http
   username: ''
-- name: '🇳🇱荷兰NL155 测速未知中性 TG@jcnode #2'
-  port: 443
-  server: 157.22.183.72
-  tls: true
-  type: http
-- client-fingerprint: chrome
-  name: 🇺🇸美国US346 测速未知中性 TG@jcnode
-  network: ws
-  port: 2053
-  server: 8.35.211.43
-  servername: go.iranfree.de5.net
-  tls: true
-  type: vless
-  udp: true
-  uuid: 56e4896e-90a9-4fe0-8480-90d3d68b9928
-  ws-opts:
-    headers:
-      Host: go.iranfree.de5.net
-      User-Agent: Mozilla/5.0 (Windows; U; Windows NT 6.1; de-DE) AppleWebKit/534.17 (KHTML, like Gecko) Chrome/10.0.649.0 Safari/534.17
-    path: /
-  packet-encoding: xudp
-- type: vless
-  server: 172.66.0.118
-  port: 2083
-  uuid: a6ba51de-d50a-407f-a8bb-5dc8b3073ec1
-  encryption: none
-  packet-encoding: xudp
-  tls: true
-  servername: frosty-clover-b8ea-df1f0206.pages.dev
-  client-fingerprint: chrome
-  network: ws
-  ws-opts:
-    path: /7f0776a02fac
-    headers:
-      Host: frosty-clover-b8ea-df1f0206.pages.dev
-  udp: true
-  name: 🇺🇸美国US357 测速未知 TG@jcnode
 - name: 🇺🇸美国US395 测速未知 TG@jcnode
   port: 443
   server: fan.226278.xyz
@@ -14267,22 +12998,6 @@ proxies:
   skip-cert-verify: true
   tls: true
   type: http
-- name: '🇳🇱荷兰NL188 测速未知中性 TG@jcnode #2'
-  password: 'null'
-  port: 443
-  server: 157.22.183.72
-  skip-cert-verify: true
-  tls: true
-  type: http
-  username: 'null'
-- name: 🇳🇱荷兰NL197 测速未知中性 TG@jcnode
-  password: None
-  port: 443
-  server: 157.22.183.72
-  skip-cert-verify: true
-  tls: true
-  type: http
-  username: ''
 - alpn:
   - http/1.1
   name: 🇭🇰香港HK032 测速未知纯净 TG@jcnode
@@ -14342,23 +13057,6 @@ proxies:
   tls: true
   type: http
   username: ''
-- client-fingerprint: chrome
-  encryption: none
-  name: 🇺🇸美国US297 测速未知中性 TG@jcnode
-  network: ws
-  port: 2083
-  server: 8.39.125.107
-  servername: frosty-clover-b8ea-df1f0206.pages.dev
-  tls: true
-  type: vless
-  udp: true
-  uuid: a6ba51de-d50a-407f-a8bb-5dc8b3073ec1
-  ws-opts:
-    headers:
-      Host: frosty-clover-b8ea-df1f0206.pages.dev
-      User-Agent: Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.101 Safari/537.36
-    path: /7f0776a02fac
-  packet-encoding: xudp
 - name: '🇺🇸美国US327 测速未知危险 TG@jcnode #2'
   password: 'null'
   port: 443
@@ -14367,14 +13065,6 @@ proxies:
   tls: true
   type: http
   username: 'null'
-- name: 🇳🇱荷兰NL148 测速未知中性 TG@jcnode
-  password: ''
-  port: 443
-  server: 157.22.183.72
-  skip-cert-verify: true
-  tls: true
-  type: http
-  username: ''
 - name: 🇩🇪德国DE075 测速未知中性 TG@jcnode
   password: e4b72b531a2d10900519
   port: 443
@@ -14409,14 +13099,6 @@ proxies:
   sni: crosscards.site
   tls: true
   type: http
-- name: 🇦🇺澳大利亚AU005 测速未知危险 TG@jcnode
-  password: ''
-  port: 443
-  server: 159.13.44.228
-  skip-cert-verify: true
-  tls: true
-  type: http
-  username: ''
 - name: '🇵🇱波兰PL009 测速未知中性 TG@jcnode #2 #2 #2 #2'
   password: None
   port: 443
@@ -14476,9 +13158,9 @@ proxies:
   tls: true
   type: http
   username: null
-- name: '🇺🇸美国US266 测速未知危险 TG@jcnode #2'
+- name: '🇺🇸美国US258 测速未知危险 TG@jcnode #2'
   port: 443
-  server: 137.175.22.72
+  server: 137.175.22.85
   skip-cert-verify: true
   tls: true
   type: http
@@ -14523,10 +13205,6 @@ proxies:
   skip-cert-verify: true
   sni: www.bing.com
   type: hysteria2
-- type: socks5
-  server: 148.251.68.232
-  port: 8888
-  name: 🇩🇪德国DE088 测速未知 TG@jcnode
 - name: 🇯🇵日本JP095 测速未知纯净 TG@jcnode
   port: 443
   server: fan.587475.xyz
@@ -14602,14 +13280,6 @@ proxies:
   skip-cert-verify: true
   tls: true
   type: http
-- name: '🇳🇱荷兰NL098 测速未知 TG@jcnode #2'
-  password: ''
-  port: 9090
-  server: 185.53.129.141
-  skip-cert-verify: true
-  tls: true
-  type: http
-  username: ''
 - client-fingerprint: safari
   flow: xtls-rprx-vision
   name: 🇬🇧英国GB010 测速未知 TG@jcnode
@@ -14690,22 +13360,6 @@ proxies:
   tls: true
   type: http
   username: ''
-- client-fingerprint: random
-  encryption: none
-  flow: xtls-rprx-vision
-  name: '🇸🇪瑞典SE021 测速未知 TG@jcnode #2'
-  network: tcp
-  port: 443
-  reality-opts:
-    public-key: HXFe_cPryw01zqXchAFjZciDAS4UJg1-xScx6vjgjjY
-    short-id: "7f2e9c4b1a8d6e25"
-  server: swself2.yandex-api.com
-  servername: swself2.yandex-api.com
-  tls: true
-  type: vless
-  udp: true
-  uuid: 1b7ee703-fa08-4305-8469-ae3e30e61e44
-  packet-encoding: xudp
 - client-fingerprint: firefox
   name: '🇨🇭瑞士CH006 测速未知中性 TG@jcnode #2 #2'
   network: ws
@@ -14815,6 +13469,10 @@ proxies:
   server: webdrone.club
   tls: true
   type: http
+- type: socks5
+  server: 141.148.8.171
+  port: 1080
+  name: '🇺🇸美国US276 测速未知 TG@jcnode #2'
 - name: '🇺🇸美国US368 测速未知危险 TG@jcnode #2'
   password: github.com/Alvin9999-newpac/fanqiang
   port: 19000
@@ -14987,6 +13645,12 @@ proxies:
   skip-cert-verify: true
   tls: true
   type: http
+- name: '🇺🇸美国US383 测速未知危险 TG@jcnode #2 #2'
+  port: 443
+  server: 137.175.22.96
+  skip-cert-verify: true
+  tls: true
+  type: http
 - name: 🇺🇸美国US175 测速未知 TG@jcnode
   password: null
   port: 443
@@ -15140,21 +13804,6 @@ proxies:
   server: 91.107.179.68
   port: 10809
   name: '🇩🇪德国DE120 测速未知中性 TG@jcnode #2'
-- client-fingerprint: random
-  flow: xtls-rprx-vision
-  name: 🇩🇪德国DE146 测速未知纯净 TG@jcnode
-  network: tcp
-  port: 443
-  reality-opts:
-    public-key: HXFe_cPryw01zqXchAFjZciDAS4UJg1-xScx6vjgjjY
-    short-id: "7f2e9c4b1a8d6e25"
-  server: swself2.yandex-api.com
-  servername: swself2.yandex-api.com
-  tls: true
-  type: vless
-  udp: true
-  uuid: 1b7ee703-fa08-4305-8469-ae3e30e61e44
-  packet-encoding: xudp
 - name: 🇺🇸美国US548 测速未知危险 TG@jcnode
   port: 44499
   server: 45.61.188.134
@@ -15238,25 +13887,6 @@ proxies:
   udp: true
   uuid: 9a0e84f8-4b58-477f-99da-5fac5a2e58e8
   packet-encoding: xudp
-- alpn:
-  - http/1.1
-  client-fingerprint: chrome
-  encryption: none
-  name: '🇫🇷法国FR052 测速未知中性 TG@jcnode #2 #2 #2 #2'
-  network: ws
-  port: 443
-  server: 199.232.78.160
-  servername: ssl.fastly.com
-  tls: true
-  type: vless
-  udp: true
-  uuid: XpnTeam-68
-  ws-opts:
-    headers:
-      Host: Appxdn.global.ssl.fastly.net
-      User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.112 Safari/537.36
-    path: /
-  packet-encoding: xudp
 - name: 🇷🇴罗马尼亚RO087 测速未知危险 TG@jcnode
   password: None
   port: 9002
@@ -15289,6 +13919,10 @@ proxies:
   tls: true
   type: http
   username: null
+- type: socks5
+  server: 119.73.109.210
+  port: 1080
+  name: 🇵🇰PK001 测速未知危险 TG@jcnode
 - name: 🇺🇸美国US1120 测速未知危险 TG@jcnode
   password: null
   port: 443
@@ -15297,20 +13931,6 @@ proxies:
   tls: true
   type: http
   username: null
-- name: 🇺🇸美国US759 测速未知中性 TG@jcnode
-  network: ws
-  port: 80
-  server: 103.133.1.160
-  servername: soft-shadow-1e33.xicav73335.workers.dev
-  type: vless
-  udp: true
-  uuid: eaf76557-2219-4799-8171-d7020adfefd0
-  ws-opts:
-    headers:
-      Host: soft-shadow-1e33.xicav73335.workers.dev
-      User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36
-    path: /ws
-  packet-encoding: xudp
 - name: '🇰🇷韩国KR010 测速未知 TG@jcnode #2'
   port: 1090
   server: 121.169.46.116
@@ -15345,22 +13965,10 @@ proxies:
   sni: berniesbodybla.fun
   tls: true
   type: http
-- client-fingerprint: chrome
-  name: 🇺🇸美国US706 测速未知 TG@jcnode
-  network: ws
-  port: 443
-  server: 188.114.96.9
-  servername: idb8onmvbntuyt5t7t6cejfw8vlrb.pages.dev
-  skip-cert-verify: false
-  tfo: false
-  tls: true
-  type: vless
-  udp: true
-  uuid: 2e305ebe-f6e6-4689-b32f-cd04ab5ff541
-  ws-opts:
-    headers:
-      Host: idb8onmvbntuyt5t7t6cejfw8vlrb.pages.dev
-    path: /vl/9yvcoLdzdOXLUYfH7r5gwJhu1CHrj
+- type: socks5
+  server: 212.77.75.25
+  port: 1088
+  name: '🇮🇹意大利IT003 测速未知 TG@jcnode #2'
 - auth: 5fa748137b6d822308eea4611f474ad5
   name: 🇺🇸美国US708 测速未知 TG@jcnode
   obfs: salamander
@@ -15379,19 +13987,6 @@ proxies:
   sni: 193.35.104.196
   tls: true
   type: http
-- name: '🇳🇱荷兰NL110 测速未知中性 TG@jcnode #2 #2 #2 #2'
-  network: ws
-  port: 80
-  server: 103.133.1.160
-  skip-cert-verify: true
-  tls: false
-  type: vless
-  udp: true
-  uuid: eaf76557-2219-4799-8171-d7020adfefd0
-  ws-opts:
-    headers:
-      Host: soft-shadow-1e33.xicav73335.workers.dev
-    path: /ws
 - name: 🇩🇪德国DE072 测速未知纯净 TG@jcnode
   password: ''
   port: 443
@@ -15556,17 +14151,6 @@ proxies:
   tls: true
   type: http
   username: ''
-- type: socks5
-  server: 195.135.255.98
-  port: 1080
-  name: 🇱🇻LV004 测速未知 TG@jcnode
-- name: '🇭🇰香港HK008 测速未知 TG@jcnode #2 #2 #2'
-  password: admin
-  port: 8899
-  server: 47.242.19.215
-  skip-cert-verify: true
-  type: socks5
-  username: admin
 - name: '🇺🇸美国US200 测速未知中性 TG@jcnode #2'
   port: 443
   server: goedkoopgeluid.icu
@@ -15819,13 +14403,6 @@ proxies:
   skip-cert-verify: true
   tls: true
   type: http
-- name: '🇯🇵日本JP031 测速未知 TG@jcnode #2 #2'
-  password: ''
-  port: 10808
-  server: 101.36.104.239
-  skip-cert-verify: true
-  type: socks5
-  username: ''
 - name: '🇺🇸美国US234 测速未知中性 TG@jcnode #2 #2'
   password: 'null'
   port: 443
@@ -15911,10 +14488,6 @@ proxies:
   skip-cert-verify: true
   sni: www.bing.com#🇭🇰|HK|@wxgqlfx|147
   type: hysteria2
-- type: socks5
-  server: 8.215.25.3
-  port: 2080
-  name: '🇮🇩印度尼西亚ID006 测速未知危险 TG@jcnode #2'
 - name: '🇺🇸美国US145 测速未知中性 TG@jcnode #2'
   password: None
   port: 443
@@ -16217,11 +14790,11 @@ proxy-groups:
   - 🇵🇱 波兰自动
   - 🇮🇩 印度尼西亚自动
   - 🇱🇻 拉脱维亚自动
-  - 🇨🇿 捷克自动
   - 🇮🇪 爱尔兰自动
+  - 🇨🇿 捷克自动
   - 🇧🇷 巴西自动
-  - 🇪🇪 爱沙尼亚自动
   - 🇮🇱 以色列自动
+  - 🇪🇪 爱沙尼亚自动
   - 🇰🇿 哈萨克斯坦自动
   - 🇱🇹 立陶宛自动
   - 🇦🇱 阿尔巴尼亚自动
@@ -16229,9 +14802,7 @@ proxy-groups:
   - 🇸🇰 斯洛伐克自动
   - 🇺🇦 乌克兰自动
   - 🇦🇪 阿联酋自动
-  - 🇨🇾 塞浦路斯自动
-  - 🇪🇬 埃及自动
-  - 🇲🇩 摩尔多瓦自动
+  - 🇵🇰 巴基斯坦自动
   - 🇸🇮 斯洛文尼亚自动
   - DIRECT
 - name: 🔰 手动选择
@@ -16242,16 +14813,13 @@ proxy-groups:
   - 🇸🇬新加坡SG002 9.1MB/s中性 TG@jcnode
   - 🇺🇸美国US 053 7.4MB/s TG@jcnode
   - 🇺🇸美国US 041 7.4MB/s TG@jcnode
-  - 🇹🇼台湾TW001 6.67MB/s纯净 TG@jcnode
   - 🇭🇰香港HK001 6.4MB/s危险 TG@jcnode
   - 🇷🇴罗马尼亚RO 004 6.1MB/s TG@jcnode
-  - 🇹🇼台湾TW002 5.71MB/s纯净 TG@jcnode
   - 🇷🇴罗马尼亚RO 031 5.5MB/s TG@jcnode
   - 🇺🇸美国US112 4.9MB/s中性 TG@jcnode
   - 🇫🇷法国FR001 4.84MB/s中性 TG@jcnode
   - 🇹🇼台湾TW002 4.7MB/s危险 TG@jcnode
   - 🇹🇼台湾TW003 4.5MB/s危险 TG@jcnode
-  - 🇹🇼台湾TW001 4.44MB/s纯净 TG@jcnode
   - 🇹🇼台湾TW001 4.39MB/s纯净 TG@jcnode
   - 🇹🇼台湾TW002 4.32MB/s纯净 TG@jcnode
   - 🇷🇴罗马尼亚RO 083 4.3MB/s TG@jcnode
@@ -16262,6 +14830,7 @@ proxy-groups:
   - 🇩🇪德国DE003 3.86MB/s纯净 TG@jcnode
   - 🇩🇪德国DE004 3.81MB/s危险 TG@jcnode
   - 🇯🇵日本JP002 3.8MB/s纯净 TG@jcnode
+  - 🇸🇬新加坡SG001 3.77MB/s TG@jcnode
   - 🇷🇴罗马尼亚RO 085 3.7MB/s TG@jcnode
   - 🇫🇷法国FR003 3.7MB/s中性 TG@jcnode
   - 🇩🇪德国DE001 3.68MB/s纯净 TG@jcnode
@@ -16280,22 +14849,15 @@ proxy-groups:
   - 🇫🇷法国FR002 2.71MB/s TG@jcnode
   - 🇳🇱荷兰NL003 2.64MB/s纯净 TG@jcnode
   - 🇫🇷法国FR002 2.6MB/s中性 TG@jcnode
-  - 🇳🇱荷兰NL002 2.54MB/s中性 TG@jcnode
   - 🇰🇷韩国KR 004 2.5MB/s TG@jcnode
   - 🇳🇱荷兰NL004 2.39MB/s纯净 TG@jcnode
-  - 🇯🇵日本JP001 2.32MB/s TG@jcnode
-  - '🇳🇱荷兰NL003 2.25MB/s中性 TG@jcnode #2'
   - 🇳🇱荷兰NL009 2.19MB/s中性 TG@jcnode
   - 🇩🇪德国DE001 2.18MB/s危险 TG@jcnode
-  - 🇫🇷法国FR001 2.16MB/s中性 TG@jcnode
   - 🇳🇱荷兰NL004 2.16MB/s中性 TG@jcnode
   - 🇳🇱荷兰NL003 2.13MB/s TG@jcnode
   - 🇺🇸美国US002 2.13MB/s中性 TG@jcnode
-  - 🇳🇱荷兰NL004 2.11MB/s中性 TG@jcnode
   - 🇺🇸美国US007 2.09MB/s纯净 TG@jcnode
-  - 🇱🇻LV001 2.09MB/s纯净 TG@jcnode
   - 🇺🇸美国US030 2.09MB/s TG@jcnode
-  - 🇫🇷法国FR002 2.08MB/s中性 TG@jcnode
   - 🇺🇸美国US001 2.08MB/s中性 TG@jcnode
   - 🇵🇱波兰PL002 2.03MB/s纯净 TG@jcnode
   - 🇺🇸美国US003 2.01MB/s危险 TG@jcnode
@@ -16308,6 +14870,7 @@ proxy-groups:
   - 🇺🇸美国US004 1.99MB/s危险 TG@jcnode
   - 🇺🇸美国US011 1.99MB/s中性 TG@jcnode
   - 🇳🇱荷兰NL004 1.99MB/s危险 TG@jcnode
+  - '🇳🇱荷兰NL004 1.99MB/s中性 TG@jcnode #2'
   - 🇺🇸美国US001 1.97MB/s TG@jcnode
   - 🇺🇸美国US006 1.96MB/s危险 TG@jcnode
   - 🇳🇱荷兰NL010 1.96MB/s中性 TG@jcnode
@@ -16316,8 +14879,6 @@ proxy-groups:
   - '🇺🇸美国US011 1.96MB/s TG@jcnode #2'
   - 🇳🇱荷兰NL006 1.96MB/s纯净 TG@jcnode
   - 🇳🇱荷兰NL016 1.96MB/s中性 TG@jcnode
-  - 🇫🇷法国FR003 1.95MB/s TG@jcnode
-  - 🇩🇪德国DE007 1.95MB/s中性 TG@jcnode
   - 🇺🇸美国US008 1.95MB/s中性 TG@jcnode
   - 🇺🇸美国US009 1.95MB/s中性 TG@jcnode
   - 🇺🇸美国US010 1.95MB/s危险 TG@jcnode
@@ -16343,18 +14904,17 @@ proxy-groups:
   - 🇺🇸美国US008 1.9MB/s中性 TG@jcnode
   - 🇺🇸美国US023 1.9MB/s TG@jcnode
   - 🇩🇪德国DE003 1.89MB/s危险 TG@jcnode
-  - 🇩🇪德国DE004 1.89MB/s TG@jcnode
   - 🇳🇱荷兰NL008 1.89MB/s危险 TG@jcnode
   - 🇺🇸美国US025 1.89MB/s危险 TG@jcnode
   - '🇺🇸美国US014 1.89MB/s危险 TG@jcnode #2'
   - 🇵🇱波兰PL001 1.89MB/s中性 TG@jcnode
   - 🇳🇱荷兰NL009 1.88MB/s危险 TG@jcnode
+  - 🇷🇺俄罗斯RU001 1.88MB/s纯净 TG@jcnode
   - 🇯🇵日本JP005 1.88MB/s纯净 TG@jcnode
   - 🇺🇸美国US025 1.88MB/s中性 TG@jcnode
   - 🇺🇸美国US026 1.88MB/s危险 TG@jcnode
   - 🇺🇸美国US018 1.88MB/s TG@jcnode
   - 🇺🇸美国US030 1.88MB/s TG@jcnode
-  - 🇳🇱荷兰NL010 1.87MB/s中性 TG@jcnode
   - 🇳🇱荷兰NL002 1.87MB/s危险 TG@jcnode
   - 🇺🇸美国US028 1.87MB/s危险 TG@jcnode
   - 🇺🇸美国US029 1.87MB/s危险 TG@jcnode
@@ -16364,7 +14924,6 @@ proxy-groups:
   - '🇺🇸美国US018 1.87MB/s中性 TG@jcnode #2'
   - 🇳🇱荷兰NL009 1.87MB/s纯净 TG@jcnode
   - 🇳🇱荷兰NL011 1.86MB/s危险 TG@jcnode
-  - 🇮🇪爱尔兰IE001 1.86MB/s TG@jcnode
   - 🇺🇸美国US032 1.86MB/s危险 TG@jcnode
   - 🇺🇸美国US033 1.86MB/s危险 TG@jcnode
   - 🇺🇸美国US034 1.86MB/s危险 TG@jcnode
@@ -16375,7 +14934,6 @@ proxy-groups:
   - 🇳🇱荷兰NL023 1.86MB/s纯净 TG@jcnode
   - '🇳🇱荷兰NL005 1.86MB/s危险 TG@jcnode #2'
   - 🇳🇱荷兰NL012 1.85MB/s危险 TG@jcnode
-  - 🇳🇱荷兰NL013 1.85MB/s中性 TG@jcnode
   - 🇺🇸美国US038 1.85MB/s危险 TG@jcnode
   - 🇺🇸美国US041 1.85MB/s危险 TG@jcnode
   - 🇺🇸美国US042 1.85MB/s危险 TG@jcnode
@@ -16454,7 +15012,6 @@ proxy-groups:
   - '🇺🇸美国US048 1.78MB/s危险 TG@jcnode #2'
   - 🇳🇱荷兰NL015 1.77MB/s危险 TG@jcnode
   - 🇫🇷法国FR006 1.77MB/s中性 TG@jcnode
-  - 🇦🇺澳大利亚AU001 1.77MB/s危险 TG@jcnode
   - 🇺🇸美国US082 1.77MB/s危险 TG@jcnode
   - 🇺🇸美国US083 1.77MB/s危险 TG@jcnode
   - 🇺🇸美国US084 1.77MB/s危险 TG@jcnode
@@ -16482,7 +15039,6 @@ proxy-groups:
   - 🇺🇸美国US047 1.76MB/s危险 TG@jcnode
   - 🇳🇱荷兰NL029 1.76MB/s纯净 TG@jcnode
   - '🇷🇴罗马尼亚RO014 1.76MB/s危险 TG@jcnode #2'
-  - 🇩🇪德国DE007 1.75MB/s TG@jcnode
   - 🇺🇸美国US009 1.75MB/s TG@jcnode
   - 🇺🇸美国US094 1.75MB/s危险 TG@jcnode
   - 🇺🇸美国US095 1.75MB/s危险 TG@jcnode
@@ -16550,6 +15106,7 @@ proxy-groups:
   - 🇷🇴罗马尼亚RO040 1.7MB/s危险 TG@jcnode
   - 🇩🇪德国DE009 1.69MB/s危险 TG@jcnode
   - 🇱🇻LV001 1.69MB/s中性 TG@jcnode
+  - 🇷🇺俄罗斯RU002 1.69MB/s纯净 TG@jcnode
   - 🇫🇷法国FR007 1.69MB/s纯净 TG@jcnode
   - 🇺🇸美国US131 1.69MB/s危险 TG@jcnode
   - 🇺🇸美国US132 1.69MB/s危险 TG@jcnode
@@ -16590,6 +15147,7 @@ proxy-groups:
   - 🇺🇸美国US157 1.67MB/s危险 TG@jcnode
   - 🇺🇸美国US158 1.67MB/s危险 TG@jcnode
   - 🇺🇸美国US114 1.67MB/s危险 TG@jcnode
+  - 🇪🇸西班牙ES001 1.67MB/s中性 TG@jcnode
   - 🇩🇪德国DE010 1.66MB/s危险 TG@jcnode
   - 🇳🇱荷兰NL025 1.66MB/s危险 TG@jcnode
   - 🇮🇳印度IN002 1.66MB/s危险 TG@jcnode
@@ -16606,7 +15164,6 @@ proxy-groups:
   - '🇳🇱荷兰NL020 1.66MB/s危险 TG@jcnode #2'
   - 🇺🇸美国US019 1.65MB/s危险 TG@jcnode
   - 🇳🇱荷兰NL026 1.65MB/s危险 TG@jcnode
-  - 🇩🇪德国DE011 1.65MB/s中性 TG@jcnode
   - 🇳🇱荷兰NL027 1.65MB/s危险 TG@jcnode
   - 🇷🇴罗马尼亚RO004 1.65MB/s TG@jcnode
   - 🇺🇸美国US168 1.65MB/s危险 TG@jcnode
@@ -16630,8 +15187,6 @@ proxy-groups:
   - 🇺🇸美国US069 1.65MB/s中性 TG@jcnode
   - 🇺🇸美国US020 1.64MB/s TG@jcnode
   - 🇳🇱荷兰NL028 1.64MB/s危险 TG@jcnode
-  - 🇩🇪德国DE012 1.64MB/s TG@jcnode
-  - 🇳🇱荷兰NL020 1.64MB/s中性 TG@jcnode
   - 🇳🇱荷兰NL013 1.64MB/s危险 TG@jcnode
   - 🇺🇸美国US174 1.64MB/s危险 TG@jcnode
   - 🇺🇸美国US176 1.64MB/s危险 TG@jcnode
@@ -16653,7 +15208,6 @@ proxy-groups:
   - 🇷🇴罗马尼亚RO016 1.63MB/s危险 TG@jcnode
   - 🇷🇴罗马尼亚RO036 1.63MB/s危险 TG@jcnode
   - 🇺🇸美国US024 1.63MB/s中性 TG@jcnode
-  - 🇳🇱荷兰NL018 1.63MB/s中性 TG@jcnode
   - '🇷🇴罗马尼亚RO019 1.63MB/s危险 TG@jcnode #2'
   - '🇺🇸美国US129 1.63MB/s危险 TG@jcnode #2'
   - 🇺🇸美国US080 1.63MB/s中性 TG@jcnode
@@ -16695,10 +15249,8 @@ proxy-groups:
   - 🇺🇸美国US090 1.61MB/s中性 TG@jcnode
   - 🇳🇱荷兰NL030 1.6MB/s危险 TG@jcnode
   - 🇳🇱荷兰NL031 1.6MB/s危险 TG@jcnode
-  - 🇫🇷法国FR008 1.6MB/s危险 TG@jcnode
   - 🇺🇸美国US025 1.6MB/s TG@jcnode
   - 🇺🇸美国US026 1.6MB/s TG@jcnode
-  - 🇦🇺澳大利亚AU002 1.6MB/s危险 TG@jcnode
   - 🇳🇱荷兰NL032 1.6MB/s危险 TG@jcnode
   - 🇷🇴罗马尼亚RO007 1.6MB/s TG@jcnode
   - 🇺🇸美国US012 1.6MB/s中性 TG@jcnode
@@ -16706,7 +15258,6 @@ proxy-groups:
   - 🇺🇸美国US047 1.6MB/s危险 TG@jcnode
   - 🇺🇸美国US129 1.6MB/s中性 TG@jcnode
   - 🇳🇱荷兰NL033 1.59MB/s危险 TG@jcnode
-  - 🇫🇷法国FR009 1.59MB/s危险 TG@jcnode
   - 🇳🇱荷兰NL019 1.59MB/s危险 TG@jcnode
   - 🇺🇸美国US207 1.59MB/s危险 TG@jcnode
   - 🇺🇸美国US208 1.59MB/s危险 TG@jcnode
@@ -16718,6 +15269,8 @@ proxy-groups:
   - 🇺🇸美国US082 1.59MB/s危险 TG@jcnode
   - 🇺🇸美国US084 1.59MB/s TG@jcnode
   - 🇺🇸美国US116 1.59MB/s危险 TG@jcnode
+  - 🇯🇵日本JP017 1.59MB/s纯净 TG@jcnode
+  - 🇳🇱荷兰NL034 1.58MB/s中性 TG@jcnode
   - 🇮🇪爱尔兰IE004 1.58MB/s中性 TG@jcnode
   - 🇳🇱荷兰NL035 1.58MB/s危险 TG@jcnode
   - 🇳🇱荷兰NL036 1.58MB/s危险 TG@jcnode
@@ -16756,16 +15309,17 @@ proxy-groups:
   - 🇳🇱荷兰NL039 1.56MB/s危险 TG@jcnode
   - 🇺🇸美国US031 1.56MB/s中性 TG@jcnode
   - 🇮🇱以色列IL001 1.56MB/s纯净 TG@jcnode
+  - 🇳🇱荷兰NL022 1.56MB/s中性 TG@jcnode
   - 🇺🇸美国US211 1.56MB/s危险 TG@jcnode
   - 🇺🇸美国US212 1.56MB/s危险 TG@jcnode
   - 🇺🇸美国US213 1.56MB/s危险 TG@jcnode
   - 🇷🇴罗马尼亚RO026 1.56MB/s危险 TG@jcnode
   - 🇺🇸美国US214 1.56MB/s危险 TG@jcnode
-  - 🇫🇷法国FR012 1.56MB/s危险 TG@jcnode
   - 🇺🇸美国US129 1.56MB/s危险 TG@jcnode
   - 🇺🇸美国US125 1.56MB/s TG@jcnode
   - 🇳🇱荷兰NL044 1.56MB/s危险 TG@jcnode
   - 🇺🇸美国US107 1.56MB/s危险 TG@jcnode
+  - 🇩🇪德国DE017 1.55MB/s TG@jcnode
   - 🇺🇸美国US032 1.55MB/s TG@jcnode
   - 🇺🇸美国US033 1.55MB/s TG@jcnode
   - 🇮🇪爱尔兰IE005 1.55MB/s中性 TG@jcnode
@@ -16773,7 +15327,6 @@ proxy-groups:
   - 🇺🇸美国US034 1.55MB/s TG@jcnode
   - 🇷🇴罗马尼亚RO009 1.55MB/s TG@jcnode
   - 🇺🇸美国US035 1.55MB/s TG@jcnode
-  - 🇺🇸美国US002 1.55MB/s危险 TG@jcnode
   - 🇷🇴罗马尼亚RO027 1.55MB/s危险 TG@jcnode
   - 🇷🇴罗马尼亚RO028 1.55MB/s危险 TG@jcnode
   - '🇺🇸美国US115 1.55MB/s危险 TG@jcnode #2'
@@ -16788,7 +15341,6 @@ proxy-groups:
   - 🇫🇷法国FR009 1.54MB/s中性 TG@jcnode
   - 🇳🇱荷兰NL046 1.54MB/s危险 TG@jcnode
   - 🇺🇸美国US116 1.54MB/s危险 TG@jcnode
-  - '🇳🇱荷兰NL036 1.54MB/s中性 TG@jcnode #2'
   - 🇳🇱荷兰NL042 1.53MB/s危险 TG@jcnode
   - 🇷🇴罗马尼亚RO010 1.53MB/s TG@jcnode
   - 🇳🇱荷兰NL026 1.53MB/s危险 TG@jcnode
@@ -16796,7 +15348,6 @@ proxy-groups:
   - 🇩🇪德国DE017 1.53MB/s危险 TG@jcnode
   - 🇺🇸美国US219 1.53MB/s危险 TG@jcnode
   - 🇷🇴罗马尼亚RO029 1.53MB/s危险 TG@jcnode
-  - 🇦🇺澳大利亚AU002 1.53MB/s危险 TG@jcnode
   - 🇺🇸美国US220 1.53MB/s危险 TG@jcnode
   - '🇵🇱波兰PL003 1.53MB/s TG@jcnode #2'
   - '🇺🇸美国US160 1.53MB/s危险 TG@jcnode #2'
@@ -16805,7 +15356,6 @@ proxy-groups:
   - 🇷🇴罗马尼亚RO011 1.52MB/s危险 TG@jcnode
   - 🇱🇻LV003 1.52MB/s危险 TG@jcnode
   - 🇪🇸西班牙ES002 1.52MB/s中性 TG@jcnode
-  - 🇫🇷法国FR019 1.52MB/s危险 TG@jcnode
   - 🇺🇸美国US221 1.52MB/s危险 TG@jcnode
   - 🇺🇸美国US222 1.52MB/s危险 TG@jcnode
   - 🇺🇸美国US223 1.52MB/s危险 TG@jcnode
@@ -16820,13 +15370,11 @@ proxy-groups:
   - 🇺🇸美国US228 1.51MB/s危险 TG@jcnode
   - 🇩🇪德国DE018 1.51MB/s危险 TG@jcnode
   - 🇺🇸美国US139 1.51MB/s危险 TG@jcnode
-  - 🇳🇱荷兰NL027 1.51MB/s中性 TG@jcnode
   - 🇺🇸美国US140 1.51MB/s危险 TG@jcnode
   - 🇳🇱荷兰NL021 1.51MB/s危险 TG@jcnode
   - 🇳🇱荷兰NL045 1.5MB/s危险 TG@jcnode
   - 🇺🇸美国US036 1.5MB/s TG@jcnode
   - 🇳🇱荷兰NL046 1.5MB/s危险 TG@jcnode
-  - 🇳🇱荷兰NL047 1.5MB/s TG@jcnode
   - 🇺🇸美国US037 1.5MB/s TG@jcnode
   - 🇺🇸美国US229 1.5MB/s危险 TG@jcnode
   - 🇺🇸美国US230 1.5MB/s危险 TG@jcnode
@@ -16837,24 +15385,19 @@ proxy-groups:
   - 🇮🇱以色列IL002 1.49MB/s纯净 TG@jcnode
   - 🇮🇪爱尔兰IE007 1.49MB/s中性 TG@jcnode
   - 🇺🇸美国US231 1.49MB/s危险 TG@jcnode
-  - 🇳🇱荷兰NL060 1.49MB/s纯净 TG@jcnode
   - 🇺🇸美国US133 1.49MB/s危险 TG@jcnode
-  - 🇫🇷法国FR011 1.48MB/s危险 TG@jcnode
   - 🇳🇱荷兰NL048 1.48MB/s危险 TG@jcnode
-  - 🇫🇮芬兰FI001 1.48MB/s TG@jcnode
   - 🇫🇷法国FR012 1.48MB/s中性 TG@jcnode
   - 🇩🇪德国DE003 1.48MB/s中性 TG@jcnode
   - 🇳🇱荷兰NL028 1.48MB/s危险 TG@jcnode
   - 🇺🇸美国US016 1.48MB/s中性 TG@jcnode
   - '🇫🇷法国FR014 1.48MB/s中性 TG@jcnode #2'
   - 🇺🇸美国US134 1.48MB/s中性 TG@jcnode
-  - 🇦🇺澳大利亚AU003 1.47MB/s危险 TG@jcnode
   - 🇳🇱荷兰NL049 1.47MB/s危险 TG@jcnode
   - 🇺🇸美国US038 1.47MB/s TG@jcnode
   - 🇮🇪爱尔兰IE006 1.47MB/s中性 TG@jcnode
   - 🇷🇴罗马尼亚RO012 1.47MB/s TG@jcnode
   - 🇺🇸美国US232 1.47MB/s危险 TG@jcnode
-  - 🇳🇱荷兰NL029 1.47MB/s中性 TG@jcnode
   - 🇺🇸美国US150 1.47MB/s危险 TG@jcnode
   - '🇺🇸美国US136 1.47MB/s危险 TG@jcnode #2'
   - 🇺🇸美国US139 1.47MB/s中性 TG@jcnode
@@ -16869,7 +15412,6 @@ proxy-groups:
   - 🇺🇸美国US139 1.46MB/s中性 TG@jcnode
   - 🇳🇱荷兰NL050 1.45MB/s危险 TG@jcnode
   - 🇳🇱荷兰NL051 1.45MB/s危险 TG@jcnode
-  - 🇩🇪德国DE020 1.45MB/s中性 TG@jcnode
   - 🇺🇸美国US040 1.45MB/s中性 TG@jcnode
   - 🇮🇪爱尔兰IE006 1.45MB/s中性 TG@jcnode
   - 🇺🇸美国US018 1.45MB/s中性 TG@jcnode
@@ -16881,11 +15423,8 @@ proxy-groups:
   - 🇷🇴罗马尼亚RO034 1.44MB/s危险 TG@jcnode
   - 🇳🇱荷兰NL045 1.44MB/s危险 TG@jcnode
   - 🇳🇱荷兰NL046 1.44MB/s危险 TG@jcnode
-  - 🇳🇱荷兰NL047 1.44MB/s中性 TG@jcnode
   - 🇭🇰香港HK009 1.44MB/s纯净 TG@jcnode
   - 🇳🇱荷兰NL053 1.43MB/s危险 TG@jcnode
-  - 🇫🇮芬兰FI002 1.43MB/s TG@jcnode
-  - 🇩🇪德国DE005 1.43MB/s纯净 TG@jcnode
   - 🇺🇸美国US239 1.43MB/s危险 TG@jcnode
   - 🇺🇸美国US240 1.43MB/s危险 TG@jcnode
   - 🇺🇸美国US241 1.43MB/s危险 TG@jcnode
@@ -16909,7 +15448,6 @@ proxy-groups:
   - 🇮🇪爱尔兰IE008 1.4MB/s中性 TG@jcnode
   - 🇮🇪爱尔兰IE009 1.4MB/s中性 TG@jcnode
   - 🇫🇷法国FR014 1.4MB/s危险 TG@jcnode
-  - 🇩🇪德国DE006 1.4MB/s纯净 TG@jcnode
   - 🇺🇸美国US206 1.4MB/s中性 TG@jcnode
   - 🇺🇸美国US207 1.4MB/s中性 TG@jcnode
   - 🇺🇸美国US244 1.4MB/s危险 TG@jcnode
@@ -16930,11 +15468,9 @@ proxy-groups:
   - 🇳🇱荷兰NL056 1.38MB/s危险 TG@jcnode
   - 🇷🇴罗马尼亚RO014 1.38MB/s TG@jcnode
   - 🇺🇸美国US041 1.38MB/s TG@jcnode
-  - 🇩🇪德国DE022 1.38MB/s纯净 TG@jcnode
   - 🇺🇸美国US042 1.37MB/s危险 TG@jcnode
   - 🇷🇴罗马尼亚RO015 1.37MB/s TG@jcnode
   - 🇷🇴罗马尼亚RO067 1.37MB/s危险 TG@jcnode
-  - 🇺🇸美国US151 1.37MB/s TG@jcnode
   - 🇺🇸美国US094 1.37MB/s危险 TG@jcnode
   - 🇳🇱荷兰NL050 1.37MB/s危险 TG@jcnode
   - 🇺🇸美国US103 1.37MB/s中性 TG@jcnode
@@ -16953,7 +15489,6 @@ proxy-groups:
   - 🇩🇪德国DE024 1.34MB/s危险 TG@jcnode
   - 🇫🇷法国FR015 1.34MB/s危险 TG@jcnode
   - 🇱🇻LV004 1.34MB/s危险 TG@jcnode
-  - 🇵🇱波兰PL003 1.34MB/s危险 TG@jcnode
   - 🇺🇸美国US214 1.34MB/s中性 TG@jcnode
   - '🇷🇴罗马尼亚RO058 1.34MB/s危险 TG@jcnode #2'
   - 🇳🇱荷兰NL017 1.34MB/s中性 TG@jcnode
@@ -16961,14 +15496,11 @@ proxy-groups:
   - 🇺🇸美国US044 1.33MB/s中性 TG@jcnode
   - 🇺🇸美国US216 1.33MB/s中性 TG@jcnode
   - 🇷🇴罗马尼亚RO047 1.33MB/s危险 TG@jcnode
-  - 🇳🇱荷兰NL074 1.33MB/s中性 TG@jcnode
   - '🇳🇱荷兰NL048 1.33MB/s危险 TG@jcnode #2'
   - 🇺🇸美国US189 1.33MB/s危险 TG@jcnode
   - 🇺🇸美国US103 1.33MB/s危险 TG@jcnode
   - 🇷🇴罗马尼亚RO190 1.33MB/s危险 TG@jcnode
-  - 🇪🇸西班牙ES002 1.33MB/s中性 TG@jcnode
   - 🇫🇷法国FR016 1.32MB/s中性 TG@jcnode
-  - 🇵🇱波兰PL004 1.32MB/s危险 TG@jcnode
   - 🇳🇱荷兰NL057 1.32MB/s危险 TG@jcnode
   - 🇩🇪德国DE025 1.32MB/s TG@jcnode
   - 🇷🇴罗马尼亚RO049 1.32MB/s危险 TG@jcnode
@@ -16991,22 +15523,18 @@ proxy-groups:
   - 🇺🇸美国US050 1.31MB/s危险 TG@jcnode
   - 🇺🇸美国US046 1.3MB/s中性 TG@jcnode
   - 🇷🇴罗马尼亚RO016 1.3MB/s危险 TG@jcnode
-  - 🇫🇮芬兰FI003 1.3MB/s TG@jcnode
   - 🇪🇸西班牙ES001 1.3MB/s中性 TG@jcnode
   - 🇷🇴罗马尼亚RO059 1.3MB/s危险 TG@jcnode
   - 🇷🇴罗马尼亚RO060 1.3MB/s危险 TG@jcnode
   - 🇷🇴罗马尼亚RO061 1.3MB/s危险 TG@jcnode
   - 🇷🇴罗马尼亚RO355 1.3MB/s危险 TG@jcnode
   - 🇷🇴罗马尼亚RO225 1.3MB/s危险 TG@jcnode
-  - 🇳🇱荷兰NL060 1.29MB/s中性 TG@jcnode
   - 🇩🇪德国DE026 1.29MB/s危险 TG@jcnode
   - 🇳🇱荷兰NL061 1.29MB/s危险 TG@jcnode
   - 🇱🇻LV005 1.29MB/s危险 TG@jcnode
   - 🇺🇸美国US047 1.29MB/s中性 TG@jcnode
-  - 🇭🇰香港HK002 1.29MB/s纯净 TG@jcnode
   - 🇺🇸美国US251 1.29MB/s危险 TG@jcnode
   - 🇺🇸美国US252 1.29MB/s危险 TG@jcnode
-  - 🇩🇪德国DE036 1.29MB/s中性 TG@jcnode
   - 🇷🇴罗马尼亚RO090 1.29MB/s危险 TG@jcnode
   - 🇫🇷法国FR017 1.29MB/s纯净 TG@jcnode
   - 🇺🇸美国US125 1.29MB/s纯净 TG@jcnode
@@ -17024,18 +15552,16 @@ proxy-groups:
   - 🇺🇸美国US224 1.27MB/s危险 TG@jcnode
   - 🇷🇴罗马尼亚RO065 1.27MB/s危险 TG@jcnode
   - 🇷🇴罗马尼亚RO066 1.27MB/s危险 TG@jcnode
-  - 🇳🇱荷兰NL061 1.27MB/s危险 TG@jcnode
   - 🇳🇱荷兰NL078 1.27MB/s危险 TG@jcnode
   - 🇺🇸美国US075 1.27MB/s危险 TG@jcnode
   - 🇷🇴罗马尼亚RO399 1.27MB/s危险 TG@jcnode
   - 🇺🇸美国US049 1.26MB/s中性 TG@jcnode
   - 🇺🇸美国US050 1.26MB/s中性 TG@jcnode
   - 🇫🇷法国FR020 1.26MB/s纯净 TG@jcnode
+  - 🇺🇸美国US226 1.26MB/s危险 TG@jcnode
   - 🇷🇴罗马尼亚RO067 1.26MB/s危险 TG@jcnode
   - '🇷🇴罗马尼亚RO055 1.26MB/s危险 TG@jcnode #2'
   - 🇷🇴罗马尼亚RO470 1.26MB/s危险 TG@jcnode
-  - 🇳🇱荷兰NL028 1.26MB/s中性 TG@jcnode
-  - 🇩🇪德国DE027 1.25MB/s中性 TG@jcnode
   - 🇫🇷法国FR021 1.25MB/s纯净 TG@jcnode
   - 🇷🇴罗马尼亚RO068 1.25MB/s危险 TG@jcnode
   - 🇷🇴罗马尼亚RO109 1.25MB/s危险 TG@jcnode
@@ -17052,6 +15578,7 @@ proxy-groups:
   - 🇷🇴罗马尼亚RO071 1.22MB/s危险 TG@jcnode
   - 🇺🇸美国US177 1.22MB/s中性 TG@jcnode
   - 🇳🇱荷兰NL062 1.21MB/s中性 TG@jcnode
+  - 🇺🇸美国US011 1.21MB/s危险 TG@jcnode
   - 🇷🇴罗马尼亚RO073 1.21MB/s危险 TG@jcnode
   - 🇷🇴罗马尼亚RO074 1.21MB/s危险 TG@jcnode
   - 🇫🇷法国FR027 1.21MB/s中性 TG@jcnode
@@ -17067,18 +15594,17 @@ proxy-groups:
   - 🇷🇴罗马尼亚RO075 1.19MB/s危险 TG@jcnode
   - 🇷🇴罗马尼亚RO076 1.19MB/s危险 TG@jcnode
   - 🇫🇷法国FR024 1.18MB/s纯净 TG@jcnode
+  - 🇺🇸美国US212 1.18MB/s中性 TG@jcnode
   - 🇺🇸美国US171 1.18MB/s危险 TG@jcnode
   - 🇺🇸美国US053 1.17MB/s危险 TG@jcnode
   - 🇺🇸美国US054 1.17MB/s中性 TG@jcnode
   - 🇷🇴罗马尼亚RO077 1.17MB/s危险 TG@jcnode
   - 🇫🇷法国FR015 1.17MB/s中性 TG@jcnode
   - 🇺🇸美国US055 1.16MB/s中性 TG@jcnode
-  - 🇫🇷法国FR025 1.16MB/s TG@jcnode
   - 🇺🇸美国US024 1.16MB/s中性 TG@jcnode
   - 🇺🇸美国US128 1.16MB/s危险 TG@jcnode
   - 🇷🇴罗马尼亚RO018 1.15MB/s TG@jcnode
   - 🇷🇴罗马尼亚RO019 1.15MB/s TG@jcnode
-  - 🇳🇱荷兰NL088 1.15MB/s危险 TG@jcnode
   - 🇺🇸美国US056 1.14MB/s危险 TG@jcnode
   - 🇺🇸美国US057 1.14MB/s纯净 TG@jcnode
   - 🇨🇿CZ001 1.14MB/s中性 TG@jcnode
@@ -17086,7 +15612,6 @@ proxy-groups:
   - 🇱🇻LV006 1.13MB/s危险 TG@jcnode
   - 🇳🇱荷兰NL065 1.13MB/s中性 TG@jcnode
   - 🇺🇸美国US150 1.13MB/s危险 TG@jcnode
-  - 🇺🇸美国US058 1.12MB/s纯净 TG@jcnode
   - 🇨🇭瑞士CH002 1.12MB/s中性 TG@jcnode
   - 🇳🇱荷兰NL020 1.12MB/s危险 TG@jcnode
   - 🇺🇸美国US025 1.12MB/s中性 TG@jcnode
@@ -17098,7 +15623,6 @@ proxy-groups:
   - 🇺🇸美国US068 1.11MB/s中性 TG@jcnode
   - 🇷🇴罗马尼亚RO252 1.11MB/s危险 TG@jcnode
   - 🇺🇸美国US168 1.11MB/s危险 TG@jcnode
-  - 🇵🇱波兰PL006 1.1MB/s TG@jcnode
   - 🇨🇭瑞士CH004 1.1MB/s中性 TG@jcnode
   - 🇨🇿CZ002 1.1MB/s中性 TG@jcnode
   - 🇷🇴罗马尼亚RO078 1.1MB/s危险 TG@jcnode
@@ -17112,23 +15636,21 @@ proxy-groups:
   - 🇺🇸美国US026 1.09MB/s中性 TG@jcnode
   - 🇷🇴罗马尼亚RO254 1.09MB/s危险 TG@jcnode
   - 🇵🇱波兰PL007 1.08MB/s TG@jcnode
-  - 🇳🇱荷兰NL066 1.08MB/s TG@jcnode
   - 🇩🇪德国DE029 1.08MB/s纯净 TG@jcnode
   - 🇩🇪德国DE033 1.08MB/s危险 TG@jcnode
   - 🇷🇴罗马尼亚RO079 1.08MB/s危险 TG@jcnode
   - 🇷🇴罗马尼亚RO080 1.08MB/s危险 TG@jcnode
-  - 🇪🇸西班牙ES001 1.08MB/s中性 TG@jcnode
   - '🇷🇴罗马尼亚RO066 1.08MB/s危险 TG@jcnode #2'
   - 🇳🇱荷兰NL067 1.07MB/s中性 TG@jcnode
   - 🇨🇿CZ003 1.07MB/s中性 TG@jcnode
   - 🇫🇷法国FR038 1.07MB/s纯净 TG@jcnode
   - 🇷🇴罗马尼亚RO075 1.07MB/s危险 TG@jcnode
+  - 🇺🇸美国US060 1.06MB/s危险 TG@jcnode
   - 🇷🇴罗马尼亚RO081 1.06MB/s危险 TG@jcnode
   - 🇮🇹意大利IT005 1.06MB/s危险 TG@jcnode
   - 🇺🇸美国US078 1.06MB/s危险 TG@jcnode
   - 🇺🇸美国US186 1.06MB/s危险 TG@jcnode
   - 🇳🇱荷兰NL068 1.05MB/s危险 TG@jcnode
-  - 🇫🇮芬兰FI002 1.05MB/s中性 TG@jcnode
   - 🇱🇻LV001 1.05MB/s危险 TG@jcnode
   - 🇷🇴罗马尼亚RO083 1.05MB/s危险 TG@jcnode
   - 🇷🇴罗马尼亚RO084 1.05MB/s危险 TG@jcnode
@@ -17141,7 +15663,6 @@ proxy-groups:
   - 🇧🇷巴西BR001 1.03MB/s中性 TG@jcnode
   - 🇩🇪德国DE030 1.03MB/s纯净 TG@jcnode
   - 🇺🇸美国US030 1.03MB/s危险 TG@jcnode
-  - 🇬🇧英国GB001 1.02MB/s TG@jcnode
   - 🇺🇸美国US031 1.02MB/s中性 TG@jcnode
   - 🇺🇸美国US242 1.02MB/s危险 TG@jcnode
   - 🇷🇴罗马尼亚RO088 1.02MB/s危险 TG@jcnode
@@ -17161,7 +15682,6 @@ proxy-groups:
   - 🇳🇱荷兰NL071 0.99MB/s TG@jcnode
   - 🇨🇿CZ004 0.99MB/s中性 TG@jcnode
   - 🇺🇸美国US203 0.99MB/s危险 TG@jcnode
-  - 🇬🇧英国GB002 0.98MB/s TG@jcnode
   - 🇧🇷巴西BR002 0.98MB/s中性 TG@jcnode
   - 🇨🇿CZ005 0.98MB/s中性 TG@jcnode
   - 🇷🇴罗马尼亚RO096 0.98MB/s危险 TG@jcnode
@@ -17170,12 +15690,9 @@ proxy-groups:
   - 🇸🇬新加坡SG005 0.98MB/s中性 TG@jcnode
   - 🇮🇹意大利IT004 0.97MB/s TG@jcnode
   - 🇮🇹意大利IT005 0.97MB/s TG@jcnode
-  - 🇨🇿CZ006 0.97MB/s中性 TG@jcnode
   - 🇷🇴罗马尼亚RO099 0.97MB/s危险 TG@jcnode
   - 🇷🇴罗马尼亚RO100 0.97MB/s危险 TG@jcnode
   - 🇺🇸美国US208 0.97MB/s危险 TG@jcnode
-  - 🇪🇪EE001 0.96MB/s TG@jcnode
-  - 🇸🇪瑞典SE003 0.96MB/s TG@jcnode
   - 🇰🇿KZ001 0.96MB/s纯净 TG@jcnode
   - 🇺🇸美国US057 0.96MB/s纯净 TG@jcnode
   - 🇷🇴罗马尼亚RO083 0.96MB/s TG@jcnode
@@ -17190,21 +15707,17 @@ proxy-groups:
   - 🇨🇦加拿大CA001 0.93MB/s中性 TG@jcnode
   - 🇫🇷法国FR017 0.93MB/s纯净 TG@jcnode
   - 🇺🇸美国US061 0.92MB/s纯净 TG@jcnode
-  - 🇳🇱荷兰NL074 0.92MB/s TG@jcnode
   - 🇷🇴罗马尼亚RO104 0.92MB/s危险 TG@jcnode
   - 🇺🇸美国US195 0.92MB/s危险 TG@jcnode
   - 🇺🇸美国US218 0.92MB/s危险 TG@jcnode
-  - 🇩🇪德国DE185 0.92MB/s中性 TG@jcnode
   - 🇩🇪德国DE031 0.91MB/s TG@jcnode
-  - 🇯🇵日本JP007 0.91MB/s TG@jcnode
   - 🇸🇬新加坡SG001 0.91MB/s中性 TG@jcnode
+  - 🇷🇺俄罗斯RU006 0.91MB/s纯净 TG@jcnode
   - 🇺🇸美国US269 0.91MB/s危险 TG@jcnode
+  - 🇪🇸西班牙ES002 0.91MB/s中性 TG@jcnode
   - 🇳🇱荷兰NL075 0.9MB/s TG@jcnode
-  - 🇩🇪德国DE032 0.9MB/s TG@jcnode
   - 🇺🇸美国US222 0.9MB/s纯净 TG@jcnode
   - 🇰🇷韩国KR002 0.9MB/s中性 TG@jcnode
-  - 🇹🇼台湾TW001 0.9MB/s纯净 TG@jcnode
-  - 🇩🇪德国DE033 0.89MB/s TG@jcnode
   - 🇧🇷巴西BR003 0.89MB/s中性 TG@jcnode
   - 🇳🇱荷兰NL035 0.89MB/s危险 TG@jcnode
   - 🇸🇬新加坡SG002 0.89MB/s中性 TG@jcnode
@@ -17220,15 +15733,15 @@ proxy-groups:
   - 🇷🇴罗马尼亚RO109 0.86MB/s危险 TG@jcnode
   - 🇺🇸美国US111 0.86MB/s危险 TG@jcnode
   - 🇹🇼台湾TW010 0.86MB/s中性 TG@jcnode
+  - 🇸🇬新加坡SG044 0.86MB/s危险 TG@jcnode
   - 🇺🇸美国US062 0.85MB/s TG@jcnode
   - 🇮🇩印度尼西亚ID003 0.85MB/s危险 TG@jcnode
   - 🇩🇪德国DE046 0.85MB/s纯净 TG@jcnode
   - 🇷🇴罗马尼亚RO110 0.85MB/s危险 TG@jcnode
   - 🇷🇴罗马尼亚RO111 0.85MB/s危险 TG@jcnode
-  - 🇩🇪德国DE034 0.84MB/s TG@jcnode
-  - 🇨🇭瑞士CH002 0.84MB/s TG@jcnode
+  - 🇰🇷韩国KR001 0.85MB/s中性 TG@jcnode
   - 🇸🇰SK001 0.83MB/s TG@jcnode
-  - 🇭🇰香港HK003 0.83MB/s纯净 TG@jcnode
+  - 🇺🇸美国US063 0.83MB/s危险 TG@jcnode
   - 🇺🇸美国US187 0.83MB/s危险 TG@jcnode
   - 🇦🇺澳大利亚AU001 0.83MB/s TG@jcnode
   - 🇫🇷法国FR029 0.82MB/s中性 TG@jcnode
@@ -17239,10 +15752,9 @@ proxy-groups:
   - 🇮🇩印度尼西亚ID003 0.81MB/s中性 TG@jcnode
   - 🇧🇷巴西BR001 0.81MB/s中性 TG@jcnode
   - 🇫🇷法国FR030 0.8MB/s中性 TG@jcnode
-  - 🇲🇩MD001 0.8MB/s TG@jcnode
   - 🇮🇩印度尼西亚ID004 0.8MB/s中性 TG@jcnode
+  - 🇺🇸美国US246 0.8MB/s危险 TG@jcnode
   - 🇷🇴罗马尼亚RO115 0.8MB/s危险 TG@jcnode
-  - 🇹🇼台湾TW001 0.8MB/s纯净 TG@jcnode
   - 🇮🇩印度尼西亚ID003 0.79MB/s纯净 TG@jcnode
   - 🇨🇭瑞士CH002 0.79MB/s中性 TG@jcnode
   - 🇨🇿CZ001 0.78MB/s中性 TG@jcnode
@@ -17250,7 +15762,6 @@ proxy-groups:
   - 🇩🇪德国DE035 0.78MB/s纯净 TG@jcnode
   - 🇷🇴罗马尼亚RO116 0.78MB/s危险 TG@jcnode
   - 🇭🇰香港HK006 0.78MB/s TG@jcnode
-  - 🇫🇷法国FR031 0.77MB/s危险 TG@jcnode
   - 🇩🇪德国DE031 0.77MB/s危险 TG@jcnode
   - 🇺🇸美国US036 0.77MB/s中性 TG@jcnode
   - 🇳🇱荷兰NL081 0.77MB/s危险 TG@jcnode
@@ -17259,10 +15770,8 @@ proxy-groups:
   - 🇺🇸美国US081 0.77MB/s危险 TG@jcnode
   - 🇳🇱荷兰NL079 0.76MB/s危险 TG@jcnode
   - 🇮🇹意大利IT005 0.76MB/s危险 TG@jcnode
-  - 🇭🇰香港HK004 0.76MB/s纯净 TG@jcnode
   - 🇷🇴罗马尼亚RO120 0.76MB/s危险 TG@jcnode
   - 🇸🇬新加坡SG002 0.75MB/s中性 TG@jcnode
-  - 🇭🇰香港HK005 0.75MB/s纯净 TG@jcnode
   - 🇸🇰SK002 0.74MB/s TG@jcnode
   - 🇳🇱荷兰NL080 0.74MB/s危险 TG@jcnode
   - 🇸🇬新加坡SG002 0.74MB/s中性 TG@jcnode
@@ -17279,7 +15788,6 @@ proxy-groups:
   - 🇸🇬新加坡SG006 0.69MB/s中性 TG@jcnode
   - 🇷🇴罗马尼亚RO020 0.68MB/s TG@jcnode
   - 🇺🇸美国US024 0.68MB/s中性 TG@jcnode
-  - 🇫🇷法国FR024 0.68MB/s危险 TG@jcnode
   - 🇺🇸美国US037 0.68MB/s中性 TG@jcnode
   - 🇺🇸美国US038 0.68MB/s中性 TG@jcnode
   - 🇷🇴罗马尼亚RO021 0.67MB/s TG@jcnode
@@ -17288,15 +15796,12 @@ proxy-groups:
   - 🇺🇸美国US039 0.67MB/s中性 TG@jcnode
   - 🇷🇴罗马尼亚RO125 0.67MB/s危险 TG@jcnode
   - 🇺🇸美国US200 0.67MB/s TG@jcnode
-  - 🇩🇪德国DE038 0.66MB/s TG@jcnode
-  - 🇫🇷法国FR032 0.66MB/s危险 TG@jcnode
   - 🇺🇸美国US041 0.66MB/s中性 TG@jcnode
   - 🇺🇸美国US276 0.66MB/s中性 TG@jcnode
   - 🇺🇸美国US277 0.66MB/s中性 TG@jcnode
   - 🇺🇸美国US098 0.66MB/s危险 TG@jcnode
   - 🇺🇸美国US184 0.66MB/s中性 TG@jcnode
   - 🇺🇸美国US206 0.66MB/s中性 TG@jcnode
-  - 🇳🇱荷兰NL081 0.65MB/s TG@jcnode
   - 🇺🇸美国US278 0.65MB/s中性 TG@jcnode
   - 🇮🇹意大利IT006 0.65MB/s危险 TG@jcnode
   - 🇺🇸美国US189 0.65MB/s中性 TG@jcnode
@@ -17315,16 +15820,12 @@ proxy-groups:
   - 🇫🇷法国FR010 0.59MB/s纯净 TG@jcnode
   - 🇺🇸美国US083 0.59MB/s中性 TG@jcnode
   - 🇩🇪德国DE039 0.58MB/s中性 TG@jcnode
-  - 🇩🇪德国DE040 0.57MB/s TG@jcnode
   - 🇳🇱荷兰NL082 0.57MB/s中性 TG@jcnode
   - 🇷🇴罗马尼亚RO131 0.57MB/s危险 TG@jcnode
-  - 🇨🇭瑞士CH003 0.56MB/s TG@jcnode
   - 🇺🇸美国US049 0.56MB/s中性 TG@jcnode
   - 🇫🇷法国FR011 0.56MB/s纯净 TG@jcnode
   - 🇳🇱荷兰NL092 0.56MB/s中性 TG@jcnode
   - 🇺🇸美国US269 0.56MB/s危险 TG@jcnode
-  - 🇬🇧英国GB003 0.55MB/s TG@jcnode
-  - 🇭🇰香港HK006 0.55MB/s纯净 TG@jcnode
   - 🇷🇴罗马尼亚RO132 0.55MB/s危险 TG@jcnode
   - 🇷🇴罗马尼亚RO133 0.55MB/s危险 TG@jcnode
   - 🇺🇸美国US275 0.54MB/s危险 TG@jcnode
@@ -17353,7 +15854,6 @@ proxy-groups:
   - 🇮🇩印度尼西亚ID001 0.46MB/s危险 TG@jcnode
   - 🇷🇴罗马尼亚RO136 0.45MB/s危险 TG@jcnode
   - 🇺🇸美国US073 0.44MB/s中性 TG@jcnode
-  - 🇪🇪EE001 0.44MB/s纯净 TG@jcnode
   - 🇺🇸美国US074 0.43MB/s危险 TG@jcnode
   - 🇷🇴罗马尼亚RO137 0.43MB/s危险 TG@jcnode
   - 🇩🇪德国DE019 0.43MB/s中性 TG@jcnode
@@ -17364,13 +15864,10 @@ proxy-groups:
   - 🇯🇵日本JP024 0.42MB/s纯净 TG@jcnode
   - 🇺🇸美国US124 0.41MB/s危险 TG@jcnode
   - 🇯🇵日本JP025 0.41MB/s纯净 TG@jcnode
-  - 🇩🇪德国DE022 0.33MB/s TG@jcnode
   - 🇭🇰香港HK013 0.3MB/s中性 TG@jcnode
   - 🇰🇷韩国KR 001 0.2MB/s TG@jcnode
   - 🇭🇰香港HK002 0.1MB/s纯净 TG@jcnode
   - 🇳🇱荷兰NL164 0.04MB/s危险 TG@jcnode
-  - 🇭🇰香港HK004 测速未知纯净 TG@jcnode
-  - 🇭🇰香港HK008 测速未知纯净 TG@jcnode
   - 🇭🇰香港HK009 测速未知 TG@jcnode
   - 🇯🇵日本JP023 测速未知 TG@jcnode
   - 🇩🇪德国DE042 测速未知危险 TG@jcnode
@@ -17379,7 +15876,6 @@ proxy-groups:
   - 🇩🇪德国DE046 测速未知危险 TG@jcnode
   - 🇩🇪德国DE047 测速未知危险 TG@jcnode
   - 🇩🇪德国DE048 测速未知危险 TG@jcnode
-  - 🇳🇱荷兰NL085 测速未知 TG@jcnode
   - 🇩🇪德国DE053 测速未知危险 TG@jcnode
   - 🇳🇱荷兰NL089 测速未知危险 TG@jcnode
   - 🇳🇱荷兰NL090 测速未知中性 TG@jcnode
@@ -17423,7 +15919,6 @@ proxy-groups:
   - 🇫🇷法国FR044 测速未知纯净 TG@jcnode
   - 🇫🇷法国FR045 测速未知中性 TG@jcnode
   - 🇳🇱荷兰NL141 测速未知危险 TG@jcnode
-  - 🇨🇾CY001 测速未知 TG@jcnode
   - 🇺🇸美国US101 测速未知 TG@jcnode
   - 🇫🇷法国FR047 测速未知纯净 TG@jcnode
   - 🇵🇱波兰PL014 测速未知中性 TG@jcnode
@@ -17432,7 +15927,6 @@ proxy-groups:
   - 🇩🇪德国DE072 测速未知危险 TG@jcnode
   - 🇳🇱荷兰NL144 测速未知危险 TG@jcnode
   - 🇳🇱荷兰NL145 测速未知危险 TG@jcnode
-  - 🇫🇮芬兰FI007 测速未知 TG@jcnode
   - 🇫🇮芬兰FI008 测速未知中性 TG@jcnode
   - 🇵🇱波兰PL015 测速未知中性 TG@jcnode
   - 🇷🇴罗马尼亚RO023 测速未知 TG@jcnode
@@ -17459,34 +15953,25 @@ proxy-groups:
   - 🇮🇹意大利IT020 测速未知 TG@jcnode
   - 🇩🇪德国DE079 测速未知危险 TG@jcnode
   - 🇮🇹意大利IT021 测速未知危险 TG@jcnode
-  - 🇳🇱荷兰NL156 测速未知中性 TG@jcnode
   - 🇺🇸美国US132 测速未知中性 TG@jcnode
   - 🇺🇸美国US133 测速未知中性 TG@jcnode
-  - 🇳🇱荷兰NL159 测速未知危险 TG@jcnode
   - 🇸🇮SI001 测速未知 TG@jcnode
   - 🇳🇱荷兰NL161 测速未知危险 TG@jcnode
+  - 🇪🇸西班牙ES007 测速未知危险 TG@jcnode
   - 🇳🇱荷兰NL163 测速未知危险 TG@jcnode
   - 🇺🇸美国US151 测速未知危险 TG@jcnode
   - 🇷🇴罗马尼亚RO029 测速未知 TG@jcnode
-  - 🇳🇱荷兰NL170 测速未知中性 TG@jcnode
   - 🇺🇸美国US156 测速未知纯净 TG@jcnode
   - 🇺🇸美国US157 测速未知危险 TG@jcnode
   - 🇺🇸美国US159 测速未知纯净 TG@jcnode
   - 🇺🇸美国US165 测速未知危险 TG@jcnode
-  - 🇫🇮芬兰FI013 测速未知中性 TG@jcnode
   - 🇩🇪德国DE084 测速未知中性 TG@jcnode
   - 🇩🇪德国DE085 测速未知中性 TG@jcnode
-  - 🇺🇸美国US168 测速未知危险 TG@jcnode
-  - 🇳🇱荷兰NL174 测速未知危险 TG@jcnode
   - 🇺🇸美国US171 测速未知危险 TG@jcnode
-  - 🇳🇱荷兰NL176 测速未知中性 TG@jcnode
   - 🇷🇴罗马尼亚RO031 测速未知 TG@jcnode
   - 🇺🇸美国US176 测速未知危险 TG@jcnode
   - 🇺🇸美国US180 测速未知危险 TG@jcnode
-  - 🇺🇸美国US181 测速未知危险 TG@jcnode
-  - 🇩🇪德国DE090 测速未知中性 TG@jcnode
   - 🇳🇱荷兰NL180 测速未知 TG@jcnode
-  - 🇪🇪EE002 测速未知 TG@jcnode
   - 🇨🇿CZ007 测速未知纯净 TG@jcnode
   - 🇱🇹LT001 测速未知危险 TG@jcnode
   - 🇫🇷法国FR065 测速未知纯净 TG@jcnode
@@ -17494,25 +15979,20 @@ proxy-groups:
   - 🇷🇴罗马尼亚RO033 测速未知 TG@jcnode
   - 🇺🇸美国US186 测速未知危险 TG@jcnode
   - 🇺🇸美国US188 测速未知 TG@jcnode
-  - 🇳🇱荷兰NL183 测速未知危险 TG@jcnode
   - 🇩🇪德国DE099 测速未知纯净 TG@jcnode
   - 🇷🇴罗马尼亚RO035 测速未知 TG@jcnode
   - 🇩🇪德国DE100 测速未知纯净 TG@jcnode
   - 🇩🇪德国DE101 测速未知 TG@jcnode
-  - 🇺🇸美国US195 测速未知 TG@jcnode
   - 🇺🇸美国US199 测速未知危险 TG@jcnode
   - 🇷🇴罗马尼亚RO036 测速未知危险 TG@jcnode
   - 🇺🇸美国US200 测速未知危险 TG@jcnode
-  - 🇳🇱荷兰NL185 测速未知危险 TG@jcnode
   - 🇳🇱荷兰NL186 测速未知中性 TG@jcnode
-  - 🇺🇸美国US206 测速未知 TG@jcnode
   - 🇰🇿KZ003 测速未知纯净 TG@jcnode
   - 🇰🇿KZ004 测速未知纯净 TG@jcnode
   - 🇳🇱荷兰NL188 测速未知中性 TG@jcnode
   - 🇮🇹意大利IT030 测速未知危险 TG@jcnode
   - 🇪🇪EE012 测速未知 TG@jcnode
   - 🇵🇱波兰PL025 测速未知纯净 TG@jcnode
-  - 🇭🇰香港HK006 测速未知纯净 TG@jcnode
   - 🇹🇼台湾TW011 测速未知纯净 TG@jcnode
   - 🇸🇬新加坡SG020 测速未知 TG@jcnode
   - 🇯🇵日本JP031 测速未知 TG@jcnode
@@ -17523,7 +16003,6 @@ proxy-groups:
   - 🇺🇸美国US031 测速未知中性 TG@jcnode
   - 🇺🇸美国US032 测速未知危险 TG@jcnode
   - 🇺🇸美国US035 测速未知危险 TG@jcnode
-  - 🇺🇸美国US037 测速未知危险 TG@jcnode
   - 🇺🇸美国US039 测速未知中性 TG@jcnode
   - 🇺🇸美国US040 测速未知 TG@jcnode
   - 🇺🇸美国US049 测速未知中性 TG@jcnode
@@ -17532,6 +16011,7 @@ proxy-groups:
   - 🇺🇸美国US055 测速未知中性 TG@jcnode
   - 🇺🇸美国US060 测速未知中性 TG@jcnode
   - 🇺🇸美国US061 测速未知危险 TG@jcnode
+  - 🇺🇸美国US063 测速未知危险 TG@jcnode
   - 🇺🇸美国US064 测速未知危险 TG@jcnode
   - 🇺🇸美国US066 测速未知 TG@jcnode
   - 🇺🇸美国US067 测速未知 TG@jcnode
@@ -17544,13 +16024,13 @@ proxy-groups:
   - 🇺🇸美国US074 测速未知危险 TG@jcnode
   - 🇫🇮芬兰FI003 测速未知中性 TG@jcnode
   - 🇺🇸美国US075 测速未知中性 TG@jcnode
+  - 🇺🇸美国US076 测速未知危险 TG@jcnode
   - 🇺🇸美国US078 测速未知危险 TG@jcnode
   - 🇦🇪阿联酋AE002 测速未知 TG@jcnode
   - 🇺🇸美国US079 测速未知危险 TG@jcnode
   - 🇮🇳印度IN005 测速未知中性 TG@jcnode
   - 🇺🇸美国US088 测速未知中性 TG@jcnode
   - 🇩🇪德国DE075 测速未知纯净 TG@jcnode
-  - 🇺🇸美国US104 测速未知危险 TG@jcnode
   - 🇨🇦加拿大CA007 测速未知 TG@jcnode
   - 🇨🇦加拿大CA010 测速未知危险 TG@jcnode
   - 🇳🇱荷兰NL143 测速未知危险 TG@jcnode
@@ -17558,12 +16038,9 @@ proxy-groups:
   - 🇺🇸美国US132 测速未知危险 TG@jcnode
   - 🇨🇿CZ008 测速未知中性 TG@jcnode
   - 🇨🇿CZ009 测速未知中性 TG@jcnode
-  - 🇫🇷法国FR056 测速未知中性 TG@jcnode
   - 🇺🇸美国US156 测速未知危险 TG@jcnode
   - 🇺🇸美国US160 测速未知危险 TG@jcnode
-  - 🇫🇷法国FR065 测速未知 TG@jcnode
   - '🇳🇱荷兰NL161 测速未知危险 TG@jcnode #2'
-  - 🇨🇿CZ013 测速未知中性 TG@jcnode
   - 🇳🇱荷兰NL162 测速未知中性 TG@jcnode
   - 🇳🇱荷兰NL164 测速未知危险 TG@jcnode
   - 🇺🇸美国US206 测速未知危险 TG@jcnode
@@ -17581,6 +16058,7 @@ proxy-groups:
   - 🇩🇪德国DE016 测速未知 TG@jcnode
   - '🇺🇸美国US031 测速未知中性 TG@jcnode #2'
   - '未知地区002 测速未知 TG@jcnode #2'
+  - 🇩🇪德国DE019 测速未知中性 TG@jcnode
   - 🇺🇸美国US045 测速未知中性 TG@jcnode
   - 🇳🇱荷兰NL055 测速未知危险 TG@jcnode
   - 🇺🇸美国US072 测速未知 TG@jcnode
@@ -17593,6 +16071,7 @@ proxy-groups:
   - '🇺🇸美国US108 测速未知中性 TG@jcnode #2'
   - 🇮🇳印度IN004 测速未知中性 TG@jcnode
   - 🇮🇳印度IN008 测速未知中性 TG@jcnode
+  - 🇺🇸美国US138 测速未知危险 TG@jcnode
   - 🇺🇸美国US140 测速未知危险 TG@jcnode
   - 🇮🇳印度IN010 测速未知中性 TG@jcnode
   - '🇫🇷法国FR042 测速未知中性 TG@jcnode #2'
@@ -17621,7 +16100,6 @@ proxy-groups:
   - 🇳🇱荷兰NL116 测速未知危险 TG@jcnode
   - 🇱🇹LT004 测速未知危险 TG@jcnode
   - '🇳🇱荷兰NL136 测速未知危险 TG@jcnode #2'
-  - '🇭🇰香港HK008 测速未知纯净 TG@jcnode #2'
   - 🇸🇬新加坡SG017 测速未知危险 TG@jcnode
   - 🇫🇷法国FR017 测速未知中性 TG@jcnode
   - 🇩🇪德国DE015 测速未知危险 TG@jcnode
@@ -17633,6 +16111,7 @@ proxy-groups:
   - 🇺🇸美国US058 测速未知危险 TG@jcnode
   - '🇳🇱荷兰NL058 测速未知危险 TG@jcnode #2'
   - 🇺🇸美国US059 测速未知危险 TG@jcnode
+  - 🇺🇸美国US060 测速未知危险 TG@jcnode
   - 🇳🇱荷兰NL059 测速未知危险 TG@jcnode
   - 🇳🇱荷兰NL061 测速未知危险 TG@jcnode
   - '🇮🇹意大利IT008 测速未知危险 TG@jcnode #2'
@@ -17642,7 +16121,6 @@ proxy-groups:
   - '🇳🇱荷兰NL071 测速未知危险 TG@jcnode #2'
   - '🇳🇱荷兰NL073 测速未知危险 TG@jcnode #2'
   - 🇵🇱波兰PL005 测速未知 TG@jcnode
-  - 🇭🇰香港HK011 测速未知纯净 TG@jcnode
   - 🇳🇱荷兰NL083 测速未知中性 TG@jcnode
   - 🇺🇸美国US082 测速未知危险 TG@jcnode
   - 🇺🇸美国US083 测速未知危险 TG@jcnode
@@ -17682,7 +16160,6 @@ proxy-groups:
   - 🇭🇰香港HK012 测速未知纯净 TG@jcnode
   - 🇮🇱以色列IL004 测速未知纯净 TG@jcnode
   - 🇩🇪德国DE049 测速未知危险 TG@jcnode
-  - '🇺🇸美国US131 测速未知危险 TG@jcnode #2'
   - 🇫🇷法国FR036 测速未知中性 TG@jcnode
   - 🇺🇸美国US136 测速未知纯净 TG@jcnode
   - '🇫🇷法国FR037 测速未知纯净 TG@jcnode #2'
@@ -17693,7 +16170,6 @@ proxy-groups:
   - '🇩🇪德国DE056 测速未知危险 TG@jcnode #2'
   - '🇺🇸美国US153 测速未知危险 TG@jcnode #2'
   - 🇺🇸美国US154 测速未知危险 TG@jcnode
-  - 🇵🇱波兰PL016 测速未知危险 TG@jcnode
   - '🇺🇸美国US159 测速未知危险 TG@jcnode #2'
   - '🇷🇴罗马尼亚RO012 测速未知危险 TG@jcnode #2'
   - 🇺🇸美国US166 测速未知危险 TG@jcnode
@@ -17712,13 +16188,11 @@ proxy-groups:
   - '🇮🇹意大利IT021 测速未知危险 TG@jcnode #2'
   - '🇭🇰香港HK009 测速未知 TG@jcnode #2 #2'
   - 🇯🇵日本JP012 测速未知纯净 TG@jcnode
-  - 🇯🇵日本JP024 测速未知危险 TG@jcnode
   - 🇭🇰香港HK018 测速未知纯净 TG@jcnode
   - 🇺🇸美国US269 测速未知 TG@jcnode
   - 🇳🇱荷兰NL104 测速未知中性 TG@jcnode
   - '🇵🇱波兰PL007 测速未知中性 TG@jcnode #2'
   - 🇺🇸美国US283 测速未知中性 TG@jcnode
-  - 🇺🇸美国US290 测速未知 TG@jcnode
   - 🇳🇱荷兰NL112 测速未知中性 TG@jcnode
   - '🇵🇱波兰PL009 测速未知中性 TG@jcnode #2'
   - 未知地区003 测速未知 TG@jcnode
@@ -17737,7 +16211,6 @@ proxy-groups:
   - 🇩🇪德国DE069 测速未知中性 TG@jcnode
   - 🇩🇪德国DE072 测速未知 TG@jcnode
   - 🇬🇧英国GB017 测速未知中性 TG@jcnode
-  - 🇫🇷法国FR059 测速未知 TG@jcnode
   - '🇨🇿CZ007 测速未知纯净 TG@jcnode #2'
   - '🇫🇷法国FR060 测速未知纯净 TG@jcnode #2'
   - 🇩🇪德国DE093 测速未知 TG@jcnode
@@ -17773,7 +16246,6 @@ proxy-groups:
   - 🇷🇴罗马尼亚RO161 测速未知危险 TG@jcnode
   - 🇷🇴罗马尼亚RO162 测速未知危险 TG@jcnode
   - 🇷🇴罗马尼亚RO163 测速未知危险 TG@jcnode
-  - 🇭🇰香港HK031 测速未知纯净 TG@jcnode
   - 🇷🇴罗马尼亚RO164 测速未知危险 TG@jcnode
   - '🇨🇦加拿大CA010 测速未知危险 TG@jcnode #2'
   - 🇷🇴罗马尼亚RO168 测速未知危险 TG@jcnode
@@ -17804,7 +16276,6 @@ proxy-groups:
   - 🇷🇴罗马尼亚RO202 测速未知危险 TG@jcnode
   - 🇷🇴罗马尼亚RO203 测速未知危险 TG@jcnode
   - 🇺🇸美国US425 测速未知危险 TG@jcnode
-  - 🇪🇬EG006 测速未知危险 TG@jcnode
   - 🇷🇴罗马尼亚RO205 测速未知危险 TG@jcnode
   - 🇷🇴罗马尼亚RO206 测速未知危险 TG@jcnode
   - 🇯🇵日本JP028 测速未知 TG@jcnode
@@ -17826,9 +16297,6 @@ proxy-groups:
   - 🇺🇸美国US140 测速未知中性 TG@jcnode
   - 🇺🇸美国US143 测速未知中性 TG@jcnode
   - 🇺🇸美国US172 测速未知 TG@jcnode
-  - '🇳🇱荷兰NL155 测速未知中性 TG@jcnode #2'
-  - 🇺🇸美国US346 测速未知中性 TG@jcnode
-  - 🇺🇸美国US357 测速未知 TG@jcnode
   - 🇺🇸美国US395 测速未知 TG@jcnode
   - 🇭🇰香港HK008 测速未知中性 TG@jcnode
   - 🇯🇵日本JP021 测速未知中性 TG@jcnode
@@ -17842,23 +16310,18 @@ proxy-groups:
   - '🇺🇸美国US217 测速未知中性 TG@jcnode #2'
   - 🇸🇬新加坡SG047 测速未知中性 TG@jcnode
   - '🇫🇷法国FR049 测速未知危险 TG@jcnode #2'
-  - '🇳🇱荷兰NL188 测速未知中性 TG@jcnode #2'
-  - 🇳🇱荷兰NL197 测速未知中性 TG@jcnode
   - 🇭🇰香港HK032 测速未知纯净 TG@jcnode
   - 🇺🇸美国US431 测速未知纯净 TG@jcnode
   - '🇺🇸美国US254 测速未知中性 TG@jcnode #2'
   - 🇺🇸美国US265 测速未知中性 TG@jcnode
   - 🇺🇸美国US275 测速未知中性 TG@jcnode
   - '🇺🇸美国US286 测速未知中性 TG@jcnode #2'
-  - 🇺🇸美国US297 测速未知中性 TG@jcnode
   - '🇺🇸美国US327 测速未知危险 TG@jcnode #2'
-  - 🇳🇱荷兰NL148 测速未知中性 TG@jcnode
   - 🇩🇪德国DE075 测速未知中性 TG@jcnode
   - 🇫🇷法国FR071 测速未知危险 TG@jcnode
   - 🇺🇸美国US441 测速未知危险 TG@jcnode
   - '🇺🇸美国US241 测速未知危险 TG@jcnode #2'
   - '🇺🇸美国US269 测速未知中性 TG@jcnode #2'
-  - 🇦🇺澳大利亚AU005 测速未知危险 TG@jcnode
   - '🇵🇱波兰PL009 测速未知中性 TG@jcnode #2 #2 #2 #2'
   - 🇺🇸美国US284 测速未知中性 TG@jcnode
   - '🇺🇸美国US303 测速未知 TG@jcnode #2'
@@ -17867,14 +16330,13 @@ proxy-groups:
   - '🇩🇪德国DE077 测速未知纯净 TG@jcnode #2'
   - 🇭🇰香港HK015 测速未知纯净 TG@jcnode
   - '🇺🇸美国US250 测速未知中性 TG@jcnode #2'
-  - '🇺🇸美国US266 测速未知危险 TG@jcnode #2'
+  - '🇺🇸美国US258 测速未知危险 TG@jcnode #2'
   - 🇫🇷法国FR041 测速未知危险 TG@jcnode
   - '🇺🇸美国US282 测速未知中性 TG@jcnode #2'
   - '🇺🇸美国US292 测速未知中性 TG@jcnode #2'
   - 🇺🇸美国US354 测速未知危险 TG@jcnode
   - '🇺🇸美国US384 测速未知 TG@jcnode #2'
   - 🇦🇺澳大利亚AU011 测速未知 TG@jcnode
-  - 🇩🇪德国DE088 测速未知 TG@jcnode
   - 🇯🇵日本JP095 测速未知纯净 TG@jcnode
   - 🇯🇵日本JP106 测速未知纯净 TG@jcnode
   - '🇺🇸美国US240 测速未知中性 TG@jcnode #2'
@@ -17886,7 +16348,6 @@ proxy-groups:
   - 🇺🇸美国US383 测速未知危险 TG@jcnode
   - 🇺🇸美国US263 测速未知中性 TG@jcnode
   - '🇳🇱荷兰NL090 测速未知 TG@jcnode #2'
-  - '🇳🇱荷兰NL098 测速未知 TG@jcnode #2'
   - 🇬🇧英国GB010 测速未知 TG@jcnode
   - '🇺🇸美国US403 测速未知 TG@jcnode #2'
   - 🇺🇸美国US419 测速未知 TG@jcnode
@@ -17895,7 +16356,6 @@ proxy-groups:
   - '🇫🇷法国FR035 测速未知纯净 TG@jcnode #2'
   - '🇮🇳印度IN012 测速未知中性 TG@jcnode #2'
   - '🇺🇸美国US331 测速未知纯净 TG@jcnode #2'
-  - '🇸🇪瑞典SE021 测速未知 TG@jcnode #2'
   - '🇨🇭瑞士CH006 测速未知中性 TG@jcnode #2 #2'
   - '🇯🇵日本JP065 测速未知 TG@jcnode #2'
   - '🇱🇻LV006 测速未知 TG@jcnode #2'
@@ -17911,6 +16371,7 @@ proxy-groups:
   - 🇰🇷韩国KR006 测速未知危险 TG@jcnode
   - 🇺🇸美国US201 测速未知中性 TG@jcnode
   - 🇺🇸美国US234 测速未知中性 TG@jcnode
+  - '🇺🇸美国US276 测速未知 TG@jcnode #2'
   - '🇺🇸美国US368 测速未知危险 TG@jcnode #2'
   - '🇺🇸美国US245 测速未知中性 TG@jcnode #2'
   - '🇺🇸美国US256 测速未知中性 TG@jcnode #2 #2 #2'
@@ -17930,6 +16391,7 @@ proxy-groups:
   - '🇭🇰香港HK012 测速未知 TG@jcnode #2'
   - '🇺🇸美国US311 测速未知中性 TG@jcnode #2'
   - '🇺🇸美国US337 测速未知危险 TG@jcnode #2'
+  - '🇺🇸美国US383 测速未知危险 TG@jcnode #2 #2'
   - 🇺🇸美国US175 测速未知 TG@jcnode
   - 🇺🇸美国US184 测速未知中性 TG@jcnode
   - '🇺🇸美国US191 测速未知危险 TG@jcnode #2'
@@ -17946,7 +16408,6 @@ proxy-groups:
   - '🇯🇵日本JP098 测速未知 TG@jcnode #2'
   - '🇯🇵日本JP100 测速未知中性 TG@jcnode #2 #2 #2 #2'
   - '🇩🇪德国DE120 测速未知中性 TG@jcnode #2'
-  - 🇩🇪德国DE146 测速未知纯净 TG@jcnode
   - 🇺🇸美国US548 测速未知危险 TG@jcnode
   - '🇺🇦乌克兰UA002 测速未知 TG@jcnode #2 #2'
   - 🇺🇸美国US557 测速未知中性 TG@jcnode
@@ -17955,22 +16416,20 @@ proxy-groups:
   - '🇺🇸美国US348 测速未知中性 TG@jcnode #2 #2 #2'
   - 🇷🇴罗马尼亚RO079 测速未知危险 TG@jcnode
   - '🇫🇮芬兰FI012 测速未知中性 TG@jcnode #2 #2 #2'
-  - '🇫🇷法国FR052 测速未知中性 TG@jcnode #2 #2 #2 #2'
   - 🇷🇴罗马尼亚RO087 测速未知危险 TG@jcnode
   - '🇺🇦乌克兰UA002 测速未知中性 TG@jcnode #2'
   - '🇮🇹意大利IT007 测速未知危险 TG@jcnode #2'
+  - 🇵🇰PK001 测速未知危险 TG@jcnode
   - 🇺🇸美国US1120 测速未知危险 TG@jcnode
-  - 🇺🇸美国US759 测速未知中性 TG@jcnode
   - '🇰🇷韩国KR010 测速未知 TG@jcnode #2'
   - 🇰🇷韩国KR015 测速未知 TG@jcnode
   - '🇫🇷法国FR058 测速未知纯净 TG@jcnode #2'
   - 🇸🇪瑞典SE043 测速未知 TG@jcnode
   - '🇯🇵日本JP045 测速未知中性 TG@jcnode #2'
   - 🇺🇸美国US656 测速未知 TG@jcnode
-  - 🇺🇸美国US706 测速未知 TG@jcnode
+  - '🇮🇹意大利IT003 测速未知 TG@jcnode #2'
   - 🇺🇸美国US708 测速未知 TG@jcnode
   - 🇨🇿CZ012 测速未知 TG@jcnode
-  - '🇳🇱荷兰NL110 测速未知中性 TG@jcnode #2 #2 #2 #2'
   - 🇩🇪德国DE072 测速未知纯净 TG@jcnode
   - 🇭🇰香港HK044 测速未知纯净 TG@jcnode
   - 🇭🇰香港HK045 测速未知 TG@jcnode
@@ -17991,8 +16450,6 @@ proxy-groups:
   - '🇷🇴罗马尼亚RO110 测速未知危险 TG@jcnode #2'
   - '🇷🇴罗马尼亚RO122 测速未知危险 TG@jcnode #2'
   - '🇨🇿CZ004 测速未知纯净 TG@jcnode #2'
-  - 🇱🇻LV004 测速未知 TG@jcnode
-  - '🇭🇰香港HK008 测速未知 TG@jcnode #2 #2 #2'
   - '🇺🇸美国US200 测速未知中性 TG@jcnode #2'
   - 🇺🇸美国US215 测速未知中性 TG@jcnode
   - '🇺🇸美国US242 测速未知中性 TG@jcnode #2 #2 #2 #2'
@@ -18022,7 +16479,6 @@ proxy-groups:
   - '🇩🇪德国DE077 测速未知纯净 TG@jcnode #2 #2'
   - '🇺🇸美国US269 测速未知危险 TG@jcnode #2'
   - '🇯🇵日本JP022 测速未知纯净 TG@jcnode #2'
-  - '🇯🇵日本JP031 测速未知 TG@jcnode #2 #2'
   - '🇺🇸美国US234 测速未知中性 TG@jcnode #2 #2'
   - '🇺🇸美国US249 测速未知中性 TG@jcnode #2'
   - '🇺🇸美国US256 测速未知中性 TG@jcnode #2 #2 #2 #2 #2 #2'
@@ -18035,7 +16491,6 @@ proxy-groups:
   - '🇺🇸美国US224 测速未知危险 TG@jcnode #2'
   - '🇰🇷韩国KR001 测速未知危险 TG@jcnode #2'
   - 🇭🇰香港HK020 测速未知 TG@jcnode
-  - '🇮🇩印度尼西亚ID006 测速未知危险 TG@jcnode #2'
   - '🇺🇸美国US145 测速未知中性 TG@jcnode #2'
   - 🇺🇸美国US176 测速未知纯净 TG@jcnode
   - '🇸🇬新加坡SG014 测速未知中性 TG@jcnode #2 #2'
@@ -18083,7 +16538,6 @@ proxy-groups:
   - 🇹🇼 台湾自动
   - 🇸🇬 新加坡自动
   - 🇯🇵 日本自动
-  - 🇰🇷 韩国自动
   - 🇺🇸 美国自动
   - 🇬🇧 英国自动
   - 🇩🇪 德国自动
@@ -18097,30 +16551,29 @@ proxy-groups:
   - 🇮🇹 意大利自动
   - 🇪🇸 西班牙自动
   - 🇨🇭 瑞士自动
-  - 🇮🇳 印度自动
   - 🇹🇷 土耳其自动
   - 🇹🇭 泰国自动
   - 🇷🇴 罗马尼亚自动
   - 🇵🇱 波兰自动
-  - 🇮🇩 印度尼西亚自动
-  - 🇱🇻 拉脱维亚自动
-  - 🇨🇿 捷克自动
   - 🇮🇪 爱尔兰自动
+  - 🇱🇻 拉脱维亚自动
+  - 🇮🇩 印度尼西亚自动
   - 🇧🇷 巴西自动
   - 🇪🇪 爱沙尼亚自动
   - 🇮🇱 以色列自动
   - 🇰🇿 哈萨克斯坦自动
-  - 🇱🇹 立陶宛自动
-  - 🇦🇱 阿尔巴尼亚自动
-  - 🇲🇽 墨西哥自动
+  - 🇨🇿 捷克自动
   - 🇸🇰 斯洛伐克自动
-  - 🇺🇦 乌克兰自动
-  - 🇦🇪 阿联酋自动
-  - 🇨🇾 塞浦路斯自动
-  - 🇪🇬 埃及自动
-  - 🇲🇩 摩尔多瓦自动
+  - 🇦🇱 阿尔巴尼亚自动
+  - 🇱🇹 立陶宛自动
+  - 🇲🇽 墨西哥自动
   - 🇸🇮 斯洛文尼亚自动
   - DIRECT
+  - 🇰🇷 韩国自动
+  - 🇮🇳 印度自动
+  - 🇺🇦 乌克兰自动
+  - 🇦🇪 阿联酋自动
+  - 🇵🇰 巴基斯坦自动
 - name: 💬 人工智能
   type: select
   proxies:
@@ -18130,7 +16583,6 @@ proxy-groups:
   - 🇹🇼 台湾自动
   - 🇸🇬 新加坡自动
   - 🇯🇵 日本自动
-  - 🇰🇷 韩国自动
   - 🇺🇸 美国自动
   - 🇬🇧 英国自动
   - 🇩🇪 德国自动
@@ -18144,30 +16596,29 @@ proxy-groups:
   - 🇮🇹 意大利自动
   - 🇪🇸 西班牙自动
   - 🇨🇭 瑞士自动
-  - 🇮🇳 印度自动
   - 🇹🇷 土耳其自动
   - 🇹🇭 泰国自动
   - 🇷🇴 罗马尼亚自动
   - 🇵🇱 波兰自动
-  - 🇮🇩 印度尼西亚自动
-  - 🇱🇻 拉脱维亚自动
-  - 🇨🇿 捷克自动
   - 🇮🇪 爱尔兰自动
+  - 🇱🇻 拉脱维亚自动
+  - 🇮🇩 印度尼西亚自动
   - 🇧🇷 巴西自动
   - 🇪🇪 爱沙尼亚自动
   - 🇮🇱 以色列自动
   - 🇰🇿 哈萨克斯坦自动
-  - 🇱🇹 立陶宛自动
-  - 🇦🇱 阿尔巴尼亚自动
-  - 🇲🇽 墨西哥自动
+  - 🇨🇿 捷克自动
   - 🇸🇰 斯洛伐克自动
-  - 🇺🇦 乌克兰自动
-  - 🇦🇪 阿联酋自动
-  - 🇨🇾 塞浦路斯自动
-  - 🇪🇬 埃及自动
-  - 🇲🇩 摩尔多瓦自动
+  - 🇦🇱 阿尔巴尼亚自动
+  - 🇱🇹 立陶宛自动
+  - 🇲🇽 墨西哥自动
   - 🇸🇮 斯洛文尼亚自动
   - DIRECT
+  - 🇰🇷 韩国自动
+  - 🇮🇳 印度自动
+  - 🇺🇦 乌克兰自动
+  - 🇦🇪 阿联酋自动
+  - 🇵🇰 巴基斯坦自动
 - name: 🎮 游戏平台
   type: select
   proxies:
@@ -18178,7 +16629,6 @@ proxy-groups:
   - 🇯🇵 日本自动
   - 🇺🇸 美国自动
   - 🇸🇬 新加坡自动
-  - 🇰🇷 韩国自动
   - 🇬🇧 英国自动
   - 🇩🇪 德国自动
   - 🇫🇷 法国自动
@@ -18191,30 +16641,29 @@ proxy-groups:
   - 🇮🇹 意大利自动
   - 🇪🇸 西班牙自动
   - 🇨🇭 瑞士自动
-  - 🇮🇳 印度自动
   - 🇹🇷 土耳其自动
   - 🇹🇭 泰国自动
   - 🇷🇴 罗马尼亚自动
   - 🇵🇱 波兰自动
-  - 🇮🇩 印度尼西亚自动
-  - 🇱🇻 拉脱维亚自动
-  - 🇨🇿 捷克自动
   - 🇮🇪 爱尔兰自动
+  - 🇱🇻 拉脱维亚自动
+  - 🇮🇩 印度尼西亚自动
   - 🇧🇷 巴西自动
   - 🇪🇪 爱沙尼亚自动
   - 🇮🇱 以色列自动
   - 🇰🇿 哈萨克斯坦自动
-  - 🇱🇹 立陶宛自动
-  - 🇦🇱 阿尔巴尼亚自动
-  - 🇲🇽 墨西哥自动
+  - 🇨🇿 捷克自动
   - 🇸🇰 斯洛伐克自动
-  - 🇺🇦 乌克兰自动
-  - 🇦🇪 阿联酋自动
-  - 🇨🇾 塞浦路斯自动
-  - 🇪🇬 埃及自动
-  - 🇲🇩 摩尔多瓦自动
+  - 🇦🇱 阿尔巴尼亚自动
+  - 🇱🇹 立陶宛自动
+  - 🇲🇽 墨西哥自动
   - 🇸🇮 斯洛文尼亚自动
   - DIRECT
+  - 🇰🇷 韩国自动
+  - 🇮🇳 印度自动
+  - 🇺🇦 乌克兰自动
+  - 🇦🇪 阿联酋自动
+  - 🇵🇰 巴基斯坦自动
 - name: 📲 电报消息
   type: select
   proxies:
@@ -18224,7 +16673,6 @@ proxy-groups:
   - 🇹🇼 台湾自动
   - 🇸🇬 新加坡自动
   - 🇯🇵 日本自动
-  - 🇰🇷 韩国自动
   - 🇺🇸 美国自动
   - 🇬🇧 英国自动
   - 🇩🇪 德国自动
@@ -18238,29 +16686,28 @@ proxy-groups:
   - 🇮🇹 意大利自动
   - 🇪🇸 西班牙自动
   - 🇨🇭 瑞士自动
-  - 🇮🇳 印度自动
   - 🇹🇷 土耳其自动
   - 🇹🇭 泰国自动
   - 🇷🇴 罗马尼亚自动
   - 🇵🇱 波兰自动
-  - 🇮🇩 印度尼西亚自动
-  - 🇱🇻 拉脱维亚自动
-  - 🇨🇿 捷克自动
   - 🇮🇪 爱尔兰自动
+  - 🇱🇻 拉脱维亚自动
+  - 🇮🇩 印度尼西亚自动
   - 🇧🇷 巴西自动
   - 🇪🇪 爱沙尼亚自动
   - 🇮🇱 以色列自动
   - 🇰🇿 哈萨克斯坦自动
-  - 🇱🇹 立陶宛自动
-  - 🇦🇱 阿尔巴尼亚自动
-  - 🇲🇽 墨西哥自动
+  - 🇨🇿 捷克自动
   - 🇸🇰 斯洛伐克自动
+  - 🇦🇱 阿尔巴尼亚自动
+  - 🇱🇹 立陶宛自动
+  - 🇲🇽 墨西哥自动
+  - 🇸🇮 斯洛文尼亚自动
+  - 🇰🇷 韩国自动
+  - 🇮🇳 印度自动
   - 🇺🇦 乌克兰自动
   - 🇦🇪 阿联酋自动
-  - 🇨🇾 塞浦路斯自动
-  - 🇪🇬 埃及自动
-  - 🇲🇩 摩尔多瓦自动
-  - 🇸🇮 斯洛文尼亚自动
+  - 🇵🇰 巴基斯坦自动
 - name: 🍎 苹果服务
   type: select
   proxies:
@@ -18270,7 +16717,6 @@ proxy-groups:
   - 🇹🇼 台湾自动
   - 🇯🇵 日本自动
   - 🇸🇬 新加坡自动
-  - 🇰🇷 韩国自动
   - 🇺🇸 美国自动
   - 🇬🇧 英国自动
   - 🇩🇪 德国自动
@@ -18284,29 +16730,28 @@ proxy-groups:
   - 🇮🇹 意大利自动
   - 🇪🇸 西班牙自动
   - 🇨🇭 瑞士自动
-  - 🇮🇳 印度自动
   - 🇹🇷 土耳其自动
   - 🇹🇭 泰国自动
   - 🇷🇴 罗马尼亚自动
   - 🇵🇱 波兰自动
-  - 🇮🇩 印度尼西亚自动
-  - 🇱🇻 拉脱维亚自动
-  - 🇨🇿 捷克自动
   - 🇮🇪 爱尔兰自动
+  - 🇱🇻 拉脱维亚自动
+  - 🇮🇩 印度尼西亚自动
   - 🇧🇷 巴西自动
   - 🇪🇪 爱沙尼亚自动
   - 🇮🇱 以色列自动
   - 🇰🇿 哈萨克斯坦自动
-  - 🇱🇹 立陶宛自动
-  - 🇦🇱 阿尔巴尼亚自动
-  - 🇲🇽 墨西哥自动
+  - 🇨🇿 捷克自动
   - 🇸🇰 斯洛伐克自动
+  - 🇦🇱 阿尔巴尼亚自动
+  - 🇱🇹 立陶宛自动
+  - 🇲🇽 墨西哥自动
+  - 🇸🇮 斯洛文尼亚自动
+  - 🇰🇷 韩国自动
+  - 🇮🇳 印度自动
   - 🇺🇦 乌克兰自动
   - 🇦🇪 阿联酋自动
-  - 🇨🇾 塞浦路斯自动
-  - 🇪🇬 埃及自动
-  - 🇲🇩 摩尔多瓦自动
-  - 🇸🇮 斯洛文尼亚自动
+  - 🇵🇰 巴基斯坦自动
 - name: 📺 国外媒体
   type: select
   proxies:
@@ -18318,7 +16763,6 @@ proxy-groups:
   - 🇭🇰 香港自动
   - 🇹🇼 台湾自动
   - 🇸🇬 新加坡自动
-  - 🇰🇷 韩国自动
   - 🇬🇧 英国自动
   - 🇩🇪 德国自动
   - 🇫🇷 法国自动
@@ -18331,29 +16775,28 @@ proxy-groups:
   - 🇮🇹 意大利自动
   - 🇪🇸 西班牙自动
   - 🇨🇭 瑞士自动
-  - 🇮🇳 印度自动
   - 🇹🇷 土耳其自动
   - 🇹🇭 泰国自动
   - 🇷🇴 罗马尼亚自动
   - 🇵🇱 波兰自动
-  - 🇮🇩 印度尼西亚自动
-  - 🇱🇻 拉脱维亚自动
-  - 🇨🇿 捷克自动
   - 🇮🇪 爱尔兰自动
+  - 🇱🇻 拉脱维亚自动
+  - 🇮🇩 印度尼西亚自动
   - 🇧🇷 巴西自动
   - 🇪🇪 爱沙尼亚自动
   - 🇮🇱 以色列自动
   - 🇰🇿 哈萨克斯坦自动
-  - 🇱🇹 立陶宛自动
-  - 🇦🇱 阿尔巴尼亚自动
-  - 🇲🇽 墨西哥自动
+  - 🇨🇿 捷克自动
   - 🇸🇰 斯洛伐克自动
+  - 🇦🇱 阿尔巴尼亚自动
+  - 🇱🇹 立陶宛自动
+  - 🇲🇽 墨西哥自动
+  - 🇸🇮 斯洛文尼亚自动
+  - 🇰🇷 韩国自动
+  - 🇮🇳 印度自动
   - 🇺🇦 乌克兰自动
   - 🇦🇪 阿联酋自动
-  - 🇨🇾 塞浦路斯自动
-  - 🇪🇬 埃及自动
-  - 🇲🇩 摩尔多瓦自动
-  - 🇸🇮 斯洛文尼亚自动
+  - 🇵🇰 巴基斯坦自动
 - name: Ⓜ️ 微软服务
   type: select
   proxies:
@@ -18365,7 +16808,6 @@ proxy-groups:
   - 🇺🇸 美国自动
   - 🇯🇵 日本自动
   - 🇸🇬 新加坡自动
-  - 🇰🇷 韩国自动
   - 🇬🇧 英国自动
   - 🇩🇪 德国自动
   - 🇫🇷 法国自动
@@ -18378,29 +16820,28 @@ proxy-groups:
   - 🇮🇹 意大利自动
   - 🇪🇸 西班牙自动
   - 🇨🇭 瑞士自动
-  - 🇮🇳 印度自动
   - 🇹🇷 土耳其自动
   - 🇹🇭 泰国自动
   - 🇷🇴 罗马尼亚自动
   - 🇵🇱 波兰自动
-  - 🇮🇩 印度尼西亚自动
-  - 🇱🇻 拉脱维亚自动
-  - 🇨🇿 捷克自动
   - 🇮🇪 爱尔兰自动
+  - 🇱🇻 拉脱维亚自动
+  - 🇮🇩 印度尼西亚自动
   - 🇧🇷 巴西自动
   - 🇪🇪 爱沙尼亚自动
   - 🇮🇱 以色列自动
   - 🇰🇿 哈萨克斯坦自动
-  - 🇱🇹 立陶宛自动
-  - 🇦🇱 阿尔巴尼亚自动
-  - 🇲🇽 墨西哥自动
+  - 🇨🇿 捷克自动
   - 🇸🇰 斯洛伐克自动
+  - 🇦🇱 阿尔巴尼亚自动
+  - 🇱🇹 立陶宛自动
+  - 🇲🇽 墨西哥自动
+  - 🇸🇮 斯洛文尼亚自动
+  - 🇰🇷 韩国自动
+  - 🇮🇳 印度自动
   - 🇺🇦 乌克兰自动
   - 🇦🇪 阿联酋自动
-  - 🇨🇾 塞浦路斯自动
-  - 🇪🇬 埃及自动
-  - 🇲🇩 摩尔多瓦自动
-  - 🇸🇮 斯洛文尼亚自动
+  - 🇵🇰 巴基斯坦自动
 - name: 🇭🇰 香港自动
   type: url-test
   url: https://www.gstatic.com/generate_204
@@ -18413,30 +16854,19 @@ proxy-groups:
   - 🇭🇰香港HK001 6.4MB/s危险 TG@jcnode
   - 🇭🇰香港HK001 2.81MB/s纯净 TG@jcnode
   - 🇭🇰香港HK009 1.44MB/s纯净 TG@jcnode
-  - 🇭🇰香港HK002 1.29MB/s纯净 TG@jcnode
-  - 🇭🇰香港HK003 0.83MB/s纯净 TG@jcnode
   - 🇭🇰香港HK006 0.78MB/s TG@jcnode
-  - 🇭🇰香港HK004 0.76MB/s纯净 TG@jcnode
-  - 🇭🇰香港HK005 0.75MB/s纯净 TG@jcnode
-  - 🇭🇰香港HK006 0.55MB/s纯净 TG@jcnode
   - 🇭🇰香港HK013 0.3MB/s中性 TG@jcnode
   - 🇭🇰香港HK002 0.1MB/s纯净 TG@jcnode
-  - 🇭🇰香港HK004 测速未知纯净 TG@jcnode
-  - 🇭🇰香港HK008 测速未知纯净 TG@jcnode
   - 🇭🇰香港HK009 测速未知 TG@jcnode
-  - 🇭🇰香港HK006 测速未知纯净 TG@jcnode
   - 🇭🇰香港HK006 测速未知 TG@jcnode
   - 🇭🇰香港HK007 测速未知中性 TG@jcnode
   - '🇭🇰香港HK009 测速未知 TG@jcnode #2'
   - 🇭🇰香港HK012 测速未知 TG@jcnode
-  - '🇭🇰香港HK008 测速未知纯净 TG@jcnode #2'
-  - 🇭🇰香港HK011 测速未知纯净 TG@jcnode
   - 🇭🇰香港HK012 测速未知纯净 TG@jcnode
   - '🇭🇰香港HK009 测速未知 TG@jcnode #2 #2'
   - 🇭🇰香港HK018 测速未知纯净 TG@jcnode
   - 🇭🇰香港HK017 测速未知 TG@jcnode
   - 🇭🇰香港HK020 测速未知纯净 TG@jcnode
-  - 🇭🇰香港HK031 测速未知纯净 TG@jcnode
   - 🇭🇰香港HK008 测速未知中性 TG@jcnode
   - 🇭🇰香港HK032 测速未知纯净 TG@jcnode
   - 🇭🇰香港HK015 测速未知纯净 TG@jcnode
@@ -18445,7 +16875,6 @@ proxy-groups:
   - 🇭🇰香港HK044 测速未知纯净 TG@jcnode
   - 🇭🇰香港HK045 测速未知 TG@jcnode
   - '🇭🇰香港HK013 测速未知纯净 TG@jcnode #2 #2'
-  - '🇭🇰香港HK008 测速未知 TG@jcnode #2 #2 #2'
   - '🇭🇰香港HK018 测速未知中性 TG@jcnode #2'
   - '🇭🇰香港HK020 测速未知中性 TG@jcnode #2 #2'
   - 🇭🇰香港HK020 测速未知 TG@jcnode
@@ -18461,18 +16890,13 @@ proxy-groups:
   tolerance: 50
   lazy: true
   proxies:
-  - 🇹🇼台湾TW001 6.67MB/s纯净 TG@jcnode
-  - 🇹🇼台湾TW002 5.71MB/s纯净 TG@jcnode
   - 🇹🇼台湾TW002 4.7MB/s危险 TG@jcnode
   - 🇹🇼台湾TW003 4.5MB/s危险 TG@jcnode
-  - 🇹🇼台湾TW001 4.44MB/s纯净 TG@jcnode
   - 🇹🇼台湾TW001 4.39MB/s纯净 TG@jcnode
   - 🇹🇼台湾TW002 4.32MB/s纯净 TG@jcnode
   - 🇹🇼台湾TW002 2.94MB/s纯净 TG@jcnode
   - 🇹🇼台湾TW005 1.76MB/s危险 TG@jcnode
-  - 🇹🇼台湾TW001 0.9MB/s纯净 TG@jcnode
   - 🇹🇼台湾TW010 0.86MB/s中性 TG@jcnode
-  - 🇹🇼台湾TW001 0.8MB/s纯净 TG@jcnode
   - 🇹🇼台湾TW011 测速未知纯净 TG@jcnode
 - name: 🇯🇵 日本自动
   type: url-test
@@ -18482,10 +16906,9 @@ proxy-groups:
   lazy: true
   proxies:
   - 🇯🇵日本JP002 3.8MB/s纯净 TG@jcnode
-  - 🇯🇵日本JP001 2.32MB/s TG@jcnode
   - 🇯🇵日本JP005 1.88MB/s纯净 TG@jcnode
+  - 🇯🇵日本JP017 1.59MB/s纯净 TG@jcnode
   - 🇯🇵日本JP003 1.56MB/s纯净 TG@jcnode
-  - 🇯🇵日本JP007 0.91MB/s TG@jcnode
   - 🇯🇵日本JP019 0.42MB/s纯净 TG@jcnode
   - 🇯🇵日本JP023 0.42MB/s纯净 TG@jcnode
   - 🇯🇵日本JP024 0.42MB/s纯净 TG@jcnode
@@ -18497,7 +16920,6 @@ proxy-groups:
   - 🇯🇵日本JP011 测速未知 TG@jcnode
   - 🇯🇵日本JP007 测速未知纯净 TG@jcnode
   - 🇯🇵日本JP012 测速未知纯净 TG@jcnode
-  - 🇯🇵日本JP024 测速未知危险 TG@jcnode
   - 🇯🇵日本JP047 测速未知纯净 TG@jcnode
   - 🇯🇵日本JP028 测速未知 TG@jcnode
   - '🇯🇵日本JP019 测速未知中性 TG@jcnode #2'
@@ -18520,7 +16942,6 @@ proxy-groups:
   - '🇯🇵日本JP012 测速未知 TG@jcnode #2'
   - '🇯🇵日本JP018 测速未知 TG@jcnode #2 #2'
   - '🇯🇵日本JP022 测速未知纯净 TG@jcnode #2'
-  - '🇯🇵日本JP031 测速未知 TG@jcnode #2 #2'
   - '🇯🇵日本JP011 测速未知纯净 TG@jcnode #2'
   - 🇯🇵日本JP006 测速未知危险 TG@jcnode
 - name: 🇸🇬 新加坡自动
@@ -18531,10 +16952,12 @@ proxy-groups:
   lazy: true
   proxies:
   - 🇸🇬新加坡SG002 9.1MB/s中性 TG@jcnode
+  - 🇸🇬新加坡SG001 3.77MB/s TG@jcnode
   - 🇸🇬新加坡SG008 1.83MB/s中性 TG@jcnode
   - 🇸🇬新加坡SG005 0.98MB/s中性 TG@jcnode
   - 🇸🇬新加坡SG001 0.91MB/s中性 TG@jcnode
   - 🇸🇬新加坡SG002 0.89MB/s中性 TG@jcnode
+  - 🇸🇬新加坡SG044 0.86MB/s危险 TG@jcnode
   - 🇸🇬新加坡SG002 0.75MB/s中性 TG@jcnode
   - 🇸🇬新加坡SG002 0.74MB/s中性 TG@jcnode
   - 🇸🇬新加坡SG006 0.69MB/s中性 TG@jcnode
@@ -18555,6 +16978,7 @@ proxy-groups:
   - 🇰🇷韩国KR002 3.11MB/s中性 TG@jcnode
   - 🇰🇷韩国KR 004 2.5MB/s TG@jcnode
   - 🇰🇷韩国KR002 0.9MB/s中性 TG@jcnode
+  - 🇰🇷韩国KR001 0.85MB/s中性 TG@jcnode
   - 🇰🇷韩国KR 001 0.2MB/s TG@jcnode
   - '🇰🇷韩国KR003 测速未知 TG@jcnode #2'
   - 🇰🇷韩国KR006 测速未知危险 TG@jcnode
@@ -18887,7 +17311,6 @@ proxy-groups:
   - 🇺🇸美国US033 1.55MB/s TG@jcnode
   - 🇺🇸美国US034 1.55MB/s TG@jcnode
   - 🇺🇸美国US035 1.55MB/s TG@jcnode
-  - 🇺🇸美国US002 1.55MB/s危险 TG@jcnode
   - '🇺🇸美国US115 1.55MB/s危险 TG@jcnode #2'
   - '🇺🇸美国US127 1.55MB/s危险 TG@jcnode #2'
   - '🇺🇸美国US060 1.55MB/s危险 TG@jcnode #2'
@@ -18952,7 +17375,6 @@ proxy-groups:
   - 🇺🇸美国US030 1.39MB/s危险 TG@jcnode
   - 🇺🇸美国US041 1.38MB/s TG@jcnode
   - 🇺🇸美国US042 1.37MB/s危险 TG@jcnode
-  - 🇺🇸美国US151 1.37MB/s TG@jcnode
   - 🇺🇸美国US094 1.37MB/s危险 TG@jcnode
   - 🇺🇸美国US103 1.37MB/s中性 TG@jcnode
   - 🇺🇸美国US035 1.37MB/s危险 TG@jcnode
@@ -18977,11 +17399,14 @@ proxy-groups:
   - 🇺🇸美国US075 1.27MB/s危险 TG@jcnode
   - 🇺🇸美国US049 1.26MB/s中性 TG@jcnode
   - 🇺🇸美国US050 1.26MB/s中性 TG@jcnode
+  - 🇺🇸美国US226 1.26MB/s危险 TG@jcnode
   - 🇺🇸美国US021 1.23MB/s中性 TG@jcnode
   - 🇺🇸美国US177 1.22MB/s中性 TG@jcnode
+  - 🇺🇸美国US011 1.21MB/s危险 TG@jcnode
   - 🇺🇸美国US051 1.2MB/s纯净 TG@jcnode
   - 🇺🇸美国US052 1.19MB/s中性 TG@jcnode
   - 🇺🇸美国US022 1.19MB/s中性 TG@jcnode
+  - 🇺🇸美国US212 1.18MB/s中性 TG@jcnode
   - 🇺🇸美国US171 1.18MB/s危险 TG@jcnode
   - 🇺🇸美国US053 1.17MB/s危险 TG@jcnode
   - 🇺🇸美国US054 1.17MB/s中性 TG@jcnode
@@ -18991,7 +17416,6 @@ proxy-groups:
   - 🇺🇸美国US056 1.14MB/s危险 TG@jcnode
   - 🇺🇸美国US057 1.14MB/s纯净 TG@jcnode
   - 🇺🇸美国US150 1.13MB/s危险 TG@jcnode
-  - 🇺🇸美国US058 1.12MB/s纯净 TG@jcnode
   - 🇺🇸美国US025 1.12MB/s中性 TG@jcnode
   - 🇺🇸美国US201 1.12MB/s危险 TG@jcnode
   - 🇺🇸美国US015 1.11MB/s纯净 TG@jcnode
@@ -19000,6 +17424,7 @@ proxy-groups:
   - 🇺🇸美国US016 1.1MB/s中性 TG@jcnode
   - 🇺🇸美国US059 1.09MB/s中性 TG@jcnode
   - 🇺🇸美国US026 1.09MB/s中性 TG@jcnode
+  - 🇺🇸美国US060 1.06MB/s危险 TG@jcnode
   - 🇺🇸美国US078 1.06MB/s危险 TG@jcnode
   - 🇺🇸美国US186 1.06MB/s危险 TG@jcnode
   - 🇺🇸美国US220 1.05MB/s危险 TG@jcnode
@@ -19024,8 +17449,10 @@ proxy-groups:
   - '🇺🇸美国US225 0.87MB/s危险 TG@jcnode #2'
   - 🇺🇸美国US111 0.86MB/s危险 TG@jcnode
   - 🇺🇸美国US062 0.85MB/s TG@jcnode
+  - 🇺🇸美国US063 0.83MB/s危险 TG@jcnode
   - 🇺🇸美国US187 0.83MB/s危险 TG@jcnode
   - 🇺🇸美国US064 0.81MB/s危险 TG@jcnode
+  - 🇺🇸美国US246 0.8MB/s危险 TG@jcnode
   - 🇺🇸美国US065 0.78MB/s危险 TG@jcnode
   - 🇺🇸美国US036 0.77MB/s中性 TG@jcnode
   - 🇺🇸美国US081 0.77MB/s危险 TG@jcnode
@@ -19090,22 +17517,17 @@ proxy-groups:
   - 🇺🇸美国US157 测速未知危险 TG@jcnode
   - 🇺🇸美国US159 测速未知纯净 TG@jcnode
   - 🇺🇸美国US165 测速未知危险 TG@jcnode
-  - 🇺🇸美国US168 测速未知危险 TG@jcnode
   - 🇺🇸美国US171 测速未知危险 TG@jcnode
   - 🇺🇸美国US176 测速未知危险 TG@jcnode
   - 🇺🇸美国US180 测速未知危险 TG@jcnode
-  - 🇺🇸美国US181 测速未知危险 TG@jcnode
   - 🇺🇸美国US186 测速未知危险 TG@jcnode
   - 🇺🇸美国US188 测速未知 TG@jcnode
-  - 🇺🇸美国US195 测速未知 TG@jcnode
   - 🇺🇸美国US199 测速未知危险 TG@jcnode
   - 🇺🇸美国US200 测速未知危险 TG@jcnode
-  - 🇺🇸美国US206 测速未知 TG@jcnode
   - 🇺🇸美国US030 测速未知中性 TG@jcnode
   - 🇺🇸美国US031 测速未知中性 TG@jcnode
   - 🇺🇸美国US032 测速未知危险 TG@jcnode
   - 🇺🇸美国US035 测速未知危险 TG@jcnode
-  - 🇺🇸美国US037 测速未知危险 TG@jcnode
   - 🇺🇸美国US039 测速未知中性 TG@jcnode
   - 🇺🇸美国US040 测速未知 TG@jcnode
   - 🇺🇸美国US049 测速未知中性 TG@jcnode
@@ -19114,6 +17536,7 @@ proxy-groups:
   - 🇺🇸美国US055 测速未知中性 TG@jcnode
   - 🇺🇸美国US060 测速未知中性 TG@jcnode
   - 🇺🇸美国US061 测速未知危险 TG@jcnode
+  - 🇺🇸美国US063 测速未知危险 TG@jcnode
   - 🇺🇸美国US064 测速未知危险 TG@jcnode
   - 🇺🇸美国US066 测速未知 TG@jcnode
   - 🇺🇸美国US067 测速未知 TG@jcnode
@@ -19124,10 +17547,10 @@ proxy-groups:
   - 🇺🇸美国US073 测速未知危险 TG@jcnode
   - 🇺🇸美国US074 测速未知危险 TG@jcnode
   - 🇺🇸美国US075 测速未知中性 TG@jcnode
+  - 🇺🇸美国US076 测速未知危险 TG@jcnode
   - 🇺🇸美国US078 测速未知危险 TG@jcnode
   - 🇺🇸美国US079 测速未知危险 TG@jcnode
   - 🇺🇸美国US088 测速未知中性 TG@jcnode
-  - 🇺🇸美国US104 测速未知危险 TG@jcnode
   - 🇺🇸美国US128 测速未知 TG@jcnode
   - 🇺🇸美国US132 测速未知危险 TG@jcnode
   - 🇺🇸美国US156 测速未知危险 TG@jcnode
@@ -19147,6 +17570,7 @@ proxy-groups:
   - 🇺🇸美国US093 测速未知 TG@jcnode
   - 🇺🇸美国US099 测速未知中性 TG@jcnode
   - '🇺🇸美国US108 测速未知中性 TG@jcnode #2'
+  - 🇺🇸美国US138 测速未知危险 TG@jcnode
   - 🇺🇸美国US140 测速未知危险 TG@jcnode
   - 🇺🇸美国US207 测速未知危险 TG@jcnode
   - '🇺🇸美国US030 测速未知中性 TG@jcnode #2'
@@ -19154,6 +17578,7 @@ proxy-groups:
   - 🇺🇸美国US059 测速未知纯净 TG@jcnode
   - 🇺🇸美国US058 测速未知危险 TG@jcnode
   - 🇺🇸美国US059 测速未知危险 TG@jcnode
+  - 🇺🇸美国US060 测速未知危险 TG@jcnode
   - 🇺🇸美国US082 测速未知危险 TG@jcnode
   - 🇺🇸美国US083 测速未知危险 TG@jcnode
   - '🇺🇸美国US088 测速未知危险 TG@jcnode #2'
@@ -19162,7 +17587,6 @@ proxy-groups:
   - 🇺🇸美国US112 测速未知危险 TG@jcnode
   - 🇺🇸美国US113 测速未知中性 TG@jcnode
   - '🇺🇸美国US123 测速未知危险 TG@jcnode #2'
-  - '🇺🇸美国US131 测速未知危险 TG@jcnode #2'
   - 🇺🇸美国US136 测速未知纯净 TG@jcnode
   - 🇺🇸美国US146 测速未知危险 TG@jcnode
   - '🇺🇸美国US153 测速未知危险 TG@jcnode #2'
@@ -19174,7 +17598,6 @@ proxy-groups:
   - 🇺🇸美国US192 测速未知中性 TG@jcnode
   - 🇺🇸美国US269 测速未知 TG@jcnode
   - 🇺🇸美国US283 测速未知中性 TG@jcnode
-  - 🇺🇸美国US290 测速未知 TG@jcnode
   - 未知地区003 测速未知 TG@jcnode
   - 🇺🇸美国US335 测速未知中性 TG@jcnode
   - 🇺🇸美国US350 测速未知中性 TG@jcnode
@@ -19204,8 +17627,6 @@ proxy-groups:
   - 🇺🇸美国US140 测速未知中性 TG@jcnode
   - 🇺🇸美国US143 测速未知中性 TG@jcnode
   - 🇺🇸美国US172 测速未知 TG@jcnode
-  - 🇺🇸美国US346 测速未知中性 TG@jcnode
-  - 🇺🇸美国US357 测速未知 TG@jcnode
   - 🇺🇸美国US395 测速未知 TG@jcnode
   - 🇺🇸美国US141 测速未知危险 TG@jcnode
   - 🇺🇸美国US158 测速未知中性 TG@jcnode
@@ -19218,7 +17639,6 @@ proxy-groups:
   - 🇺🇸美国US265 测速未知中性 TG@jcnode
   - 🇺🇸美国US275 测速未知中性 TG@jcnode
   - '🇺🇸美国US286 测速未知中性 TG@jcnode #2'
-  - 🇺🇸美国US297 测速未知中性 TG@jcnode
   - '🇺🇸美国US327 测速未知危险 TG@jcnode #2'
   - 🇺🇸美国US441 测速未知危险 TG@jcnode
   - '🇺🇸美国US241 测速未知危险 TG@jcnode #2'
@@ -19228,7 +17648,7 @@ proxy-groups:
   - '🇺🇸美国US333 测速未知危险 TG@jcnode #2'
   - '🇺🇸美国US348 测速未知危险 TG@jcnode #2'
   - '🇺🇸美国US250 测速未知中性 TG@jcnode #2'
-  - '🇺🇸美国US266 测速未知危险 TG@jcnode #2'
+  - '🇺🇸美国US258 测速未知危险 TG@jcnode #2'
   - '🇺🇸美国US282 测速未知中性 TG@jcnode #2'
   - '🇺🇸美国US292 测速未知中性 TG@jcnode #2'
   - 🇺🇸美国US354 测速未知危险 TG@jcnode
@@ -19248,6 +17668,7 @@ proxy-groups:
   - '🇺🇸美国US341 测速未知危险 TG@jcnode #2'
   - 🇺🇸美国US201 测速未知中性 TG@jcnode
   - 🇺🇸美国US234 测速未知中性 TG@jcnode
+  - '🇺🇸美国US276 测速未知 TG@jcnode #2'
   - '🇺🇸美国US368 测速未知危险 TG@jcnode #2'
   - '🇺🇸美国US245 测速未知中性 TG@jcnode #2'
   - '🇺🇸美国US256 测速未知中性 TG@jcnode #2 #2 #2'
@@ -19256,6 +17677,7 @@ proxy-groups:
   - '🇺🇸美国US418 测速未知中性 TG@jcnode #2 #2'
   - '🇺🇸美国US311 测速未知中性 TG@jcnode #2'
   - '🇺🇸美国US337 测速未知危险 TG@jcnode #2'
+  - '🇺🇸美国US383 测速未知危险 TG@jcnode #2 #2'
   - 🇺🇸美国US175 测速未知 TG@jcnode
   - 🇺🇸美国US184 测速未知中性 TG@jcnode
   - '🇺🇸美国US191 测速未知危险 TG@jcnode #2'
@@ -19265,9 +17687,7 @@ proxy-groups:
   - 🇺🇸美国US557 测速未知中性 TG@jcnode
   - '🇺🇸美国US348 测速未知中性 TG@jcnode #2 #2 #2'
   - 🇺🇸美国US1120 测速未知危险 TG@jcnode
-  - 🇺🇸美国US759 测速未知中性 TG@jcnode
   - 🇺🇸美国US656 测速未知 TG@jcnode
-  - 🇺🇸美国US706 测速未知 TG@jcnode
   - 🇺🇸美国US708 测速未知 TG@jcnode
   - '🇺🇸美国US396 测速未知 TG@jcnode #2'
   - 🇺🇸美国US404 测速未知危险 TG@jcnode
@@ -19320,9 +17740,6 @@ proxy-groups:
   tolerance: 50
   lazy: true
   proxies:
-  - 🇬🇧英国GB001 1.02MB/s TG@jcnode
-  - 🇬🇧英国GB002 0.98MB/s TG@jcnode
-  - 🇬🇧英国GB003 0.55MB/s TG@jcnode
   - 🇬🇧英国GB017 测速未知中性 TG@jcnode
   - 🇬🇧英国GB010 测速未知 TG@jcnode
   - 🇬🇧英国GB021 测速未知 TG@jcnode
@@ -19346,62 +17763,45 @@ proxy-groups:
   - 🇩🇪德国DE001 2.74MB/s中性 TG@jcnode
   - 🇩🇪德国DE001 2.18MB/s危险 TG@jcnode
   - 🇩🇪德国DE002 2MB/s危险 TG@jcnode
-  - 🇩🇪德国DE007 1.95MB/s中性 TG@jcnode
   - 🇩🇪德国DE003 1.89MB/s危险 TG@jcnode
-  - 🇩🇪德国DE004 1.89MB/s TG@jcnode
   - 🇩🇪德国DE005 1.84MB/s危险 TG@jcnode
   - 🇩🇪德国DE006 1.81MB/s危险 TG@jcnode
-  - 🇩🇪德国DE007 1.75MB/s TG@jcnode
   - 🇩🇪德国DE008 1.7MB/s TG@jcnode
   - 🇩🇪德国DE009 1.69MB/s危险 TG@jcnode
   - 🇩🇪德国DE010 1.66MB/s危险 TG@jcnode
-  - 🇩🇪德国DE011 1.65MB/s中性 TG@jcnode
-  - 🇩🇪德国DE012 1.64MB/s TG@jcnode
   - 🇩🇪德国DE013 1.61MB/s危险 TG@jcnode
   - 🇩🇪德国DE014 1.58MB/s危险 TG@jcnode
   - 🇩🇪德国DE015 1.57MB/s危险 TG@jcnode
   - 🇩🇪德国DE004 1.57MB/s危险 TG@jcnode
   - 🇩🇪德国DE016 1.56MB/s危险 TG@jcnode
+  - 🇩🇪德国DE017 1.55MB/s TG@jcnode
   - 🇩🇪德国DE018 1.54MB/s TG@jcnode
   - 🇩🇪德国DE017 1.53MB/s危险 TG@jcnode
   - 🇩🇪德国DE019 1.52MB/s TG@jcnode
   - 🇩🇪德国DE018 1.51MB/s危险 TG@jcnode
   - 🇩🇪德国DE003 1.48MB/s中性 TG@jcnode
-  - 🇩🇪德国DE020 1.45MB/s中性 TG@jcnode
   - 🇩🇪德国DE021 1.44MB/s危险 TG@jcnode
-  - 🇩🇪德国DE005 1.43MB/s纯净 TG@jcnode
   - 🇩🇪德国DE029 1.43MB/s中性 TG@jcnode
-  - 🇩🇪德国DE006 1.4MB/s纯净 TG@jcnode
   - 🇩🇪德国DE018 1.39MB/s中性 TG@jcnode
-  - 🇩🇪德国DE022 1.38MB/s纯净 TG@jcnode
   - 🇩🇪德国DE023 1.36MB/s危险 TG@jcnode
   - 🇩🇪德国DE015 1.36MB/s中性 TG@jcnode
   - 🇩🇪德国DE024 1.34MB/s危险 TG@jcnode
   - 🇩🇪德国DE025 1.32MB/s TG@jcnode
   - 🇩🇪德国DE026 1.29MB/s危险 TG@jcnode
-  - 🇩🇪德国DE036 1.29MB/s中性 TG@jcnode
-  - 🇩🇪德国DE027 1.25MB/s中性 TG@jcnode
   - 🇩🇪德国DE028 1.22MB/s危险 TG@jcnode
   - 🇩🇪德国DE029 1.08MB/s纯净 TG@jcnode
   - 🇩🇪德国DE033 1.08MB/s危险 TG@jcnode
   - 🇩🇪德国DE030 1.03MB/s纯净 TG@jcnode
-  - 🇩🇪德国DE185 0.92MB/s中性 TG@jcnode
   - 🇩🇪德国DE031 0.91MB/s TG@jcnode
-  - 🇩🇪德国DE032 0.9MB/s TG@jcnode
-  - 🇩🇪德国DE033 0.89MB/s TG@jcnode
   - 🇩🇪德国DE046 0.85MB/s纯净 TG@jcnode
-  - 🇩🇪德国DE034 0.84MB/s TG@jcnode
   - 🇩🇪德国DE035 0.78MB/s纯净 TG@jcnode
   - 🇩🇪德国DE031 0.77MB/s危险 TG@jcnode
   - 🇩🇪德国DE036 0.69MB/s危险 TG@jcnode
   - 🇩🇪德国DE037 0.67MB/s危险 TG@jcnode
-  - 🇩🇪德国DE038 0.66MB/s TG@jcnode
   - 🇩🇪德国DE039 0.58MB/s中性 TG@jcnode
-  - 🇩🇪德国DE040 0.57MB/s TG@jcnode
   - 🇩🇪德国DE041 0.5MB/s中性 TG@jcnode
   - '🇩🇪德国DE033 0.48MB/s中性 TG@jcnode #2'
   - 🇩🇪德国DE019 0.43MB/s中性 TG@jcnode
-  - 🇩🇪德国DE022 0.33MB/s TG@jcnode
   - 🇩🇪德国DE042 测速未知危险 TG@jcnode
   - 🇩🇪德国DE043 测速未知危险 TG@jcnode
   - 🇩🇪德国DE045 测速未知危险 TG@jcnode
@@ -19425,13 +17825,13 @@ proxy-groups:
   - 🇩🇪德国DE079 测速未知危险 TG@jcnode
   - 🇩🇪德国DE084 测速未知中性 TG@jcnode
   - 🇩🇪德国DE085 测速未知中性 TG@jcnode
-  - 🇩🇪德国DE090 测速未知中性 TG@jcnode
   - 🇩🇪德国DE099 测速未知纯净 TG@jcnode
   - 🇩🇪德国DE100 测速未知纯净 TG@jcnode
   - 🇩🇪德国DE101 测速未知 TG@jcnode
   - 🇩🇪德国DE041 测速未知危险 TG@jcnode
   - 🇩🇪德国DE075 测速未知纯净 TG@jcnode
   - 🇩🇪德国DE016 测速未知 TG@jcnode
+  - 🇩🇪德国DE019 测速未知中性 TG@jcnode
   - 🇩🇪德国DE051 测速未知纯净 TG@jcnode
   - 🇩🇪德国DE015 测速未知危险 TG@jcnode
   - 🇩🇪德国DE016 测速未知危险 TG@jcnode
@@ -19455,12 +17855,10 @@ proxy-groups:
   - 🇩🇪德国DE093 测速未知 TG@jcnode
   - 🇩🇪德国DE075 测速未知中性 TG@jcnode
   - '🇩🇪德国DE077 测速未知纯净 TG@jcnode #2'
-  - 🇩🇪德国DE088 测速未知 TG@jcnode
   - 🇩🇪德国DE136 测速未知 TG@jcnode
   - 🇩🇪德国DE147 测速未知纯净 TG@jcnode
   - 🇩🇪德国DE214 测速未知 TG@jcnode
   - '🇩🇪德国DE120 测速未知中性 TG@jcnode #2'
-  - 🇩🇪德国DE146 测速未知纯净 TG@jcnode
   - 🇩🇪德国DE072 测速未知纯净 TG@jcnode
   - 🇩🇪德国DE015 测速未知纯净 TG@jcnode
   - '🇩🇪德国DE039 测速未知纯净 TG@jcnode #2'
@@ -19480,9 +17878,6 @@ proxy-groups:
   - '🇫🇷法国FR001 3.1MB/s中性 TG@jcnode #2'
   - 🇫🇷法国FR002 2.71MB/s TG@jcnode
   - 🇫🇷法国FR002 2.6MB/s中性 TG@jcnode
-  - 🇫🇷法国FR001 2.16MB/s中性 TG@jcnode
-  - 🇫🇷法国FR002 2.08MB/s中性 TG@jcnode
-  - 🇫🇷法国FR003 1.95MB/s TG@jcnode
   - 🇫🇷法国FR002 1.95MB/s中性 TG@jcnode
   - 🇫🇷法国FR004 1.84MB/s中性 TG@jcnode
   - 🇫🇷法国FR005 1.8MB/s中性 TG@jcnode
@@ -19490,13 +17885,8 @@ proxy-groups:
   - 🇫🇷法国FR009 1.72MB/s中性 TG@jcnode
   - 🇫🇷法国FR007 1.69MB/s纯净 TG@jcnode
   - 🇫🇷法国FR007 1.65MB/s中性 TG@jcnode
-  - 🇫🇷法国FR008 1.6MB/s危险 TG@jcnode
-  - 🇫🇷法国FR009 1.59MB/s危险 TG@jcnode
-  - 🇫🇷法国FR012 1.56MB/s危险 TG@jcnode
   - 🇫🇷法国FR009 1.54MB/s中性 TG@jcnode
   - 🇫🇷法国FR010 1.52MB/s危险 TG@jcnode
-  - 🇫🇷法国FR019 1.52MB/s危险 TG@jcnode
-  - 🇫🇷法国FR011 1.48MB/s危险 TG@jcnode
   - 🇫🇷法国FR012 1.48MB/s中性 TG@jcnode
   - '🇫🇷法国FR014 1.48MB/s中性 TG@jcnode #2'
   - 🇫🇷法国FR015 1.46MB/s危险 TG@jcnode
@@ -19516,7 +17906,6 @@ proxy-groups:
   - 🇫🇷法国FR023 1.2MB/s危险 TG@jcnode
   - 🇫🇷法国FR024 1.18MB/s纯净 TG@jcnode
   - 🇫🇷法国FR015 1.17MB/s中性 TG@jcnode
-  - 🇫🇷法国FR025 1.16MB/s TG@jcnode
   - 🇫🇷法国FR026 1.13MB/s纯净 TG@jcnode
   - 🇫🇷法国FR038 1.07MB/s纯净 TG@jcnode
   - 🇫🇷法国FR027 1.01MB/s纯净 TG@jcnode
@@ -19524,9 +17913,6 @@ proxy-groups:
   - 🇫🇷法国FR017 0.93MB/s纯净 TG@jcnode
   - 🇫🇷法国FR029 0.82MB/s中性 TG@jcnode
   - 🇫🇷法国FR030 0.8MB/s中性 TG@jcnode
-  - 🇫🇷法国FR031 0.77MB/s危险 TG@jcnode
-  - 🇫🇷法国FR024 0.68MB/s危险 TG@jcnode
-  - 🇫🇷法国FR032 0.66MB/s危险 TG@jcnode
   - 🇫🇷法国FR010 0.59MB/s纯净 TG@jcnode
   - 🇫🇷法国FR011 0.56MB/s纯净 TG@jcnode
   - 🇫🇷法国FR016 0.49MB/s纯净 TG@jcnode
@@ -19541,8 +17927,6 @@ proxy-groups:
   - 🇫🇷法国FR054 测速未知纯净 TG@jcnode
   - 🇫🇷法国FR055 测速未知纯净 TG@jcnode
   - 🇫🇷法国FR065 测速未知纯净 TG@jcnode
-  - 🇫🇷法国FR056 测速未知中性 TG@jcnode
-  - 🇫🇷法国FR065 测速未知 TG@jcnode
   - '🇫🇷法国FR042 测速未知中性 TG@jcnode #2'
   - 🇫🇷法国FR050 测速未知中性 TG@jcnode
   - 🇫🇷法国FR073 测速未知危险 TG@jcnode
@@ -19556,7 +17940,6 @@ proxy-groups:
   - '🇫🇷法国FR037 测速未知纯净 TG@jcnode #2'
   - '🇫🇷法国FR049 测速未知纯净 TG@jcnode #2'
   - 🇫🇷法国FR053 测速未知危险 TG@jcnode
-  - 🇫🇷法国FR059 测速未知 TG@jcnode
   - '🇫🇷法国FR060 测速未知纯净 TG@jcnode #2'
   - '🇫🇷法国FR049 测速未知危险 TG@jcnode #2'
   - 🇫🇷法国FR071 测速未知危险 TG@jcnode
@@ -19568,7 +17951,6 @@ proxy-groups:
   - 🇫🇷法国FR093 测速未知纯净 TG@jcnode
   - 🇫🇷法国FR102 测速未知纯净 TG@jcnode
   - 🇫🇷法国FR104 测速未知纯净 TG@jcnode
-  - '🇫🇷法国FR052 测速未知中性 TG@jcnode #2 #2 #2 #2'
   - '🇫🇷法国FR058 测速未知纯净 TG@jcnode #2'
   - '🇫🇷法国FR034 测速未知纯净 TG@jcnode #2'
 - name: 🇳🇱 荷兰自动
@@ -19579,15 +17961,13 @@ proxy-groups:
   lazy: true
   proxies:
   - 🇳🇱荷兰NL003 2.64MB/s纯净 TG@jcnode
-  - 🇳🇱荷兰NL002 2.54MB/s中性 TG@jcnode
   - 🇳🇱荷兰NL004 2.39MB/s纯净 TG@jcnode
-  - '🇳🇱荷兰NL003 2.25MB/s中性 TG@jcnode #2'
   - 🇳🇱荷兰NL009 2.19MB/s中性 TG@jcnode
   - 🇳🇱荷兰NL004 2.16MB/s中性 TG@jcnode
   - 🇳🇱荷兰NL003 2.13MB/s TG@jcnode
-  - 🇳🇱荷兰NL004 2.11MB/s中性 TG@jcnode
   - '🇳🇱荷兰NL005 2.01MB/s纯净 TG@jcnode #2'
   - 🇳🇱荷兰NL004 1.99MB/s危险 TG@jcnode
+  - '🇳🇱荷兰NL004 1.99MB/s中性 TG@jcnode #2'
   - 🇳🇱荷兰NL010 1.96MB/s中性 TG@jcnode
   - 🇳🇱荷兰NL006 1.96MB/s纯净 TG@jcnode
   - 🇳🇱荷兰NL016 1.96MB/s中性 TG@jcnode
@@ -19595,14 +17975,12 @@ proxy-groups:
   - 🇳🇱荷兰NL001 1.92MB/s危险 TG@jcnode
   - 🇳🇱荷兰NL008 1.89MB/s危险 TG@jcnode
   - 🇳🇱荷兰NL009 1.88MB/s危险 TG@jcnode
-  - 🇳🇱荷兰NL010 1.87MB/s中性 TG@jcnode
   - 🇳🇱荷兰NL002 1.87MB/s危险 TG@jcnode
   - 🇳🇱荷兰NL009 1.87MB/s纯净 TG@jcnode
   - 🇳🇱荷兰NL011 1.86MB/s危险 TG@jcnode
   - 🇳🇱荷兰NL023 1.86MB/s纯净 TG@jcnode
   - '🇳🇱荷兰NL005 1.86MB/s危险 TG@jcnode #2'
   - 🇳🇱荷兰NL012 1.85MB/s危险 TG@jcnode
-  - 🇳🇱荷兰NL013 1.85MB/s中性 TG@jcnode
   - 🇳🇱荷兰NL014 1.81MB/s危险 TG@jcnode
   - 🇳🇱荷兰NL010 1.8MB/s纯净 TG@jcnode
   - 🇳🇱荷兰NL015 1.77MB/s危险 TG@jcnode
@@ -19630,10 +18008,8 @@ proxy-groups:
   - 🇳🇱荷兰NL044 1.65MB/s中性 TG@jcnode
   - 🇳🇱荷兰NL032 1.65MB/s危险 TG@jcnode
   - 🇳🇱荷兰NL028 1.64MB/s危险 TG@jcnode
-  - 🇳🇱荷兰NL020 1.64MB/s中性 TG@jcnode
   - 🇳🇱荷兰NL013 1.64MB/s危险 TG@jcnode
   - 🇳🇱荷兰NL033 1.64MB/s危险 TG@jcnode
-  - 🇳🇱荷兰NL018 1.63MB/s中性 TG@jcnode
   - '🇳🇱荷兰NL033 1.61MB/s危险 TG@jcnode #2'
   - 🇳🇱荷兰NL030 1.6MB/s危险 TG@jcnode
   - 🇳🇱荷兰NL031 1.6MB/s危险 TG@jcnode
@@ -19641,6 +18017,7 @@ proxy-groups:
   - 🇳🇱荷兰NL033 1.59MB/s危险 TG@jcnode
   - 🇳🇱荷兰NL019 1.59MB/s危险 TG@jcnode
   - 🇳🇱荷兰NL059 1.59MB/s中性 TG@jcnode
+  - 🇳🇱荷兰NL034 1.58MB/s中性 TG@jcnode
   - 🇳🇱荷兰NL035 1.58MB/s危险 TG@jcnode
   - 🇳🇱荷兰NL036 1.58MB/s危险 TG@jcnode
   - 🇳🇱荷兰NL037 1.58MB/s危险 TG@jcnode
@@ -19648,32 +18025,27 @@ proxy-groups:
   - 🇳🇱荷兰NL020 1.58MB/s危险 TG@jcnode
   - 🇳🇱荷兰NL021 1.58MB/s危险 TG@jcnode
   - 🇳🇱荷兰NL039 1.56MB/s危险 TG@jcnode
+  - 🇳🇱荷兰NL022 1.56MB/s中性 TG@jcnode
   - 🇳🇱荷兰NL044 1.56MB/s危险 TG@jcnode
   - 🇳🇱荷兰NL040 1.55MB/s危险 TG@jcnode
   - 🇳🇱荷兰NL019 1.55MB/s危险 TG@jcnode
   - 🇳🇱荷兰NL046 1.54MB/s危险 TG@jcnode
-  - '🇳🇱荷兰NL036 1.54MB/s中性 TG@jcnode #2'
   - 🇳🇱荷兰NL042 1.53MB/s危险 TG@jcnode
   - 🇳🇱荷兰NL026 1.53MB/s危险 TG@jcnode
   - '🇳🇱荷兰NL048 1.52MB/s危险 TG@jcnode #2'
   - 🇳🇱荷兰NL043 1.51MB/s危险 TG@jcnode
   - 🇳🇱荷兰NL044 1.51MB/s危险 TG@jcnode
-  - 🇳🇱荷兰NL027 1.51MB/s中性 TG@jcnode
   - 🇳🇱荷兰NL021 1.51MB/s危险 TG@jcnode
   - 🇳🇱荷兰NL045 1.5MB/s危险 TG@jcnode
   - 🇳🇱荷兰NL046 1.5MB/s危险 TG@jcnode
-  - 🇳🇱荷兰NL047 1.5MB/s TG@jcnode
-  - 🇳🇱荷兰NL060 1.49MB/s纯净 TG@jcnode
   - 🇳🇱荷兰NL048 1.48MB/s危险 TG@jcnode
   - 🇳🇱荷兰NL028 1.48MB/s危险 TG@jcnode
   - 🇳🇱荷兰NL049 1.47MB/s危险 TG@jcnode
-  - 🇳🇱荷兰NL029 1.47MB/s中性 TG@jcnode
   - 🇳🇱荷兰NL050 1.45MB/s危险 TG@jcnode
   - 🇳🇱荷兰NL051 1.45MB/s危险 TG@jcnode
   - 🇳🇱荷兰NL052 1.44MB/s中性 TG@jcnode
   - 🇳🇱荷兰NL045 1.44MB/s危险 TG@jcnode
   - 🇳🇱荷兰NL046 1.44MB/s危险 TG@jcnode
-  - 🇳🇱荷兰NL047 1.44MB/s中性 TG@jcnode
   - 🇳🇱荷兰NL053 1.43MB/s危险 TG@jcnode
   - '🇳🇱荷兰NL057 1.43MB/s中性 TG@jcnode #2'
   - 🇳🇱荷兰NL054 1.42MB/s中性 TG@jcnode
@@ -19684,30 +18056,24 @@ proxy-groups:
   - 🇳🇱荷兰NL038 1.36MB/s中性 TG@jcnode
   - 🇳🇱荷兰NL060 1.35MB/s危险 TG@jcnode
   - 🇳🇱荷兰NL017 1.34MB/s中性 TG@jcnode
-  - 🇳🇱荷兰NL074 1.33MB/s中性 TG@jcnode
   - '🇳🇱荷兰NL048 1.33MB/s危险 TG@jcnode #2'
   - 🇳🇱荷兰NL057 1.32MB/s危险 TG@jcnode
   - 🇳🇱荷兰NL058 1.31MB/s中性 TG@jcnode
   - 🇳🇱荷兰NL059 1.31MB/s TG@jcnode
   - 🇳🇱荷兰NL015 1.31MB/s中性 TG@jcnode
   - 🇳🇱荷兰NL067 1.31MB/s危险 TG@jcnode
-  - 🇳🇱荷兰NL060 1.29MB/s中性 TG@jcnode
   - 🇳🇱荷兰NL061 1.29MB/s危险 TG@jcnode
   - 🇳🇱荷兰NL047 1.27MB/s中性 TG@jcnode
-  - 🇳🇱荷兰NL061 1.27MB/s危险 TG@jcnode
   - 🇳🇱荷兰NL078 1.27MB/s危险 TG@jcnode
-  - 🇳🇱荷兰NL028 1.26MB/s中性 TG@jcnode
   - 🇳🇱荷兰NL032 1.25MB/s危险 TG@jcnode
   - 🇳🇱荷兰NL062 1.21MB/s中性 TG@jcnode
   - 🇳🇱荷兰NL063 1.2MB/s危险 TG@jcnode
   - 🇳🇱荷兰NL064 1.2MB/s危险 TG@jcnode
-  - 🇳🇱荷兰NL088 1.15MB/s危险 TG@jcnode
   - 🇳🇱荷兰NL065 1.13MB/s中性 TG@jcnode
   - 🇳🇱荷兰NL020 1.12MB/s危险 TG@jcnode
   - 🇳🇱荷兰NL051 1.11MB/s中性 TG@jcnode
   - 🇳🇱荷兰NL062 1.1MB/s中性 TG@jcnode
   - 🇳🇱荷兰NL018 1.1MB/s纯净 TG@jcnode
-  - 🇳🇱荷兰NL066 1.08MB/s TG@jcnode
   - 🇳🇱荷兰NL067 1.07MB/s中性 TG@jcnode
   - 🇳🇱荷兰NL068 1.05MB/s危险 TG@jcnode
   - 🇳🇱荷兰NL070 1MB/s中性 TG@jcnode
@@ -19715,7 +18081,6 @@ proxy-groups:
   - 🇳🇱荷兰NL071 0.99MB/s TG@jcnode
   - 🇳🇱荷兰NL072 0.95MB/s中性 TG@jcnode
   - 🇳🇱荷兰NL073 0.94MB/s危险 TG@jcnode
-  - 🇳🇱荷兰NL074 0.92MB/s TG@jcnode
   - 🇳🇱荷兰NL075 0.9MB/s TG@jcnode
   - 🇳🇱荷兰NL035 0.89MB/s危险 TG@jcnode
   - 🇳🇱荷兰NL076 0.88MB/s中性 TG@jcnode
@@ -19724,12 +18089,10 @@ proxy-groups:
   - 🇳🇱荷兰NL081 0.77MB/s危险 TG@jcnode
   - 🇳🇱荷兰NL079 0.76MB/s危险 TG@jcnode
   - 🇳🇱荷兰NL080 0.74MB/s危险 TG@jcnode
-  - 🇳🇱荷兰NL081 0.65MB/s TG@jcnode
   - 🇳🇱荷兰NL082 0.57MB/s中性 TG@jcnode
   - 🇳🇱荷兰NL092 0.56MB/s中性 TG@jcnode
   - 🇳🇱荷兰NL083 0.53MB/s TG@jcnode
   - 🇳🇱荷兰NL164 0.04MB/s危险 TG@jcnode
-  - 🇳🇱荷兰NL085 测速未知 TG@jcnode
   - 🇳🇱荷兰NL089 测速未知危险 TG@jcnode
   - 🇳🇱荷兰NL090 测速未知中性 TG@jcnode
   - 🇳🇱荷兰NL091 测速未知危险 TG@jcnode
@@ -19753,16 +18116,9 @@ proxy-groups:
   - 🇳🇱荷兰NL144 测速未知危险 TG@jcnode
   - 🇳🇱荷兰NL145 测速未知危险 TG@jcnode
   - 🇳🇱荷兰NL153 测速未知危险 TG@jcnode
-  - 🇳🇱荷兰NL156 测速未知中性 TG@jcnode
-  - 🇳🇱荷兰NL159 测速未知危险 TG@jcnode
   - 🇳🇱荷兰NL161 测速未知危险 TG@jcnode
   - 🇳🇱荷兰NL163 测速未知危险 TG@jcnode
-  - 🇳🇱荷兰NL170 测速未知中性 TG@jcnode
-  - 🇳🇱荷兰NL174 测速未知危险 TG@jcnode
-  - 🇳🇱荷兰NL176 测速未知中性 TG@jcnode
   - 🇳🇱荷兰NL180 测速未知 TG@jcnode
-  - 🇳🇱荷兰NL183 测速未知危险 TG@jcnode
-  - 🇳🇱荷兰NL185 测速未知危险 TG@jcnode
   - 🇳🇱荷兰NL186 测速未知中性 TG@jcnode
   - 🇳🇱荷兰NL188 测速未知中性 TG@jcnode
   - 🇳🇱荷兰NL143 测速未知危险 TG@jcnode
@@ -19800,17 +18156,11 @@ proxy-groups:
   - 🇳🇱荷兰NL112 测速未知中性 TG@jcnode
   - 🇳🇱荷兰NL119 测速未知中性 TG@jcnode
   - 🇳🇱荷兰NL157 测速未知危险 TG@jcnode
-  - '🇳🇱荷兰NL155 测速未知中性 TG@jcnode #2'
   - '🇳🇱荷兰NL118 测速未知危险 TG@jcnode #2 #2'
   - '🇳🇱荷兰NL174 测速未知危险 TG@jcnode #2'
-  - '🇳🇱荷兰NL188 测速未知中性 TG@jcnode #2'
-  - 🇳🇱荷兰NL197 测速未知中性 TG@jcnode
-  - 🇳🇱荷兰NL148 测速未知中性 TG@jcnode
   - '🇳🇱荷兰NL129 测速未知危险 TG@jcnode #2'
   - '🇳🇱荷兰NL090 测速未知 TG@jcnode #2'
-  - '🇳🇱荷兰NL098 测速未知 TG@jcnode #2'
   - 🇳🇱荷兰NL190 测速未知中性 TG@jcnode
-  - '🇳🇱荷兰NL110 测速未知中性 TG@jcnode #2 #2 #2 #2'
   - 🇳🇱荷兰NL060 测速未知中性 TG@jcnode
   - '🇳🇱荷兰NL067 测速未知中性 TG@jcnode #2'
   - '🇳🇱荷兰NL063 测速未知中性 TG@jcnode #2'
@@ -19836,12 +18186,7 @@ proxy-groups:
   tolerance: 50
   lazy: true
   proxies:
-  - 🇦🇺澳大利亚AU001 1.77MB/s危险 TG@jcnode
-  - 🇦🇺澳大利亚AU002 1.6MB/s危险 TG@jcnode
-  - 🇦🇺澳大利亚AU002 1.53MB/s危险 TG@jcnode
-  - 🇦🇺澳大利亚AU003 1.47MB/s危险 TG@jcnode
   - 🇦🇺澳大利亚AU001 0.83MB/s TG@jcnode
-  - 🇦🇺澳大利亚AU005 测速未知危险 TG@jcnode
   - 🇦🇺澳大利亚AU011 测速未知 TG@jcnode
   - '🇦🇺澳大利亚AU005 测速未知中性 TG@jcnode #2'
   - 🇦🇺澳大利亚AU006 测速未知中性 TG@jcnode
@@ -19853,7 +18198,10 @@ proxy-groups:
   tolerance: 50
   lazy: true
   proxies:
+  - 🇷🇺俄罗斯RU001 1.88MB/s纯净 TG@jcnode
+  - 🇷🇺俄罗斯RU002 1.69MB/s纯净 TG@jcnode
   - 🇷🇺俄罗斯RU006 1.4MB/s危险 TG@jcnode
+  - 🇷🇺俄罗斯RU006 0.91MB/s纯净 TG@jcnode
 - name: 🇸🇪 瑞典自动
   type: url-test
   url: https://www.gstatic.com/generate_204
@@ -19864,8 +18212,6 @@ proxy-groups:
   - 🇸🇪瑞典SE002 1.36MB/s TG@jcnode
   - 🇸🇪瑞典SE001 1.23MB/s危险 TG@jcnode
   - 🇸🇪瑞典SE002 1.09MB/s危险 TG@jcnode
-  - 🇸🇪瑞典SE003 0.96MB/s TG@jcnode
-  - '🇸🇪瑞典SE021 测速未知 TG@jcnode #2'
   - 🇸🇪瑞典SE043 测速未知 TG@jcnode
 - name: 🇫🇮 芬兰自动
   type: url-test
@@ -19876,14 +18222,8 @@ proxy-groups:
   proxies:
   - 🇫🇮芬兰FI003 1.83MB/s中性 TG@jcnode
   - 🇫🇮芬兰FI004 1.8MB/s中性 TG@jcnode
-  - 🇫🇮芬兰FI001 1.48MB/s TG@jcnode
-  - 🇫🇮芬兰FI002 1.43MB/s TG@jcnode
-  - 🇫🇮芬兰FI003 1.3MB/s TG@jcnode
-  - 🇫🇮芬兰FI002 1.05MB/s中性 TG@jcnode
   - 🇫🇮芬兰FI006 0.5MB/s中性 TG@jcnode
-  - 🇫🇮芬兰FI007 测速未知 TG@jcnode
   - 🇫🇮芬兰FI008 测速未知中性 TG@jcnode
-  - 🇫🇮芬兰FI013 测速未知中性 TG@jcnode
   - 🇫🇮芬兰FI003 测速未知中性 TG@jcnode
   - '🇫🇮芬兰FI012 测速未知中性 TG@jcnode #2 #2 #2'
 - name: 🇮🇹 意大利自动
@@ -19912,6 +18252,7 @@ proxy-groups:
   - 🇮🇹意大利IT020 测速未知危险 TG@jcnode
   - '🇮🇹意大利IT021 测速未知危险 TG@jcnode #2'
   - '🇮🇹意大利IT007 测速未知危险 TG@jcnode #2'
+  - '🇮🇹意大利IT003 测速未知 TG@jcnode #2'
   - '🇮🇹意大利IT008 测速未知危险 TG@jcnode #2 #2'
 - name: 🇪🇸 西班牙自动
   type: url-test
@@ -19920,13 +18261,14 @@ proxy-groups:
   tolerance: 50
   lazy: true
   proxies:
+  - 🇪🇸西班牙ES001 1.67MB/s中性 TG@jcnode
   - 🇪🇸西班牙ES002 1.52MB/s中性 TG@jcnode
-  - 🇪🇸西班牙ES002 1.33MB/s中性 TG@jcnode
   - 🇪🇸西班牙ES001 1.3MB/s中性 TG@jcnode
   - 🇪🇸西班牙ES001 1.27MB/s中性 TG@jcnode
   - 🇪🇸西班牙ES002 1.2MB/s中性 TG@jcnode
   - 🇪🇸西班牙ES003 1.11MB/s危险 TG@jcnode
-  - 🇪🇸西班牙ES001 1.08MB/s中性 TG@jcnode
+  - 🇪🇸西班牙ES002 0.91MB/s中性 TG@jcnode
+  - 🇪🇸西班牙ES007 测速未知危险 TG@jcnode
 - name: 🇨🇭 瑞士自动
   type: url-test
   url: https://www.gstatic.com/generate_204
@@ -19939,9 +18281,7 @@ proxy-groups:
   - 🇨🇭瑞士CH002 1.12MB/s中性 TG@jcnode
   - 🇨🇭瑞士CH003 1.11MB/s中性 TG@jcnode
   - 🇨🇭瑞士CH004 1.1MB/s中性 TG@jcnode
-  - 🇨🇭瑞士CH002 0.84MB/s TG@jcnode
   - 🇨🇭瑞士CH002 0.79MB/s中性 TG@jcnode
-  - 🇨🇭瑞士CH003 0.56MB/s TG@jcnode
   - '🇨🇭瑞士CH006 测速未知中性 TG@jcnode #2 #2'
   - 🇨🇭瑞士CH026 测速未知 TG@jcnode
 - name: 🇮🇳 印度自动
@@ -20257,10 +18597,7 @@ proxy-groups:
   - 🇵🇱波兰PL001 1.89MB/s中性 TG@jcnode
   - '🇵🇱波兰PL003 1.53MB/s TG@jcnode #2'
   - 🇵🇱波兰PL001 1.46MB/s纯净 TG@jcnode
-  - 🇵🇱波兰PL003 1.34MB/s危险 TG@jcnode
-  - 🇵🇱波兰PL004 1.32MB/s危险 TG@jcnode
   - 🇵🇱波兰PL005 1.28MB/s危险 TG@jcnode
-  - 🇵🇱波兰PL006 1.1MB/s TG@jcnode
   - 🇵🇱波兰PL007 1.08MB/s TG@jcnode
   - 🇵🇱波兰PL013 0.7MB/s危险 TG@jcnode
   - 🇵🇱波兰PL015 0.62MB/s中性 TG@jcnode
@@ -20280,7 +18617,6 @@ proxy-groups:
   - 🇵🇱波兰PL005 测速未知 TG@jcnode
   - 🇵🇱波兰PL012 测速未知中性 TG@jcnode
   - '🇵🇱波兰PL015 测速未知中性 TG@jcnode #2'
-  - 🇵🇱波兰PL016 测速未知危险 TG@jcnode
   - 🇵🇱波兰PL019 测速未知纯净 TG@jcnode
   - '🇵🇱波兰PL007 测速未知中性 TG@jcnode #2'
   - '🇵🇱波兰PL009 测速未知中性 TG@jcnode #2'
@@ -20320,7 +18656,6 @@ proxy-groups:
   - 🇮🇩印度尼西亚ID004 测速未知中性 TG@jcnode
   - 🇮🇩印度尼西亚ID007 测速未知危险 TG@jcnode
   - '🇮🇩印度尼西亚ID005 测速未知中性 TG@jcnode #2'
-  - '🇮🇩印度尼西亚ID006 测速未知危险 TG@jcnode #2'
 - name: 🇱🇻 拉脱维亚自动
   type: url-test
   url: https://www.gstatic.com/generate_204
@@ -20328,7 +18663,6 @@ proxy-groups:
   tolerance: 50
   lazy: true
   proxies:
-  - 🇱🇻LV001 2.09MB/s纯净 TG@jcnode
   - 🇱🇻LV001 1.69MB/s中性 TG@jcnode
   - 🇱🇻LV002 1.67MB/s危险 TG@jcnode
   - 🇱🇻LV003 1.52MB/s危险 TG@jcnode
@@ -20343,28 +18677,6 @@ proxy-groups:
   - 🇱🇻LV009 测速未知危险 TG@jcnode
   - '🇱🇻LV006 测速未知 TG@jcnode #2'
   - '🇱🇻LV007 测速未知 TG@jcnode #2'
-  - 🇱🇻LV004 测速未知 TG@jcnode
-- name: 🇨🇿 捷克自动
-  type: url-test
-  url: https://www.gstatic.com/generate_204
-  interval: 300
-  tolerance: 50
-  lazy: true
-  proxies:
-  - 🇨🇿CZ001 1.14MB/s中性 TG@jcnode
-  - 🇨🇿CZ002 1.1MB/s中性 TG@jcnode
-  - 🇨🇿CZ003 1.07MB/s中性 TG@jcnode
-  - 🇨🇿CZ004 0.99MB/s中性 TG@jcnode
-  - 🇨🇿CZ005 0.98MB/s中性 TG@jcnode
-  - 🇨🇿CZ006 0.97MB/s中性 TG@jcnode
-  - 🇨🇿CZ001 0.78MB/s中性 TG@jcnode
-  - 🇨🇿CZ007 测速未知纯净 TG@jcnode
-  - 🇨🇿CZ008 测速未知中性 TG@jcnode
-  - 🇨🇿CZ009 测速未知中性 TG@jcnode
-  - 🇨🇿CZ013 测速未知中性 TG@jcnode
-  - '🇨🇿CZ007 测速未知纯净 TG@jcnode #2'
-  - 🇨🇿CZ012 测速未知 TG@jcnode
-  - '🇨🇿CZ004 测速未知纯净 TG@jcnode #2'
 - name: 🇮🇪 爱尔兰自动
   type: url-test
   url: https://www.gstatic.com/generate_204
@@ -20372,7 +18684,6 @@ proxy-groups:
   tolerance: 50
   lazy: true
   proxies:
-  - 🇮🇪爱尔兰IE001 1.86MB/s TG@jcnode
   - 🇮🇪爱尔兰IE002 1.8MB/s中性 TG@jcnode
   - 🇮🇪爱尔兰IE003 1.63MB/s中性 TG@jcnode
   - 🇮🇪爱尔兰IE004 1.58MB/s中性 TG@jcnode
@@ -20386,6 +18697,25 @@ proxy-groups:
   - 🇮🇪爱尔兰IE009 1.4MB/s中性 TG@jcnode
   - 🇮🇪爱尔兰IE010 1.31MB/s中性 TG@jcnode
   - 🇮🇪爱尔兰IE003 1.27MB/s中性 TG@jcnode
+- name: 🇨🇿 捷克自动
+  type: url-test
+  url: https://www.gstatic.com/generate_204
+  interval: 300
+  tolerance: 50
+  lazy: true
+  proxies:
+  - 🇨🇿CZ001 1.14MB/s中性 TG@jcnode
+  - 🇨🇿CZ002 1.1MB/s中性 TG@jcnode
+  - 🇨🇿CZ003 1.07MB/s中性 TG@jcnode
+  - 🇨🇿CZ004 0.99MB/s中性 TG@jcnode
+  - 🇨🇿CZ005 0.98MB/s中性 TG@jcnode
+  - 🇨🇿CZ001 0.78MB/s中性 TG@jcnode
+  - 🇨🇿CZ007 测速未知纯净 TG@jcnode
+  - 🇨🇿CZ008 测速未知中性 TG@jcnode
+  - 🇨🇿CZ009 测速未知中性 TG@jcnode
+  - '🇨🇿CZ007 测速未知纯净 TG@jcnode #2'
+  - 🇨🇿CZ012 测速未知 TG@jcnode
+  - '🇨🇿CZ004 测速未知纯净 TG@jcnode #2'
 - name: 🇧🇷 巴西自动
   type: url-test
   url: https://www.gstatic.com/generate_204
@@ -20399,19 +18729,6 @@ proxy-groups:
   - 🇧🇷巴西BR001 0.81MB/s中性 TG@jcnode
   - 🇧🇷巴西BR007 测速未知 TG@jcnode
   - 🇧🇷巴西BR002 测速未知中性 TG@jcnode
-- name: 🇪🇪 爱沙尼亚自动
-  type: url-test
-  url: https://www.gstatic.com/generate_204
-  interval: 300
-  tolerance: 50
-  lazy: true
-  proxies:
-  - 🇪🇪EE002 1.45MB/s TG@jcnode
-  - 🇪🇪EE004 1.32MB/s TG@jcnode
-  - 🇪🇪EE001 0.96MB/s TG@jcnode
-  - 🇪🇪EE001 0.44MB/s纯净 TG@jcnode
-  - 🇪🇪EE002 测速未知 TG@jcnode
-  - 🇪🇪EE012 测速未知 TG@jcnode
 - name: 🇮🇱 以色列自动
   type: url-test
   url: https://www.gstatic.com/generate_204
@@ -20423,6 +18740,16 @@ proxy-groups:
   - 🇮🇱以色列IL002 1.49MB/s纯净 TG@jcnode
   - 🇮🇱以色列IL003 1.39MB/s纯净 TG@jcnode
   - 🇮🇱以色列IL004 测速未知纯净 TG@jcnode
+- name: 🇪🇪 爱沙尼亚自动
+  type: url-test
+  url: https://www.gstatic.com/generate_204
+  interval: 300
+  tolerance: 50
+  lazy: true
+  proxies:
+  - 🇪🇪EE002 1.45MB/s TG@jcnode
+  - 🇪🇪EE004 1.32MB/s TG@jcnode
+  - 🇪🇪EE012 测速未知 TG@jcnode
 - name: 🇰🇿 哈萨克斯坦自动
   type: url-test
   url: https://www.gstatic.com/generate_204
@@ -20487,30 +18814,14 @@ proxy-groups:
   lazy: true
   proxies:
   - 🇦🇪阿联酋AE002 测速未知 TG@jcnode
-- name: 🇨🇾 塞浦路斯自动
+- name: 🇵🇰 巴基斯坦自动
   type: url-test
   url: https://www.gstatic.com/generate_204
   interval: 300
   tolerance: 50
   lazy: true
   proxies:
-  - 🇨🇾CY001 测速未知 TG@jcnode
-- name: 🇪🇬 埃及自动
-  type: url-test
-  url: https://www.gstatic.com/generate_204
-  interval: 300
-  tolerance: 50
-  lazy: true
-  proxies:
-  - 🇪🇬EG006 测速未知危险 TG@jcnode
-- name: 🇲🇩 摩尔多瓦自动
-  type: url-test
-  url: https://www.gstatic.com/generate_204
-  interval: 300
-  tolerance: 50
-  lazy: true
-  proxies:
-  - 🇲🇩MD001 0.8MB/s TG@jcnode
+  - 🇵🇰PK001 测速未知危险 TG@jcnode
 - name: 🇸🇮 斯洛文尼亚自动
   type: url-test
   url: https://www.gstatic.com/generate_204
