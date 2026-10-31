@@ -7,6 +7,25 @@
       "type": "socks"
     },
     {
+      "server": "34.150.120.78",
+      "server_port": 1080,
+      "tag": "🇭🇰香港HK001 9.16MB/s TG@jcnode",
+      "type": "socks"
+    },
+    {
+      "server": "twmoon1-cdn-route.couldflare-cdn.com",
+      "server_port": 1443,
+      "tag": "🇹🇼台湾TW001 6.67MB/s纯净 TG@jcnode",
+      "type": "http",
+      "username": "mrwdfNTD8M79LCukCieldrqZWqs=",
+      "password": "exaxgqkKkd0TAMrCxeonWg==",
+      "tls": {
+        "enabled": true,
+        "server_name": "twmoon1-cdn-route.couldflare-cdn.com",
+        "insecure": true
+      }
+    },
+    {
       "server": "twmoon1-cdn-route.couldflare-cdn.com",
       "server_port": 1443,
       "tag": "🇹🇼台湾TW002 5.71MB/s纯净 TG@jcnode",
@@ -43,6 +62,34 @@
       "transport": {
         "type": "grpc",
         "service_name": "grpc-common3"
+      }
+    },
+    {
+      "server": "er8u54dh.df6h451rh.xin",
+      "server_port": 443,
+      "tag": "🇹🇼台湾TW002 4.7MB/s危险 TG@jcnode",
+      "type": "anytls",
+      "password": "0324fbc29561",
+      "tls": {
+        "enabled": true,
+        "server_name": "px.ads.linkedin.com",
+        "insecure": true,
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      }
+    },
+    {
+      "server": "684616s4.df6h451rh.xin",
+      "server_port": 443,
+      "tag": "🇹🇼台湾TW003 4.5MB/s危险 TG@jcnode",
+      "type": "anytls",
+      "password": "0324fbc29561",
+      "tls": {
+        "enabled": true,
+        "server_name": "px.ads.linkedin.com",
+        "insecure": true
       }
     },
     {
@@ -144,6 +191,53 @@
       }
     },
     {
+      "server": "189.74.114.119",
+      "server_port": 443,
+      "tag": "🇳🇱荷兰NL002 2.54MB/s中性 TG@jcnode",
+      "type": "vless",
+      "uuid": "abd5755a-8b77-4ed4-afbd-f2ccbc08e6f5",
+      "packet_encoding": "xudp",
+      "tls": {
+        "enabled": true,
+        "server_name": "api.mediaklenov.cc"
+      },
+      "transport": {
+        "type": "grpc",
+        "service_name": "3e99d50d5740985d"
+      }
+    },
+    {
+      "server": "199.232.78.160",
+      "server_port": 443,
+      "tag": "🇫🇷法国FR001 2.16MB/s中性 TG@jcnode",
+      "type": "vless",
+      "uuid": "8942a00b-2fdf-53f7-a1c9-887fa5615dce",
+      "packet_encoding": "xudp",
+      "tls": {
+        "enabled": true,
+        "server_name": "ssl.fastly.com",
+        "alpn": [
+          "http/1.1"
+        ],
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "Host": [
+            "Appxdn.global.ssl.fastly.net"
+          ],
+          "User-Agent": [
+            "Mozilla/5.0 (Linux; Android 7.0; SM-J730GM Build/NRD90M) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.111 Mobile Safari/537.36"
+          ]
+        }
+      }
+    },
+    {
       "server": "nl209.freeconnect.link",
       "server_port": 9251,
       "tag": "🇳🇱荷兰NL004 2.16MB/s中性 TG@jcnode",
@@ -157,6 +251,64 @@
       }
     },
     {
+      "server": "promo2.betust.net",
+      "server_port": 443,
+      "tag": "🇳🇱荷兰NL003 2.13MB/s TG@jcnode",
+      "type": "hysteria2",
+      "password": "2bc6428196efb899f544d750bea0c06d",
+      "tls": {
+        "enabled": true,
+        "server_name": "promo2.betust.net",
+        "insecure": false,
+        "alpn": [
+          "h3"
+        ]
+      }
+    },
+    {
+      "server": "31.76.104.152",
+      "server_port": 9443,
+      "tag": "🇱🇻LV001 2.09MB/s纯净 TG@jcnode",
+      "type": "hysteria2",
+      "password": "e3c3b722-1264-4cdc-a97c-b0a1bb73cd67",
+      "tls": {
+        "enabled": true,
+        "server_name": "onecloudstream.com",
+        "insecure": true
+      }
+    },
+    {
+      "server": "199.232.78.160",
+      "server_port": 443,
+      "tag": "🇫🇷法国FR002 2.08MB/s中性 TG@jcnode",
+      "type": "vless",
+      "uuid": "XpnTeam-68",
+      "packet_encoding": "xudp",
+      "tls": {
+        "enabled": true,
+        "server_name": "ssl.fastly.com",
+        "alpn": [
+          "http/1.1"
+        ],
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "Host": [
+            "Appxdn.global.ssl.fastly.net"
+          ],
+          "User-Agent": [
+            "Mozilla/5.0 (Linux; Android 7.0; BLL-L22 Build/HUAWEIBLL-L22) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.91 Mobile Safari/537.36"
+          ]
+        }
+      }
+    },
+    {
       "server": "kimberlymilano.icu",
       "server_port": 443,
       "tag": "🇺🇸美国US001 2.08MB/s中性 TG@jcnode",
@@ -166,38 +318,6 @@
       "tls": {
         "enabled": true,
         "server_name": "kimberlymilano.icu",
-        "insecure": true
-      }
-    },
-    {
-      "server": "138.16.141.59",
-      "server_port": 7443,
-      "tag": "🇳🇱荷兰NL003 2.04MB/s纯净 TG@jcnode",
-      "type": "vless",
-      "uuid": "a289a3d3-5833-4b28-8809-ae72898a98d0",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "ibm.com",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        },
-        "reality": {
-          "enabled": true,
-          "public_key": "RY7zkFQ01lI92jxNAyCa8T33UBW1fgpJgg8ZEqMA10k",
-          "short_id": "a09ff9f8"
-        }
-      }
-    },
-    {
-      "server": "84.17.47.146",
-      "server_port": 9002,
-      "tag": "🇳🇱荷兰NL003 2MB/s危险 TG@jcnode",
-      "type": "http",
-      "tls": {
-        "enabled": true,
-        "server_name": "84.17.47.146",
         "insecure": true
       }
     },
@@ -226,15 +346,14 @@
       }
     },
     {
-      "server": "138.199.35.213",
-      "server_port": 9002,
-      "tag": "🇺🇸美国US007 1.96MB/s危险 TG@jcnode",
+      "server": "fullmanfirm.icu",
+      "server_port": 443,
+      "tag": "🇺🇸美国US001 1.97MB/s TG@jcnode",
       "type": "http",
-      "username": "null",
-      "password": "null",
+      "password": "None",
       "tls": {
         "enabled": true,
-        "server_name": "138.199.35.213",
+        "server_name": "fullmanfirm.icu",
         "insecure": true
       }
     },
@@ -275,35 +394,13 @@
       }
     },
     {
-      "server": "138.199.35.212",
+      "server": "84.17.47.146",
       "server_port": 9002,
-      "tag": "🇺🇸美国US013 1.93MB/s危险 TG@jcnode",
+      "tag": "🇳🇱荷兰NL007 1.92MB/s危险 TG@jcnode",
       "type": "http",
       "tls": {
         "enabled": true,
-        "server_name": "138.199.35.212",
-        "insecure": true
-      }
-    },
-    {
-      "server": "34.249.214.108",
-      "server_port": 443,
-      "tag": "🇮🇪爱尔兰IE001 1.92MB/s中性 TG@jcnode",
-      "type": "http",
-      "tls": {
-        "enabled": true,
-        "server_name": "34.249.214.108",
-        "insecure": true
-      }
-    },
-    {
-      "server": "138.199.35.205",
-      "server_port": 9002,
-      "tag": "🇺🇸美国US015 1.92MB/s危险 TG@jcnode",
-      "type": "http",
-      "tls": {
-        "enabled": true,
-        "server_name": "138.199.35.205",
+        "server_name": "84.17.47.146",
         "insecure": true
       }
     },
@@ -343,30 +440,25 @@
       }
     },
     {
-      "server": "138.199.35.216",
+      "server": "84.17.47.150",
       "server_port": 9002,
-      "tag": "🇺🇸美国US021 1.92MB/s危险 TG@jcnode",
+      "tag": "🇳🇱荷兰NL008 1.89MB/s危险 TG@jcnode",
       "type": "http",
       "tls": {
         "enabled": true,
-        "server_name": "138.199.35.216",
+        "server_name": "84.17.47.150",
         "insecure": true
       }
     },
     {
-      "server": "de-bots4.h1cloud.net",
-      "server_port": 25267,
-      "tag": "🇩🇪德国DE004 1.89MB/s TG@jcnode",
-      "type": "trojan",
-      "password": "happybirthdaydaniel",
+      "server": "84.17.47.148",
+      "server_port": 9002,
+      "tag": "🇳🇱荷兰NL009 1.88MB/s危险 TG@jcnode",
+      "type": "http",
       "tls": {
         "enabled": true,
-        "server_name": "t.me/fuckthewall",
-        "insecure": true,
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
+        "server_name": "84.17.47.148",
+        "insecure": true
       }
     },
     {
@@ -389,6 +481,39 @@
         "enabled": true,
         "server_name": "138.199.35.214",
         "insecure": true
+      }
+    },
+    {
+      "server": "84.17.47.149",
+      "server_port": 9002,
+      "tag": "🇳🇱荷兰NL011 1.86MB/s危险 TG@jcnode",
+      "type": "http",
+      "tls": {
+        "enabled": true,
+        "server_name": "84.17.47.149",
+        "insecure": true
+      }
+    },
+    {
+      "server": "45.132.176.61",
+      "server_port": 443,
+      "tag": "🇮🇪爱尔兰IE001 1.86MB/s TG@jcnode",
+      "type": "vless",
+      "uuid": "1b7ee703-fa08-4305-8469-ae3e30e61e44",
+      "flow": "xtls-rprx-vision",
+      "packet_encoding": "xudp",
+      "tls": {
+        "enabled": true,
+        "server_name": "sopelka.yandex-api.com",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "firefox"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "_qSbW4JL4Ffqvj25vX-6a2ul9Qlj6PBdlF0ghsf_0RQ",
+          "short_id": "a9dc98a7dc87a7dc"
+        }
       }
     },
     {
@@ -416,41 +541,6 @@
       }
     },
     {
-      "server": "84.17.47.148",
-      "server_port": 9002,
-      "tag": "🇳🇱荷兰NL007 1.85MB/s危险 TG@jcnode",
-      "type": "http",
-      "tls": {
-        "enabled": true,
-        "server_name": "84.17.47.148",
-        "insecure": true
-      }
-    },
-    {
-      "server": "138.199.35.212",
-      "server_port": 9002,
-      "tag": "🇺🇸美国US042 1.85MB/s危险 TG@jcnode",
-      "type": "http",
-      "username": "null",
-      "password": "null",
-      "tls": {
-        "enabled": true,
-        "server_name": "138.199.35.212",
-        "insecure": true
-      }
-    },
-    {
-      "server": "138.199.35.200",
-      "server_port": 9002,
-      "tag": "🇺🇸美国US043 1.85MB/s危险 TG@jcnode",
-      "type": "http",
-      "tls": {
-        "enabled": true,
-        "server_name": "138.199.35.200",
-        "insecure": true
-      }
-    },
-    {
       "server": "138.199.35.208",
       "server_port": 9002,
       "tag": "🇺🇸美国US045 1.84MB/s危险 TG@jcnode",
@@ -458,17 +548,6 @@
       "tls": {
         "enabled": true,
         "server_name": "138.199.35.208",
-        "insecure": true
-      }
-    },
-    {
-      "server": "138.199.35.213",
-      "server_port": 9002,
-      "tag": "🇺🇸美国US046 1.84MB/s危险 TG@jcnode",
-      "type": "http",
-      "tls": {
-        "enabled": true,
-        "server_name": "138.199.35.213",
         "insecure": true
       }
     },
@@ -486,6 +565,18 @@
       }
     },
     {
+      "server": "purposebydesig.club",
+      "server_port": 443,
+      "tag": "🇺🇸美国US003 1.82MB/s TG@jcnode",
+      "type": "http",
+      "username": "null",
+      "password": "null",
+      "tls": {
+        "enabled": true,
+        "server_name": "purposebydesig.club"
+      }
+    },
+    {
       "server": "138.199.35.197",
       "server_port": 9002,
       "tag": "🇺🇸美国US020 1.82MB/s危险 TG@jcnode #2",
@@ -495,6 +586,17 @@
       "tls": {
         "enabled": true,
         "server_name": "138.199.35.197",
+        "insecure": true
+      }
+    },
+    {
+      "server": "138.199.35.213",
+      "server_port": 9002,
+      "tag": "🇺🇸美国US004 1.81MB/s TG@jcnode",
+      "type": "http",
+      "tls": {
+        "enabled": true,
+        "server_name": "138.199.35.213",
         "insecure": true
       }
     },
@@ -521,6 +623,30 @@
       "tls": {
         "enabled": true,
         "server_name": "138.199.35.198",
+        "insecure": true
+      }
+    },
+    {
+      "server": "138.199.35.213",
+      "server_port": 9002,
+      "tag": "🇺🇸美国US005 1.79MB/s TG@jcnode",
+      "type": "http",
+      "username": "null",
+      "password": "null",
+      "tls": {
+        "enabled": true,
+        "server_name": "138.199.35.213",
+        "insecure": true
+      }
+    },
+    {
+      "server": "45.150.164.18",
+      "server_port": 8443,
+      "tag": "🇺🇸美国US006 1.79MB/s TG@jcnode",
+      "type": "http",
+      "tls": {
+        "enabled": true,
+        "server_name": "45.150.164.18",
         "insecure": true
       }
     },
@@ -561,19 +687,6 @@
       }
     },
     {
-      "server": "138.199.35.218",
-      "server_port": 9002,
-      "tag": "🇺🇸美国US081 1.77MB/s危险 TG@jcnode",
-      "type": "http",
-      "username": "null",
-      "password": "null",
-      "tls": {
-        "enabled": true,
-        "server_name": "138.199.35.218",
-        "insecure": true
-      }
-    },
-    {
       "server": "138.199.35.202",
       "server_port": 9002,
       "tag": "🇺🇸美国US083 1.77MB/s危险 TG@jcnode",
@@ -581,6 +694,17 @@
       "tls": {
         "enabled": true,
         "server_name": "138.199.35.202",
+        "insecure": true
+      }
+    },
+    {
+      "server": "84.17.47.125",
+      "server_port": 9002,
+      "tag": "🇳🇱荷兰NL017 1.76MB/s危险 TG@jcnode",
+      "type": "http",
+      "tls": {
+        "enabled": true,
+        "server_name": "84.17.47.125",
         "insecure": true
       }
     },
@@ -601,19 +725,6 @@
           "enabled": true,
           "fingerprint": "chrome"
         }
-      }
-    },
-    {
-      "server": "84.17.47.147",
-      "server_port": 9002,
-      "tag": "🇳🇱荷兰NL009 1.76MB/s危险 TG@jcnode",
-      "type": "http",
-      "username": "null",
-      "password": "null",
-      "tls": {
-        "enabled": true,
-        "server_name": "84.17.47.147",
-        "insecure": true
       }
     },
     {
@@ -654,6 +765,28 @@
       }
     },
     {
+      "server": "178.72.185.235",
+      "server_port": 40444,
+      "tag": "🇩🇪德国DE007 1.75MB/s TG@jcnode",
+      "type": "vless",
+      "uuid": "572b3d30-3ced-4b88-9e06-4241f124cc88",
+      "flow": "xtls-rprx-vision",
+      "packet_encoding": "xudp",
+      "tls": {
+        "enabled": true,
+        "server_name": "www.booking.com",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "qq"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "EbXSjwJKAI1cmU2TK3af62qS2k58x8Rnct1525c0m1I",
+          "short_id": "a1b2c3d4e5f60718"
+        }
+      }
+    },
+    {
       "server": "138.199.35.197",
       "server_port": 9002,
       "tag": "🇺🇸美国US100 1.74MB/s危险 TG@jcnode",
@@ -665,13 +798,13 @@
       }
     },
     {
-      "server": "84.17.47.150",
+      "server": "138.199.35.205",
       "server_port": 9002,
-      "tag": "🇳🇱荷兰NL011 1.73MB/s危险 TG@jcnode",
+      "tag": "🇺🇸美国US010 1.73MB/s TG@jcnode",
       "type": "http",
       "tls": {
         "enabled": true,
-        "server_name": "84.17.47.150",
+        "server_name": "138.199.35.205",
         "insecure": true
       }
     },
@@ -720,6 +853,19 @@
       "tls": {
         "enabled": true,
         "server_name": "138.199.35.198",
+        "insecure": true
+      }
+    },
+    {
+      "server": "84.17.47.150",
+      "server_port": 9002,
+      "tag": "🇳🇱荷兰NL023 1.72MB/s危险 TG@jcnode",
+      "type": "http",
+      "username": "null",
+      "password": "null",
+      "tls": {
+        "enabled": true,
+        "server_name": "84.17.47.150",
         "insecure": true
       }
     },
@@ -773,6 +919,27 @@
       }
     },
     {
+      "server": "109.248.148.140",
+      "server_port": 443,
+      "tag": "🇱🇻LV001 1.69MB/s中性 TG@jcnode",
+      "type": "vless",
+      "uuid": "28e7f9e1-006c-4c38-822d-2d2903477444",
+      "flow": "xtls-rprx-vision",
+      "packet_encoding": "xudp",
+      "tls": {
+        "enabled": true,
+        "server_name": "www.apple.com",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "RFZXfsd3WfxOKRcdO4Q7RoElfE8JbMpR6bG3jYLV_Uc"
+        }
+      }
+    },
+    {
       "server": "138.199.35.202",
       "server_port": 9002,
       "tag": "🇺🇸美国US137 1.69MB/s危险 TG@jcnode",
@@ -786,15 +953,13 @@
       }
     },
     {
-      "server": "84.17.47.150",
+      "server": "193.176.84.24",
       "server_port": 9002,
-      "tag": "🇳🇱荷兰NL016 1.68MB/s危险 TG@jcnode",
+      "tag": "🇷🇴罗马尼亚RO003 1.68MB/s TG@jcnode",
       "type": "http",
-      "username": "null",
-      "password": "null",
       "tls": {
         "enabled": true,
-        "server_name": "84.17.47.150",
+        "server_name": "www.bing.com",
         "insecure": true
       }
     },
@@ -837,17 +1002,6 @@
       }
     },
     {
-      "server": "84.17.47.149",
-      "server_port": 9002,
-      "tag": "🇳🇱荷兰NL017 1.67MB/s危险 TG@jcnode",
-      "type": "http",
-      "tls": {
-        "enabled": true,
-        "server_name": "84.17.47.149",
-        "insecure": true
-      }
-    },
-    {
       "server": "nl205.freeconnect.link",
       "server_port": 9251,
       "tag": "🇳🇱荷兰NL041 1.67MB/s中性 TG@jcnode",
@@ -857,17 +1011,6 @@
       "tls": {
         "enabled": true,
         "server_name": "nl205.freeconnect.link"
-      }
-    },
-    {
-      "server": "103.97.88.154",
-      "server_port": 443,
-      "tag": "🇳🇱荷兰NL018 1.66MB/s中性 TG@jcnode",
-      "type": "http",
-      "tls": {
-        "enabled": true,
-        "server_name": "4a8c2906c96058315dffbc2b0e7ff19b-98005bea43f9ac33.apache-iv.com",
-        "insecure": true
       }
     },
     {
@@ -895,15 +1038,49 @@
       }
     },
     {
-      "server": "138.199.35.199",
+      "server": "84.17.47.147",
       "server_port": 9002,
-      "tag": "🇺🇸美国US168 1.65MB/s危险 TG@jcnode",
+      "tag": "🇳🇱荷兰NL026 1.65MB/s危险 TG@jcnode",
       "type": "http",
       "username": "null",
       "password": "null",
       "tls": {
         "enabled": true,
-        "server_name": "138.199.35.199",
+        "server_name": "84.17.47.147",
+        "insecure": true
+      }
+    },
+    {
+      "server": "13.143.180.104",
+      "server_port": 443,
+      "tag": "🇩🇪德国DE011 1.65MB/s中性 TG@jcnode",
+      "type": "vless",
+      "uuid": "a0fa7e19-70ec-41e0-b0cc-bcc984d4201a",
+      "flow": "xtls-rprx-vision",
+      "packet_encoding": "xudp",
+      "tls": {
+        "enabled": true,
+        "server_name": "s12.bsh-net.ru",
+        "insecure": true,
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "QvT-t_h_AF2EAT4Ggh_a6pcCK3StY8G9WCXn6-dJbxk",
+          "short_id": "51079f144d661484"
+        }
+      }
+    },
+    {
+      "server": "193.176.84.33",
+      "server_port": 9002,
+      "tag": "🇷🇴罗马尼亚RO004 1.65MB/s TG@jcnode",
+      "type": "http",
+      "tls": {
+        "enabled": true,
+        "server_name": "193.176.84.33",
         "insecure": true
       }
     },
@@ -944,6 +1121,28 @@
       }
     },
     {
+      "server": "178.72.185.235",
+      "server_port": 40445,
+      "tag": "🇩🇪德国DE012 1.64MB/s TG@jcnode",
+      "type": "vless",
+      "uuid": "572b3d30-3ced-4b88-9e06-4241f124cc88",
+      "flow": "xtls-rprx-vision",
+      "packet_encoding": "xudp",
+      "tls": {
+        "enabled": true,
+        "server_name": "www.booking.com",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "qq"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "EbXSjwJKAI1cmU2TK3af62qS2k58x8Rnct1525c0m1I",
+          "short_id": "c3d4e5f607182939"
+        }
+      }
+    },
+    {
       "server": "46.30.45.254",
       "server_port": 8444,
       "tag": "🇳🇱荷兰NL020 1.64MB/s中性 TG@jcnode",
@@ -975,15 +1174,25 @@
       }
     },
     {
-      "server": "kimberlymilano.icu",
+      "server": "34.249.214.108",
       "server_port": 443,
-      "tag": "🇺🇸美国US138 1.64MB/s中性 TG@jcnode",
+      "tag": "🇮🇪爱尔兰IE003 1.63MB/s中性 TG@jcnode",
       "type": "http",
-      "password": "None",
       "tls": {
         "enabled": true,
-        "server_name": "kimberlymilano.icu",
-        "insecure": false
+        "server_name": "34.249.214.108",
+        "insecure": true
+      }
+    },
+    {
+      "server": "138.199.35.200",
+      "server_port": 9002,
+      "tag": "🇺🇸美国US022 1.63MB/s TG@jcnode",
+      "type": "http",
+      "tls": {
+        "enabled": true,
+        "server_name": "138.199.35.200",
+        "insecure": true
       }
     },
     {
@@ -998,13 +1207,33 @@
       }
     },
     {
-      "server": "185.140.209.235",
-      "server_port": 443,
-      "tag": "🇳🇱荷兰NL022 1.62MB/s中性 TG@jcnode",
+      "server": "103.133.1.160",
+      "server_port": 80,
+      "tag": "🇳🇱荷兰NL018 1.63MB/s中性 TG@jcnode",
+      "type": "vless",
+      "uuid": "eaf76557-2219-4799-8171-d7020adfefd0",
+      "packet_encoding": "xudp",
+      "transport": {
+        "type": "ws",
+        "path": "/ws",
+        "headers": {
+          "Host": [
+            "soft-shadow-1e33.xicav73335.workers.dev"
+          ],
+          "User-Agent": [
+            "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/37.0.2062.120 Safari/537.36"
+          ]
+        }
+      }
+    },
+    {
+      "server": "193.176.84.22",
+      "server_port": 9002,
+      "tag": "🇷🇴罗马尼亚RO005 1.62MB/s危险 TG@jcnode",
       "type": "http",
       "tls": {
         "enabled": true,
-        "server_name": "482c8436a1f7c908b48a1757abb5dd79-ce85c45206570905.apache-iv.com",
+        "server_name": "www.bing.com",
         "insecure": true
       }
     },
@@ -1018,17 +1247,6 @@
       "tls": {
         "enabled": true,
         "server_name": "138.199.35.196",
-        "insecure": true
-      }
-    },
-    {
-      "server": "193.176.84.33",
-      "server_port": 9002,
-      "tag": "🇷🇴罗马尼亚RO017 1.62MB/s危险 TG@jcnode",
-      "type": "http",
-      "tls": {
-        "enabled": true,
-        "server_name": "193.176.84.33",
         "insecure": true
       }
     },
@@ -1052,6 +1270,17 @@
           "public_key": "Tp015Ga5LodBwKs4z7Wz4hTvqeh8-4q1EQPZqvZfWR0",
           "short_id": "ad09494d431b2b92"
         }
+      }
+    },
+    {
+      "server": "193.176.84.39",
+      "server_port": 9002,
+      "tag": "🇷🇴罗马尼亚RO007 1.6MB/s TG@jcnode",
+      "type": "http",
+      "tls": {
+        "enabled": true,
+        "server_name": "www.bing.com",
+        "insecure": true
       }
     },
     {
@@ -1083,6 +1312,28 @@
       }
     },
     {
+      "server": "103.97.88.154",
+      "server_port": 443,
+      "tag": "🇳🇱荷兰NL034 1.58MB/s中性 TG@jcnode",
+      "type": "http",
+      "tls": {
+        "enabled": true,
+        "server_name": "4a8c2906c96058315dffbc2b0e7ff19b-98005bea43f9ac33.apache-iv.com",
+        "insecure": true
+      }
+    },
+    {
+      "server": "185.140.209.235",
+      "server_port": 443,
+      "tag": "🇳🇱荷兰NL038 1.58MB/s中性 TG@jcnode",
+      "type": "http",
+      "tls": {
+        "enabled": true,
+        "server_name": "482c8436a1f7c908b48a1757abb5dd79-ce85c45206570905.apache-iv.com",
+        "insecure": true
+      }
+    },
+    {
       "server": "138.199.35.207",
       "server_port": 9002,
       "tag": "🇺🇸美国US210 1.58MB/s危险 TG@jcnode",
@@ -1096,6 +1347,19 @@
       }
     },
     {
+      "server": "138.199.35.199",
+      "server_port": 9002,
+      "tag": "🇺🇸美国US028 1.57MB/s TG@jcnode",
+      "type": "http",
+      "username": "null",
+      "password": "null",
+      "tls": {
+        "enabled": true,
+        "server_name": "138.199.35.199",
+        "insecure": true
+      }
+    },
+    {
       "server": "193.176.84.35",
       "server_port": 9002,
       "tag": "🇷🇴罗马尼亚RO025 1.57MB/s危险 TG@jcnode",
@@ -1104,22 +1368,6 @@
         "enabled": true,
         "server_name": "193.176.84.35",
         "insecure": true
-      }
-    },
-    {
-      "server": "er8u54dh.df6h451rh.xin",
-      "server_port": 443,
-      "tag": "🇹🇼台湾TW006 1.56MB/s危险 TG@jcnode",
-      "type": "anytls",
-      "password": "0324fbc29561",
-      "tls": {
-        "enabled": true,
-        "server_name": "px.ads.linkedin.com",
-        "insecure": true,
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
       }
     },
     {
@@ -1136,6 +1384,41 @@
       }
     },
     {
+      "server": "138.199.35.212",
+      "server_port": 9002,
+      "tag": "🇺🇸美国US033 1.55MB/s TG@jcnode",
+      "type": "http",
+      "username": "null",
+      "password": "null",
+      "tls": {
+        "enabled": true,
+        "server_name": "138.199.35.212",
+        "insecure": true
+      }
+    },
+    {
+      "server": "138.199.35.212",
+      "server_port": 9002,
+      "tag": "🇺🇸美国US034 1.55MB/s TG@jcnode",
+      "type": "http",
+      "tls": {
+        "enabled": true,
+        "server_name": "138.199.35.212",
+        "insecure": true
+      }
+    },
+    {
+      "server": "193.176.84.32",
+      "server_port": 9002,
+      "tag": "🇷🇴罗马尼亚RO009 1.55MB/s TG@jcnode",
+      "type": "http",
+      "tls": {
+        "enabled": true,
+        "server_name": "www.bing.com",
+        "insecure": true
+      }
+    },
+    {
       "server": "193.176.84.29",
       "server_port": 9002,
       "tag": "🇷🇴罗马尼亚RO027 1.55MB/s危险 TG@jcnode",
@@ -1143,6 +1426,19 @@
       "tls": {
         "enabled": true,
         "server_name": "193.176.84.29",
+        "insecure": true
+      }
+    },
+    {
+      "server": "193.176.84.39",
+      "server_port": 9002,
+      "tag": "🇷🇴罗马尼亚RO010 1.53MB/s TG@jcnode",
+      "type": "http",
+      "username": "null",
+      "password": "null",
+      "tls": {
+        "enabled": true,
+        "server_name": "193.176.84.39",
         "insecure": true
       }
     },
@@ -1163,25 +1459,124 @@
       }
     },
     {
-      "server": "103.82.101.44",
-      "server_port": 443,
-      "tag": "🇫🇷法国FR009 1.52MB/s中性 TG@jcnode",
-      "type": "http",
+      "server": "31.77.13.19",
+      "server_port": 2063,
+      "tag": "🇵🇱波兰PL003 1.53MB/s TG@jcnode #2",
+      "type": "vless",
+      "uuid": "b18d5990-96eb-4587-a386-7f8ef7591e6a",
+      "flow": "xtls-rprx-vision",
+      "packet_encoding": "xudp",
       "tls": {
         "enabled": true,
-        "server_name": "f3a61d8406d537345747f99f8a281007-3f754ed5da1bba09.apache-iv.com",
+        "server_name": "rusbid.de",
+        "insecure": false,
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "MMpt_jWc4J3oySBdf5sPDVRkiWlZmOObth6A1scM9BM"
+        }
+      }
+    },
+    {
+      "server": "103.133.1.160",
+      "server_port": 80,
+      "tag": "🇳🇱荷兰NL027 1.51MB/s中性 TG@jcnode",
+      "type": "vless",
+      "uuid": "eaf76557-2219-4799-8171-d7020adfefd0",
+      "packet_encoding": "xudp",
+      "transport": {
+        "type": "ws",
+        "path": "/ws",
+        "headers": {
+          "Host": [
+            "soft-shadow-1e33.xicav73335.workers.dev"
+          ],
+          "User-Agent": [
+            "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.143 Safari/537.36"
+          ]
+        }
+      }
+    },
+    {
+      "server": "138.199.35.218",
+      "server_port": 9002,
+      "tag": "🇺🇸美国US036 1.5MB/s TG@jcnode",
+      "type": "http",
+      "username": "null",
+      "password": "null",
+      "tls": {
+        "enabled": true,
+        "server_name": "138.199.35.218",
         "insecure": true
       }
     },
     {
-      "server": "84.17.47.125",
-      "server_port": 9002,
-      "tag": "🇳🇱荷兰NL033 1.51MB/s危险 TG@jcnode",
-      "type": "http",
+      "server": "178.72.185.235",
+      "server_port": 40443,
+      "tag": "🇳🇱荷兰NL047 1.5MB/s TG@jcnode",
+      "type": "vless",
+      "uuid": "572b3d30-3ced-4b88-9e06-4241f124cc88",
+      "flow": "xtls-rprx-vision",
+      "packet_encoding": "xudp",
       "tls": {
         "enabled": true,
-        "server_name": "84.17.47.125",
-        "insecure": true
+        "server_name": "www.booking.com",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "qq"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "EbXSjwJKAI1cmU2TK3af62qS2k58x8Rnct1525c0m1I",
+          "short_id": "b2c3d4e5f6071829"
+        }
+      }
+    },
+    {
+      "server": "sw.golangwikito.cfd",
+      "server_port": 443,
+      "tag": "🇳🇱荷兰NL060 1.49MB/s纯净 TG@jcnode",
+      "type": "vless",
+      "uuid": "f8d52ece-fad4-478d-875d-df6eed3befa7",
+      "flow": "xtls-rprx-vision",
+      "packet_encoding": "xudp",
+      "tls": {
+        "enabled": true,
+        "server_name": "sw.golangwikito.cfd",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "Kb8SsVPprs46BJSUNp5JvWLI-TFEiHmlBOXLQd37Glg",
+          "short_id": "a1037b25dcef6aa7"
+        }
+      }
+    },
+    {
+      "server": "178.72.185.235",
+      "server_port": 40446,
+      "tag": "🇫🇮芬兰FI001 1.48MB/s TG@jcnode",
+      "type": "vless",
+      "uuid": "572b3d30-3ced-4b88-9e06-4241f124cc88",
+      "flow": "xtls-rprx-vision",
+      "packet_encoding": "xudp",
+      "tls": {
+        "enabled": true,
+        "server_name": "www.booking.com",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "qq"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "EbXSjwJKAI1cmU2TK3af62qS2k58x8Rnct1525c0m1I",
+          "short_id": "d4e5f60718293a4b"
+        }
       }
     },
     {
@@ -1201,14 +1596,47 @@
       }
     },
     {
-      "server": "185.246.153.28",
-      "server_port": 443,
-      "tag": "🇳🇱荷兰NL036 1.47MB/s中性 TG@jcnode",
+      "server": "138.199.35.216",
+      "server_port": 9002,
+      "tag": "🇺🇸美国US038 1.47MB/s TG@jcnode",
       "type": "http",
       "tls": {
         "enabled": true,
-        "server_name": "4a8c2906c96058315dffbc2b0e7ff19b-0c66a58858a795df.apache-iv.com",
+        "server_name": "138.199.35.216",
         "insecure": true
+      }
+    },
+    {
+      "server": "193.176.84.33",
+      "server_port": 9002,
+      "tag": "🇷🇴罗马尼亚RO012 1.47MB/s TG@jcnode",
+      "type": "http",
+      "username": "null",
+      "password": "null",
+      "tls": {
+        "enabled": true,
+        "server_name": "193.176.84.33",
+        "insecure": true
+      }
+    },
+    {
+      "server": "103.133.1.160",
+      "server_port": 80,
+      "tag": "🇳🇱荷兰NL029 1.47MB/s中性 TG@jcnode",
+      "type": "vless",
+      "uuid": "eaf76557-2219-4799-8171-d7020adfefd0",
+      "packet_encoding": "xudp",
+      "transport": {
+        "type": "ws",
+        "path": "/ws",
+        "headers": {
+          "Host": [
+            "soft-shadow-1e33.xicav73335.workers.dev"
+          ],
+          "User-Agent": [
+            "Mozilla/5.0 (Linux; Android 8.0.0; FIG-LX3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.80 Mobile Safari/537.36"
+          ]
+        }
       }
     },
     {
@@ -1249,6 +1677,38 @@
       }
     },
     {
+      "server": "185.246.153.28",
+      "server_port": 443,
+      "tag": "🇳🇱荷兰NL052 1.44MB/s中性 TG@jcnode",
+      "type": "http",
+      "tls": {
+        "enabled": true,
+        "server_name": "4a8c2906c96058315dffbc2b0e7ff19b-0c66a58858a795df.apache-iv.com",
+        "insecure": true
+      }
+    },
+    {
+      "server": "104.171.135.229",
+      "server_port": 443,
+      "tag": "🇳🇱荷兰NL047 1.44MB/s中性 TG@jcnode",
+      "type": "vless",
+      "uuid": "Fluffy_VPN-Oth8rOq3",
+      "flow": "xtls-rprx-vision",
+      "packet_encoding": "xudp",
+      "tls": {
+        "enabled": true,
+        "server_name": "absolute-disaster.org",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "firefox"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "mpo4BIcoWiMXAQGt5a8IJ4MFkPJQyLC50dO_bXzC7z0"
+        }
+      }
+    },
+    {
       "server": "fr012.freeconnect.link",
       "server_port": 9251,
       "tag": "🇫🇷法国FR015 1.43MB/s中性 TG@jcnode",
@@ -1258,17 +1718,6 @@
       "tls": {
         "enabled": true,
         "server_name": "fr012.freeconnect.link"
-      }
-    },
-    {
-      "server": "193.176.84.22",
-      "server_port": 9002,
-      "tag": "🇷🇴罗马尼亚RO004 1.42MB/s危险 TG@jcnode",
-      "type": "http",
-      "tls": {
-        "enabled": true,
-        "server_name": "www.bing.com",
-        "insecure": true
       }
     },
     {
@@ -1285,6 +1734,17 @@
           "enabled": true,
           "fingerprint": "chrome"
         }
+      }
+    },
+    {
+      "server": "103.82.101.43",
+      "server_port": 443,
+      "tag": "🇫🇷法国FR013 1.4MB/s中性 TG@jcnode",
+      "type": "http",
+      "tls": {
+        "enabled": true,
+        "server_name": "76d1d3ecadca44efa2339867d7dfc9a1-8e928736d0f8dbdc.apache-iv.com",
+        "insecure": true
       }
     },
     {
@@ -1322,58 +1782,63 @@
       }
     },
     {
-      "server": "de-bots4.h1cloud.net",
-      "server_port": 25267,
-      "tag": "🇩🇪德国DE005 1.38MB/s纯净 TG@jcnode",
-      "type": "trojan",
-      "password": "happybirthdaydaniel",
+      "server": "193.176.84.33",
+      "server_port": 9002,
+      "tag": "🇷🇴罗马尼亚RO014 1.38MB/s TG@jcnode",
+      "type": "http",
       "tls": {
         "enabled": true,
-        "server_name": "t.me/FuckTheWall",
+        "server_name": "www.bing.com",
         "insecure": true
       }
     },
     {
-      "server": "186.246.9.29",
+      "server": "172.64.144.240",
       "server_port": 443,
-      "tag": "🇳🇱荷兰NL044 1.37MB/s中性 TG@jcnode",
+      "tag": "🇺🇸美国US151 1.37MB/s TG@jcnode",
       "type": "vless",
-      "uuid": "b2847c3b-5278-4b06-9c66-bc919d2dfec7",
+      "uuid": "87c467e9-f0af-4b03-8fbd-65fd375d3a26",
       "packet_encoding": "xudp",
       "tls": {
         "enabled": true,
-        "server_name": "wordpress.com",
+        "server_name": "pmpmppm.pages.dev",
         "utls": {
           "enabled": true,
-          "fingerprint": "firefox"
-        },
-        "reality": {
-          "enabled": true,
-          "public_key": "MPNMomAMn_lu9YMYjD2jAQWrI-rTM4hj9Jgg9d6qzTA",
-          "short_id": "50ad5564"
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/?ed=2048fp=randomized",
+        "headers": {
+          "Host": [
+            "pmpmppm.pages.dev"
+          ],
+          "User-Agent": [
+            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.181 Safari/537.36"
+          ]
         }
       }
     },
     {
-      "server": "193.176.84.32",
-      "server_port": 9002,
-      "tag": "🇷🇴罗马尼亚RO046 1.33MB/s危险 TG@jcnode",
-      "type": "http",
+      "server": "138.124.39.251",
+      "server_port": 443,
+      "tag": "🇩🇪德国DE025 1.32MB/s TG@jcnode",
+      "type": "vless",
+      "uuid": "5254c281-3bc1-40ee-ba89-1aaf8c251402",
+      "flow": "xtls-rprx-vision",
+      "packet_encoding": "xudp",
       "tls": {
         "enabled": true,
-        "server_name": "www.bing.com",
-        "insecure": true
-      }
-    },
-    {
-      "server": "193.176.84.33",
-      "server_port": 9002,
-      "tag": "🇷🇴罗马尼亚RO048 1.32MB/s危险 TG@jcnode",
-      "type": "http",
-      "tls": {
-        "enabled": true,
-        "server_name": "www.bing.com",
-        "insecure": true
+        "server_name": "nl-modx-prime.storagedirectguide.com",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "node0aB_7yyVADkeieiBBpxqIlxNLQcvgotRClh0QXQ"
+        }
       }
     },
     {
@@ -1386,17 +1851,6 @@
       "tls": {
         "enabled": true,
         "server_name": "193.176.84.38",
-        "insecure": true
-      }
-    },
-    {
-      "server": "193.176.84.32",
-      "server_port": 9002,
-      "tag": "🇷🇴罗马尼亚RO050 1.32MB/s危险 TG@jcnode",
-      "type": "http",
-      "tls": {
-        "enabled": true,
-        "server_name": "193.176.84.32",
         "insecure": true
       }
     },
@@ -1418,6 +1872,30 @@
           "enabled": true,
           "public_key": "jOVKSP-bS9OkILJ8Epz8hadh6qhavCrOiJYeF0NCn0k",
           "short_id": "a73f0410d728c823"
+        }
+      }
+    },
+    {
+      "server": "172.67.203.46",
+      "server_port": 443,
+      "tag": "🇳🇱荷兰NL059 1.31MB/s TG@jcnode",
+      "type": "trojan",
+      "password": "humanity",
+      "tls": {
+        "enabled": true,
+        "server_name": "www.cordweave.com",
+        "insecure": true,
+        "alpn": [
+          "http/1.1"
+        ]
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/assignment",
+        "headers": {
+          "Host": [
+            "www.cordweave.com"
+          ]
         }
       }
     },
@@ -1444,6 +1922,28 @@
       }
     },
     {
+      "server": "178.72.185.235",
+      "server_port": 40447,
+      "tag": "🇫🇮芬兰FI003 1.3MB/s TG@jcnode",
+      "type": "vless",
+      "uuid": "572b3d30-3ced-4b88-9e06-4241f124cc88",
+      "flow": "xtls-rprx-vision",
+      "packet_encoding": "xudp",
+      "tls": {
+        "enabled": true,
+        "server_name": "www.booking.com",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "qq"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "EbXSjwJKAI1cmU2TK3af62qS2k58x8Rnct1525c0m1I",
+          "short_id": "30fc443cf34a1471"
+        }
+      }
+    },
+    {
       "server": "193.176.84.34",
       "server_port": 9002,
       "tag": "🇷🇴罗马尼亚RO061 1.3MB/s危险 TG@jcnode",
@@ -1467,6 +1967,27 @@
       }
     },
     {
+      "server": "de15.h1cloud.net",
+      "server_port": 25362,
+      "tag": "🇩🇪德国DE036 1.29MB/s中性 TG@jcnode",
+      "type": "vless",
+      "uuid": "36fb6650-8a50-42b5-9f66-06538806f32c",
+      "packet_encoding": "xudp",
+      "tls": {
+        "enabled": true,
+        "server_name": "www.chip.de",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "hFee7zTreqlv_wccK_8zxN5v23hj9u-DshByvGf-KAA",
+          "short_id": "23732d14a527990d"
+        }
+      }
+    },
+    {
       "server": "216.152.155.131",
       "server_port": 443,
       "tag": "🇺🇸美国US020 1.27MB/s中性 TG@jcnode",
@@ -1483,10 +2004,48 @@
       }
     },
     {
-      "server": "69.55.49.177",
-      "server_port": 38182,
-      "tag": "🇺🇸美国US224 1.27MB/s危险 TG@jcnode",
-      "type": "socks"
+      "server": "216.107.139.82",
+      "server_port": 443,
+      "tag": "🇺🇸美国US050 1.26MB/s中性 TG@jcnode",
+      "type": "http",
+      "tls": {
+        "enabled": true,
+        "server_name": "991cc80f13caf81d3426ddebb2da7f49-92ff472ddc24e5b7.apache-iv.com",
+        "insecure": true
+      }
+    },
+    {
+      "server": "13.143.180.104",
+      "server_port": 443,
+      "tag": "🇩🇪德国DE027 1.25MB/s中性 TG@jcnode",
+      "type": "vless",
+      "uuid": "a0fa7e19-70ec-41e0-b0cc-bcc984d4201a",
+      "flow": "xtls-rprx-vision",
+      "packet_encoding": "xudp",
+      "tls": {
+        "enabled": true,
+        "server_name": "s12.bsh-net.ru",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "firefox"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "QvT-t_h_AF2EAT4Ggh_a6pcCK3StY8G9WCXn6-dJbxk",
+          "short_id": "51079f144d661484"
+        }
+      }
+    },
+    {
+      "server": "193.176.84.32",
+      "server_port": 9002,
+      "tag": "🇷🇴罗马尼亚RO017 1.24MB/s TG@jcnode",
+      "type": "http",
+      "tls": {
+        "enabled": true,
+        "server_name": "193.176.84.32",
+        "insecure": true
+      }
     },
     {
       "server": "208.69.78.208",
@@ -1554,15 +2113,13 @@
       }
     },
     {
-      "server": "193.176.84.33",
-      "server_port": 9002,
-      "tag": "🇷🇴罗马尼亚RO072 1.21MB/s危险 TG@jcnode",
+      "server": "185.246.153.42",
+      "server_port": 443,
+      "tag": "🇳🇱荷兰NL062 1.21MB/s中性 TG@jcnode",
       "type": "http",
-      "username": "null",
-      "password": "null",
       "tls": {
         "enabled": true,
-        "server_name": "193.176.84.33",
+        "server_name": "482c8436a1f7c908b48a1757abb5dd79-3791fb4df2db250b.apache-iv.com",
         "insecure": true
       }
     },
@@ -1594,30 +2151,6 @@
       }
     },
     {
-      "server": "Rib9JXAYoqjGN2KW.v.3dns.vip",
-      "server_port": 443,
-      "tag": "🇺🇸美国US212 1.18MB/s中性 TG@jcnode",
-      "type": "vmess",
-      "uuid": "9b31490d-190e-4ef1-af0a-7ccab3e7c3b5",
-      "security": "auto",
-      "alter_id": 0,
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "Rib9JXAYoqjGN2KW.v.3dns.vip",
-        "insecure": false
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/ws-vmess",
-        "headers": {
-          "Host": [
-            "Rib9JXAYoqjGN2KW.v.3dns.vip"
-          ]
-        }
-      }
-    },
-    {
       "server": "138.199.35.215",
       "server_port": 9002,
       "tag": "🇺🇸美国US171 1.18MB/s危险 TG@jcnode",
@@ -1631,15 +2164,25 @@
       }
     },
     {
-      "server": "82.196.9.7",
-      "server_port": 443,
-      "tag": "🇳🇱荷兰NL049 1.16MB/s中性 TG@jcnode",
-      "type": "http",
-      "username": "testuser1",
-      "password": "e4b72b531a2d10900519",
+      "server": "5.181.158.100",
+      "server_port": 8470,
+      "tag": "🇫🇷法国FR025 1.16MB/s TG@jcnode",
+      "type": "vless",
+      "uuid": "1c8f7130-8c1a-4949-831d-1d45b39c795b",
+      "flow": "xtls-rprx-vision",
+      "packet_encoding": "xudp",
       "tls": {
         "enabled": true,
-        "server_name": "52c40907.acsnet.co"
+        "server_name": "svoboda14.bystriynet.online",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "firefox"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "VaMT-IAVkmjdrf4OS0Mnqg0YhQc35O9wZo2TW2LrmjU",
+          "short_id": "21e829b360d15daf"
+        }
       }
     },
     {
@@ -1662,17 +2205,6 @@
           "public_key": "laG5BxoSbdRozpauATNFBPPTwhuDuu0JFl_SCP2ZQlU",
           "short_id": "14fbf992"
         }
-      }
-    },
-    {
-      "server": "103.82.101.43",
-      "server_port": 443,
-      "tag": "🇫🇷法国FR021 1.15MB/s中性 TG@jcnode",
-      "type": "http",
-      "tls": {
-        "enabled": true,
-        "server_name": "76d1d3ecadca44efa2339867d7dfc9a1-8e928736d0f8dbdc.apache-iv.com",
-        "insecure": true
       }
     },
     {
@@ -1765,6 +2297,28 @@
       }
     },
     {
+      "server": "13.143.190.65",
+      "server_port": 443,
+      "tag": "🇵🇱波兰PL006 1.1MB/s TG@jcnode",
+      "type": "vless",
+      "uuid": "706bce83-91db-4260-b175-cba29145cd56",
+      "flow": "xtls-rprx-vision",
+      "packet_encoding": "xudp",
+      "tls": {
+        "enabled": true,
+        "server_name": "srvpl2.newagetechnologies.live",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "firefox"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "ujJJhm6pVQju7zkhPUQ-2Oes16hubBt14JD9oRCFtkQ",
+          "short_id": "667a1aa82fdd00d3"
+        }
+      }
+    },
+    {
       "server": "208.69.78.29",
       "server_port": 443,
       "tag": "🇨🇭瑞士CH004 1.1MB/s中性 TG@jcnode",
@@ -1777,34 +2331,6 @@
         "utls": {
           "enabled": true,
           "fingerprint": "chrome"
-        }
-      }
-    },
-    {
-      "server": "195.141.65.98",
-      "server_port": 443,
-      "tag": "🇩🇪德国DE025 1.1MB/s纯净 TG@jcnode",
-      "type": "vless",
-      "uuid": "53f03acd-fec1-6685-fc8f-03baf9550cb8",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "148-253-210-191.sslip.io",
-        "alpn": [
-          "http/1.1"
-        ],
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/test-ws",
-        "headers": {
-          "Host": [
-            "148-253-210-191.sslip.io"
-          ]
         }
       }
     },
@@ -1827,34 +2353,6 @@
         "reality": {
           "enabled": true,
           "public_key": "MMpt_jWc4J3oySBdf5sPDVRkiWlZmOObth6A1scM9BM"
-        }
-      }
-    },
-    {
-      "server": "47.251.95.178",
-      "server_port": 443,
-      "tag": "🇩🇪德国DE027 1.1MB/s纯净 TG@jcnode",
-      "type": "vless",
-      "uuid": "53f03acd-fec1-6685-fc8f-03baf9550cb8",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "148-253-210-191.sslip.io",
-        "alpn": [
-          "http/1.1"
-        ],
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/test-ws",
-        "headers": {
-          "Host": [
-            "148-253-210-191.sslip.io"
-          ]
         }
       }
     },
@@ -1882,6 +2380,74 @@
       }
     },
     {
+      "server": "pl2.obxodvpn.us",
+      "server_port": 443,
+      "tag": "🇵🇱波兰PL007 1.08MB/s TG@jcnode",
+      "type": "hysteria2",
+      "password": "2a0fc918-9c61-451b-a9ad-e8f796e70f52",
+      "tls": {
+        "enabled": true,
+        "server_name": "nl1.obxodvpn.us",
+        "insecure": false,
+        "alpn": [
+          "h3"
+        ]
+      }
+    },
+    {
+      "server": "5.181.158.192",
+      "server_port": 8460,
+      "tag": "🇳🇱荷兰NL066 1.08MB/s TG@jcnode",
+      "type": "vless",
+      "uuid": "1c8f7130-8c1a-4949-831d-1d45b39c795b",
+      "flow": "xtls-rprx-vision",
+      "packet_encoding": "xudp",
+      "tls": {
+        "enabled": true,
+        "server_name": "nl-ams.bystriynet.online",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "firefox"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "5FHR9361HdRaycDAmACmok_SvpmM2xnzYRkUBsgZARM",
+          "short_id": "c7d4e6fb729b69c2"
+        }
+      }
+    },
+    {
+      "server": "195.141.65.98",
+      "server_port": 443,
+      "tag": "🇩🇪德国DE029 1.08MB/s纯净 TG@jcnode",
+      "type": "vless",
+      "uuid": "53f03acd-fec1-6685-fc8f-03baf9550cb8",
+      "packet_encoding": "xudp",
+      "tls": {
+        "enabled": true,
+        "server_name": "148-253-210-191.sslip.io",
+        "alpn": [
+          "http/1.1"
+        ],
+        "utls": {
+          "enabled": true,
+          "fingerprint": "edge"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/test-ws",
+        "headers": {
+          "Host": [
+            "148-253-210-191.sslip.io"
+          ],
+          "User-Agent": [
+            "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36"
+          ]
+        }
+      }
+    },
+    {
       "server": "es.srv.dvzh.net",
       "server_port": 443,
       "tag": "🇪🇸西班牙ES001 1.08MB/s中性 TG@jcnode",
@@ -1901,6 +2467,18 @@
           "public_key": "9GEc6lOjnGQyyE1951OZSBMWt4uCXsOjKyj9fysxHH0",
           "short_id": "e0ccc8c2f487d913"
         }
+      }
+    },
+    {
+      "server": "82.196.9.7",
+      "server_port": 443,
+      "tag": "🇳🇱荷兰NL067 1.07MB/s中性 TG@jcnode",
+      "type": "http",
+      "username": "testuser1",
+      "password": "e4b72b531a2d10900519",
+      "tls": {
+        "enabled": true,
+        "server_name": "52c40907.acsnet.co"
       }
     },
     {
@@ -1925,30 +2503,6 @@
       }
     },
     {
-      "server": "45.134.9.41",
-      "server_port": 443,
-      "tag": "🇲🇽墨西哥MX001 1.06MB/s中性 TG@jcnode",
-      "type": "http",
-      "tls": {
-        "enabled": true,
-        "server_name": "991cc80f13caf81d3426ddebb2da7f49-240d6105b6ef86f0.apache-iv.com",
-        "insecure": true
-      }
-    },
-    {
-      "server": "193.176.84.39",
-      "server_port": 9002,
-      "tag": "🇷🇴罗马尼亚RO082 1.05MB/s危险 TG@jcnode",
-      "type": "http",
-      "username": "null",
-      "password": "null",
-      "tls": {
-        "enabled": true,
-        "server_name": "193.176.84.39",
-        "insecure": true
-      }
-    },
-    {
       "server": "216.152.155.176",
       "server_port": 443,
       "tag": "🇺🇸美国US029 1.04MB/s中性 TG@jcnode",
@@ -1961,6 +2515,56 @@
         "utls": {
           "enabled": true,
           "fingerprint": "chrome"
+        }
+      }
+    },
+    {
+      "server": "47.251.95.178",
+      "server_port": 443,
+      "tag": "🇩🇪德国DE030 1.03MB/s纯净 TG@jcnode",
+      "type": "vless",
+      "uuid": "53f03acd-fec1-6685-fc8f-03baf9550cb8",
+      "packet_encoding": "xudp",
+      "tls": {
+        "enabled": true,
+        "server_name": "148-253-210-191.sslip.io",
+        "alpn": [
+          "http/1.1"
+        ],
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/test-ws",
+        "headers": {
+          "Host": [
+            "148-253-210-191.sslip.io"
+          ]
+        }
+      }
+    },
+    {
+      "server": "5.181.158.100",
+      "server_port": 8471,
+      "tag": "🇬🇧英国GB001 1.02MB/s TG@jcnode",
+      "type": "vless",
+      "uuid": "1c8f7130-8c1a-4949-831d-1d45b39c795b",
+      "flow": "xtls-rprx-vision",
+      "packet_encoding": "xudp",
+      "tls": {
+        "enabled": true,
+        "server_name": "svoboda16.bystriynet.online",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "firefox"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "-Ri2C7Y1tPrP8hQkgXOqVyR1Sqv5MdLZxAAu9M5kfn0",
+          "short_id": "44add17dbecb11ba"
         }
       }
     },
@@ -1992,6 +2596,17 @@
       }
     },
     {
+      "server": "45.134.9.41",
+      "server_port": 443,
+      "tag": "🇲🇽墨西哥MX001 0.99MB/s中性 TG@jcnode",
+      "type": "http",
+      "tls": {
+        "enabled": true,
+        "server_name": "991cc80f13caf81d3426ddebb2da7f49-240d6105b6ef86f0.apache-iv.com",
+        "insecure": true
+      }
+    },
+    {
       "server": "31.77.13.22",
       "server_port": 2063,
       "tag": "🇨🇿CZ004 0.99MB/s中性 TG@jcnode",
@@ -2010,6 +2625,28 @@
         "reality": {
           "enabled": true,
           "public_key": "MMpt_jWc4J3oySBdf5sPDVRkiWlZmOObth6A1scM9BM"
+        }
+      }
+    },
+    {
+      "server": "5.181.158.100",
+      "server_port": 8481,
+      "tag": "🇬🇧英国GB002 0.98MB/s TG@jcnode",
+      "type": "vless",
+      "uuid": "1c8f7130-8c1a-4949-831d-1d45b39c795b",
+      "flow": "xtls-rprx-vision",
+      "packet_encoding": "xudp",
+      "tls": {
+        "enabled": true,
+        "server_name": "svoboda16.bystriynet.online",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "firefox"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "-Ri2C7Y1tPrP8hQkgXOqVyR1Sqv5MdLZxAAu9M5kfn0",
+          "short_id": "44add17dbecb11ba"
         }
       }
     },
@@ -2044,6 +2681,40 @@
         "enabled": true,
         "server_name": "www.bing.com",
         "insecure": true
+      }
+    },
+    {
+      "server": "5.181.158.193",
+      "server_port": 8462,
+      "tag": "🇸🇪瑞典SE003 0.96MB/s TG@jcnode",
+      "type": "vless",
+      "uuid": "1c8f7130-8c1a-4949-831d-1d45b39c795b",
+      "flow": "xtls-rprx-vision",
+      "packet_encoding": "xudp",
+      "tls": {
+        "enabled": true,
+        "server_name": "svoboda8.bystriynet.online",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "firefox"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "MrCVk_IX3i58KxjEk-zj6xmh1lZ_WW9SfZ-Bsc6EFnQ",
+          "short_id": "4c312f2eab89201d"
+        }
+      }
+    },
+    {
+      "server": "sr2-id.freeconnect.link",
+      "server_port": 9251,
+      "tag": "🇮🇩印度尼西亚ID001 0.95MB/s中性 TG@jcnode",
+      "type": "http",
+      "username": "freeuser1",
+      "password": "freeuser1",
+      "tls": {
+        "enabled": true,
+        "server_name": "sr2-id.freeconnect.link"
       }
     },
     {
@@ -2091,46 +2762,99 @@
       }
     },
     {
-      "server": "193.176.84.39",
-      "server_port": 9002,
-      "tag": "🇷🇴罗马尼亚RO106 0.91MB/s危险 TG@jcnode",
-      "type": "http",
-      "tls": {
-        "enabled": true,
-        "server_name": "www.bing.com",
-        "insecure": true
-      }
-    },
-    {
-      "server": "216.107.139.82",
+      "server": "vodiwalker-panel-development-hp599.lucity.app",
       "server_port": 443,
-      "tag": "🇺🇸美国US022 0.89MB/s中性 TG@jcnode",
-      "type": "http",
+      "tag": "🇩🇪德国DE031 0.91MB/s TG@jcnode",
+      "type": "vless",
+      "uuid": "2c8af5ed-bf4c-d7cc-e398-8a2193c884dc",
+      "packet_encoding": "xudp",
       "tls": {
         "enabled": true,
-        "server_name": "991cc80f13caf81d3426ddebb2da7f49-92ff472ddc24e5b7.apache-iv.com",
-        "insecure": true
+        "server_name": "vodiwalker-panel-development-hp599.lucity.app",
+        "alpn": [
+          "http/1.1"
+        ],
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/ws/2c8af5ed-bf4c-d7cc-e398-8a2193c884dc",
+        "headers": {
+          "Host": [
+            "vodiwalker-panel-development-hp599.lucity.app"
+          ],
+          "User-Agent": [
+            "Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.65 Safari/537.36"
+          ]
+        }
       }
     },
     {
-      "server": "95.56.251.12",
-      "server_port": 47443,
-      "tag": "🇰🇿KZ002 0.89MB/s纯净 TG@jcnode",
+      "server": "178.72.185.235",
+      "server_port": 40448,
+      "tag": "🇯🇵日本JP007 0.91MB/s TG@jcnode",
       "type": "vless",
-      "uuid": "1fe01c8a-ab37-4e95-bbfc-95d4a608931e",
+      "uuid": "572b3d30-3ced-4b88-9e06-4241f124cc88",
       "flow": "xtls-rprx-vision",
       "packet_encoding": "xudp",
       "tls": {
         "enabled": true,
-        "server_name": "kz1.waspnest.space",
+        "server_name": "www.booking.com",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "qq"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "EbXSjwJKAI1cmU2TK3af62qS2k58x8Rnct1525c0m1I",
+          "short_id": "09f696119a54ea3c"
+        }
+      }
+    },
+    {
+      "server": "app-mi-26.spbstudentlife.com",
+      "server_port": 443,
+      "tag": "🇳🇱荷兰NL075 0.9MB/s TG@jcnode",
+      "type": "vless",
+      "uuid": "07680ffb-0666-4836-b6ad-ec0de62bc38f",
+      "flow": "xtls-rprx-vision",
+      "packet_encoding": "xudp",
+      "tls": {
+        "enabled": true,
+        "server_name": "assets-mi-26.spbstudentlife.com",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "randomized"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "cYtAkO6yUCuRTxHvF8EH76bybk1yfS005KLls-at2yc",
+          "short_id": "a7856800c2deb7b2"
+        }
+      }
+    },
+    {
+      "server": "5.181.158.192",
+      "server_port": 8464,
+      "tag": "🇩🇪德国DE032 0.9MB/s TG@jcnode",
+      "type": "vless",
+      "uuid": "1c8f7130-8c1a-4949-831d-1d45b39c795b",
+      "flow": "xtls-rprx-vision",
+      "packet_encoding": "xudp",
+      "tls": {
+        "enabled": true,
+        "server_name": "svoboda6.bystriynet.online",
         "utls": {
           "enabled": true,
           "fingerprint": "firefox"
         },
         "reality": {
           "enabled": true,
-          "public_key": "z1GSwCEACvO9RLcMVpcURiT8er4oeIdeSJhraw_0cGU",
-          "short_id": "ae97223a8f799877"
+          "public_key": "T0oPW9sxyDZRq1Db4-kvrOG9_h-wL3-UtjD3T8PN3mQ",
+          "short_id": "7dd5822cfb2e1cd0"
         }
       }
     },
@@ -2145,6 +2869,28 @@
         "enabled": true,
         "server_name": "sr2-id.freeconnect.link",
         "insecure": true
+      }
+    },
+    {
+      "server": "51.15.16.68",
+      "server_port": 2053,
+      "tag": "🇳🇱荷兰NL057 0.87MB/s TG@jcnode",
+      "type": "vless",
+      "uuid": "7d0fd363-16d2-43ce-9d6d-ed2c15d2cb7c",
+      "packet_encoding": "xudp",
+      "tls": {
+        "enabled": true,
+        "server_name": "www.apple.com",
+        "insecure": false,
+        "utls": {
+          "enabled": true,
+          "fingerprint": "random"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "Zotx4F9CI6_q9yeKCKIHDjwzCv_Aq7WSo7N0Zc1A6Sc",
+          "short_id": "3c99c85cbb6b3b44"
+        }
       }
     },
     {
@@ -2170,10 +2916,65 @@
       }
     },
     {
-      "server": "128.199.254.13",
-      "server_port": 9090,
-      "tag": "🇸🇬新加坡SG044 0.86MB/s危险 TG@jcnode",
-      "type": "http"
+      "server": "5.181.158.195",
+      "server_port": 8463,
+      "tag": "🇩🇪德国DE034 0.84MB/s TG@jcnode",
+      "type": "vless",
+      "uuid": "1c8f7130-8c1a-4949-831d-1d45b39c795b",
+      "flow": "xtls-rprx-vision",
+      "packet_encoding": "xudp",
+      "tls": {
+        "enabled": true,
+        "server_name": "svoboda2.bystriynet.online",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "firefox"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "k2jSuvKPXyN0fCJiGpl1NMzzN7kzo64vsbbLD4gdKQ4",
+          "short_id": "f017b721750fd683"
+        }
+      }
+    },
+    {
+      "server": "5.181.158.193",
+      "server_port": 8461,
+      "tag": "🇨🇭瑞士CH002 0.84MB/s TG@jcnode",
+      "type": "vless",
+      "uuid": "1c8f7130-8c1a-4949-831d-1d45b39c795b",
+      "flow": "xtls-rprx-vision",
+      "packet_encoding": "xudp",
+      "tls": {
+        "enabled": true,
+        "server_name": "svoboda.bystriynet.online",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "firefox"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "Yc75IKp6PRsGSw82GhGepMrRpJweW7WXUp9azkGuMAk",
+          "short_id": "735f09fb3fedb191"
+        }
+      }
+    },
+    {
+      "server": "130.49.162.137",
+      "server_port": 443,
+      "tag": "🇸🇰SK001 0.83MB/s TG@jcnode",
+      "type": "vless",
+      "uuid": "689a62e4-37e7-41de-9e6a-f2a56368c9e2",
+      "flow": "xtls-rprx-vision",
+      "packet_encoding": "xudp",
+      "tls": {
+        "enabled": true,
+        "server_name": "sk3.speedtestinternet.link",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "firefox"
+        }
+      }
     },
     {
       "server": "193.176.84.27",
@@ -2184,6 +2985,56 @@
         "enabled": true,
         "server_name": "193.176.84.27",
         "insecure": true
+      }
+    },
+    {
+      "server": "195.141.65.98",
+      "server_port": 443,
+      "tag": "🇩🇪德国DE035 0.78MB/s纯净 TG@jcnode",
+      "type": "vless",
+      "uuid": "53f03acd-fec1-6685-fc8f-03baf9550cb8",
+      "packet_encoding": "xudp",
+      "tls": {
+        "enabled": true,
+        "server_name": "148-253-210-191.sslip.io",
+        "alpn": [
+          "http/1.1"
+        ],
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/test-ws",
+        "headers": {
+          "Host": [
+            "148-253-210-191.sslip.io"
+          ]
+        }
+      }
+    },
+    {
+      "server": "149.104.5.247",
+      "server_port": 443,
+      "tag": "🇭🇰香港HK006 0.78MB/s TG@jcnode",
+      "type": "vmess",
+      "uuid": "6a89a215-22bf-4bd7-9642-b95b2e09583a",
+      "security": "auto",
+      "alter_id": 0,
+      "tls": {
+        "enabled": true,
+        "server_name": "guanwang.awsno.com"
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/hls/cctv5phd.m3u8",
+        "headers": {
+          "Host": [
+            "guanwang.awsno.com"
+          ]
+        }
       }
     },
     {
@@ -2233,6 +3084,39 @@
       "tls": {
         "enabled": true,
         "server_name": "www.bing.com",
+        "insecure": true
+      }
+    },
+    {
+      "server": "2.26.231.218",
+      "server_port": 2063,
+      "tag": "🇵🇱波兰PL013 0.7MB/s危险 TG@jcnode",
+      "type": "vless",
+      "uuid": "b18d5990-96eb-4587-a386-7f8ef7591e6a",
+      "flow": "xtls-rprx-vision",
+      "packet_encoding": "xudp",
+      "tls": {
+        "enabled": true,
+        "server_name": "rusbid.de",
+        "insecure": true,
+        "utls": {
+          "enabled": true,
+          "fingerprint": "firefox"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "MMpt_jWc4J3oySBdf5sPDVRkiWlZmOObth6A1scM9BM"
+        }
+      }
+    },
+    {
+      "server": "158.173.154.4",
+      "server_port": 9002,
+      "tag": "🇩🇪德国DE036 0.69MB/s危险 TG@jcnode",
+      "type": "http",
+      "tls": {
+        "enabled": true,
+        "server_name": "158.173.154.4",
         "insecure": true
       }
     },
@@ -2288,6 +3172,28 @@
       }
     },
     {
+      "server": "in-nl2.bystriynet.online",
+      "server_port": 8469,
+      "tag": "🇳🇱荷兰NL081 0.65MB/s TG@jcnode",
+      "type": "vless",
+      "uuid": "1c8f7130-8c1a-4949-831d-1d45b39c795b",
+      "flow": "xtls-rprx-vision",
+      "packet_encoding": "xudp",
+      "tls": {
+        "enabled": true,
+        "server_name": "svoboda12.bystriynet.online",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "firefox"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "jXnHLdfNcX2fwTFY-d2boAYcfC9EnnhqYS0hfR6WwFo",
+          "short_id": "55d42bdd79605658"
+        }
+      }
+    },
+    {
       "server": "webdrone.club",
       "server_port": 443,
       "tag": "🇺🇸美国US280 0.64MB/s中性 TG@jcnode",
@@ -2300,15 +3206,15 @@
       }
     },
     {
-      "server": "purposebydesig.club",
+      "server": "107.151.238.27",
       "server_port": 443,
-      "tag": "🇺🇸美国US046 0.63MB/s中性 TG@jcnode",
+      "tag": "🇺🇸美国US069 0.63MB/s中性 TG@jcnode",
       "type": "http",
-      "username": "null",
-      "password": "null",
+      "username": "testuser1",
+      "password": "e4b72b531a2d10900519",
       "tls": {
         "enabled": true,
-        "server_name": "purposebydesig.club"
+        "server_name": "6b97ee1b.acsnet.co"
       }
     },
     {
@@ -2346,18 +3252,45 @@
       }
     },
     {
-      "server": "de-bots4.h1cloud.net",
-      "server_port": 25267,
-      "tag": "🇩🇪德国DE010 0.6MB/s纯净 TG@jcnode",
-      "type": "trojan",
-      "password": "happybirthdaydaniel",
+      "server": "5.181.158.195",
+      "server_port": 8466,
+      "tag": "🇩🇪德国DE040 0.57MB/s TG@jcnode",
+      "type": "vless",
+      "uuid": "1c8f7130-8c1a-4949-831d-1d45b39c795b",
+      "flow": "xtls-rprx-vision",
+      "packet_encoding": "xudp",
       "tls": {
         "enabled": true,
-        "server_name": "de-bots4.h1cloud.net",
-        "insecure": true,
+        "server_name": "svoboda20.bystriynet.online",
         "utls": {
           "enabled": true,
-          "fingerprint": "chrome"
+          "fingerprint": "firefox"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "k2jSuvKPXyN0fCJiGpl1NMzzN7kzo64vsbbLD4gdKQ4",
+          "short_id": "f017b721750fd683"
+        }
+      }
+    },
+    {
+      "server": "186.246.9.29",
+      "server_port": 443,
+      "tag": "🇳🇱荷兰NL082 0.57MB/s中性 TG@jcnode",
+      "type": "vless",
+      "uuid": "b2847c3b-5278-4b06-9c66-bc919d2dfec7",
+      "packet_encoding": "xudp",
+      "tls": {
+        "enabled": true,
+        "server_name": "wordpress.com",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "firefox"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "MPNMomAMn_lu9YMYjD2jAQWrI-rTM4hj9Jgg9d6qzTA",
+          "short_id": "50ad5564"
         }
       }
     },
@@ -2418,6 +3351,28 @@
         "enabled": true,
         "server_name": "www.bing.com",
         "insecure": true
+      }
+    },
+    {
+      "server": "pl-waw.dontblockmepls.com",
+      "server_port": 2063,
+      "tag": "🇵🇱波兰PL014 0.53MB/s危险 TG@jcnode",
+      "type": "vless",
+      "uuid": "b18d5990-96eb-4587-a386-7f8ef7591e6a",
+      "flow": "xtls-rprx-vision",
+      "packet_encoding": "xudp",
+      "tls": {
+        "enabled": true,
+        "server_name": "rusbid.de",
+        "insecure": true,
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "MMpt_jWc4J3oySBdf5sPDVRkiWlZmOObth6A1scM9BM"
+        }
       }
     },
     {
@@ -2490,22 +3445,6 @@
       }
     },
     {
-      "server": "de-bots4.h1cloud.net",
-      "server_port": 25267,
-      "tag": "🇩🇪德国DE013 0.46MB/s纯净 TG@jcnode",
-      "type": "trojan",
-      "password": "happybirthdaydaniel",
-      "tls": {
-        "enabled": true,
-        "server_name": "t.me/FuckTheWall",
-        "insecure": true,
-        "utls": {
-          "enabled": true,
-          "fingerprint": "ios"
-        }
-      }
-    },
-    {
       "server": "216.152.156.212",
       "server_port": 443,
       "tag": "🇺🇸美国US051 0.46MB/s中性 TG@jcnode",
@@ -2522,19 +3461,15 @@
       }
     },
     {
-      "server": "de-bots4.h1cloud.net",
-      "server_port": 25267,
-      "tag": "🇩🇪德国DE014 0.45MB/s纯净 TG@jcnode",
-      "type": "trojan",
-      "password": "happybirthdaydaniel",
+      "server": "162.243.146.243",
+      "server_port": 443,
+      "tag": "🇺🇸美国US073 0.44MB/s中性 TG@jcnode",
+      "type": "http",
+      "username": "testuser1",
+      "password": "e4b72b531a2d10900519",
       "tls": {
         "enabled": true,
-        "server_name": "t.me/FuckTheWall",
-        "insecure": true,
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
+        "server_name": "a2f392f3.acsnet.co"
       }
     },
     {
@@ -2559,52 +3494,608 @@
       }
     },
     {
-      "server": "162.243.146.243",
+      "server": "188.114.96.9",
       "server_port": 443,
-      "tag": "🇺🇸美国US029 0.42MB/s中性 TG@jcnode",
+      "tag": "🇩🇪德国DE022 0.33MB/s TG@jcnode",
+      "type": "vless",
+      "uuid": "2e305ebe-f6e6-4689-b32f-cd04ab5ff541",
+      "packet_encoding": "xudp",
+      "tls": {
+        "enabled": true,
+        "server_name": "IdB8ONMVbntuYT5t7t6cEJfw8vLrb.paGEs.DeV",
+        "alpn": [
+          "http/1.1"
+        ],
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/vl/9yvcoLdzdOXLUYfH7r5gwJhu1CHrj",
+        "headers": {
+          "Host": [
+            "idb8onmvbntuyt5t7t6cejfw8vlrb.pages.dev"
+          ],
+          "User-Agent": [
+            "Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36"
+          ]
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      }
+    },
+    {
+      "server": "fan.240104.xyz",
+      "server_port": 443,
+      "tag": "🇭🇰香港HK009 测速未知 TG@jcnode",
+      "type": "http",
+      "username": "null",
+      "password": "null",
+      "tls": {
+        "enabled": true,
+        "server_name": "fan.240104.xyz"
+      }
+    },
+    {
+      "server": "fan.571589.xyz",
+      "server_port": 443,
+      "tag": "🇯🇵日本JP023 测速未知 TG@jcnode",
+      "type": "http",
+      "tls": {
+        "enabled": true,
+        "server_name": "fan.571589.xyz"
+      }
+    },
+    {
+      "server": "158.173.154.2",
+      "server_port": 9002,
+      "tag": "🇩🇪德国DE053 测速未知危险 TG@jcnode",
+      "type": "http",
+      "tls": {
+        "enabled": true,
+        "server_name": "158.173.154.2",
+        "insecure": true
+      }
+    },
+    {
+      "server": "151.115.54.133",
+      "server_port": 443,
+      "tag": "🇵🇱波兰PL008 测速未知中性 TG@jcnode",
+      "type": "http",
+      "tls": {
+        "enabled": true,
+        "server_name": "151.115.54.133",
+        "insecure": true
+      }
+    },
+    {
+      "server": "2.26.255.215",
+      "server_port": 443,
+      "tag": "🇺🇸美国US079 测速未知 TG@jcnode",
+      "type": "vless",
+      "uuid": "69e41e64-a832-471a-b740-94577ca85520",
+      "flow": "xtls-rprx-vision",
+      "packet_encoding": "xudp",
+      "tls": {
+        "enabled": true,
+        "server_name": "cloudflare.com",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "firefox"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "pOHbbyo_PlUwH4DjC6bKvC3jB8RPnCdu-nL8trAP8CI",
+          "short_id": "50"
+        }
+      }
+    },
+    {
+      "server": "51.159.225.196",
+      "server_port": 23856,
+      "tag": "🇳🇱荷兰NL104 测速未知危险 TG@jcnode",
+      "type": "http",
+      "tls": {
+        "enabled": true,
+        "server_name": "51.159.225.196",
+        "insecure": true
+      }
+    },
+    {
+      "server": "51.158.243.91",
+      "server_port": 443,
+      "tag": "🇳🇱荷兰NL116 测速未知中性 TG@jcnode",
+      "type": "http",
+      "username": "null",
+      "password": "null",
+      "tls": {
+        "enabled": true,
+        "server_name": "51.158.243.91",
+        "insecure": true
+      }
+    },
+    {
+      "server": "103.82.101.44",
+      "server_port": 443,
+      "tag": "🇫🇷法国FR042 测速未知中性 TG@jcnode",
+      "type": "http",
+      "tls": {
+        "enabled": true,
+        "server_name": "f3a61d8406d537345747f99f8a281007-3f754ed5da1bba09.apache-iv.com",
+        "insecure": true
+      }
+    },
+    {
+      "server": "webdrone.club",
+      "server_port": 443,
+      "tag": "🇺🇸美国US089 测速未知 TG@jcnode",
+      "type": "http",
+      "tls": {
+        "enabled": true,
+        "server_name": "webdrone.club"
+      }
+    },
+    {
+      "server": "51.159.225.196",
+      "server_port": 23856,
+      "tag": "🇳🇱荷兰NL119 测速未知危险 TG@jcnode",
+      "type": "http",
+      "username": "null",
+      "password": "null",
+      "tls": {
+        "enabled": true,
+        "server_name": "51.159.225.196",
+        "insecure": true
+      }
+    },
+    {
+      "server": "goedkoopgeluid.icu",
+      "server_port": 443,
+      "tag": "🇺🇸美国US092 测速未知中性 TG@jcnode",
+      "type": "http",
+      "username": "None",
+      "password": "sni=\\\"goedkoopgeluid.icu\\\"",
+      "tls": {
+        "enabled": true,
+        "server_name": "goedkoopgeluid.icu"
+      }
+    },
+    {
+      "server": "fan.132031.xyz",
+      "server_port": 443,
+      "tag": "🇫🇷法国FR044 测速未知纯净 TG@jcnode",
+      "type": "http",
+      "username": "null",
+      "password": "null",
+      "tls": {
+        "enabled": true,
+        "server_name": "fan.132031.xyz"
+      }
+    },
+    {
+      "server": "fr017.freeconnect.link",
+      "server_port": 9251,
+      "tag": "🇫🇷法国FR045 测速未知中性 TG@jcnode",
+      "type": "http",
+      "username": "freeuser1",
+      "password": "freeuser1",
+      "tls": {
+        "enabled": true,
+        "server_name": "fr017.freeconnect.link",
+        "insecure": true
+      }
+    },
+    {
+      "server": "43.173.78.139",
+      "server_port": 8443,
+      "tag": "🇺🇸美国US101 测速未知 TG@jcnode",
+      "type": "vless",
+      "uuid": "211d03a1-36e9-40e7-8b5e-f9dac6997f05",
+      "flow": "xtls-rprx-vision",
+      "packet_encoding": "xudp",
+      "tls": {
+        "enabled": true,
+        "server_name": "www.apple.com",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "ftbEBjykrVrMuhJrZvVVMu7A_YLyIJXXlWEnXDK7VFM",
+          "short_id": "ed7720aa510154f5"
+        }
+      }
+    },
+    {
+      "server": "s12.bsh-net.ru",
+      "server_port": 443,
+      "tag": "🇫🇮芬兰FI008 测速未知中性 TG@jcnode",
+      "type": "vless",
+      "uuid": "a0fa7e19-70ec-41e0-b0cc-bcc984d4201a",
+      "flow": "xtls-rprx-vision",
+      "packet_encoding": "xudp",
+      "tls": {
+        "enabled": true,
+        "server_name": "s12.bsh-net.ru",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "firefox"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "QvT-t_h_AF2EAT4Ggh_a6pcCK3StY8G9WCXn6-dJbxk",
+          "short_id": "51079f144d661484"
+        }
+      }
+    },
+    {
+      "server": "kimberlymilano.icu",
+      "server_port": 443,
+      "tag": "🇺🇸美国US110 测速未知 TG@jcnode",
+      "type": "http",
+      "password": "None",
+      "tls": {
+        "enabled": true,
+        "server_name": "kimberlymilano.icu",
+        "insecure": false
+      }
+    },
+    {
+      "server": "193.176.84.26",
+      "server_port": 9002,
+      "tag": "🇷🇴罗马尼亚RO024 测速未知 TG@jcnode",
+      "type": "http",
+      "tls": {
+        "enabled": true,
+        "server_name": "www.bing.com",
+        "insecure": true
+      }
+    },
+    {
+      "server": "38.247.141.135",
+      "server_port": 443,
+      "tag": "🇺🇸美国US118 测速未知危险 TG@jcnode",
+      "type": "http",
+      "tls": {
+        "enabled": true,
+        "server_name": "38.247.141.135",
+        "insecure": true
+      }
+    },
+    {
+      "server": "vivozim.vyvoz-musora.cc",
+      "server_port": 443,
+      "tag": "🇩🇪德国DE077 测速未知 TG@jcnode",
+      "type": "vless",
+      "uuid": "a0052f4f-4c63-485a-a16f-ab2d5d718cd3",
+      "packet_encoding": "xudp",
+      "tls": {
+        "enabled": true,
+        "server_name": "vivozim.vyvoz-musora.cc",
+        "alpn": [
+          "http/1.1"
+        ],
+        "utls": {
+          "enabled": true,
+          "fingerprint": "firefox"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/e8ws",
+        "headers": {
+          "Host": [
+            "vivozim.vyvoz-musora.cc"
+          ],
+          "User-Agent": [
+            "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36"
+          ]
+        }
+      }
+    },
+    {
+      "server": "fan.132031.xyz",
+      "server_port": 443,
+      "tag": "🇫🇷法国FR054 测速未知纯净 TG@jcnode",
+      "type": "http",
+      "password": "None",
+      "tls": {
+        "enabled": true,
+        "server_name": "fan.132031.xyz",
+        "insecure": true
+      }
+    },
+    {
+      "server": "92.42.201.65",
+      "server_port": 4443,
+      "tag": "🇸🇮SI001 测速未知 TG@jcnode",
+      "type": "vless",
+      "uuid": "e0134f1c-8b74-4733-9c34-50cb251480c2",
+      "flow": "xtls-rprx-vision",
+      "packet_encoding": "xudp",
+      "tls": {
+        "enabled": true,
+        "server_name": "node-slo03.rkitman.ru",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "CTiiN_SriTUj-eBv0047HpCWgLtAzWzq-gwvIWN9KUI",
+          "short_id": "7f0275a4db6068fb"
+        }
+      }
+    },
+    {
+      "server": "38.28.193.1",
+      "server_port": 443,
+      "tag": "🇺🇸美国US151 测速未知危险 TG@jcnode",
+      "type": "http",
+      "tls": {
+        "enabled": true,
+        "server_name": "38.28.193.1",
+        "insecure": true
+      }
+    },
+    {
+      "server": "fan.226278.xyz",
+      "server_port": 443,
+      "tag": "🇺🇸美国US157 测速未知危险 TG@jcnode",
+      "type": "http",
+      "tls": {
+        "enabled": true,
+        "server_name": "fan.226278.xyz"
+      }
+    },
+    {
+      "server": "167.172.172.190",
+      "server_port": 443,
+      "tag": "🇩🇪德国DE084 测速未知中性 TG@jcnode",
       "type": "http",
       "username": "testuser1",
       "password": "e4b72b531a2d10900519",
       "tls": {
         "enabled": true,
-        "server_name": "a2f392f3.acsnet.co"
+        "server_name": "167.172.172.190",
+        "insecure": true
       }
     },
     {
-      "server": "107.151.238.27",
+      "server": "167.172.172.190",
       "server_port": 443,
-      "tag": "🇺🇸美国US254 0.42MB/s中性 TG@jcnode",
+      "tag": "🇩🇪德国DE085 测速未知中性 TG@jcnode",
       "type": "http",
       "username": "testuser1",
       "password": "e4b72b531a2d10900519",
       "tls": {
         "enabled": true,
-        "server_name": "6b97ee1b.acsnet.co"
-      }
-    },
-    {
-      "server": "twmoon1-cdn-route.couldflare-cdn.com",
-      "server_port": 1443,
-      "tag": "🇹🇼台湾TW007 测速未知纯净 TG@jcnode",
-      "type": "http",
-      "username": "mrwdfNTD8M79LCukCieldrqZWqs=",
-      "password": "exaxgqkKkd0TAMrCxeonWg==",
-      "tls": {
-        "enabled": true,
-        "server_name": "twmoon1-cdn-route.couldflare-cdn.com",
+        "server_name": "a7acacbe.acsnet.co",
         "insecure": true
       }
     },
     {
-      "server": "684616s4.df6h451rh.xin",
+      "server": "38.28.193.188",
       "server_port": 443,
-      "tag": "🇹🇼台湾TW011 测速未知纯净 TG@jcnode",
-      "type": "anytls",
-      "password": "0324fbc29561",
+      "tag": "🇺🇸美国US180 测速未知危险 TG@jcnode",
+      "type": "http",
+      "username": "null",
+      "password": "null",
       "tls": {
         "enabled": true,
-        "server_name": "px.ads.linkedin.com",
+        "server_name": "38.28.193.188",
         "insecure": true
+      }
+    },
+    {
+      "server": "185.225.205.53",
+      "server_port": 443,
+      "tag": "🇪🇪EE002 测速未知 TG@jcnode",
+      "type": "vless",
+      "uuid": "7a0348d6-55d3-4c23-b22f-6277fcb2264c",
+      "flow": "xtls-rprx-vision",
+      "packet_encoding": "xudp",
+      "tls": {
+        "enabled": true,
+        "server_name": "addons.mozilla.org",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "qq"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "2XyUS3_ONl5REQ7NiwikdJphAe7oJ61-21zuqnN67y8",
+          "short_id": "2e82d7ac"
+        }
+      }
+    },
+    {
+      "server": "193.35.104.196",
+      "server_port": 443,
+      "tag": "🇨🇿CZ007 测速未知纯净 TG@jcnode",
+      "type": "http",
+      "tls": {
+        "enabled": true,
+        "server_name": "193.35.104.196",
+        "insecure": true
+      }
+    },
+    {
+      "server": "125.27.147.150",
+      "server_port": 9999,
+      "tag": "🇹🇭泰国TH002 测速未知 TG@jcnode",
+      "type": "socks"
+    },
+    {
+      "server": "193.176.84.25",
+      "server_port": 9002,
+      "tag": "🇷🇴罗马尼亚RO033 测速未知 TG@jcnode",
+      "type": "http",
+      "tls": {
+        "enabled": true,
+        "server_name": "www.bing.com",
+        "insecure": true
+      }
+    },
+    {
+      "server": "69.55.49.177",
+      "server_port": 38182,
+      "tag": "🇺🇸美国US188 测速未知 TG@jcnode",
+      "type": "socks"
+    },
+    {
+      "server": "151.91.39.191",
+      "server_port": 443,
+      "tag": "🇩🇪德国DE100 测速未知纯净 TG@jcnode",
+      "type": "vless",
+      "uuid": "53f03acd-fec1-6685-fc8f-03baf9550cb8",
+      "packet_encoding": "xudp",
+      "tls": {
+        "enabled": true,
+        "server_name": "148-253-210-191.sslip.io",
+        "alpn": [
+          "http/1.1"
+        ],
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/test-ws",
+        "headers": {
+          "Host": [
+            "148-253-210-191.sslip.io"
+          ]
+        }
+      }
+    },
+    {
+      "server": "87.242.94.84",
+      "server_port": 443,
+      "tag": "🇺🇸美国US195 测速未知 TG@jcnode",
+      "type": "vless",
+      "uuid": "706bce83-91db-4260-b175-cba29145cd56",
+      "packet_encoding": "xudp",
+      "tls": {
+        "enabled": true,
+        "server_name": "lingvaburo.cc",
+        "alpn": [
+          "http/1.1"
+        ],
+        "utls": {
+          "enabled": true,
+          "fingerprint": "firefox"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/checkout/step/gplirAP9szjx",
+        "headers": {
+          "Host": [
+            "lingvaburo.cc"
+          ],
+          "User-Agent": [
+            "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36"
+          ]
+        }
+      }
+    },
+    {
+      "server": "195.201.246.53",
+      "server_port": 1083,
+      "tag": "🇺🇸美国US206 测速未知 TG@jcnode",
+      "type": "socks"
+    },
+    {
+      "server": "95.56.251.12",
+      "server_port": 47443,
+      "tag": "🇰🇿KZ003 测速未知纯净 TG@jcnode",
+      "type": "vless",
+      "uuid": "1fe01c8a-ab37-4e95-bbfc-95d4a608931e",
+      "flow": "xtls-rprx-vision",
+      "packet_encoding": "xudp",
+      "tls": {
+        "enabled": true,
+        "server_name": "kz1.waspnest.space",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "firefox"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "z1GSwCEACvO9RLcMVpcURiT8er4oeIdeSJhraw_0cGU",
+          "short_id": "ae97223a8f799877"
+        }
+      }
+    },
+    {
+      "server": "186.246.9.29",
+      "server_port": 443,
+      "tag": "🇳🇱荷兰NL188 测速未知中性 TG@jcnode",
+      "type": "vless",
+      "uuid": "b2847c3b-5278-4b06-9c66-bc919d2dfec7",
+      "packet_encoding": "xudp",
+      "tls": {
+        "enabled": true,
+        "server_name": "wordpress.com",
+        "insecure": true,
+        "utls": {
+          "enabled": true,
+          "fingerprint": "firefox"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "MPNMomAMn_lu9YMYjD2jAQWrI-rTM4hj9Jgg9d6qzTA",
+          "short_id": "50ad5564"
+        }
+      }
+    },
+    {
+      "server": "31.77.68.36",
+      "server_port": 443,
+      "tag": "🇪🇪EE012 测速未知 TG@jcnode",
+      "type": "vless",
+      "uuid": "7a0348d6-55d3-4c23-b22f-6277fcb2264c",
+      "flow": "xtls-rprx-vision",
+      "packet_encoding": "xudp",
+      "tls": {
+        "enabled": true,
+        "server_name": "addons.mozilla.org",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "qq"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "Daj7jHuHFEC_LV-Fv1fBSaTSQRM9vfgf_DtjMn9svl0",
+          "short_id": "64e4efa1"
+        }
+      }
+    },
+    {
+      "server": "79.182.39.37",
+      "server_port": 27591,
+      "tag": "🇵🇱波兰PL025 测速未知纯净 TG@jcnode",
+      "type": "vless",
+      "uuid": "056405e8-de9f-4d0d-8145-956f13cc34da",
+      "packet_encoding": "xudp",
+      "tls": {
+        "enabled": true,
+        "server_name": "www.samsung.com",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "firefox"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "LY0H47MWx87_L_JBzxFAuTzKZB53U7MrZQK8-dNnMxM",
+          "short_id": "6c5c7900406a1ae7"
+        }
       }
     },
     {
@@ -2614,18 +4105,6 @@
       "type": "socks",
       "username": "8888",
       "password": "8888"
-    },
-    {
-      "server": "fan.240104.xyz",
-      "server_port": 443,
-      "tag": "🇭🇰香港HK013 测速未知 TG@jcnode",
-      "type": "http",
-      "username": "null",
-      "password": "null",
-      "tls": {
-        "enabled": true,
-        "server_name": "fan.240104.xyz"
-      }
     },
     {
       "server": "fan.571589.xyz",
@@ -2642,47 +4121,12 @@
     {
       "server": "43.167.186.78",
       "server_port": 8443,
-      "tag": "🇯🇵日本JP040 测速未知中性 TG@jcnode",
+      "tag": "🇯🇵日本JP040 测速未知中性 TG@jcnode #2",
       "type": "trojan",
       "password": "9646699a-18b0-4ebc-9f53-453cc1c8e637",
       "tls": {
         "enabled": true,
         "server_name": "43.167.186.78",
-        "insecure": true
-      }
-    },
-    {
-      "server": "fr017.freeconnect.link",
-      "server_port": 9251,
-      "tag": "🇫🇷法国FR028 测速未知中性 TG@jcnode",
-      "type": "http",
-      "username": "freeuser1",
-      "password": "freeuser1",
-      "tls": {
-        "enabled": true,
-        "server_name": "fr017.freeconnect.link",
-        "insecure": true
-      }
-    },
-    {
-      "server": "158.173.154.4",
-      "server_port": 9002,
-      "tag": "🇩🇪德国DE041 测速未知危险 TG@jcnode",
-      "type": "http",
-      "tls": {
-        "enabled": true,
-        "server_name": "158.173.154.4",
-        "insecure": true
-      }
-    },
-    {
-      "server": "185.246.153.42",
-      "server_port": 443,
-      "tag": "🇳🇱荷兰NL065 测速未知中性 TG@jcnode",
-      "type": "http",
-      "tls": {
-        "enabled": true,
-        "server_name": "482c8436a1f7c908b48a1757abb5dd79-3791fb4df2db250b.apache-iv.com",
         "insecure": true
       }
     },
@@ -2694,18 +4138,6 @@
       "tls": {
         "enabled": true,
         "server_name": "kimberlymilano.icu"
-      }
-    },
-    {
-      "server": "fullmanfirm.icu",
-      "server_port": 443,
-      "tag": "🇺🇸美国US036 测速未知中性 TG@jcnode",
-      "type": "http",
-      "password": "None",
-      "tls": {
-        "enabled": true,
-        "server_name": "fullmanfirm.icu",
-        "insecure": true
       }
     },
     {
@@ -2779,55 +4211,6 @@
       }
     },
     {
-      "server": "51.159.225.196",
-      "server_port": 23856,
-      "tag": "🇳🇱荷兰NL083 测速未知危险 TG@jcnode",
-      "type": "http",
-      "username": "null",
-      "password": "null",
-      "tls": {
-        "enabled": true,
-        "server_name": "51.159.225.196",
-        "insecure": true
-      }
-    },
-    {
-      "server": "fan.132031.xyz",
-      "server_port": 443,
-      "tag": "🇫🇷法国FR039 测速未知纯净 TG@jcnode",
-      "type": "http",
-      "password": "None",
-      "tls": {
-        "enabled": true,
-        "server_name": "fan.132031.xyz",
-        "insecure": true
-      }
-    },
-    {
-      "server": "51.159.225.196",
-      "server_port": 23856,
-      "tag": "🇳🇱荷兰NL089 测速未知危险 TG@jcnode",
-      "type": "http",
-      "tls": {
-        "enabled": true,
-        "server_name": "51.159.225.196",
-        "insecure": true
-      }
-    },
-    {
-      "server": "51.158.243.91",
-      "server_port": 443,
-      "tag": "🇳🇱荷兰NL093 测速未知中性 TG@jcnode",
-      "type": "http",
-      "username": "null",
-      "password": "null",
-      "tls": {
-        "enabled": true,
-        "server_name": "51.158.243.91",
-        "insecure": true
-      }
-    },
-    {
       "server": "185.168.208.190",
       "server_port": 47443,
       "tag": "🇺🇸美国US060 测速未知中性 TG@jcnode",
@@ -2886,6 +4269,28 @@
       }
     },
     {
+      "server": "5.253.28.240",
+      "server_port": 40443,
+      "tag": "🇮🇳印度IN003 测速未知中性 TG@jcnode",
+      "type": "vless",
+      "uuid": "405b964e-a2d2-454f-aaaa-711cc218897c",
+      "flow": "xtls-rprx-vision",
+      "packet_encoding": "xudp",
+      "tls": {
+        "enabled": true,
+        "server_name": "deepl.com",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "firefox"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "cwmcqsfS7klQlkcoUNuATEk0NiPY-NnRb9z8rCJDQw0",
+          "short_id": "88b6"
+        }
+      }
+    },
+    {
       "server": "voteshirleysew.club",
       "server_port": 443,
       "tag": "🇺🇸美国US071 测速未知中性 TG@jcnode",
@@ -2894,6 +4299,28 @@
         "enabled": true,
         "server_name": "voteshirleysew.club",
         "insecure": false
+      }
+    },
+    {
+      "server": "s12.bsh-net.ru",
+      "server_port": 443,
+      "tag": "🇫🇮芬兰FI003 测速未知中性 TG@jcnode",
+      "type": "vless",
+      "uuid": "a0fa7e19-70ec-41e0-b0cc-bcc984d4201a",
+      "flow": "xtls-rprx-vision",
+      "packet_encoding": "xudp",
+      "tls": {
+        "enabled": true,
+        "server_name": "s12.bsh-net.ru",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "QvT-t_h_AF2EAT4Ggh_a6pcCK3StY8G9WCXn6-dJbxk",
+          "short_id": "51079f144d661484"
+        }
       }
     },
     {
@@ -2930,6 +4357,28 @@
       }
     },
     {
+      "server": "31.59.143.147",
+      "server_port": 443,
+      "tag": "🇦🇪阿联酋AE002 测速未知 TG@jcnode",
+      "type": "vless",
+      "uuid": "1fe01c8a-ab37-4e95-bbfc-95d4a608931e",
+      "flow": "xtls-rprx-vision",
+      "packet_encoding": "xudp",
+      "tls": {
+        "enabled": true,
+        "server_name": "pl2.waspnest.space",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "firefox"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "Liu35gmIQJtbul5AeCrceJTjsmln4RaqxX6joKlaBjk",
+          "short_id": "ae97223a8f799889"
+        }
+      }
+    },
+    {
       "server": "150.241.79.124",
       "server_port": 443,
       "tag": "🇩🇪德国DE075 测速未知纯净 TG@jcnode",
@@ -2952,29 +4401,6 @@
       }
     },
     {
-      "server": "fan.132031.xyz",
-      "server_port": 443,
-      "tag": "🇫🇷法国FR046 测速未知纯净 TG@jcnode",
-      "type": "http",
-      "username": "null",
-      "password": "null",
-      "tls": {
-        "enabled": true,
-        "server_name": "fan.132031.xyz"
-      }
-    },
-    {
-      "server": "151.115.54.133",
-      "server_port": 443,
-      "tag": "🇵🇱波兰PL007 测速未知中性 TG@jcnode",
-      "type": "http",
-      "tls": {
-        "enabled": true,
-        "server_name": "151.115.54.133",
-        "insecure": true
-      }
-    },
-    {
       "server": "216.152.147.79",
       "server_port": 443,
       "tag": "🇨🇦加拿大CA007 测速未知 TG@jcnode",
@@ -2986,89 +4412,10 @@
       }
     },
     {
-      "server": "38.28.193.1",
-      "server_port": 443,
-      "tag": "🇺🇸美国US114 测速未知危险 TG@jcnode",
-      "type": "http",
-      "tls": {
-        "enabled": true,
-        "server_name": "38.28.193.1",
-        "insecure": true
-      }
-    },
-    {
-      "server": "167.172.172.190",
-      "server_port": 443,
-      "tag": "🇩🇪德国DE079 测速未知中性 TG@jcnode",
-      "type": "http",
-      "username": "testuser1",
-      "password": "e4b72b531a2d10900519",
-      "tls": {
-        "enabled": true,
-        "server_name": "a7acacbe.acsnet.co",
-        "insecure": true
-      }
-    },
-    {
-      "server": "38.28.193.188",
-      "server_port": 443,
-      "tag": "🇺🇸美国US127 测速未知危险 TG@jcnode",
-      "type": "http",
-      "username": "null",
-      "password": "null",
-      "tls": {
-        "enabled": true,
-        "server_name": "38.28.193.188",
-        "insecure": true
-      }
-    },
-    {
       "server": "172.104.210.252",
       "server_port": 1080,
       "tag": "🇺🇸美国US128 测速未知 TG@jcnode",
       "type": "socks"
-    },
-    {
-      "server": "swidenafterlanzerotte.space",
-      "server_port": 443,
-      "tag": "🇫🇮芬兰FI007 测速未知 TG@jcnode",
-      "type": "vless",
-      "uuid": "50a87e21-f0e2-4b53-a787-91adfe748f63",
-      "flow": "xtls-rprx-vision",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "swidenafterlanzerotte.space",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "qq"
-        },
-        "reality": {
-          "enabled": true,
-          "public_key": "MQrvfivvEfLGzDee7h0j5uC-DwaD_38_NXOY9-NhqxM"
-        }
-      }
-    },
-    {
-      "server": "fan.226278.xyz",
-      "server_port": 443,
-      "tag": "🇺🇸美国US149 测速未知危险 TG@jcnode",
-      "type": "http",
-      "tls": {
-        "enabled": true,
-        "server_name": "fan.226278.xyz"
-      }
-    },
-    {
-      "server": "193.35.104.196",
-      "server_port": 443,
-      "tag": "🇨🇿CZ011 测速未知纯净 TG@jcnode",
-      "type": "http",
-      "tls": {
-        "enabled": true,
-        "server_name": "193.35.104.196",
-        "insecure": true
-      }
     },
     {
       "server": "fan.596189.xyz",
@@ -3082,44 +4429,10 @@
       }
     },
     {
-      "server": "sr2-id.freeconnect.link",
-      "server_port": 9251,
-      "tag": "🇮🇩印度尼西亚ID012 测速未知中性 TG@jcnode",
-      "type": "http",
-      "username": "freeuser1",
-      "password": "freeuser1",
-      "tls": {
-        "enabled": true,
-        "server_name": "sr2-id.freeconnect.link"
-      }
-    },
-    {
       "server": "207.180.217.98",
       "server_port": 1088,
       "tag": "🇫🇷法国FR065 测速未知 TG@jcnode",
       "type": "socks"
-    },
-    {
-      "server": "tr2.h1cloud.net",
-      "server_port": 25021,
-      "tag": "🇹🇷土耳其TR004 测速未知中性 TG@jcnode",
-      "type": "vless",
-      "uuid": "2446e2e2-1ce3-4502-9050-1dd32bacc68c",
-      "flow": "xtls-rprx-vision",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "www.samsung.com",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        },
-        "reality": {
-          "enabled": true,
-          "public_key": "od79bUkYtqQtsGrrTdhmkDflx5c9al4vqxwWApvc-Dg",
-          "short_id": "17fa3af0924c88b3"
-        }
-      }
     },
     {
       "server": "187.52.44.20",
@@ -3140,34 +4453,6 @@
           "enabled": true,
           "public_key": "g5am2VhZkx_xH2TSKfUU8OYLxAzFrmcszNQg8AbOenE",
           "short_id": "ae97223a8f799872"
-        }
-      }
-    },
-    {
-      "server": "151.91.39.191",
-      "server_port": 443,
-      "tag": "🇩🇪德国DE094 测速未知纯净 TG@jcnode",
-      "type": "vless",
-      "uuid": "53f03acd-fec1-6685-fc8f-03baf9550cb8",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "148-253-210-191.sslip.io",
-        "alpn": [
-          "http/1.1"
-        ],
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/test-ws",
-        "headers": {
-          "Host": [
-            "148-253-210-191.sslip.io"
-          ]
         }
       }
     },
@@ -3223,7 +4508,7 @@
     {
       "server": "8.210.36.244",
       "server_port": 1080,
-      "tag": "🇭🇰香港HK009 测速未知 TG@jcnode",
+      "tag": "🇭🇰香港HK009 测速未知 TG@jcnode #2",
       "type": "socks",
       "username": "88888",
       "password": "88888"
@@ -3310,9 +4595,57 @@
       }
     },
     {
+      "server": "5.253.28.240",
+      "server_port": 2443,
+      "tag": "🇮🇳印度IN004 测速未知中性 TG@jcnode",
+      "type": "vless",
+      "uuid": "5e679ccd-1586-4d5f-b87b-48251046cad8",
+      "packet_encoding": "xudp",
+      "tls": {
+        "enabled": true,
+        "server_name": "deepl.com",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "firefox"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "h85e28MxBgNyT9d9cNeOLVtWfHq6cT_1_oxZOTajtTg",
+          "short_id": "92c32de179e5d908"
+        }
+      },
+      "transport": {
+        "type": "grpc",
+        "service_name": "rex-eb0bf76b710ce763"
+      }
+    },
+    {
+      "server": "hydra.yokkastars.com",
+      "server_port": 40443,
+      "tag": "🇮🇳印度IN008 测速未知中性 TG@jcnode",
+      "type": "vless",
+      "uuid": "405b964e-a2d2-454f-aaaa-711cc218897c",
+      "flow": "xtls-rprx-vision",
+      "packet_encoding": "xudp",
+      "tls": {
+        "enabled": true,
+        "server_name": "deepl.com",
+        "insecure": false,
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "cwmcqsfS7klQlkcoUNuATEk0NiPY-NnRb9z8rCJDQw0",
+          "short_id": "88b6"
+        }
+      }
+    },
+    {
       "server": "15.236.109.186",
       "server_port": 2053,
-      "tag": "🇫🇷法国FR042 测速未知中性 TG@jcnode",
+      "tag": "🇫🇷法国FR042 测速未知中性 TG@jcnode #2",
       "type": "vless",
       "uuid": "fbda2834-b1e7-4148-afb9-deda31036a30",
       "packet_encoding": "xudp",
@@ -3347,6 +4680,29 @@
       }
     },
     {
+      "server": "hydra.yokkastars.com",
+      "server_port": 40443,
+      "tag": "🇮🇳印度IN011 测速未知中性 TG@jcnode",
+      "type": "vless",
+      "uuid": "405b964e-a2d2-454f-aaaa-711cc218897c",
+      "flow": "xtls-rprx-vision",
+      "packet_encoding": "xudp",
+      "tls": {
+        "enabled": true,
+        "server_name": "deepl.com",
+        "insecure": true,
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "cwmcqsfS7klQlkcoUNuATEk0NiPY-NnRb9z8rCJDQw0",
+          "short_id": "88b6"
+        }
+      }
+    },
+    {
       "server": "148-253-210-191.sslip.io",
       "server_port": 443,
       "tag": "🇩🇪德国DE051 测速未知纯净 TG@jcnode",
@@ -3374,22 +4730,6 @@
           "User-Agent": [
             "Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US) AppleWebKit/534.17 (KHTML, like Gecko) Chrome/10.0.649.0 Safari/534.17"
           ]
-        }
-      }
-    },
-    {
-      "server": "de-bots4.h1cloud.net",
-      "server_port": 25267,
-      "tag": "🇩🇪德国DE057 测速未知纯净 TG@jcnode",
-      "type": "trojan",
-      "password": "happybirthdaydaniel",
-      "tls": {
-        "enabled": true,
-        "server_name": "t.me/FuckTheWall",
-        "insecure": true,
-        "utls": {
-          "enabled": true,
-          "fingerprint": "android"
         }
       }
     },
@@ -3443,16 +4783,6 @@
       }
     },
     {
-      "server": "fan.571589.xyz",
-      "server_port": 443,
-      "tag": "🇯🇵日本JP007 测速未知纯净 TG@jcnode",
-      "type": "http",
-      "tls": {
-        "enabled": true,
-        "server_name": "fan.571589.xyz"
-      }
-    },
-    {
       "server": "195.123.213.28",
       "server_port": 443,
       "tag": "🇱🇻LV003 测速未知中性 TG@jcnode",
@@ -3475,25 +4805,35 @@
       }
     },
     {
-      "server": "263651t.fi3.h1clayd.click",
-      "server_port": 443,
-      "tag": "🇫🇮芬兰FI008 测速未知中性 TG@jcnode",
+      "server": "hydra.yokkastars.com",
+      "server_port": 2443,
+      "tag": "🇮🇳印度IN008 测速未知中性 TG@jcnode #2",
       "type": "vless",
-      "uuid": "056405e8-de9f-4d0d-8145-956f13cc34da",
+      "uuid": "5e679ccd-1586-4d5f-b87b-48251046cad8",
       "packet_encoding": "xudp",
       "tls": {
         "enabled": true,
-        "server_name": "263651t.fi3.h1clayd.click",
+        "server_name": "deepl.com",
         "utls": {
           "enabled": true,
-          "fingerprint": "edge"
+          "fingerprint": "chrome"
         },
         "reality": {
           "enabled": true,
-          "public_key": "nNe5Y8_G7L0_VO5lqlee3h5UmRH4RXjaRYGCDUkbQz4",
-          "short_id": "2892e611785bafd1"
+          "public_key": "h85e28MxBgNyT9d9cNeOLVtWfHq6cT_1_oxZOTajtTg",
+          "short_id": "92c32de179e5d908"
         }
+      },
+      "transport": {
+        "type": "grpc",
+        "service_name": "rex-eb0bf76b710ce763"
       }
+    },
+    {
+      "server": "87.199.198.178",
+      "server_port": 8443,
+      "tag": "🇵🇱波兰PL005 测速未知 TG@jcnode",
+      "type": "socks"
     },
     {
       "server": "654968169.df6h451rh.xin",
@@ -3537,40 +4877,6 @@
       }
     },
     {
-      "server": "167.172.172.190",
-      "server_port": 443,
-      "tag": "🇩🇪德国DE058 测速未知中性 TG@jcnode",
-      "type": "http",
-      "username": "testuser1",
-      "password": "e4b72b531a2d10900519",
-      "tls": {
-        "enabled": true,
-        "server_name": "167.172.172.190",
-        "insecure": true
-      }
-    },
-    {
-      "server": "263651t.fi3.h1clayd.click",
-      "server_port": 443,
-      "tag": "🇫🇮芬兰FI012 测速未知中性 TG@jcnode",
-      "type": "vless",
-      "uuid": "056405e8-de9f-4d0d-8145-956f13cc34da",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "server_name": "263651t.fi3.h1clayd.click",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "qq"
-        },
-        "reality": {
-          "enabled": true,
-          "public_key": "nNe5Y8_G7L0_VO5lqlee3h5UmRH4RXjaRYGCDUkbQz4",
-          "short_id": "2892e611785bafd1"
-        }
-      }
-    },
-    {
       "server": "82.180.146.251",
       "server_port": 10800,
       "tag": "🇮🇳印度IN007 测速未知 TG@jcnode",
@@ -3592,7 +4898,7 @@
     {
       "server": "47.76.229.132",
       "server_port": 11310,
-      "tag": "🇭🇰香港HK009 测速未知 TG@jcnode #2",
+      "tag": "🇭🇰香港HK009 测速未知 TG@jcnode #2 #2",
       "type": "socks",
       "username": "111",
       "password": "111"
@@ -3667,6 +4973,34 @@
         "enabled": true,
         "server_name": "efr-marktplatz.club",
         "insecure": false
+      }
+    },
+    {
+      "server": "172.64.147.34",
+      "server_port": 2096,
+      "tag": "🇺🇸美国US290 测速未知 TG@jcnode",
+      "type": "vless",
+      "uuid": "56e4896e-90a9-4fe0-8480-90d3d68b9928",
+      "packet_encoding": "xudp",
+      "tls": {
+        "enabled": true,
+        "server_name": "go.iranfree.de5.net",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "Host": [
+            "go.iranfree.de5.net"
+          ],
+          "User-Agent": [
+            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36"
+          ]
+        }
       }
     },
     {
@@ -3766,16 +5100,6 @@
       }
     },
     {
-      "server": "webdrone.club",
-      "server_port": 443,
-      "tag": "🇺🇸美国US293 测速未知中性 TG@jcnode",
-      "type": "http",
-      "tls": {
-        "enabled": true,
-        "server_name": "webdrone.club"
-      }
-    },
-    {
       "server": "jgwynphotoarts.pro",
       "server_port": 443,
       "tag": "🇺🇸美国US309 测速未知中性 TG@jcnode",
@@ -3809,17 +5133,6 @@
       }
     },
     {
-      "server": "193.176.84.24",
-      "server_port": 9002,
-      "tag": "🇷🇴罗马尼亚RO152 测速未知危险 TG@jcnode",
-      "type": "http",
-      "tls": {
-        "enabled": true,
-        "server_name": "www.bing.com",
-        "insecure": true
-      }
-    },
-    {
       "server": "193.176.84.20",
       "server_port": 9002,
       "tag": "🇷🇴罗马尼亚RO157 测速未知危险 TG@jcnode",
@@ -3831,26 +5144,9 @@
       }
     },
     {
-      "server": "176.9.107.170",
-      "server_port": 1081,
-      "tag": "🇩🇪德国DE072 测速未知 TG@jcnode #2",
-      "type": "socks"
-    },
-    {
       "server": "193.176.84.17",
       "server_port": 9002,
       "tag": "🇷🇴罗马尼亚RO170 测速未知危险 TG@jcnode",
-      "type": "http",
-      "tls": {
-        "enabled": true,
-        "server_name": "www.bing.com",
-        "insecure": true
-      }
-    },
-    {
-      "server": "193.176.84.25",
-      "server_port": 9002,
-      "tag": "🇷🇴罗马尼亚RO171 测速未知危险 TG@jcnode",
       "type": "http",
       "tls": {
         "enabled": true,
@@ -3881,15 +5177,10 @@
       }
     },
     {
-      "server": "193.176.84.26",
-      "server_port": 9002,
-      "tag": "🇷🇴罗马尼亚RO200 测速未知危险 TG@jcnode",
-      "type": "http",
-      "tls": {
-        "enabled": true,
-        "server_name": "www.bing.com",
-        "insecure": true
-      }
+      "server": "45.245.208.180",
+      "server_port": 8080,
+      "tag": "🇪🇬EG006 测速未知危险 TG@jcnode",
+      "type": "http"
     },
     {
       "server": "efr-marktplatz.club",
@@ -3987,6 +5278,59 @@
       }
     },
     {
+      "server": "8.35.211.43",
+      "server_port": 2053,
+      "tag": "🇺🇸美国US346 测速未知中性 TG@jcnode",
+      "type": "vless",
+      "uuid": "56e4896e-90a9-4fe0-8480-90d3d68b9928",
+      "packet_encoding": "xudp",
+      "tls": {
+        "enabled": true,
+        "server_name": "go.iranfree.de5.net",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "Host": [
+            "go.iranfree.de5.net"
+          ],
+          "User-Agent": [
+            "Mozilla/5.0 (Windows; U; Windows NT 6.1; de-DE) AppleWebKit/534.17 (KHTML, like Gecko) Chrome/10.0.649.0 Safari/534.17"
+          ]
+        }
+      }
+    },
+    {
+      "server": "172.66.0.118",
+      "server_port": 2083,
+      "tag": "🇺🇸美国US357 测速未知 TG@jcnode",
+      "type": "vless",
+      "uuid": "a6ba51de-d50a-407f-a8bb-5dc8b3073ec1",
+      "packet_encoding": "xudp",
+      "tls": {
+        "enabled": true,
+        "server_name": "frosty-clover-b8ea-df1f0206.pages.dev",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/7f0776a02fac",
+        "headers": {
+          "Host": [
+            "frosty-clover-b8ea-df1f0206.pages.dev"
+          ]
+        }
+      }
+    },
+    {
       "server": "45.32.52.173",
       "server_port": 8886,
       "tag": "🇯🇵日本JP021 测速未知中性 TG@jcnode",
@@ -4063,6 +5407,34 @@
       }
     },
     {
+      "server": "8.39.125.107",
+      "server_port": 2083,
+      "tag": "🇺🇸美国US297 测速未知中性 TG@jcnode",
+      "type": "vless",
+      "uuid": "a6ba51de-d50a-407f-a8bb-5dc8b3073ec1",
+      "packet_encoding": "xudp",
+      "tls": {
+        "enabled": true,
+        "server_name": "frosty-clover-b8ea-df1f0206.pages.dev",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/7f0776a02fac",
+        "headers": {
+          "Host": [
+            "frosty-clover-b8ea-df1f0206.pages.dev"
+          ],
+          "User-Agent": [
+            "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.101 Safari/537.36"
+          ]
+        }
+      }
+    },
+    {
       "server": "167.172.172.190",
       "server_port": 443,
       "tag": "🇩🇪德国DE075 测速未知中性 TG@jcnode",
@@ -4107,6 +5479,18 @@
         "server_name": "tzoa.fun",
         "insecure": false
       }
+    },
+    {
+      "server": "67.207.92.87",
+      "server_port": 1088,
+      "tag": "🇺🇸美国US354 测速未知危险 TG@jcnode",
+      "type": "socks"
+    },
+    {
+      "server": "107.174.30.92",
+      "server_port": 1080,
+      "tag": "🇺🇸美国US384 测速未知 TG@jcnode #2",
+      "type": "socks"
     },
     {
       "server": "148.251.68.232",
@@ -4192,6 +5576,28 @@
       }
     },
     {
+      "server": "swself2.yandex-api.com",
+      "server_port": 443,
+      "tag": "🇸🇪瑞典SE021 测速未知 TG@jcnode #2",
+      "type": "vless",
+      "uuid": "1b7ee703-fa08-4305-8469-ae3e30e61e44",
+      "flow": "xtls-rprx-vision",
+      "packet_encoding": "xudp",
+      "tls": {
+        "enabled": true,
+        "server_name": "swself2.yandex-api.com",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "random"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "HXFe_cPryw01zqXchAFjZciDAS4UJg1-xScx6vjgjjY",
+          "short_id": "7f2e9c4b1a8d6e25"
+        }
+      }
+    },
+    {
       "server": "177.3.208.65",
       "server_port": 443,
       "tag": "🇨🇭瑞士CH006 测速未知中性 TG@jcnode #2 #2",
@@ -4218,12 +5624,6 @@
           ]
         }
       }
-    },
-    {
-      "server": "123.58.219.171",
-      "server_port": 10808,
-      "tag": "🇭🇰香港HK006 测速未知 TG@jcnode #2",
-      "type": "socks"
     },
     {
       "server": "fan.973511.xyz",
@@ -4267,6 +5667,91 @@
       }
     },
     {
+      "server": "2.26.231.218",
+      "server_port": 2063,
+      "tag": "🇵🇱波兰PL034 测速未知危险 TG@jcnode",
+      "type": "vless",
+      "uuid": "b18d5990-96eb-4587-a386-7f8ef7591e6a",
+      "flow": "xtls-rprx-vision",
+      "packet_encoding": "xudp",
+      "tls": {
+        "enabled": true,
+        "server_name": "rusbid.de",
+        "insecure": false,
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "MMpt_jWc4J3oySBdf5sPDVRkiWlZmOObth6A1scM9BM"
+        }
+      }
+    },
+    {
+      "server": "pl-waw.dontblockmepls.com",
+      "server_port": 2063,
+      "tag": "🇵🇱波兰PL036 测速未知危险 TG@jcnode",
+      "type": "vless",
+      "uuid": "b18d5990-96eb-4587-a386-7f8ef7591e6a",
+      "flow": "xtls-rprx-vision",
+      "packet_encoding": "xudp",
+      "tls": {
+        "enabled": true,
+        "server_name": "rusbid.de",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "firefox"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "MMpt_jWc4J3oySBdf5sPDVRkiWlZmOObth6A1scM9BM"
+        }
+      }
+    },
+    {
+      "server": "2.26.231.218",
+      "server_port": 2063,
+      "tag": "🇵🇱波兰PL038 测速未知危险 TG@jcnode",
+      "type": "vless",
+      "uuid": "b18d5990-96eb-4587-a386-7f8ef7591e6a",
+      "flow": "xtls-rprx-vision",
+      "packet_encoding": "xudp",
+      "tls": {
+        "enabled": true,
+        "server_name": "rusbid.de",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "MMpt_jWc4J3oySBdf5sPDVRkiWlZmOObth6A1scM9BM"
+        }
+      }
+    },
+    {
+      "server": "pl-waw.dontblockmepls.com",
+      "server_port": 2063,
+      "tag": "🇵🇱波兰PL043 测速未知危险 TG@jcnode",
+      "type": "vless",
+      "uuid": "b18d5990-96eb-4587-a386-7f8ef7591e6a",
+      "flow": "xtls-rprx-vision",
+      "packet_encoding": "xudp",
+      "tls": {
+        "enabled": true,
+        "server_name": "rusbid.de",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "MMpt_jWc4J3oySBdf5sPDVRkiWlZmOObth6A1scM9BM"
+        }
+      }
+    },
+    {
       "server": "121.169.46.116",
       "server_port": 1090,
       "tag": "🇰🇷韩国KR001 测速未知危险 TG@jcnode",
@@ -4289,6 +5774,74 @@
         "enabled": true,
         "server_name": "purposebydesig.club",
         "insecure": true
+      }
+    },
+    {
+      "server": "pl-waw.dontblockmepls.com",
+      "server_port": 2063,
+      "tag": "🇵🇱波兰PL029 测速未知中性 TG@jcnode #2 #2",
+      "type": "vless",
+      "uuid": "b18d5990-96eb-4587-a386-7f8ef7591e6a",
+      "flow": "xtls-rprx-vision",
+      "packet_encoding": "xudp",
+      "tls": {
+        "enabled": true,
+        "server_name": "rusbid.de",
+        "insecure": false,
+        "utls": {
+          "enabled": true,
+          "fingerprint": "firefox"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "MMpt_jWc4J3oySBdf5sPDVRkiWlZmOObth6A1scM9BM"
+        }
+      }
+    },
+    {
+      "server": "pl-waw.dontblockmepls.com",
+      "server_port": 2063,
+      "tag": "🇵🇱波兰PL030 测速未知中性 TG@jcnode",
+      "type": "vless",
+      "uuid": "b18d5990-96eb-4587-a386-7f8ef7591e6a",
+      "flow": "xtls-rprx-vision",
+      "packet_encoding": "xudp",
+      "tls": {
+        "enabled": true,
+        "server_name": "rusbid.de",
+        "alpn": [
+          "h2",
+          "http/1.1"
+        ],
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "MMpt_jWc4J3oySBdf5sPDVRkiWlZmOObth6A1scM9BM"
+        }
+      }
+    },
+    {
+      "server": "2.26.231.218",
+      "server_port": 2063,
+      "tag": "🇵🇱波兰PL032 测速未知中性 TG@jcnode",
+      "type": "vless",
+      "uuid": "b18d5990-96eb-4587-a386-7f8ef7591e6a",
+      "flow": "xtls-rprx-vision",
+      "packet_encoding": "xudp",
+      "tls": {
+        "enabled": true,
+        "server_name": "rusbid.de",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "firefox"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "MMpt_jWc4J3oySBdf5sPDVRkiWlZmOObth6A1scM9BM"
+        }
       }
     },
     {
@@ -4391,6 +5944,37 @@
       }
     },
     {
+      "server": "199.232.78.160",
+      "server_port": 443,
+      "tag": "🇫🇷法国FR052 测速未知中性 TG@jcnode #2 #2 #2",
+      "type": "vless",
+      "uuid": "XpnTeam-68",
+      "packet_encoding": "xudp",
+      "tls": {
+        "enabled": true,
+        "server_name": "ssl.fastly.com",
+        "alpn": [
+          "http/1.1"
+        ],
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "Host": [
+            "Appxdn.global.ssl.fastly.net"
+          ],
+          "User-Agent": [
+            "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.112 Safari/537.36"
+          ]
+        }
+      }
+    },
+    {
       "server": "193.176.84.17",
       "server_port": 9002,
       "tag": "🇷🇴罗马尼亚RO087 测速未知危险 TG@jcnode",
@@ -4422,6 +6006,26 @@
           "enabled": true,
           "public_key": "tfFzmbVByvoZxxIEUiHMv22_k0-nQz00L0XjU0bd_Fc",
           "short_id": "7f1e29593aa94ad1"
+        }
+      }
+    },
+    {
+      "server": "103.133.1.160",
+      "server_port": 80,
+      "tag": "🇺🇸美国US759 测速未知中性 TG@jcnode",
+      "type": "vless",
+      "uuid": "eaf76557-2219-4799-8171-d7020adfefd0",
+      "packet_encoding": "xudp",
+      "transport": {
+        "type": "ws",
+        "path": "/ws",
+        "headers": {
+          "Host": [
+            "soft-shadow-1e33.xicav73335.workers.dev"
+          ],
+          "User-Agent": [
+            "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36"
+          ]
         }
       }
     },
@@ -4461,10 +6065,72 @@
       }
     },
     {
-      "server": "212.77.75.25",
-      "server_port": 1088,
-      "tag": "🇮🇹意大利IT003 测速未知 TG@jcnode #2",
-      "type": "socks"
+      "server": "188.114.96.9",
+      "server_port": 443,
+      "tag": "🇪🇸西班牙ES007 测速未知 TG@jcnode #2",
+      "type": "vless",
+      "uuid": "2e305ebe-f6e6-4689-b32f-cd04ab5ff541",
+      "packet_encoding": "xudp",
+      "tls": {
+        "enabled": true,
+        "server_name": "idb8onmvbntuyt5t7t6cejfw8vlrb.pages.dev",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/vl/9yvcoLdzdOXLUYfH7r5gwJhu1CHrj",
+        "headers": {
+          "Host": [
+            "idb8onmvbntuyt5t7t6cejfw8vlrb.pages.dev"
+          ]
+        }
+      }
+    },
+    {
+      "server": "188.114.96.9",
+      "server_port": 443,
+      "tag": "🇺🇸美国US706 测速未知 TG@jcnode",
+      "type": "vless",
+      "uuid": "2e305ebe-f6e6-4689-b32f-cd04ab5ff541",
+      "packet_encoding": "xudp",
+      "tls": {
+        "enabled": true,
+        "server_name": "idb8onmvbntuyt5t7t6cejfw8vlrb.pages.dev",
+        "insecure": false,
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/vl/9yvcoLdzdOXLUYfH7r5gwJhu1CHrj",
+        "headers": {
+          "Host": [
+            "idb8onmvbntuyt5t7t6cejfw8vlrb.pages.dev"
+          ]
+        }
+      }
+    },
+    {
+      "server": "103.133.1.160",
+      "server_port": 80,
+      "tag": "🇳🇱荷兰NL110 测速未知中性 TG@jcnode #2 #2 #2",
+      "type": "vless",
+      "uuid": "eaf76557-2219-4799-8171-d7020adfefd0",
+      "packet_encoding": "xudp",
+      "transport": {
+        "type": "ws",
+        "path": "/ws",
+        "headers": {
+          "Host": [
+            "soft-shadow-1e33.xicav73335.workers.dev"
+          ]
+        }
+      }
     },
     {
       "server": "202.146.222.29",
@@ -4485,6 +6151,28 @@
       "type": "shadowsocks",
       "method": "chacha20-ietf-poly1305",
       "password": "oZIoA69Q8yhcQV8ka3Pa3A"
+    },
+    {
+      "server": "31.77.13.19",
+      "server_port": 2063,
+      "tag": "🇬🇧英国GB021 测速未知 TG@jcnode",
+      "type": "vless",
+      "uuid": "b18d5990-96eb-4587-a386-7f8ef7591e6a",
+      "flow": "xtls-rprx-vision",
+      "packet_encoding": "xudp",
+      "tls": {
+        "enabled": true,
+        "server_name": "rusbid.de",
+        "insecure": true,
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "MMpt_jWc4J3oySBdf5sPDVRkiWlZmOObth6A1scM9BM"
+        }
+      }
     },
     {
       "server": "138.2.89.249",
@@ -4525,6 +6213,12 @@
         "server_name": "193.176.84.26",
         "insecure": true
       }
+    },
+    {
+      "server": "195.135.255.98",
+      "server_port": 1080,
+      "tag": "🇱🇻LV004 测速未知 TG@jcnode",
+      "type": "socks"
     },
     {
       "server": "47.242.19.215",
