@@ -1,35 +1,35 @@
 {
   "code": "7788",
-  "updated_at": "2026-10-31T11:31:13+08:00",
-  "updated_at_utc": "2026-10-31T03:31:13+00:00",
-  "date": "2026-10-31",
-  "source_date": "2026-10-31",
-  "source_updated": "2026-10-31 11:21",
+  "updated_at": "2026-11-01T11:10:48+08:00",
+  "updated_at_utc": "2026-11-01T03:10:48+00:00",
+  "date": "2026-11-01",
+  "source_date": "2026-11-01",
+  "source_updated": "2026-11-01 10:30",
   "source_page": "https://jcnode.com/posts/free-nodes/",
-  "link_tier": "proxy",
+  "link_tier": "direct",
   "links": {
-    "clash": "https://files.catbox.moe/atly8z.yaml",
-    "singbox": "https://files.catbox.moe/7sqfcw.json",
-    "v2ray": "https://files.catbox.moe/l0fcj2.txt"
+    "clash": "https://shz.al/FJnj",
+    "singbox": "https://shz.al/hF3s",
+    "v2ray": "https://shz.al/eGxT"
   },
   "nodes": {
-    "clash": 27889,
-    "singbox": 9506,
-    "v2ray": 9578
+    "clash": 28073,
+    "singbox": 9659,
+    "v2ray": 9742
   },
   "sha256_16": {
-    "clash.yaml": "eff943e6cca2a932",
-    "singbox.json": "e982be8b6c44ed88",
-    "v2ray.txt": "81a32afbc08c99c1",
-    "clash": "37d352cfa5e85cde"
+    "clash.yaml": "ddcfc65419253af0",
+    "singbox.json": "93bed99ad45d5589",
+    "v2ray.txt": "8682e33b15010677",
+    "clash": "771a85d32f592839"
   },
   "source_sha256_16": {
-    "clash": "35d3d18618f85141"
+    "clash": "8b75643e04f71653"
   },
   "clash_normalization": {
     "http_opts_headers": "scalar_values_to_lists",
     "flclash_path_controls_percent_encoded": 0,
-    "reality_short_ids_quoted": 5047,
+    "reality_short_ids_quoted": 5089,
     "changed": true
   },
   "merge": {
@@ -40,39 +40,39 @@
       "direction": "descending",
       "missing": "stable-last"
     },
-    "updated_at": "2026-10-31T03:32:03+00:00",
+    "updated_at": "2026-11-01T03:11:26+00:00",
     "clash": {
-      "incoming": 502,
-      "base": 27768,
-      "final": 27889,
-      "added": 499,
-      "duplicates_removed": 381,
+      "incoming": 649,
+      "base": 27889,
+      "final": 28073,
+      "added": 646,
+      "duplicates_removed": 465,
       "sort": "name-mb-s-desc-stable",
       "template": "incoming-daily"
     },
     "singbox": {
-      "incoming": 491,
-      "base": 9419,
-      "final": 9506,
-      "added": 362,
-      "duplicates_removed": 404
+      "incoming": 635,
+      "base": 9506,
+      "final": 9659,
+      "added": 466,
+      "duplicates_removed": 482
     },
     "v2ray": {
-      "incoming": 502,
-      "base": 9479,
-      "final": 9578,
-      "added": 372,
-      "duplicates_removed": 403
+      "incoming": 649,
+      "base": 9578,
+      "final": 9742,
+      "added": 471,
+      "duplicates_removed": 485
     }
   },
   "fresh_nodes": {
-    "clash": 502,
-    "singbox": 491,
-    "v2ray": 502
+    "clash": 649,
+    "singbox": 635,
+    "v2ray": 649
   },
   "policy_normalization": {
-    "total_nodes": 27889,
-    "grouped_country_nodes": 27889,
+    "total_nodes": 28073,
+    "grouped_country_nodes": 28073,
     "unknown_nodes": 0,
     "coverage": 1.0,
     "unknown_reasons": {},
@@ -138,8 +138,8 @@
       "IS",
       "BY",
       "CL",
-      "BD",
       "LU",
+      "BD",
       "PK",
       "SK",
       "AR",
@@ -150,12 +150,12 @@
       "SA",
       "BA",
       "CO",
+      "EG",
       "HR",
       "MK",
       "MM",
       "UZ",
       "YE",
-      "EG",
       "GE",
       "IQ",
       "KH",
@@ -166,13 +166,11 @@
     ],
     "partition_validated": true,
     "shared_template": true,
-    "normalization_at": "2026-10-31T13:22:09+00:00",
-    "verification_run_id": "41203567250:1",
-    "verification_generated_at": "2026-10-31T13:22:09+00:00",
+    "normalization_at": "2026-11-01T03:35:16+00:00",
+    "verification_run_id": "41268082247:1",
+    "verification_generated_at": "2026-11-01T03:35:16+00:00",
     "verification_reused": false,
     "stale": false,
-    "ttl_hours": 24.0,
-    "previous_coverage": 1.0,
-    "coverage_change": 0.0
+    "ttl_hours": 24.0
   }
 }
