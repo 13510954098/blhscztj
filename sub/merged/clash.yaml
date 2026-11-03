@@ -375099,7 +375099,6 @@ proxy-groups:
   - 🇲🇳 蒙古自动
   - 🇻🇬 英属维尔京群岛自动
   - 🇽🇰 科索沃自动
-  - ❓ 未识别地区
   - DIRECT
 - name: 🔰 手动选择
   type: select
@@ -403273,7 +403272,6 @@ proxy-groups:
   - 🇲🇳 蒙古自动
   - 🇻🇬 英属维尔京群岛自动
   - 🇽🇰 科索沃自动
-  - ❓ 未识别地区
   - DIRECT
 - name: 💬 人工智能
   type: select
@@ -403365,7 +403363,6 @@ proxy-groups:
   - 🇲🇳 蒙古自动
   - 🇻🇬 英属维尔京群岛自动
   - 🇽🇰 科索沃自动
-  - ❓ 未识别地区
   - DIRECT
 - name: 🎮 游戏平台
   type: select
@@ -403457,7 +403454,6 @@ proxy-groups:
   - 🇲🇳 蒙古自动
   - 🇻🇬 英属维尔京群岛自动
   - 🇽🇰 科索沃自动
-  - ❓ 未识别地区
   - DIRECT
 - name: 📲 电报消息
   type: select
@@ -403549,7 +403545,6 @@ proxy-groups:
   - 🇲🇳 蒙古自动
   - 🇻🇬 英属维尔京群岛自动
   - 🇽🇰 科索沃自动
-  - ❓ 未识别地区
 - name: 🍎 苹果服务
   type: select
   proxies:
@@ -403640,7 +403635,6 @@ proxy-groups:
   - 🇲🇳 蒙古自动
   - 🇻🇬 英属维尔京群岛自动
   - 🇽🇰 科索沃自动
-  - ❓ 未识别地区
 - name: 📺 国外媒体
   type: select
   proxies:
@@ -403732,7 +403726,6 @@ proxy-groups:
   - 🇲🇳 蒙古自动
   - 🇻🇬 英属维尔京群岛自动
   - 🇽🇰 科索沃自动
-  - ❓ 未识别地区
 - name: Ⓜ️ 微软服务
   type: select
   proxies:
@@ -403824,7 +403817,6 @@ proxy-groups:
   - 🇲🇳 蒙古自动
   - 🇻🇬 英属维尔京群岛自动
   - 🇽🇰 科索沃自动
-  - ❓ 未识别地区
 - name: 🇭🇰 香港自动
   type: url-test
   url: https://www.gstatic.com/generate_204
@@ -430109,6 +430101,7 @@ proxy-groups:
   - '🇵🇱波兰PL018 测速未知纯净 TG@jcnode #2'
   - 🇵🇱波兰PL026 测速未知纯净 TG@jcnode
   - 未知地区014 测速未知 TG@jcnode
+  - '未知地区003 测速未知 TG@jcnode #2'
   - '🇵🇱波兰PL007 测速未知中性 TG@jcnode #2 #2'
   - '🇵🇱波兰PL008 测速未知中性 TG@jcnode #2'
   - '🇵🇱波兰PL009 测速未知中性 TG@jcnode #2 #2'
@@ -432492,10 +432485,6 @@ proxy-groups:
   lazy: true
   proxies:
   - 🇽🇰XK001 测速未知危险 TG@jcnode
-- name: ❓ 未识别地区
-  type: select
-  proxies:
-  - '未知地区003 测速未知 TG@jcnode #2'
 rules:
 - DOMAIN-SUFFIX,xn--ngstr-lra8j.com,☁️ 代理选择
 - DOMAIN-SUFFIX,services.googleapis.cn,☁️ 代理选择
