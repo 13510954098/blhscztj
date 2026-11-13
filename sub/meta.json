@@ -1,45 +1,46 @@
 {
   "code": "7788",
-  "updated_at": "2026-11-12T12:42:36+08:00",
-  "updated_at_utc": "2026-11-12T04:42:36+00:00",
-  "date": "2026-11-12",
-  "source_date": "2026-11-12",
-  "source_updated": "2026-11-12 12:36",
+  "updated_at": "2026-11-13T13:33:42+08:00",
+  "updated_at_utc": "2026-11-13T05:33:42+00:00",
+  "date": "2026-11-13",
+  "source_date": "2026-11-13",
+  "source_updated": "2026-11-13 13:22",
   "source_page": "https://jcnode.com/posts/free-nodes/",
   "link_tier": "direct",
   "links": {
-    "clash": "https://shz.al/BPzQ",
-    "singbox": "https://shz.al/Kwn8",
-    "v2ray": "https://shz.al/YDyF"
+    "clash": "https://shz.al/8STd",
+    "singbox": "https://shz.al/xFYb",
+    "v2ray": "https://shz.al/SFFa"
   },
   "nodes": {
-    "clash": 579,
-    "singbox": 555,
-    "v2ray": 579
+    "clash": 620,
+    "singbox": 609,
+    "v2ray": 620
   },
   "sha256_16": {
-    "clash": "8b726beb9e14de9b",
-    "singbox": "59d3649d6d9c2087",
-    "v2ray": "c4a6ca3186aee6e8"
+    "clash": "301a81838ef6412b",
+    "singbox": "af58341f3969b59a",
+    "v2ray": "276bced9cd34a3af"
   },
   "source_sha256_16": {
-    "clash": "66b44b28372f0e77"
+    "clash": "8214c548aca62e43"
   },
   "clash_normalization": {
     "http_opts_headers": "scalar_values_to_lists",
     "flclash_path_controls_percent_encoded": 0,
-    "reality_short_ids_quoted": 7,
+    "reality_short_ids_quoted": 4,
     "changed": true
   },
   "policy_normalization": {
-    "total_nodes": 579,
-    "grouped_country_nodes": 579,
+    "total_nodes": 620,
+    "grouped_country_nodes": 620,
     "unknown_nodes": 0,
     "coverage": 1.0,
     "unknown_reasons": {},
-    "country_groups": 24,
+    "country_groups": 27,
     "country_codes": [
       "HK",
+      "TW",
       "JP",
       "SG",
       "KR",
@@ -48,31 +49,31 @@
       "FR",
       "NL",
       "CA",
-      "AU",
       "RU",
+      "FI",
       "IT",
-      "ES",
+      "CH",
       "TR",
       "RO",
-      "PL",
       "IE",
-      "LV",
+      "PL",
       "BR",
-      "NG",
-      "ID",
+      "LV",
       "IL",
       "MX",
-      "CZ"
+      "CZ",
+      "HR",
+      "ID",
+      "KZ",
+      "LT"
     ],
     "partition_validated": true,
     "shared_template": true,
-    "normalization_at": "2026-11-12T13:21:33+00:00",
-    "verification_run_id": "43223101279:1",
-    "verification_generated_at": "2026-11-12T13:21:32+00:00",
+    "normalization_at": "2026-11-13T05:56:12+00:00",
+    "verification_run_id": "43372773371:1",
+    "verification_generated_at": "2026-11-13T05:56:12+00:00",
     "verification_reused": false,
     "stale": false,
-    "ttl_hours": 24.0,
-    "previous_coverage": 1.0,
-    "coverage_change": 0.0
+    "ttl_hours": 24.0
   }
 }
